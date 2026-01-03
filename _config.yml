@@ -41,7 +41,12 @@ defaults:
   - scope:
       path: ""
     values:
-      image: /assets/images/rooms.jpg
+      image: /assets/images/logo.jpg
+  - scope:
+      path: ""
+      type: "infos"
+    values:
+      image: ""
 
 collections:
   rooms:

@@ -24,7 +24,7 @@
 			<header class="major">
 				<h1>{{ page.title }}{% if page.datetime %} <span class="text-muted font-sm">{{ page.datetime }}</span> {% endif %}</h1>
 			</header>
-			{% if page.image %}
+			{% if page.image and page.image != "" %}
 				<div>
 					<div class="image main"><img class="rounded" src="{{ page.image | relative_url }}" alt="" /></div>
 				</div>
