@@ -26,7 +26,7 @@
 			</header>
 			{% if page.image %}
 				<div>
-					<div class="image main"><img class="rounded" src="{{ site.baseurl }}/{{ page.image }}" alt="" /></div>
+					<div class="image main"><img class="rounded" src="{{ page.image | relative_url }}" alt="" /></div>
 				</div>
 			{% endif %}
 			{{ content }}
