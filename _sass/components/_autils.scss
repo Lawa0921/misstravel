@@ -117,7 +117,7 @@
 }
 
 body:after {
-  content:url(../../assets/images/close.png) url(../../assets/images/loading.gif) url(../../assets/images/prev.png) url(../../assets/images/next.png);
+  content:url(../../assets/images/close.webp) url(../../assets/images/loading.gif) url(../../assets/images/prev.webp) url(../../assets/images/next.webp);
   display:none
 }
 
@@ -222,7 +222,7 @@ body.lb-disable-scrolling {
   width:34%;
   left:0;
   float:left;
-  background:url(../../assets/images/prev.png) left 48% no-repeat;
+  background:url(../../assets/images/prev.webp) left 48% no-repeat;
   filter:alpha(Opacity=0);
   opacity:0;
   -webkit-transition:opacity .6s;
@@ -240,7 +240,7 @@ body.lb-disable-scrolling {
   width:64%;
   right:0;
   float:right;
-  background:url(../../assets/images/next.png) right 48% no-repeat;
+  background:url(../../assets/images/next.webp) right 48% no-repeat;
   filter:alpha(Opacity=0);
   opacity:0;
   -webkit-transition:opacity .6s;
@@ -301,7 +301,7 @@ body.lb-disable-scrolling {
   float:right;
   width:30px;
   height:30px;
-  background:url(../../assets/images/close.png) top right no-repeat;
+  background:url(../../assets/images/close.webp) top right no-repeat;
   text-align:right;
   outline:0;
   filter:alpha(Opacity=70);

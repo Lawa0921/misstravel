@@ -50,7 +50,7 @@
   "alternateName": "Misstravel",
   "url": "{{ site.url }}",
   "logo": "{{ site.url }}{{ site.logo }}",
-  "image": "{{ site.url }}{{ site.banner_image | default: '/assets/images/banner.jpg' }}",
+  "image": "{{ site.url }}{{ site.banner_image | default: '/assets/images/banner.webp' }}",
   "sameAs": [
     {% for social in site.socials %}
       {% if social[1] and social[1] != "" %}
@@ -119,7 +119,7 @@
 
 <!-- Resource Hints for Critical Resources -->
 <link rel="preload" as="style" href="{{ "assets/css/main.css" | relative_url }}">
-<link rel="preload" as="image" href="{{ site.baseurl }}/assets/images/banner.jpg" media="(min-width: 768px)">
+<link rel="preload" as="image" href="{{ site.baseurl }}/assets/images/banner.webp" media="(min-width: 768px)">
 
 <!-- Pinterest Verification (if needed) -->
 {% if site.pinterest_verify %}

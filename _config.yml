@@ -9,7 +9,7 @@ phone: 0905108958
 description: "密式旅行露營區，位於苗栗泰安鄕，提供露營、小木屋、套房等多種住宿選擇，園內還提供桌遊咖啡廳、兒童遊戲室、兒童沙坑等空間。"
 lang: zh-TW
 locale: zh_TW
-logo: /assets/images/logo.jpg
+logo: /assets/images/logo.webp
 role_url: "infos/2022-10-06-roles.html"
 account_url: "infos/2022-10-06-account.html"
 set_menu_url: "infos/2022-10-06-set-menu-info.html"
@@ -41,7 +41,7 @@ defaults:
   - scope:
       path: ""
     values:
-      image: /assets/images/logo.jpg
+      image: /assets/images/logo.webp
   - scope:
       path: ""
       type: "infos"

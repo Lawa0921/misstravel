@@ -4,7 +4,7 @@
   {% for tile in tiles limit:site.tiles-count %}
     <article>
       <span class="image">
-        <img src="{{ tile.image }}" alt="{{ tile.title }}" loading="lazy" />
+        <img src="{{ tile.image | relative_url }}" alt="{{ tile.title }} - 密式旅行住宿選擇" loading="lazy" />
       </span>
       <header class="major">
         <h3 style="font-size: 40px;"><a href="{{ tile.url  | relative_url }}" class="link">{{ tile.title }}</a></h3>
@@ -14,7 +14,7 @@
   {% endfor %}
   <article>
     <span class="image">
-      <img src="/assets/images/booking.jpg" alt="密式旅行空房查詢與線上訂房" loading="lazy" />
+      <img src="/assets/images/booking.webp" alt="密式旅行空房查詢與線上訂房" loading="lazy" />
     </span>
     <header class="major">
       <h3 style="font-size: 40px;"><a href="https://traiwan.com/official/booking.php?id=misstravel" class="link" target="_blank" rel="noopener noreferrer">空房查詢</a></h3>

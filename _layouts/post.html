@@ -26,7 +26,7 @@
 			</header>
 			{% if page.image and page.image != "" %}
 				<div>
-					<div class="image main"><img class="rounded" src="{{ page.image | relative_url }}" alt="" /></div>
+					<div class="image main"><img class="rounded" src="{{ page.image | relative_url }}" alt="{{ page.title }} - 密式旅行" loading="lazy" /></div>
 				</div>
 			{% endif %}
 			{{ content }}
