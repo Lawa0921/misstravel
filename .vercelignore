@@ -1,0 +1,26 @@
+# Jekyll files (legacy)
+_includes/
+_layouts/
+_sass/
+_rooms/
+_infos/
+_announcements/
+_site/
+Gemfile
+Gemfile.lock
+_config.yml
+*.html
+!astro-site/**
+
+# Development
+.git/
+.github/
+*.md
+!astro-site/**/*.md
+
+# Node
+node_modules/
+
+# IDE
+.vscode/
+.idea/
