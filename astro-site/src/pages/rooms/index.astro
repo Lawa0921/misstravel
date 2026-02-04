@@ -11,18 +11,20 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
   description="密式旅行提供多樣化住宿選擇：露營車位享受大自然、溫馨小木屋適合家庭、舒適套房給您飯店般體驗。"
   keywords="密式旅行房型,露營車位,小木屋住宿,套房住宿,苗栗住宿價格"
 >
-  <section class="page-header">
-    <div class="container">
-      <h1>房型展示</h1>
-      <p>密式旅行，位於群山的處所</p>
-    </div>
-  </section>
-
   <div id="main" class="alt">
     <div class="inner">
+      <nav class="breadcrumb">
+        <a href="/">首頁</a>
+        <span>&gt;</span>
+        <span>房型展示</span>
+      </nav>
+      <header class="major">
+        <h1>房型展示</h1>
+      </header>
       <div class="rooms-grid">
         {sortedRooms.map((room) => (
           <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
+            <h3>{room.data.title}</h3>
             <div class="room-image">
               <img
                 src={room.data.mainImage}
@@ -30,33 +32,18 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
                 loading="lazy"
               />
             </div>
-            <div class="room-content">
-              <h3>{room.data.title}</h3>
-              <div class="room-prices">
-                <div class="price-item">
-                  <span class="label">👑 訂價</span>
-                  <span class="value">${room.data.standardPrice}</span>
-                </div>
-                <div class="price-item">
-                  <span class="label">🥇 連假</span>
-                  <span class="value">${room.data.standardPrice}</span>
-                </div>
-                <div class="price-item">
-                  <span class="label">🥈 假日</span>
-                  <span class="value">${room.data.holidayPrice}</span>
-                </div>
-                <div class="price-item">
-                  <span class="label">🥉 平日</span>
-                  <span class="value">${room.data.weekdayPrice}</span>
-                </div>
-                <div class="price-item">
-                  <span class="label">{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}</span>
-                  <span class="value">{room.data.numberOfRooms}</span>
-                </div>
-                <div class="price-item">
-                  <span class="label">👥 人數</span>
-                  <span class="value">{room.data.numberOfPeople}</span>
-                </div>
+            <div class="room-prices">
+              <div class="price-row">
+                <span>👑 訂價：{room.data.standardPrice}</span>
+                <span>🥇 連假：{room.data.standardPrice}</span>
+              </div>
+              <div class="price-row">
+                <span>🥈 假日：{room.data.holidayPrice}</span>
+                <span>🥉 平日：{room.data.weekdayPrice}</span>
+              </div>
+              <div class="price-row">
+                <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
+                <span>👥 人數：{room.data.numberOfPeople}</span>
               </div>
             </div>
           </a>
@@ -67,56 +54,81 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
 </BaseLayout>
 
 <style>
-  .page-header {
-    padding: 8rem 2rem 4rem;
-    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
-    text-align: center;
-  }
-
-  .page-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .page-header p {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
   #main {
     background: #242943;
-    padding: 3rem 0;
+    padding: 6rem 0 3rem;
   }
 
   .inner {
-    max-width: 1200px;
+    max-width: 65em;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 3em;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .breadcrumb a {
+    color: #ffd306;
+    border-bottom: none;
+  }
+
+  .breadcrumb a:hover {
+    color: #9bf1ff;
+  }
+
+  .breadcrumb span {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  header.major {
+    margin-bottom: 2rem;
+  }
+
+  header.major h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: solid 2px #fff;
+    display: inline-block;
   }
 
   .rooms-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .room-card {
     display: block;
-    background: #2a2f4a;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-bottom: none;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   }
 
   .room-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: #9bf1ff;
+  }
+
+  .room-card h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0.75rem;
+    text-align: center;
+    letter-spacing: 0.1em;
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .room-image {
     width: 100%;
-    height: 250px;
+    height: 280px;
     overflow: hidden;
   }
 
@@ -131,47 +143,40 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
     transform: scale(1.05);
   }
 
-  .room-content {
-    padding: 1.5rem;
-  }
-
-  .room-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    letter-spacing: 0.1em;
-  }
-
   .room-prices {
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .price-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
-  .price-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-    font-size: 0.9rem;
+  .price-row:last-child {
+    margin-bottom: 0;
   }
 
-  .price-item .label {
-    color: rgba(255, 255, 255, 0.7);
+  .price-row span {
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.25rem;
   }
 
-  .price-item .value {
-    font-weight: 600;
-    color: #9bf1ff;
+  @media (max-width: 980px) {
+    .inner {
+      padding: 0 1.5em;
+    }
   }
 
   @media (max-width: 768px) {
-    .page-header {
-      padding: 6rem 1.5rem 3rem;
+    #main {
+      padding: 4rem 0 2rem;
     }
 
-    .page-header h1 {
+    header.major h1 {
       font-size: 2rem;
     }
 
@@ -180,7 +185,7 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
     }
 
     .room-image {
-      height: 200px;
+      height: 220px;
     }
   }
 </style>
