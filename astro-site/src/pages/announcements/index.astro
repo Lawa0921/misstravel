@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const announcements = await getCollection('announcements');
+const sortedAnnouncements = announcements.sort(
+  (a, b) => new Date(b.data.datetime).getTime() - new Date(a.data.datetime).getTime()
+);
+---
+
+<BaseLayout
+  title="最新消息"
+  description="密式旅行露營區最新公告與活動消息"
+  keywords="密式旅行公告,露營區消息,最新活動"
+>
+  <section class="page-header">
+    <div class="container">
+      <h1>最新消息</h1>
+      <p>公告與活動</p>
+    </div>
+  </section>
+
+  <div id="main">
+    <div class="inner">
+      <div class="announcements-list">
+        {sortedAnnouncements.map((announcement) => (
+          <article class="announcement-card">
+            {announcement.data.image && (
+              <div class="card-image">
+                <img
+                  src={announcement.data.image}
+                  alt={announcement.data.title}
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="card-content">
+              <div class="meta">
+                <time datetime={announcement.data.datetime.toISOString()}>
+                  {announcement.data.datetime.toLocaleDateString('zh-TW', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+                <div class="tags">
+                  {announcement.data.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <h2>{announcement.data.title}</h2>
+              <p>{announcement.data.description}</p>
+              <a href={`/announcements/${announcement.id.replace('.md', '')}/`} class="read-more">
+                閱讀更多 →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  #main {
+    background: #242943;
+    padding: 3rem 0;
+  }
+
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .announcement-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    background: #2a2f4a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .card-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(155, 241, 255, 0.2);
+    color: #9bf1ff;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .card-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .card-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .read-more {
+    color: #9bf1ff;
+    font-size: 0.9rem;
+    border-bottom: none;
+    transition: all 0.2s ease;
+  }
+
+  .read-more:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem 3rem;
+    }
+
+    .announcement-card {
+      grid-template-columns: 1fr;
+    }
+
+    .card-image {
+      height: 180px;
+    }
+  }
+</style>

@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../lib/config';
+
+// Gallery images from the galleries folder
+const galleryImages = [
+  { src: '/images/galleries/gallery_1.webp', alt: '園區風景' },
+  { src: '/images/galleries/gallery_2.webp', alt: '園區設施' },
+  { src: '/images/galleries/gallery_3.webp', alt: '露營區景觀' },
+  { src: '/images/galleries/gallery_4.webp', alt: '小木屋外觀' },
+  { src: '/images/galleries/gallery_5.webp', alt: '山林美景' },
+  { src: '/images/galleries/gallery_6.webp', alt: '夕陽美景' },
+];
+---
+
+<BaseLayout
+  title="園區相簿"
+  description="密式旅行露營區美景相簿，記錄園區的自然風光與設施"
+  keywords="密式旅行相簿,露營區照片,苗栗美景"
+>
+  <section class="page-header">
+    <div class="container">
+      <h1>園區相簿</h1>
+      <p>美景、設施、活動</p>
+    </div>
+  </section>
+
+  <div id="main">
+    <div class="inner">
+      <div class="gallery-grid">
+        {galleryImages.map((image, index) => (
+          <a href={image.src} class="gallery-item" data-lightbox="gallery" data-title={image.alt}>
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              onerror="this.parentElement.style.display='none'"
+            />
+          </a>
+        ))}
+      </div>
+
+      <div class="cta-section">
+        <h3>想親自體驗密式的美景？</h3>
+        <a href={siteConfig.booking.url} class="btn" target="_blank" rel="noopener noreferrer">
+          立即預訂
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  #main {
+    background: #242943;
+    padding: 3rem 0;
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 8px;
+    border-bottom: none;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 3rem;
+    background: #2a2f4a;
+    border-radius: 8px;
+  }
+
+  .cta-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #9bf1ff;
+    color: #242943;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    border-bottom: none;
+  }
+
+  .btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem 3rem;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

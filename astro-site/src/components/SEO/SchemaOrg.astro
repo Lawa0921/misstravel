@@ -1,0 +1,69 @@
+---
+import { siteConfig } from '../../lib/config';
+
+interface Props {
+  type: 'Organization' | 'LocalBusiness' | 'Accommodation' | 'BlogPosting';
+  data?: Record<string, unknown>;
+}
+
+const { type, data = {} } = Astro.props;
+
+const baseOrganization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.author,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}${siteConfig.logo}`,
+  sameAs: [
+    siteConfig.socials.facebook,
+    siteConfig.socials.instagram,
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: siteConfig.contact.phone,
+    email: siteConfig.contact.email,
+    contactType: 'customer service',
+    availableLanguage: ['Chinese'],
+  },
+};
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: siteConfig.author,
+  description: siteConfig.description,
+  url: siteConfig.url,
+  telephone: siteConfig.contact.phone,
+  email: siteConfig.contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '苗栗縣泰安鄉',
+    addressLocality: '泰安鄉',
+    addressRegion: '苗栗縣',
+    addressCountry: 'TW',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 24.418704,
+    longitude: 120.913734,
+  },
+  priceRange: '$$',
+  image: `${siteConfig.url}${siteConfig.logo}`,
+};
+
+const schemas: Record<string, object> = {
+  Organization: baseOrganization,
+  LocalBusiness: localBusiness,
+  Accommodation: { ...localBusiness, '@type': 'Accommodation', ...data },
+  BlogPosting: {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    publisher: baseOrganization,
+    ...data,
+  },
+};
+
+const schema = schemas[type] || baseOrganization;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

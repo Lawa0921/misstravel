@@ -1,0 +1,267 @@
+---
+metaTitle: '密式旅行露營區，交通指引'
+title: '交通指引'
+description: '詳細的密式旅行露營區交通指引，提供大湖路線和豆腐街路線兩種進入方式，附有圖片說明'
+metaDescription: '前往密式旅行露營區的詳細交通指引，包含大湖路線和豆腐街路線兩種選擇，附有詳細圖片與路況說明，讓您輕鬆抵達苗栗泰安露營區'
+keywords: '密式旅行交通, 苗栗露營交通, 泰安露營區路線, 大湖路線, 豆腐街路線, 露營區指引, 清安路線'
+image: ''
+---
+
+<div class="container">
+  <div class="row align-items-center" style="min-height: 500px">
+    <div class="col-12 col-lg-6 text-center">
+      <button type="button" class="button special big" data-toggle="modal" data-target="#guide_1" data-whatever="@guide_1">經大湖市區</button>
+    </div>
+    <div class="col-12 col-lg-6 text-center">
+      <button type="button" class="button big" data-toggle="modal" data-target="#guide_2" data-whatever="@guide_2">經豆腐街</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade mt-5" id="guide_1" role="dialog" aria-labelledby="guide_1ModalLabel">
+  <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+    <h2>大湖路線</h2>
+    <div class="text-center">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_1.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>出七十二快速道路後往右轉經大湖上山(較建議路段)</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_2.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>看到大湖國中右轉苗栗六十一號縣道 (細細邦道)</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_3.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿途經過此岔路請繼續直行</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_4.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿途經過此岔路請繼續直行，沿著主要幹道開</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_5.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿途經過小小的大安橋</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_6.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>經過下圖路口時，請注意不要錯過，左轉上坡後路就變大條了!!</p>
+          <p>請勿直走，直走導航會帶您走超小的路線!!</p>
+          <p>"左轉"有大量露營指示牌的山路</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_6.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿途經過此小岔路，右轉上坡  請繼續沿著主要幹道開</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_7.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿途經過此小岔路，右轉上坡  請繼續沿著主要幹道開</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_8.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>上坡後經泰安國中小</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_9.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>看到大興派出所路口右轉</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_10.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>經過派出所後，皆一直直行，走最大條的路(平緩沒有上下坡)</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_11.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿途經過此岔路請繼續直行，沿著主要幹道開</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_1_12.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>&#127775; 抵達密式入口 &#127775;</p>
+          <p>觀山之屋區/四人套房(閲陽、近雲)皆在此入口旁圍牆前臨停，通知營主等候帶位</p>
+          <p>依山之屋/雙人套房/營位直接從入口下坡駛入</p>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<div class="modal fade mt-5" id="guide_2" role="dialog" aria-labelledby="guide_2ModalLabel">
+  <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+    <h2>豆腐街路線</h2>
+    <div class="text-center">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_1.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>出七十二快速道路後直行經清安苗62-1上山</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_2.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>72快速道路走到底汶水端</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_3.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>直行走往清安方向</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_4.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>左轉往清安方向</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_5.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>岔路往左經萊爾富至豆腐街</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_6.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>至溫泉區路口右轉走苗62-1</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_7.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>右轉親善橋</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_8.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>經過下圖路口時，請注意不要錯過，請右轉上坡!!</p>
+          <p>請勿直走，直走導航會帶您走超小的路線!!一定迷路</p>
+          <p>於苗 62-1 1.5 公里處右轉上山</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_9.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>行至三岔路口直走往大興南灣方向</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_10.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>此路口右轉往大興方向</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_11.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿著柏油路直行</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_12.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>直行經過大興派出所</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_13.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿著南清聯絡道路直行</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_14.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>沿著柏油路直行</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <span class="image fit"><img src="/assets/images/guide/guide_2_15.webp" alt=""></span>
+        </div>
+        <div class="col-12 col-md-4">
+          <p>&#127775; 抵達密式入口 &#127775;</p>
+          <p>觀山之屋區/四人套房(閲陽、近雲)皆在此入口旁圍牆前臨停，通知營主等候帶位</p>
+          <p>依山之屋/雙人套房/營位直接從入口下坡駛入</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

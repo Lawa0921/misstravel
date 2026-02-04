@@ -1,0 +1,507 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../../lib/config';
+
+export async function getStaticPaths() {
+  const rooms = await getCollection('rooms');
+  return rooms.map((room) => ({
+    params: { slug: room.id.replace('.md', '') },
+    props: { room },
+  }));
+}
+
+const { room } = Astro.props;
+const { Content } = await room.render();
+
+// Get related rooms (same type or different)
+const allRooms = await getCollection('rooms');
+const relatedRooms = allRooms
+  .filter((r) => r.id !== room.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={room.data.metaTitle}
+  description={room.data.metaDescription}
+  keywords={room.data.keywords}
+  image={room.data.mainImage}
+>
+  <section class="page-header">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">首頁</a>
+        <span>/</span>
+        <a href="/rooms/">房型展示</a>
+        <span>/</span>
+        <span>{room.data.shortTitle}</span>
+      </nav>
+      <h1>{room.data.title}</h1>
+    </div>
+  </section>
+
+  <div id="main" class="room-detail">
+    <div class="inner">
+      <!-- Image Carousel -->
+      <div class="carousel-container">
+        <div class="carousel" id="room-carousel">
+          <div class="carousel-track">
+            {room.data.images.map((image, index) => (
+              <div class="carousel-slide" data-index={index}>
+                <img
+                  src={image}
+                  alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            ))}
+          </div>
+          <button class="carousel-btn prev" aria-label="上一張">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="carousel-btn next" aria-label="下一張">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="carousel-dots">
+            {room.data.images.map((_, index) => (
+              <button
+                class={`dot ${index === 0 ? 'active' : ''}`}
+                data-index={index}
+                aria-label={`跳至圖片 ${index + 1}`}
+              ></button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Price Info -->
+      <div class="price-section">
+        <div class="price-grid">
+          <div class="price-card">
+            <span class="price-label">👑 訂價</span>
+            <span class="price-value">${room.data.standardPrice}</span>
+          </div>
+          <div class="price-card">
+            <span class="price-label">🥇 連假</span>
+            <span class="price-value">${room.data.standardPrice}</span>
+          </div>
+          <div class="price-card">
+            <span class="price-label">🥈 假日</span>
+            <span class="price-value">${room.data.holidayPrice}</span>
+          </div>
+          <div class="price-card">
+            <span class="price-label">🥉 平日</span>
+            <span class="price-value">${room.data.weekdayPrice}</span>
+          </div>
+        </div>
+        <div class="capacity-info">
+          <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}: {room.data.numberOfRooms}</span>
+          <span>👥 人數: {room.data.numberOfPeople}</span>
+        </div>
+        <a
+          href={siteConfig.booking.url}
+          class="book-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          立即預訂
+        </a>
+      </div>
+
+      <!-- Room Details -->
+      <div class="room-content">
+        <Content />
+      </div>
+
+      <!-- Important Links -->
+      <div class="important-links">
+        <h4>訂房前請務必詳閱</h4>
+        <div class="links-grid">
+          <a href={siteConfig.urls.roles}>📋 園內規約</a>
+          <a href={siteConfig.urls.account}>💳 匯款資訊</a>
+        </div>
+      </div>
+
+      <!-- Related Rooms -->
+      <div class="related-section">
+        <h3>其他住宿選擇</h3>
+        <div class="related-grid">
+          {relatedRooms.map((related) => (
+            <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
+              <img
+                src={related.data.mainImage}
+                alt={related.data.shortTitle}
+                loading="lazy"
+              />
+              <div class="related-info">
+                <h4>{related.data.shortTitle}</h4>
+                <span class="related-price">平日 ${related.data.weekdayPrice} 起</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 8rem 2rem 3rem;
+    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
+  }
+
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom: none;
+  }
+
+  .breadcrumb a:hover {
+    color: #9bf1ff;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+  }
+
+  #main {
+    background: #242943;
+    padding: 2rem 0 4rem;
+  }
+
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Carousel */
+  .carousel-container {
+    margin-bottom: 2rem;
+  }
+
+  .carousel {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    aspect-ratio: 16/10;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .carousel-btn.prev {
+    left: 1rem;
+  }
+
+  .carousel-btn.next {
+    right: 1rem;
+  }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .dot.active {
+    background: #fff;
+  }
+
+  /* Price Section */
+  .price-section {
+    background: #2a2f4a;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .price-label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+  }
+
+  .price-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #9bf1ff;
+  }
+
+  .capacity-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .book-btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: #9bf1ff;
+    color: #242943;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .book-btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
+
+  /* Room Content */
+  .room-content {
+    background: #2a2f4a;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .room-content :global(h4) {
+    color: #9bf1ff;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .room-content :global(ul) {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .room-content :global(li) {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Important Links */
+  .important-links {
+    background: rgba(155, 241, 255, 0.1);
+    border: 1px solid rgba(155, 241, 255, 0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .important-links h4 {
+    color: #9bf1ff;
+    margin-bottom: 1rem;
+  }
+
+  .links-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .links-grid a {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  .links-grid a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Related Rooms */
+  .related-section h3 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .related-card {
+    background: #2a2f4a;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    border-bottom: none;
+  }
+
+  .related-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .related-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .related-info {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .related-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .related-price {
+    font-size: 0.9rem;
+    color: #9bf1ff;
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .price-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const carousel = document.getElementById('room-carousel');
+  if (carousel) {
+    const track = carousel.querySelector('.carousel-track') as HTMLElement;
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.dot');
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateCarousel();
+      });
+    });
+
+    // Touch support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+
+    track.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          currentIndex = (currentIndex + 1) % slides.length;
+        } else {
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        }
+        updateCarousel();
+      }
+    });
+  }
+</script>

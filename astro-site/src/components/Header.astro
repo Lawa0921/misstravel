@@ -1,0 +1,180 @@
+---
+import { siteConfig } from '../lib/config';
+
+interface Props {
+  variant?: 'default' | 'alt' | 'alt-style2';
+}
+
+const { variant = 'default' } = Astro.props;
+
+const headerClass = variant === 'alt' ? 'alt' : variant === 'alt-style2' ? 'alt style2' : '';
+
+const navItems = [
+  { href: '/', label: '首頁' },
+  { href: '/rooms/', label: '住宿房型' },
+  { href: '/infos/', label: '園區資訊' },
+  { href: '/announcements/', label: '最新消息' },
+  { href: '/galleries/', label: '園區相簿' },
+  { href: siteConfig.booking.url, label: '空房查詢', external: true },
+];
+---
+
+<div id="wrapper">
+  <header id="header" class={headerClass}>
+    <a href="/" class="logo">
+      <strong>{siteConfig.title}</strong>
+    </a>
+    <nav>
+      <a href="#menu" id="menu-toggle">Menu</a>
+    </nav>
+  </header>
+
+  <nav id="menu">
+    <ul class="links">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener noreferrer' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+<style>
+  #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(36, 41, 67, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  #header.alt {
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  #header.alt.style2 {
+    background: rgba(36, 41, 67, 0.8);
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border-bottom: none;
+  }
+
+  .logo strong {
+    font-weight: 600;
+  }
+
+  #menu-toggle {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  #menu-toggle:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  #menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: #2a2f4a;
+    padding: 4rem 2rem 2rem;
+    z-index: 10001;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+  }
+
+  #menu.is-visible {
+    right: 0;
+  }
+
+  #menu .links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #menu .links li {
+    margin-bottom: 0.5rem;
+  }
+
+  #menu .links a {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  #menu .links a:hover {
+    color: #9bf1ff;
+    padding-left: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    #header {
+      padding: 1rem 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  const wrapper = document.getElementById('wrapper');
+
+  function toggleMenu() {
+    menu?.classList.toggle('is-visible');
+    wrapper?.classList.toggle('is-menu-visible');
+  }
+
+  menuToggle?.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleMenu();
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (menu?.classList.contains('is-visible') &&
+        !menu.contains(target) &&
+        target !== menuToggle) {
+      toggleMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.classList.contains('is-visible')) {
+      toggleMenu();
+    }
+  });
+</script>

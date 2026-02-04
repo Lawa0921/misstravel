@@ -1,0 +1,43 @@
+---
+import Head from '../components/SEO/Head.astro';
+import SchemaOrg from '../components/SEO/SchemaOrg.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  keywords?: string;
+  headerVariant?: 'default' | 'alt' | 'alt-style2';
+  schemaType?: 'Organization' | 'LocalBusiness';
+}
+
+const {
+  title,
+  description,
+  image,
+  keywords,
+  headerVariant = 'default',
+  schemaType = 'Organization',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <Head
+    title={title}
+    description={description}
+    image={image}
+    keywords={keywords}
+  />
+  <body>
+    <SchemaOrg type={schemaType} />
+    <Header variant={headerVariant} />
+
+    <slot />
+
+    <Footer />
+  </body>
+</html>

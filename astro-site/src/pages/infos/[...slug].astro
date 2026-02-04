@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const infos = await getCollection('infos');
+  return infos.map((info) => ({
+    params: { slug: info.id.replace('.md', '') },
+    props: { info },
+  }));
+}
+
+const { info } = Astro.props;
+const { Content } = await info.render();
+---
+
+<BaseLayout
+  title={info.data.metaTitle || info.data.title}
+  description={info.data.metaDescription || info.data.description}
+  keywords={info.data.keywords}
+>
+  <section class="page-header">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">首頁</a>
+        <span>/</span>
+        <a href="/infos/">關於密式</a>
+        <span>/</span>
+        <span>{info.data.title}</span>
+      </nav>
+      <h1>{info.data.title}</h1>
+    </div>
+  </section>
+
+  <div id="main">
+    <div class="inner">
+      <div class="info-content">
+        <Content />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 8rem 2rem 3rem;
+    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
+  }
+
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom: none;
+  }
+
+  .breadcrumb a:hover {
+    color: #9bf1ff;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+  }
+
+  #main {
+    background: #242943;
+    padding: 2rem 0 4rem;
+  }
+
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .info-content {
+    background: #2a2f4a;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .info-content :global(h2),
+  .info-content :global(h3),
+  .info-content :global(h4) {
+    color: #9bf1ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-content :global(p) {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .info-content :global(ul),
+  .info-content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .info-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+
+  .info-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+
+  .info-content :global(th),
+  .info-content :global(td) {
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left;
+  }
+
+  .info-content :global(th) {
+    background: rgba(155, 241, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .info-content {
+      padding: 1.5rem;
+    }
+  }
+</style>

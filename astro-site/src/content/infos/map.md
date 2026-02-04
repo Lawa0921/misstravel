@@ -1,0 +1,12 @@
+---
+metaTitle: '密式旅行露營區，園區地圖'
+title: '園區地圖'
+description: '查看密式旅行露營區的完整園區配置圖，了解木屋、群塚及各項設施位置'
+metaDescription: '密式旅行露營區園區地圖，清楚標示木屋、群塚、盥洗室、停車場等設施位置，幫助您更好的規劃苗栗泰安露營旅程'
+keywords: '密式旅行地圖, 露營區地圖, 苗栗露營區配置, 泰安露營區平面圖, 木屋位置, 群塚位置, 露營設施'
+image: ''
+---
+
+<div class="text-center">
+  <span class="image fit"><img src="/assets/images/map.webp" alt=""></span>
+</div>

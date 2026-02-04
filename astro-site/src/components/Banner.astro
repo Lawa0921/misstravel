@@ -1,0 +1,182 @@
+---
+import { siteConfig } from '../lib/config';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Astro.props;
+---
+
+<section id="banner" class="major">
+  <div class="inner">
+    <header class="major">
+      <h1>{title} / MissTravel</h1>
+    </header>
+    <div class="content">
+      <p>{subtitle}</p>
+      <ul class="actions">
+        <li>
+          <a href="/rooms/" class="button special">查看房型</a>
+        </li>
+        <li>
+          <a
+            href={siteConfig.booking.url}
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            立即預訂
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  #banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 8rem 2rem 4rem;
+    background-image: url('/images/banner.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  #banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(36, 41, 67, 0.3) 0%,
+      rgba(36, 41, 67, 0.7) 100%
+    );
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .major h1 {
+    font-size: 3.5rem;
+    margin: 0 0 1.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: fadeInDown 0.8s ease;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .content p {
+    font-size: 2rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin: 0 0 2rem;
+    animation: fadeIn 1s ease 0.3s both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    animation: fadeInUp 1s ease 0.5s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .button:hover {
+    background: #fff;
+    color: #242943;
+  }
+
+  .button.special {
+    background: #fff;
+    color: #242943;
+  }
+
+  .button.special:hover {
+    background: #9bf1ff;
+    border-color: #9bf1ff;
+  }
+
+  @media (max-width: 768px) {
+    #banner {
+      min-height: 80vh;
+      padding: 6rem 1.5rem 3rem;
+      background-attachment: scroll;
+    }
+
+    .major h1 {
+      font-size: 2rem;
+      letter-spacing: 0.2em;
+    }
+
+    .content p {
+      font-size: 1.25rem;
+    }
+
+    .actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button {
+      width: 100%;
+      max-width: 250px;
+      text-align: center;
+    }
+  }
+</style>

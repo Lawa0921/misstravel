@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const infos = await getCollection('infos');
+const sortedInfos = infos.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+---
+
+<BaseLayout
+  title="關於密式"
+  description="了解密式旅行露營區的故事與理念"
+  keywords="關於密式,密式旅行故事,苗栗露營區"
+>
+  <section class="page-banner" style="background-image: url('/images/landing_banner.webp')">
+    <div class="overlay"></div>
+    <div class="container">
+      <h1>關於密式</h1>
+      <p>密式旅行，屬於你的景點</p>
+    </div>
+  </section>
+
+  <div id="main">
+    <div class="inner">
+      <div class="info-nav">
+        {sortedInfos.map((info) => (
+          <a href={`/infos/${info.id.replace('.md', '')}/`} class="info-link">
+            {info.data.title}
+          </a>
+        ))}
+      </div>
+
+      <div class="spotlights">
+        <section class="spotlight">
+          <div class="image">
+            <img src="/images/landing/landing_img_1.webp" alt="密式小木屋外觀與泰安山景" loading="lazy" />
+          </div>
+          <div class="content">
+            <h2>密式小木屋</h2>
+            <p>入住密式小木屋，在房內眺出就可以將泰安山景盡收眼底，靜下心來看本書，淨空您的思想，等您發現時，夕陽已經染紅了整片山頭。曠野徐徐微風，小溪水聲潺潺，蟲鳴鳥叫蛙鳴，銀河流星月亮，自然彷彿就在你耳邊低語。</p>
+            <p class="note">※ 木屋禁止攜帶寵物</p>
+          </div>
+        </section>
+
+        <section class="spotlight reverse">
+          <div class="image">
+            <img src="/images/landing/landing_img_2.webp" alt="密式露營區營地景觀" loading="lazy" />
+          </div>
+          <div class="content">
+            <h2>密式露營區</h2>
+            <p>密式露營區，採小包區形式，地形落差大，平望出去即可看清整座山，三面環山彷彿置身山林中心，每到夕陽西下之時，夕陽的餘暉灑滿了整片山頭，抹紅一片山嵐，暖紅色的光芒慢慢地跟著它爬到遠處，直到它沒入遠方的山頭。</p>
+          </div>
+        </section>
+
+        <section class="spotlight">
+          <div class="image">
+            <img src="/images/landing/landing_img_3.webp" alt="密式桌遊咖啡廳內部環境" loading="lazy" />
+          </div>
+          <div class="content">
+            <h2>密式桌遊咖啡廳</h2>
+            <p>密式咖啡廳，提供上百種桌遊給旅客遊玩，並且在現場提供桌遊教學服務。即使不玩遊戲，在夕陽西下的時候點杯咖啡，靜靜的享受夜幕的降臨也是別有一番風味。</p>
+            <p class="note">適合年齡：5 歲以上</p>
+          </div>
+        </section>
+
+        <section class="spotlight reverse">
+          <div class="image">
+            <img src="/images/landing/landing_img_4.webp" alt="密式遊戲室" loading="lazy" />
+          </div>
+          <div class="content">
+            <h2>密式遊戲室</h2>
+            <p>密式遊戲室提供多種兒童玩具，並且開放旅客免費遊玩，遊戲室由木頭建成，室內開放冷氣，即使天氣不佳小朋友也不怕沒地方去。</p>
+            <p class="note">適合年齡：8 歲以下</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-banner {
+    position: relative;
+    padding: 10rem 2rem 4rem;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+  }
+
+  .page-banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(36, 41, 67, 0.7);
+  }
+
+  .page-banner .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-banner p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  #main {
+    background: #242943;
+    padding: 3rem 0;
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .info-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: #2a2f4a;
+    border-radius: 8px;
+  }
+
+  .info-link {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+    border-bottom: none;
+  }
+
+  .info-link:hover {
+    background: #9bf1ff;
+    color: #242943;
+  }
+
+  .spotlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .spotlight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+  }
+
+  .spotlight.reverse {
+    direction: rtl;
+  }
+
+  .spotlight.reverse > * {
+    direction: ltr;
+  }
+
+  .spotlight .image {
+    overflow: hidden;
+  }
+
+  .spotlight .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .spotlight:hover .image img {
+    transform: scale(1.05);
+  }
+
+  .spotlight .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+    background: #2a2f4a;
+  }
+
+  .spotlight h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+  }
+
+  .spotlight p {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+  }
+
+  .spotlight .note {
+    color: #ffd306;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .page-banner {
+      padding: 8rem 1.5rem 3rem;
+    }
+
+    .spotlight {
+      grid-template-columns: 1fr;
+    }
+
+    .spotlight.reverse {
+      direction: ltr;
+    }
+
+    .spotlight .image {
+      height: 250px;
+    }
+
+    .spotlight .content {
+      padding: 2rem;
+    }
+  }
+</style>
