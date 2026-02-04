@@ -68,8 +68,9 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5" />
 
-  <!-- RSS Feed -->
+  <!-- RSS & JSON Feed -->
   <link rel="alternate" type="application/rss+xml" title={`${siteConfig.title} RSS Feed`} href="/feed.xml" />
+  <link rel="alternate" type="application/feed+json" title={`${siteConfig.title} JSON Feed`} href="/feed.json" />
 
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
