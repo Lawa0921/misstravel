@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="頁面不存在">
+  <section class="error-page">
+    <div class="container">
+      <h1>404</h1>
+      <h2>頁面不存在</h2>
+      <p>抱歉，您要找的頁面不存在或已被移除。</p>
+      <a href="/" class="btn">返回首頁</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
+  }
+
+  h1 {
+    font-size: 8rem;
+    margin-bottom: 1rem;
+    color: #9bf1ff;
+    letter-spacing: 0.5em;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2em;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #9bf1ff;
+    color: #242943;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    border-bottom: none;
+  }
+
+  .btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

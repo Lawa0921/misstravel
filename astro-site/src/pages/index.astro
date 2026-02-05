@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Banner from '../components/Banner.astro';
+import Tiles from '../components/Tiles.astro';
+---
+
+<BaseLayout headerVariant="alt" schemaType="LocalBusiness">
+  <Banner title="密式旅行" subtitle="秘密景點，深度旅行" />
+
+  <div id="main">
+    <Tiles />
+  </div>
+</BaseLayout>
+
+<style>
+  #main {
+    background: #242943;
+  }
+</style>

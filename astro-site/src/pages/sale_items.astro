@@ -1,0 +1,641 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="密式柑仔店"
+  description="密式柑仔店提供各種露營用品、休閒食品與特色商品，讓您的苗栗泰安露營之旅更加便利與豐富。"
+  keywords="密式柑仔店,露營用品,休閒食品,苗栗露營,泰安特產,露營裝備"
+>
+  <div id="main" class="alt">
+    <div class="inner">
+      <Breadcrumb items={[{ label: '密式柑仔店' }]} />
+      <header class="major">
+        <h1>密式柑仔店</h1>
+      </header>
+      <div class="sale-items-grid">
+        <div class="sale-item">
+          <button type="button" class="sale-btn special" data-modal="sale_item_1">烹飪組合</button>
+        </div>
+        <div class="sale-item">
+          <button type="button" class="sale-btn" data-modal="sale_item_2">烤肉組合</button>
+        </div>
+        <div class="sale-item">
+          <button type="button" class="sale-btn special" data-modal="sale_item_3">寢具組合</button>
+        </div>
+        <div class="sale-item">
+          <button type="button" class="sale-btn" data-modal="sale_item_4">各式雜貨</button>
+        </div>
+        <div class="sale-item">
+          <button type="button" class="sale-btn special" data-modal="sale_item_6">代訂合菜</button>
+        </div>
+        <div class="sale-item">
+          <button type="button" class="sale-btn" data-modal="sale_item_7">簡餐菜單</button>
+        </div>
+      </div>
+      <div class="sale-items-row">
+        <div class="sale-item-last">
+          <button type="button" class="sale-btn special" data-modal="sale_item_8">代訂食材/紅瓦舍</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 烹飪組合 -->
+  <div class="modal" id="sale_item_1">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>烹飪組合</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>租用烹飪組合費用：<span class="yellow">200元/次</span></h4>
+        <h4>單租卡式爐(不含瓦斯)費用：<span class="yellow">50元/次</span></h4>
+        <h4>烹飪組合提供：</h4>
+        <ul>
+          <li>卡式瓦斯爐</li>
+          <li>瓦斯罐乙罐</li>
+          <li>湯鍋組(鍋、蓋)</li>
+          <li>湯勺一個</li>
+          <li>不鏽鋼餐具四至八人份(含碗、筷子)</li>
+          <li>不鏽鋼盤</li>
+          <li>切割用小刀、砧板</li>
+        </ul>
+        <p class="note">如有租用需求<br/>請在訂房(位)時事先告知<br/><br/>請勿於室內炊煮<br/>使用後清洗完畢再歸還喔</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 烤肉組合 -->
+  <div class="modal" id="sale_item_2">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>烤肉組合</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>租用烤肉組合費用：<span class="yellow">300元/次</span></h4>
+        <h4>單租烤肉架(不含消耗品、烤網)：<span class="yellow">100元/次</span></h4>
+        <h4 class="red">本組合不含噴燈，如有需要請自備</h4>
+        <h4 class="red">如木炭、烤網等備品不足，可以另再跟密式加購</h4>
+        <h4>烤肉組合包含：</h4>
+        <ul>
+          <li>架高烤肉桌/架</li>
+          <li>煤炭2.4公斤、火種一包</li>
+          <li>28 * 38cm 烤肉網一片</li>
+          <li>不鏽鋼烤肉夾兩隻</li>
+          <li>烤肉刷一隻</li>
+          <li>不鏽鋼餐具四到八人份(含碗筷、盤、竹籤)</li>
+          <li>切割用小刀、砧板</li>
+        </ul>
+        <p class="note">如有租用需求<br/>請在訂房(位)時事先告知<br/><br/>請勿於室內烤肉<br/>除烤架以外其餘用品使用後清洗完畢再歸還喔</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 寢具組合 -->
+  <div class="modal" id="sale_item_3">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>寢具組合</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>雙人一組，日式記憶雙人床墊、兩顆枕頭、一條雙人被</h4>
+        <h4>床墊的尺寸為標準雙人床大小 5 尺x 6.2 尺 (約為 152 公分 x 188 公分)</h4>
+        <h4>租用寢具組合費用：<span class="yellow">400 元/次</span></h4>
+        <h4>單租床墊費用：<span class="yellow">150 元/次</span></h4>
+        <h4>單租棉被費用：<span class="yellow">150 元/次</span></h4>
+        <h4>單租枕頭費用：<span class="yellow">50 元/次</span></h4>
+        <h4 class="red">數量有限，且寢具搬運困難無現場提供如需租用請提前告知</h4>
+        <div class="image-row">
+          <div class="image-col">
+            <img src="/images/sale_items/sale_items_1.webp" alt="寢具組合內容展示" loading="lazy" />
+          </div>
+          <div class="text-col">
+            <p>寢具組內容如圖<br/>觀山之屋及靜房、默房都僅能放一組、沉房可放兩組</p>
+          </div>
+        </div>
+        <div class="image-row">
+          <div class="image-col">
+            <img src="/images/sale_items/sale_items_2.webp" alt="觀山之屋及靜房、默房放置兩組寢具示意圖" loading="lazy" />
+          </div>
+          <div class="text-col">
+            <p>觀山之屋及靜房、默房放兩組會有部分折起</p>
+          </div>
+        </div>
+        <div class="image-row">
+          <div class="image-col">
+            <img src="/images/sale_items/sale_items_3.webp" alt="沉房放置兩組寢具示意圖" loading="lazy" />
+          </div>
+          <div class="text-col">
+            <p>沉房放兩組示意圖</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 各式雜貨 -->
+  <div class="modal" id="sale_item_4">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>各式雜貨</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>密式桌遊咖啡廳同時販售簡單雜貨</h4>
+        <div class="image-row">
+          <div class="image-col">
+            <img src="/images/sale_items/sale_items_4.webp" alt="密式柑仔店自助販賣區展示" loading="lazy" />
+          </div>
+          <div class="text-col">
+            <p>密式柑仔店採自助販賣<br/>如有需要可隨時自行拿取並自行將費用投至存錢筒即可</p>
+          </div>
+        </div>
+        <p>可能包含以下品項：瓦斯罐、木炭、烤肉網、牙刷、飲料、飲用水、零食、拖鞋、泡麵、日用品雜貨</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 代訂合菜 -->
+  <div class="modal" id="sale_item_6">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>代訂合菜</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>密式提供晚餐代訂合菜服務</h4>
+        <ul>
+          <li class="yellow">最少需預訂 5000元 才接單 【含清潔費用】</li>
+          <li class="yellow">每桌需另加 200 元清潔費</li>
+          <li>餐廳提供的料理用瓷盤盛裝</li>
+          <li>附的是免洗餐具(紙碗、免洗筷)，介意者請自備</li>
+          <li class="red">如需預訂請"提前一週"來電告知</li>
+        </ul>
+        <div class="button-wrapper">
+          <a href="/infos/set-menu-info/" class="button">查看菜單</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 簡餐菜單 -->
+  <div class="modal" id="sale_item_7">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>密式菜單</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>密式咖啡廳提供簡餐及飲料</h4>
+        <h5 class="yellow">對外營業時間：10:00 ~ 17:00</h5>
+        <h5 class="yellow">對內營業時間：08:00 ~ 21:00</h5>
+        <p>餐點囊括：咖啡、茶類、炸物、厚片</p>
+        <div class="button-wrapper">
+          <a href="/infos/menu/" class="button">查看菜單</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 代訂食材/紅瓦舍 -->
+  <div class="modal" id="sale_item_8">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>代訂食材/紅瓦舍</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/images/sale_items/sale_items_7.webp" alt="紅瓦舍烤肉食材套餐菜單第一頁" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="/images/sale_items/sale_items_8.webp" alt="紅瓦舍烤肉食材套餐菜單第二頁" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="/images/sale_items/sale_items_9.webp" alt="紅瓦舍烤肉食材套餐菜單第三頁" loading="lazy" />
+            </div>
+          </div>
+          <button class="carousel-prev">&lt;</button>
+          <button class="carousel-next">&gt;</button>
+          <div class="carousel-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+          </div>
+        </div>
+        <h4>密式協助旅客與紅瓦舍烤肉網代訂食材</h4>
+        <h4 class="yellow">密式幫你訂食材一律 95 折</h4>
+        <h4 class="yellow">代訂折扣後價格達 2000 元免運費</h4>
+        <h4 class="yellow">山區配送時程較長，如需預訂請"提前一週"來訊告知</h4>
+        <ul>
+          <li class="red">須由密式代為訂購才有 95 折優惠</li>
+          <li>食材皆由烤肉業者-紅瓦舍提供，套餐內容依烤肉業者公告為主</li>
+          <li>密式僅提供代訂、代收、代冰服務</li>
+          <li>無提供菜單上沒有的食材</li>
+        </ul>
+        <div class="image-row">
+          <div class="image-col">
+            <img src="/images/sale_items/sale_items_6.webp" alt="免洗式低矮烤肉架示意圖" loading="lazy" />
+          </div>
+          <div class="text-col">
+            <p>業者提供的烤肉架為免洗式很低的烤肉架，密式一律禁止使用，請自備架高 60 cm以上烤肉架或另跟密式租用</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  #main {
+    background: #242943;
+    padding: 6rem 0 3rem;
+  }
+
+  .inner {
+    max-width: 65em;
+    margin: 0 auto;
+    padding: 0 3em;
+  }
+
+  header.major {
+    margin-bottom: 2rem;
+  }
+
+  header.major h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: solid 2px #fff;
+    display: inline-block;
+  }
+
+  .sale-items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+  }
+
+  .sale-item {
+    width: 33.333%;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .sale-items-row {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: calc(33.333% / 2 - 0.5rem);
+    margin-top: 0.5rem;
+  }
+
+  .sale-item-last {
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .sale-btn {
+    padding: 0 1.75em;
+    height: 2.75em;
+    line-height: 2.75em;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sale-btn:hover {
+    background: rgba(255, 255, 255, 0.075);
+    border-color: #fff;
+  }
+
+  .sale-btn.special {
+    background: #fff;
+    color: #242943;
+  }
+
+  .sale-btn.special:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: #242943;
+    border-radius: 8px;
+    max-width: 960px;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 100%;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .modal-header h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .modal-body {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .modal-body h4 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .modal-body h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .modal-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .modal-body li {
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-body p {
+    margin-bottom: 1rem;
+  }
+
+  .modal-body .note {
+    margin-top: 1.5rem;
+    line-height: 1.8;
+  }
+
+  .yellow {
+    color: #ffd306;
+  }
+
+  .red {
+    color: #ff6b6b;
+  }
+
+  .image-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .image-col {
+    flex: 2;
+  }
+
+  .image-col img {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .text-col {
+    flex: 1;
+    text-align: left;
+  }
+
+  .button-wrapper {
+    margin-top: 1.5rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Carousel styles */
+  .carousel {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .carousel-inner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-item {
+    display: none;
+  }
+
+  .carousel-item.active {
+    display: block;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .carousel-prev {
+    left: 0;
+  }
+
+  .carousel-next {
+    right: 0;
+  }
+
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+  }
+
+  .indicator.active {
+    background: #fff;
+  }
+
+  @media (max-width: 980px) {
+    .sale-item {
+      width: 50%;
+    }
+
+    .sale-items-row {
+      padding-left: calc(50% / 2 - 0.5rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .inner {
+      padding: 0 1.5em;
+    }
+
+    .image-row {
+      flex-direction: column;
+    }
+
+    .text-col {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header.major h1 {
+      font-size: 2rem;
+    }
+
+    .sale-item {
+      width: 100%;
+    }
+
+    .sale-items-row {
+      padding-left: 0;
+      justify-content: center;
+    }
+
+    .sale-item-last {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Modal functionality
+  document.querySelectorAll('.sale-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-modal');
+      if (!modalId) return;
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = btn.closest('.modal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Carousel functionality
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    const items = carousel.querySelectorAll('.carousel-item');
+    const indicators = carousel.querySelectorAll('.indicator');
+    let currentIndex = 0;
+
+    function showSlide(index: number) {
+      items.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+      indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === index);
+      });
+      currentIndex = index;
+    }
+
+    carousel.querySelector('.carousel-prev')?.addEventListener('click', () => {
+      const newIndex = (currentIndex - 1 + items.length) % items.length;
+      showSlide(newIndex);
+    });
+
+    carousel.querySelector('.carousel-next')?.addEventListener('click', () => {
+      const newIndex = (currentIndex + 1) % items.length;
+      showSlide(newIndex);
+    });
+
+    indicators.forEach((indicator, i) => {
+      indicator.addEventListener('click', () => showSlide(i));
+    });
+  });
+</script>

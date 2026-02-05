@@ -1,0 +1,102 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-bullet">・</li>
+    <li class="breadcrumb-item">
+      <a href="/" title="回到首頁">
+        <span>首頁</span>
+      </a>
+    </li>
+    {items.map((item, index) => (
+      <li class={`breadcrumb-item ${index === items.length - 1 ? 'active' : ''}`}>
+        {item.href ? (
+          <a href={item.href}>{item.label}</a>
+        ) : (
+          <span>{item.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb-wrapper {
+    padding: 0.5em 0;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .breadcrumb-bullet {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.6);
+    padding-right: 0.3em;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    padding: 0 0.5em;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+  }
+
+  .breadcrumb-item a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    border-bottom: none;
+  }
+
+  .breadcrumb-item a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-item.active {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 480px) {
+    .breadcrumb-wrapper {
+      padding: 0.3em 0;
+      margin-bottom: 1em;
+    }
+
+    .breadcrumb-item {
+      font-size: 0.85em;
+    }
+  }
+</style>

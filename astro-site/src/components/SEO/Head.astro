@@ -1,0 +1,81 @@
+---
+import { siteConfig } from '../../lib/config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  keywords?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title = siteConfig.metaTitle,
+  description = siteConfig.metaDescription,
+  image = siteConfig.logo,
+  keywords,
+  canonical = Astro.url.href,
+  type = 'website',
+} = Astro.props;
+
+const fullTitle = title === siteConfig.metaTitle ? title : `${title} | ${siteConfig.title}`;
+const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Primary Meta Tags -->
+  <title>{fullTitle}</title>
+  <meta name="title" content={fullTitle} />
+  <meta name="description" content={description} />
+  {keywords && <meta name="keywords" content={keywords} />}
+  <meta name="author" content={siteConfig.author} />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonical} />
+
+  <!-- Language -->
+  <meta property="og:locale" content={siteConfig.locale} />
+  <link rel="alternate" hreflang={siteConfig.lang} href={canonical} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={imageUrl} />
+  <meta property="og:site_name" content={siteConfig.title} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonical} />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageUrl} />
+
+  <!-- Theme -->
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#242943" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5" />
+
+  <!-- RSS & JSON Feed -->
+  <link rel="alternate" type="application/rss+xml" title={`${siteConfig.title} RSS Feed`} href="/feed.xml" />
+  <link rel="alternate" type="application/feed+json" title={`${siteConfig.title} JSON Feed`} href="/feed.json" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>

@@ -1,0 +1,390 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const infos = await getCollection('infos');
+
+// 手動添加獨立的 .astro 頁面
+const standalonePages = [
+  { id: 'guide', data: { title: '交通指引', order: 2 } },
+  { id: 'set-menu-info', data: { title: '代訂合菜', order: 6 } },
+];
+
+// 合併 content collection 和獨立頁面
+const allInfos = [...infos.map(info => ({ id: info.id.replace('.md', ''), data: info.data })), ...standalonePages];
+const sortedInfos = allInfos.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+---
+
+<BaseLayout
+  title="關於密式"
+  description="了解密式旅行露營區的故事與理念"
+  keywords="關於密式,密式旅行故事,苗栗露營區"
+>
+  <section id="banner" class="style2" style="background-image: url('/images/landing_banner.webp');">
+    <div class="inner">
+      <header class="major">
+        <h1>關於密式</h1>
+      </header>
+      <div class="info-nav-container">
+        <div class="info-nav">
+          {sortedInfos.map((info) => (
+            <a href={`/infos/${info.id}/`} class="info-link">
+              {info.data.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="main">
+    <div class="inner">
+      <Breadcrumb items={[{ label: '關於密式' }]} />
+    </div>
+
+    <section id="two" class="spotlights">
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_1.webp" alt="密式小木屋外觀與泰安山景" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式小木屋</h2>
+            </header>
+            <p>入住密式小木屋，在房內眺出就可以將泰安山景盡收眼底，靜下心來看本書，淨空您的思想，等您發現時，夕陽已經染紅了整片山頭。曠野徐徐微風，小溪水聲潺潺，蟲鳴鳥叫蛙鳴，銀河流星月亮，自然彷彿就在你耳邊低語。</p>
+            <p class="yellow">※ 木屋禁止攜帶寵物</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_2.webp" alt="密式露營區營地景觀" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式露營區</h2>
+            </header>
+            <p>密式露營區，採小包區形式，地形落差大，平望出去即可看清整座山，三面環山彷彿置身山林中心，每到夕陽西下之時，夕陽的餘暉灑滿了整片山頭，抹紅一片山嵐，暖紅色的光芒慢慢地跟著它爬到遠處，直到它沒入遠方的山頭。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_3.webp" alt="密式桌遊咖啡廳內部環境" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式桌遊咖啡廳</h2>
+            </header>
+            <p>密式咖啡廳，提供上百種桌遊給旅客遊玩，並且在現場提供桌遊教學服務。即使不玩遊戲，在夕陽西下的時候點杯咖啡，靜靜的享受夜幕的降臨也是別有一番風味。</p>
+            <p class="yellow">適合年齡：5 歲以上</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_4.webp" alt="密式遊戲室" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式遊戲室</h2>
+            </header>
+            <p>密式遊戲室提供多種兒童玩具，並且開放旅客免費遊玩，遊戲室由木頭建成，室內開放冷氣，即使天氣不佳小朋友也不怕沒地方去。</p>
+            <p class="yellow">適合年齡：8 歲以下</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_5.webp" alt="密式多肉小舖" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式多肉小舖</h2>
+            </header>
+            <p>園區除了大量植栽外，處處也可見用多肉植物打造出的指尖綠意。</p>
+            <p>除了提供植栽現場販售，也可客訂組盆，另有 DIY 組盆教學，如有興趣可洽營主。</p>
+            <p class="yellow">適合年齡：8 歲以上</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_6.webp" alt="密式沙坑" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式沙坑</h2>
+            </header>
+            <p>密式沙坑由木頭建成，在裡頭填滿了白沙，提供到訪的小小朋友一個戶外的放電場所。</p>
+            <p class="yellow">適合年齡：5 歲以下</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_7.webp" alt="密式植栽區" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式植栽</h2>
+            </header>
+            <p>密式園區內栽種大量植栽、季節水果</p>
+            <p>來到密式的旅客可以摘取成熟的果實就地享用，享受季節及自然的饋贈</p>
+            <p class="yellow">※ 採摘的水果、作物禁止外帶</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="image">
+          <img src="/images/landing/landing_img_8.webp" alt="密式書櫃" />
+        </span>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h2>密式書櫃</h2>
+            </header>
+            <p>密式書櫃由老板的少年時代所組成，飽含了老板少年時期的回憶</p>
+            <p>在這裡可以品味一下來自九零年代的少年情懷</p>
+            <p class="yellow">適合年齡：6 歲以上</p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  #banner.style2 {
+    display: flex;
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 0;
+    cursor: default;
+    height: 60vh;
+    max-height: 32em;
+    min-height: 22em;
+    position: relative;
+    top: -3.25em;
+    margin-bottom: -3.25em;
+    padding: 4em 0 2em 0;
+  }
+
+  #banner.style2::after {
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.85;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: #8d82c4;
+  }
+
+  #banner.style2 > .inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 65em;
+    margin: 0 auto;
+    padding: 0 3em;
+  }
+
+  #banner.style2 > .inner > .image {
+    display: none;
+  }
+
+  #banner.style2 .major h1 {
+    font-size: 3.25em;
+    letter-spacing: 0.2em;
+    margin: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-nav-container {
+    margin-top: 0;
+    border-top: 2px solid #fff;
+    padding-top: 2rem;
+  }
+
+  .info-nav {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    gap: 1.5rem 3rem;
+  }
+
+  .info-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .info-link:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+
+  #main {
+    background: #242943;
+  }
+
+  #main > .inner {
+    max-width: 65em;
+    margin: 0 auto;
+    padding: 1rem 3em 0;
+  }
+
+  .spotlights {
+    display: flex;
+    flex-direction: column;
+    border-top: 0;
+  }
+
+  .spotlights > section {
+    display: flex;
+    flex-direction: row;
+    background-color: #2e3347;
+  }
+
+  .spotlights > section:nth-child(2n) {
+    flex-direction: row-reverse;
+    background-color: #323751;
+  }
+
+  .spotlights > section:nth-child(2n) > .content {
+    align-items: flex-end;
+  }
+
+  .spotlights > section > .image {
+    width: 30%;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 0;
+    display: block;
+    position: relative;
+  }
+
+  .spotlights > section > .image img {
+    border-radius: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .spotlights > section > .content {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 3em;
+  }
+
+  .spotlights > section > .content > .inner {
+    margin: 0 auto;
+    max-width: 100%;
+    width: 65em;
+  }
+
+  .spotlights .major h2 {
+    font-size: 1.75rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+
+  .spotlights p {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+  }
+
+  .spotlights .yellow {
+    color: #ffd306;
+  }
+
+  @media (max-width: 1680px) {
+    .spotlights > section > .image {
+      width: 40%;
+    }
+
+    .spotlights > section > .content {
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .spotlights > section > .image {
+      width: 45%;
+    }
+
+    .spotlights > section > .content {
+      width: 55%;
+    }
+  }
+
+  @media (max-width: 980px) {
+    #banner.style2 {
+      padding: 6rem 0 3rem;
+    }
+
+    .spotlights > section {
+      display: block;
+    }
+
+    .spotlights > section > .image {
+      width: 100%;
+    }
+
+    .spotlights > section > .content {
+      width: 100%;
+      padding: 4em 3em;
+    }
+  }
+
+  @media (max-width: 736px) {
+    .spotlights > section > .content {
+      padding: 3em 1.5em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #banner.style2 .major h1 {
+      font-size: 1.75rem;
+    }
+
+    .info-nav {
+      gap: 1rem 1.5rem;
+    }
+
+    .info-link {
+      font-size: 0.85rem;
+    }
+  }
+</style>

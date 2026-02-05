@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const announcements = await getCollection('announcements');
+const sortedAnnouncements = announcements.sort(
+  (a, b) => new Date(b.data.datetime).getTime() - new Date(a.data.datetime).getTime()
+);
+
+function formatDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = date.toLocaleString('en', { month: 'short' });
+  const day = date.getDate();
+  return `${year} ${month} ${day}`;
+}
+---
+
+<BaseLayout
+  title="最新消息"
+  description="密式旅行露營區最新公告與活動消息"
+  keywords="密式旅行公告,露營區消息,最新活動"
+>
+  <div id="main" class="alt">
+    <section id="one">
+      <div class="inner">
+        <Breadcrumb items={[{ label: '最新消息' }]} />
+        <div class="jumbotron">
+          <header class="major">
+            <h1>最新消息</h1>
+          </header>
+        </div>
+        <div class="announcements-list">
+          {sortedAnnouncements.map((announcement) => (
+            <article class="announcement-card">
+              <div class="card-body">
+                <h3>{announcement.data.title}</h3>
+                <p class="description">{announcement.data.description}</p>
+                <div class="date">{formatDate(announcement.data.datetime)}</div>
+                <a href={`/announcements/${announcement.id.replace('.md', '')}/`} class="button special small">
+                  前往查看
+                </a>
+              </div>
+              {announcement.data.image && (
+                <div class="card-image">
+                  <img
+                    src={announcement.data.image}
+                    alt={announcement.data.title}
+                    loading="lazy"
+                  />
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  #main.alt {
+    background: #242943;
+    padding-top: 5rem;
+  }
+
+  #one {
+    padding: 2rem 0 4rem;
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .jumbotron {
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .major h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+
+  .announcements-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 1200px) {
+    .announcements-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .announcement-card {
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .card-body {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-body h3 {
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-body .description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: auto;
+    line-height: 1.6;
+  }
+
+  .card-body .date {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .button.special.small {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #242943;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .button.special.small:hover {
+    background: #9bf1ff;
+    border-color: #9bf1ff;
+  }
+
+  .card-image {
+    flex: 0 0 200px;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    #main.alt {
+      padding-top: 4rem;
+    }
+
+    .inner {
+      padding: 0 1.5rem;
+    }
+
+    .major h1 {
+      font-size: 1.75rem;
+    }
+
+    .announcement-card {
+      flex-direction: column-reverse;
+    }
+
+    .card-image {
+      flex: none;
+      height: 180px;
+    }
+  }
+</style>

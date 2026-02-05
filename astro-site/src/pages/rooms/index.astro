@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const rooms = await getCollection('rooms');
+const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="房型展示"
+  description="密式旅行提供多樣化住宿選擇：露營車位享受大自然、溫馨小木屋適合家庭、舒適套房給您飯店般體驗。"
+  keywords="密式旅行房型,露營車位,小木屋住宿,套房住宿,苗栗住宿價格"
+>
+  <div id="main" class="alt">
+    <div class="inner">
+      <Breadcrumb items={[{ label: '房型展示' }]} />
+      <header class="major">
+        <h1>房型展示</h1>
+      </header>
+      <div class="rooms-grid">
+        {sortedRooms.map((room) => (
+          <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
+            <h3>{room.data.title}</h3>
+            <div class="room-image">
+              <img
+                src={room.data.mainImage}
+                alt={`${room.data.shortTitle}住宿外觀`}
+                loading="lazy"
+              />
+            </div>
+            <div class="room-prices">
+              <div class="price-row">
+                <span>👑 訂價：{room.data.standardPrice}</span>
+                <span>🥇 連假：{room.data.standardPrice}</span>
+              </div>
+              <div class="price-row">
+                <span>🥈 假日：{room.data.holidayPrice}</span>
+                <span>🥉 平日：{room.data.weekdayPrice}</span>
+              </div>
+              <div class="price-row">
+                <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
+                <span>👥 人數：{room.data.numberOfPeople}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  #main {
+    background: #242943;
+    padding: 6rem 0 3rem;
+  }
+
+  .inner {
+    max-width: 65em;
+    margin: 0 auto;
+    padding: 0 3em;
+  }
+
+  header.major {
+    margin-bottom: 2rem;
+  }
+
+  header.major h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: solid 2px #fff;
+    display: inline-block;
+  }
+
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .room-card {
+    display: block;
+    border: 3px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .room-card:hover {
+    box-shadow: 0px 9px 15px 2px rgba(137, 142, 150, 0.25);
+    transform: translateY(-5px);
+  }
+
+  .room-card h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0.75rem;
+    text-align: center;
+    letter-spacing: 0.1em;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+  }
+
+  .room-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+  }
+
+  .room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .room-card:hover .room-image img {
+    transform: scale(1.05);
+  }
+
+  .room-prices {
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .price-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .price-row span {
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  @media (max-width: 980px) {
+    .inner {
+      padding: 0 1.5em;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #main {
+      padding: 4rem 0 2rem;
+    }
+
+    header.major h1 {
+      font-size: 2rem;
+    }
+
+    .rooms-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .room-image {
+      height: 220px;
+    }
+  }
+</style>

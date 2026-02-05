@@ -1,0 +1,298 @@
+---
+import { siteConfig } from '../lib/config';
+
+interface TileItem {
+  href: string;
+  title: string;
+  description: string;
+  image: string;
+  external?: boolean;
+}
+
+interface Props {
+  items?: TileItem[];
+}
+
+const defaultTiles: TileItem[] = [
+  {
+    href: '/infos/',
+    title: '關於密式',
+    description: '密式旅行，屬於你的景點',
+    image: '/images/landing_banner.webp',
+  },
+  {
+    href: '/rooms/',
+    title: '房型展示',
+    description: '密式旅行，位於群山的處所',
+    image: '/images/rooms.webp',
+  },
+  {
+    href: '/sale_items/',
+    title: '密式柑仔店',
+    description: '密式旅行，歸於部落的商戶',
+    image: '/images/sale_items.webp',
+  },
+  {
+    href: '/announcements/',
+    title: '最新消息',
+    description: '密式旅行，自於群山的聲音',
+    image: '/images/announcements.webp',
+  },
+  {
+    href: '/galleries/',
+    title: '密式圖集',
+    description: '密式旅行，之於心中的記憶',
+    image: '/images/galleries.webp',
+  },
+  {
+    href: siteConfig.booking.url,
+    title: '空房查詢',
+    description: '密式旅行，介於山巒的懷抱',
+    image: '/images/booking.webp',
+    external: true,
+  },
+];
+
+const { items = defaultTiles } = Astro.props;
+const displayItems = items.slice(0, siteConfig.tilesCount);
+---
+
+<section id="tiles" class="tiles">
+  {displayItems.map((tile, index) => (
+    <article
+      class="tile"
+      style={`background-image: url('${tile.image}'); animation-delay: ${index * 0.1}s`}
+      data-href={tile.href}
+      data-external={tile.external ? 'true' : undefined}
+    >
+      <header class="major">
+        <h3 style="font-size: 40px;">
+          <a
+            href={tile.href}
+            class="link"
+            target={tile.external ? '_blank' : undefined}
+            rel={tile.external ? 'noopener noreferrer' : undefined}
+          >
+            {tile.title}
+          </a>
+        </h3>
+        <p style="font-size: 24px;">{tile.description}</p>
+      </header>
+      <a
+        href={tile.href}
+        class="link primary"
+        target={tile.external ? '_blank' : undefined}
+        rel={tile.external ? 'noopener noreferrer' : undefined}
+        aria-label={tile.title}
+      ></a>
+    </article>
+  ))}
+</section>
+
+<style>
+  .tiles {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 0;
+  }
+
+  .tile {
+    position: relative;
+    overflow: hidden;
+    min-height: 23em;
+    height: 40vh;
+    max-height: 40em;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    padding: 4em;
+    cursor: default;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: transform 0.25s ease, opacity 0.25s ease, filter 1s ease;
+  }
+
+  .tile:nth-child(4n - 1),
+  .tile:nth-child(4n - 2) {
+    flex: 1 auto;
+  }
+
+  .tile.is-transitioning {
+    transform: scale(0.95);
+    filter: blur(0.5em);
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 彩色覆蓋層 - 仿照原始設計 */
+  .tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.85;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+  }
+
+  .tile:hover::before {
+    opacity: 0;
+  }
+
+  /* 不同顏色的覆蓋層 */
+  .tile:nth-child(6n - 5)::before { background-color: #6fc3df; }
+  .tile:nth-child(6n - 4)::before { background-color: #8d82c4; }
+  .tile:nth-child(6n - 3)::before { background-color: #ec8d81; }
+  .tile:nth-child(6n - 2)::before { background-color: #e7b788; }
+  .tile:nth-child(6n - 1)::before { background-color: #8ea9e8; }
+  .tile:nth-child(6n)::before { background-color: #87c5a4; }
+
+  /* 半透明背景層 */
+  .tile::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(36, 41, 67, 0.25);
+    z-index: 1;
+  }
+
+  .tile .major {
+    position: relative;
+    z-index: 3;
+    padding: 0;
+  }
+
+  .tile h3 {
+    margin: 0 0 1rem;
+    letter-spacing: 0.15em;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .tile h3 a {
+    color: #fff;
+    border-bottom: none;
+  }
+
+  .tile h3 a:hover {
+    color: inherit;
+  }
+
+  .tile p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* 整個 tile 可點擊的覆蓋層 */
+  .tile .link.primary {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+  }
+
+  @media (max-width: 1200px) {
+    .tile {
+      padding: 4em 3em;
+      height: 30vh;
+      max-height: 30em;
+      min-height: 20em;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .tile {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 736px) {
+    .tiles {
+      display: block;
+    }
+
+    .tile {
+      width: 100%;
+      height: 16em;
+      max-height: none;
+      min-height: 0;
+      padding: 3em 1.5em;
+    }
+
+    .tile h3 {
+      font-size: 1.5em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tile {
+      height: 20em;
+    }
+  }
+</style>
+
+<script>
+  // Tiles 點擊過渡效果 - 模仿 Jekyll Forty 主題的行為
+  document.querySelectorAll('.tiles .tile').forEach((tile) => {
+    const links = tile.querySelectorAll('.link');
+    const wrapper = document.getElementById('wrapper');
+
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        const target = link.getAttribute('target');
+
+        if (!href) return;
+
+        event.stopPropagation();
+        event.preventDefault();
+
+        // 開始過渡動畫
+        tile.classList.add('is-transitioning');
+        wrapper?.classList.add('is-transitioning');
+
+        // 延遲後導航
+        setTimeout(() => {
+          if (target === '_blank') {
+            window.open(href, '_blank');
+            // 外部連結後移除過渡狀態
+            tile.classList.remove('is-transitioning');
+            wrapper?.classList.remove('is-transitioning');
+          } else {
+            window.location.href = href;
+          }
+        }, 500);
+      });
+    });
+  });
+
+  // 頁面卸載時清除過渡狀態
+  window.addEventListener('pagehide', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.is-transitioning').forEach((el) => {
+        el.classList.remove('is-transitioning');
+      });
+    }, 250);
+  });
+</script>

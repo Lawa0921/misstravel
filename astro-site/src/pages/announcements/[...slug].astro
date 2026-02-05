@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const announcements = await getCollection('announcements');
+  return announcements.map((announcement) => ({
+    params: { slug: announcement.id.replace('.md', '') },
+    props: { announcement },
+  }));
+}
+
+const { announcement } = Astro.props;
+const { Content } = await announcement.render();
+---
+
+<BaseLayout
+  title={announcement.data.metaTitle || announcement.data.title}
+  description={announcement.data.description}
+  image={announcement.data.image}
+>
+  <section class="page-header">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">首頁</a>
+        <span>/</span>
+        <a href="/announcements/">最新消息</a>
+        <span>/</span>
+        <span>{announcement.data.title}</span>
+      </nav>
+      <h1>{announcement.data.title}</h1>
+      <div class="meta">
+        <time datetime={announcement.data.datetime.toISOString()}>
+          {announcement.data.datetime.toLocaleDateString('zh-TW', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+        <div class="tags">
+          {announcement.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="main">
+    <div class="inner">
+      {announcement.data.image && (
+        <div class="featured-image">
+          <img src={announcement.data.image} alt={announcement.data.title} />
+        </div>
+      )}
+      <div class="content">
+        <Content />
+      </div>
+      <div class="back-link">
+        <a href="/announcements/">← 返回最新消息</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 8rem 2rem 3rem;
+    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
+  }
+
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom: none;
+  }
+
+  .breadcrumb a:hover {
+    color: #9bf1ff;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(155, 241, 255, 0.2);
+    color: #9bf1ff;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  #main {
+    background: #242943;
+    padding: 2rem 0 4rem;
+  }
+
+  .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .featured-image {
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    background: #2a2f4a;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .content :global(h2),
+  .content :global(h3),
+  .content :global(h4) {
+    color: #9bf1ff;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .back-link {
+    text-align: center;
+  }
+
+  .back-link a {
+    color: #9bf1ff;
+    border-bottom: none;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .content {
+      padding: 1.5rem;
+    }
+  }
+</style>

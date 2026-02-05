@@ -1,0 +1,485 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../../lib/config';
+
+export async function getStaticPaths() {
+  const rooms = await getCollection('rooms');
+  return rooms.map((room) => ({
+    params: { slug: room.id.replace('.md', '') },
+    props: { room },
+  }));
+}
+
+const { room } = Astro.props;
+const { Content } = await room.render();
+
+// Get related rooms (same type or different)
+const allRooms = await getCollection('rooms');
+const relatedRooms = allRooms
+  .filter((r) => r.id !== room.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={room.data.metaTitle}
+  description={room.data.metaDescription}
+  keywords={room.data.keywords}
+  image={room.data.mainImage}
+>
+  <div id="main" class="alt">
+    <div class="inner">
+      <Breadcrumb items={[
+        { label: '房型展示', href: '/rooms/' },
+        { label: room.data.shortTitle }
+      ]} />
+      <header class="major">
+        <h1>{room.data.title}</h1>
+      </header>
+    </div>
+  </div>
+
+  <div id="main-content" class="room-detail">
+    <div class="inner-content">
+      <!-- Important Notice -->
+      <h2 class="notice-title">『預訂前請先詳閱以下介紹(含延期退費說明)並衡量房間大小是否合適』</h2>
+
+      <!-- Image Carousel -->
+      <div class="carousel-container">
+        <div class="carousel" id="room-carousel">
+          <div class="carousel-track">
+            {room.data.images.map((image, index) => (
+              <div class="carousel-slide" data-index={index}>
+                <img
+                  src={image}
+                  alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            ))}
+          </div>
+          <button class="carousel-btn prev" aria-label="上一張">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="carousel-btn next" aria-label="下一張">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="carousel-dots">
+            {room.data.images.map((_, index) => (
+              <button
+                class={`dot ${index === 0 ? 'active' : ''}`}
+                data-index={index}
+                aria-label={`跳至圖片 ${index + 1}`}
+              ></button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <a href={siteConfig.urls.account} class="btn-action">訂房流程</a>
+        <a href={siteConfig.urls.roles} class="btn-action special">園內規約</a>
+      </div>
+
+      <!-- Booking Notice -->
+      <div class="booking-notice">
+        <h4>【訂位須知】</h4>
+        <ul>
+          <li>訂假日提早一晚夜衝者，當日價格一律半價(限晚上 6 點後至 10 點以前進場)</li>
+          <li>營區及露營木屋無提供早晚餐，套房含早餐，無提供晚餐</li>
+          <li>嚴禁直接在草皮或木板上烤肉及烹煮。若使用烤肉架、焚火台或快速爐等用具，請務必自備架高器具，並離地 60 公分以上</li>
+          <li class="red">木屋區嚴禁攜帶寵物，如欲攜帶寵物請預訂露營營位</li>
+          <li class="red">營位攜帶寵物如離開預訂區域請繫繩，如未繫繩將酌收 100 清潔費用/隻</li>
+          <li>如攜帶訪客入場每人酌收 100 元清潔費，不可抵園區消費，需於晚上 8 點前離開園區，如超過則再加收每人 100 元共計 200 元的加人費。如未登記也未主動告知有訪客，事後被營主發現得勒令立即離場</li>
+          <li>晚上 5 點後訪客禁止進入</li>
+          <li>一帳限一車四人 (加人、加車、加帳費另計)</li>
+          <li>為響應環保，園內住宿無提供盥洗用品，請自備毛巾及浴巾牙刷等盥洗用具</li>
+        </ul>
+      </div>
+
+      <!-- Room Details -->
+      <div class="room-content">
+        <Content />
+      </div>
+
+      <!-- Day Type Definition -->
+      <div class="day-definition">
+        <h4>【平日、假日定義】</h4>
+        <ul>
+          <li>平日：星期日至星期四</li>
+          <li>假日：星期五、星期六、國定假日</li>
+          <li>連續假日包含年節期間及國定假日(含連休假期前一晚)</li>
+        </ul>
+      </div>
+
+      <!-- Related Rooms -->
+      <div class="related-section">
+        <h3>其他住宿選擇</h3>
+        <div class="related-grid">
+          {relatedRooms.map((related) => (
+            <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
+              <img
+                src={related.data.mainImage}
+                alt={related.data.shortTitle}
+                loading="lazy"
+              />
+              <div class="related-info">
+                <h4>{related.data.shortTitle}</h4>
+                <span class="related-price">平日 ${related.data.weekdayPrice} 起</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  #main.alt {
+    background: #242943;
+    padding-top: 5rem;
+    padding-bottom: 0;
+  }
+
+  #main.alt > .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 1rem;
+  }
+
+  .major h1 {
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  #main-content {
+    background: #242943;
+    padding: 2rem 0 4rem;
+  }
+
+  .inner-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Notice Title */
+  .notice-title {
+    color: #ffd306;
+    font-size: 1.35em;
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* Carousel */
+  .carousel-container {
+    margin-bottom: 2rem;
+  }
+
+  .carousel {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 4px solid #ffd700;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    aspect-ratio: 16/10;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .carousel-btn.prev {
+    left: 1rem;
+  }
+
+  .carousel-btn.next {
+    right: 1rem;
+  }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .dot.active {
+    background: #fff;
+  }
+
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-action {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    transition: all 0.2s ease;
+  }
+
+  .btn-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .btn-action.special {
+    background: #fff;
+    color: #242943;
+  }
+
+  .btn-action.special:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Booking Notice */
+  .booking-notice {
+    margin-bottom: 2rem;
+  }
+
+  .booking-notice h4 {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 1rem;
+  }
+
+  .booking-notice ul {
+    padding-left: 1.5rem;
+  }
+
+  .booking-notice li {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .booking-notice li.red {
+    color: #ff6b6b;
+  }
+
+  /* Room Content */
+  .room-content {
+    margin-bottom: 2rem;
+  }
+
+  .room-content :global(h4) {
+    color: #ffd306;
+    font-size: 1.1em;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .room-content :global(ul) {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .room-content :global(li) {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Day Definition */
+  .day-definition {
+    margin-bottom: 2rem;
+  }
+
+  .day-definition h4 {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 1rem;
+  }
+
+  .day-definition ul {
+    padding-left: 1.5rem;
+  }
+
+  .day-definition li {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Related Rooms */
+  .related-section h3 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .related-card {
+    background: #2a2f4a;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    border-bottom: none;
+  }
+
+  .related-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .related-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .related-info {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .related-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .related-price {
+    font-size: 0.9rem;
+    color: #9bf1ff;
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .price-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const carousel = document.getElementById('room-carousel');
+  if (carousel) {
+    const track = carousel.querySelector('.carousel-track') as HTMLElement;
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.dot');
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateCarousel();
+      });
+    });
+
+    // Touch support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+
+    track.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          currentIndex = (currentIndex + 1) % slides.length;
+        } else {
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        }
+        updateCarousel();
+      }
+    });
+  }
+</script>
