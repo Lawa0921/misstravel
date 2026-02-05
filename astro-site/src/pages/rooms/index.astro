@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
 
 const rooms = await getCollection('rooms');
@@ -13,11 +14,7 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
 >
   <div id="main" class="alt">
     <div class="inner">
-      <nav class="breadcrumb">
-        <a href="/">首頁</a>
-        <span>&gt;</span>
-        <span>房型展示</span>
-      </nav>
+      <Breadcrumb items={[{ label: '房型展示' }]} />
       <header class="major">
         <h1>房型展示</h1>
       </header>
@@ -65,27 +62,6 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
     padding: 0 3em;
   }
 
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-  }
-
-  .breadcrumb a {
-    color: #ffd306;
-    border-bottom: none;
-  }
-
-  .breadcrumb a:hover {
-    color: #9bf1ff;
-  }
-
-  .breadcrumb span {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
   header.major {
     margin-bottom: 2rem;
   }
@@ -106,15 +82,15 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
 
   .room-card {
     display: block;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid #dee2e6;
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   }
 
   .room-card:hover {
-    border-color: #9bf1ff;
+    box-shadow: 0px 9px 15px 2px rgba(137, 142, 150, 0.25);
+    transform: translateY(-5px);
   }
 
   .room-card h3 {
@@ -124,6 +100,7 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
     text-align: center;
     letter-spacing: 0.1em;
     background: rgba(255, 255, 255, 0.05);
+    color: #fff;
   }
 
   .room-image {

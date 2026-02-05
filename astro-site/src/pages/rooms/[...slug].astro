@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../../lib/config';
 
@@ -28,21 +29,23 @@ const relatedRooms = allRooms
   keywords={room.data.keywords}
   image={room.data.mainImage}
 >
-  <section class="page-header">
-    <div class="container">
-      <nav class="breadcrumb">
-        <a href="/">首頁</a>
-        <span>/</span>
-        <a href="/rooms/">房型展示</a>
-        <span>/</span>
-        <span>{room.data.shortTitle}</span>
-      </nav>
-      <h1>{room.data.title}</h1>
-    </div>
-  </section>
-
-  <div id="main" class="room-detail">
+  <div id="main" class="alt">
     <div class="inner">
+      <Breadcrumb items={[
+        { label: '房型展示', href: '/rooms/' },
+        { label: room.data.shortTitle }
+      ]} />
+      <header class="major">
+        <h1>{room.data.title}</h1>
+      </header>
+    </div>
+  </div>
+
+  <div id="main-content" class="room-detail">
+    <div class="inner-content">
+      <!-- Important Notice -->
+      <h2 class="notice-title">『預訂前請先詳閱以下介紹(含延期退費說明)並衡量房間大小是否合適』</h2>
+
       <!-- Image Carousel -->
       <div class="carousel-container">
         <div class="carousel" id="room-carousel">
@@ -79,38 +82,26 @@ const relatedRooms = allRooms
         </div>
       </div>
 
-      <!-- Price Info -->
-      <div class="price-section">
-        <div class="price-grid">
-          <div class="price-card">
-            <span class="price-label">👑 訂價</span>
-            <span class="price-value">${room.data.standardPrice}</span>
-          </div>
-          <div class="price-card">
-            <span class="price-label">🥇 連假</span>
-            <span class="price-value">${room.data.standardPrice}</span>
-          </div>
-          <div class="price-card">
-            <span class="price-label">🥈 假日</span>
-            <span class="price-value">${room.data.holidayPrice}</span>
-          </div>
-          <div class="price-card">
-            <span class="price-label">🥉 平日</span>
-            <span class="price-value">${room.data.weekdayPrice}</span>
-          </div>
-        </div>
-        <div class="capacity-info">
-          <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}: {room.data.numberOfRooms}</span>
-          <span>👥 人數: {room.data.numberOfPeople}</span>
-        </div>
-        <a
-          href={siteConfig.booking.url}
-          class="book-btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          立即預訂
-        </a>
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <a href={siteConfig.urls.account} class="btn-action">訂房流程</a>
+        <a href={siteConfig.urls.roles} class="btn-action special">園內規約</a>
+      </div>
+
+      <!-- Booking Notice -->
+      <div class="booking-notice">
+        <h4>【訂位須知】</h4>
+        <ul>
+          <li>訂假日提早一晚夜衝者，當日價格一律半價(限晚上 6 點後至 10 點以前進場)</li>
+          <li>營區及露營木屋無提供早晚餐，套房含早餐，無提供晚餐</li>
+          <li>嚴禁直接在草皮或木板上烤肉及烹煮。若使用烤肉架、焚火台或快速爐等用具，請務必自備架高器具，並離地 60 公分以上</li>
+          <li class="red">木屋區嚴禁攜帶寵物，如欲攜帶寵物請預訂露營營位</li>
+          <li class="red">營位攜帶寵物如離開預訂區域請繫繩，如未繫繩將酌收 100 清潔費用/隻</li>
+          <li>如攜帶訪客入場每人酌收 100 元清潔費，不可抵園區消費，需於晚上 8 點前離開園區，如超過則再加收每人 100 元共計 200 元的加人費。如未登記也未主動告知有訪客，事後被營主發現得勒令立即離場</li>
+          <li>晚上 5 點後訪客禁止進入</li>
+          <li>一帳限一車四人 (加人、加車、加帳費另計)</li>
+          <li>為響應環保，園內住宿無提供盥洗用品，請自備毛巾及浴巾牙刷等盥洗用具</li>
+        </ul>
       </div>
 
       <!-- Room Details -->
@@ -118,13 +109,14 @@ const relatedRooms = allRooms
         <Content />
       </div>
 
-      <!-- Important Links -->
-      <div class="important-links">
-        <h4>訂房前請務必詳閱</h4>
-        <div class="links-grid">
-          <a href={siteConfig.urls.roles}>📋 園內規約</a>
-          <a href={siteConfig.urls.account}>💳 匯款資訊</a>
-        </div>
+      <!-- Day Type Definition -->
+      <div class="day-definition">
+        <h4>【平日、假日定義】</h4>
+        <ul>
+          <li>平日：星期日至星期四</li>
+          <li>假日：星期五、星期六、國定假日</li>
+          <li>連續假日包含年節期間及國定假日(含連休假期前一晚)</li>
+        </ul>
       </div>
 
       <!-- Related Rooms -->
@@ -151,42 +143,45 @@ const relatedRooms = allRooms
 </BaseLayout>
 
 <style>
-  .page-header {
-    padding: 8rem 2rem 3rem;
-    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
+  #main.alt {
+    background: #242943;
+    padding-top: 5rem;
+    padding-bottom: 0;
   }
 
-  .breadcrumb {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+  #main.alt > .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 1rem;
   }
 
-  .breadcrumb a {
-    color: rgba(255, 255, 255, 0.6);
-    border-bottom: none;
-  }
-
-  .breadcrumb a:hover {
-    color: #9bf1ff;
-  }
-
-  .page-header h1 {
+  .major h1 {
     font-size: 2rem;
     letter-spacing: 0.15em;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
-  #main {
+  #main-content {
     background: #242943;
     padding: 2rem 0 4rem;
   }
 
-  .inner {
+  .inner-content {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 1.5rem;
+  }
+
+  /* Notice Title */
+  .notice-title {
+    color: #ffd306;
+    font-size: 1.35em;
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.6;
   }
 
   /* Carousel */
@@ -198,6 +193,7 @@ const relatedRooms = allRooms
     position: relative;
     border-radius: 8px;
     overflow: hidden;
+    border: 4px solid #ffd700;
   }
 
   .carousel-track {
@@ -268,79 +264,73 @@ const relatedRooms = allRooms
     background: #fff;
   }
 
-  /* Price Section */
-  .price-section {
-    background: #2a2f4a;
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .price-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .price-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  .price-label {
-    display: block;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 0.5rem;
-  }
-
-  .price-value {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #9bf1ff;
-  }
-
-  .capacity-info {
+  /* Action Buttons */
+  .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .book-btn {
+  .btn-action {
     display: inline-block;
-    padding: 1rem 3rem;
-    background: #9bf1ff;
-    color: #242943;
+    padding: 0.75rem 2rem;
+    font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
     transition: all 0.2s ease;
   }
 
-  .book-btn:hover {
+  .btn-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .btn-action.special {
     background: #fff;
-    transform: translateY(-2px);
+    color: #242943;
+  }
+
+  .btn-action.special:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Booking Notice */
+  .booking-notice {
+    margin-bottom: 2rem;
+  }
+
+  .booking-notice h4 {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 1rem;
+  }
+
+  .booking-notice ul {
+    padding-left: 1.5rem;
+  }
+
+  .booking-notice li {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .booking-notice li.red {
+    color: #ff6b6b;
   }
 
   /* Room Content */
   .room-content {
-    background: #2a2f4a;
-    padding: 2rem;
-    border-radius: 8px;
     margin-bottom: 2rem;
   }
 
   .room-content :global(h4) {
-    color: #9bf1ff;
+    color: #ffd306;
+    font-size: 1.1em;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
   }
@@ -355,36 +345,24 @@ const relatedRooms = allRooms
     color: rgba(255, 255, 255, 0.9);
   }
 
-  /* Important Links */
-  .important-links {
-    background: rgba(155, 241, 255, 0.1);
-    border: 1px solid rgba(155, 241, 255, 0.3);
-    padding: 1.5rem;
-    border-radius: 8px;
+  /* Day Definition */
+  .day-definition {
     margin-bottom: 2rem;
-    text-align: center;
   }
 
-  .important-links h4 {
-    color: #9bf1ff;
+  .day-definition h4 {
+    color: #fff;
+    font-size: 1.1em;
     margin-bottom: 1rem;
   }
 
-  .links-grid {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+  .day-definition ul {
+    padding-left: 1.5rem;
   }
 
-  .links-grid a {
-    padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    transition: background 0.2s ease;
-  }
-
-  .links-grid a:hover {
-    background: rgba(255, 255, 255, 0.2);
+  .day-definition li {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
   }
 
   /* Related Rooms */
