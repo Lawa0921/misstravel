@@ -233,9 +233,33 @@ const navItems = [
     background: #9bf1ff;
   }
 
-  @media (max-width: 768px) {
+  /* Wrapper padding to compensate for fixed header */
+  #wrapper {
+    padding-top: 3.25em;
+  }
+
+  @media (max-width: 736px) {
+    #wrapper {
+      padding-top: 2.75em;
+    }
+
     #header {
-      padding: 1rem 1.5rem;
+      height: 2.75em;
+      line-height: 2.75em;
+    }
+
+    .logo {
+      padding: 0 1em;
+    }
+
+    #menu-toggle {
+      padding: 0 0.5em;
+      padding-right: 3.25em;
+    }
+
+    #menu-toggle::before,
+    #menu-toggle::after {
+      right: 0.75em;
     }
   }
 </style>
