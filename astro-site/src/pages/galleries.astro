@@ -1,153 +1,325 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { siteConfig } from '../lib/config';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
-// Gallery images from the galleries folder
-const galleryImages = [
-  { src: '/images/galleries/gallery_1.webp', alt: '園區風景' },
-  { src: '/images/galleries/gallery_2.webp', alt: '園區設施' },
-  { src: '/images/galleries/gallery_3.webp', alt: '露營區景觀' },
-  { src: '/images/galleries/gallery_4.webp', alt: '小木屋外觀' },
-  { src: '/images/galleries/gallery_5.webp', alt: '山林美景' },
-  { src: '/images/galleries/gallery_6.webp', alt: '夕陽美景' },
-];
+// Gallery images - 36 images matching Jekyll
+const galleryImages = Array.from({ length: 36 }, (_, i) => {
+  const index = i + 1;
+  let alt = '密式旅行露營區實景 - ';
+  if (index <= 6) alt += '營區全景與雲海美景';
+  else if (index <= 12) alt += '露營區與住宿設施';
+  else if (index <= 18) alt += '兒童遊樂設施與休閒空間';
+  else if (index <= 24) alt += '套房與小木屋內部';
+  else if (index <= 30) alt += '戶外活動區域與景觀';
+  else alt += '夜景與特色設施';
+  return { src: `/images/galleries/gallery_${index}.webp`, alt };
+});
 ---
 
 <BaseLayout
-  title="園區相簿"
-  description="密式旅行露營區美景相簿，記錄園區的自然風光與設施"
-  keywords="密式旅行相簿,露營區照片,苗栗美景"
+  title="密式圖集"
+  description="探索密式旅行露營區的美麗風景：雲海繚繞的清晨、絢麗夕陽、舒適住宿空間、兒童遊樂設施、桌遊咖啡廳等。"
+  keywords="密式旅行照片,露營區實景,苗栗露營照片,泰安風景,雲海照片,夕陽美景"
 >
-  <section class="page-header">
-    <div class="container">
-      <h1>園區相簿</h1>
-      <p>美景、設施、活動</p>
-    </div>
-  </section>
+  <div id="main" class="alt">
+    <section id="one">
+      <div class="inner">
+        <Breadcrumb items={[{ label: '密式圖集' }]} />
+        <header class="major">
+          <h1>密式圖集</h1>
+        </header>
 
-  <div id="main">
-    <div class="inner">
-      <div class="gallery-grid">
-        {galleryImages.map((image, index) => (
-          <a href={image.src} class="gallery-item" data-lightbox="gallery" data-title={image.alt}>
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              onerror="this.parentElement.style.display='none'"
-            />
-          </a>
-        ))}
+        <div class="lightbox-gallery">
+          <div class="row photos">
+            {galleryImages.map((image) => (
+              <div class="col-6 col-md-4 col-lg-3 item">
+                <a href={image.src} data-lightbox="photos">
+                  <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+    </section>
+  </div>
 
-      <div class="cta-section">
-        <h3>想親自體驗密式的美景？</h3>
-        <a href={siteConfig.booking.url} class="btn" target="_blank" rel="noopener noreferrer">
-          立即預訂
-        </a>
+  <!-- Lightbox Overlay -->
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="關閉">&times;</button>
+      <button class="lightbox-nav lightbox-prev" aria-label="上一張">&lt;</button>
+      <img src="" alt="" id="lightbox-image" />
+      <button class="lightbox-nav lightbox-next" aria-label="下一張">&gt;</button>
+      <div class="lightbox-counter">
+        <span id="lightbox-current">1</span> / <span id="lightbox-total">36</span>
       </div>
     </div>
   </div>
 </BaseLayout>
 
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+  const lightboxCurrent = document.getElementById('lightbox-current');
+  const lightboxTotal = document.getElementById('lightbox-total');
+  const closeBtn = lightbox?.querySelector('.lightbox-close');
+  const prevBtn = lightbox?.querySelector('.lightbox-prev');
+  const nextBtn = lightbox?.querySelector('.lightbox-next');
+
+  const galleryLinks = document.querySelectorAll('[data-lightbox="photos"]');
+  const images = Array.from(galleryLinks).map(link => (link as HTMLAnchorElement).href);
+  let currentIndex = 0;
+
+  if (lightboxTotal) {
+    lightboxTotal.textContent = String(images.length);
+  }
+
+  function openLightbox(index: number) {
+    currentIndex = index;
+    updateLightbox();
+    lightbox?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function updateLightbox() {
+    if (lightboxImage) {
+      lightboxImage.src = images[currentIndex];
+      lightboxImage.alt = `密式旅行露營區實景 ${currentIndex + 1}`;
+    }
+    if (lightboxCurrent) {
+      lightboxCurrent.textContent = String(currentIndex + 1);
+    }
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateLightbox();
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateLightbox();
+  }
+
+  // Event listeners
+  galleryLinks.forEach((link, index) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLightbox(index);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', showPrev);
+  nextBtn?.addEventListener('click', showNext);
+
+  // Close on overlay click
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('active')) return;
+
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+</script>
+
 <style>
-  .page-header {
-    padding: 8rem 2rem 4rem;
-    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
-    text-align: center;
-  }
-
-  .page-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .page-header p {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  #main {
+  #main.alt {
     background: #242943;
-    padding: 3rem 0;
+    padding: 4rem 0;
   }
 
   .inner {
-    max-width: 1200px;
+    max-width: 65em;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 3em;
   }
 
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 3rem;
+  .major {
+    text-align: left;
   }
 
-  .gallery-item {
-    position: relative;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    border-radius: 8px;
-    border-bottom: none;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.05);
-  }
-
-  .cta-section {
-    text-align: center;
-    padding: 3rem;
-    background: #2a2f4a;
-    border-radius: 8px;
-  }
-
-  .cta-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.1em;
-  }
-
-  .btn {
+  .major h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #fff;
     display: inline-block;
-    padding: 1rem 2.5rem;
-    background: #9bf1ff;
-    color: #242943;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+    padding-bottom: 0.5rem;
+  }
+
+  .lightbox-gallery {
+    margin-top: 2rem;
+  }
+
+  .row.photos {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.5rem;
+  }
+
+  .col-6 {
+    width: 50%;
+    padding: 0.5rem;
+  }
+
+  .col-md-4 {
+    width: 33.333%;
+  }
+
+  .col-lg-3 {
+    width: 25%;
+  }
+
+  .item a {
+    display: block;
     border-bottom: none;
+    overflow: hidden;
   }
 
-  .btn:hover {
-    background: #fff;
-    transform: translateY(-2px);
+  .item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
-  @media (max-width: 768px) {
-    .page-header {
-      padding: 6rem 1.5rem 3rem;
+  .item a:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  @media (max-width: 980px) {
+    .col-lg-3 {
+      width: 33.333%;
+    }
+  }
+
+  @media (max-width: 736px) {
+    .col-md-4,
+    .col-lg-3 {
+      width: 50%;
     }
 
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .inner {
+      padding: 0 1.5em;
     }
   }
 
   @media (max-width: 480px) {
-    .gallery-grid {
-      grid-template-columns: 1fr;
+    .col-6,
+    .col-md-4,
+    .col-lg-3 {
+      width: 100%;
+    }
+  }
+
+  /* Lightbox Overlay */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox-overlay.active {
+    display: flex;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    display: block;
+    border-radius: 3px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+  }
+
+  .lightbox-close:hover {
+    color: #ccc;
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    transition: background 0.2s ease;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .lightbox-prev {
+    left: -80px;
+  }
+
+  .lightbox-next {
+    right: -80px;
+  }
+
+  .lightbox-counter {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .lightbox-prev {
+      left: 10px;
+    }
+
+    .lightbox-next {
+      right: 10px;
+    }
+
+    .lightbox-nav {
+      padding: 0.75rem 1rem;
+      font-size: 1.5rem;
     }
   }
 </style>
