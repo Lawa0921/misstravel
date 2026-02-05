@@ -76,12 +76,15 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     font-size: 3.25em;
     margin: 0;
     padding-bottom: 0.35em;
-    border-bottom: solid 2px #fff;
-    width: fit-content;
+    border-bottom: none;
   }
 
-  header.major h1::after {
-    display: none;
+  header.major::after {
+    content: '';
+    display: block;
+    border-bottom: solid 2px #fff;
+    margin-top: 0.5em;
+    width: 100%;
   }
 
   .content {
@@ -91,7 +94,7 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
   }
 
   .content p {
-    font-size: 0.7em;
+    font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;

@@ -11,10 +11,11 @@ const headerClass = variant === 'alt' ? 'alt' : variant === 'alt-style2' ? 'alt 
 
 const navItems = [
   { href: '/', label: '首頁' },
-  { href: '/rooms/', label: '住宿房型' },
-  { href: '/infos/', label: '園區資訊' },
+  { href: '/infos/', label: '關於密式' },
+  { href: '/rooms/', label: '房型展示' },
+  { href: '/sale_items/', label: '密式柑仔店' },
   { href: '/announcements/', label: '最新消息' },
-  { href: '/galleries/', label: '園區相簿' },
+  { href: '/galleries/', label: '密式圖集' },
   { href: siteConfig.booking.url, label: '空房查詢', external: true },
 ];
 ---
@@ -22,7 +23,7 @@ const navItems = [
 <div id="wrapper">
   <header id="header" class={headerClass}>
     <a href="/" class="logo">
-      <strong>{siteConfig.title}</strong>
+      <strong>MISSTRAVEL</strong>
     </a>
     <nav>
       <a href="#menu" id="menu-toggle">Menu</a>
@@ -30,6 +31,7 @@ const navItems = [
   </header>
 
   <nav id="menu">
+    <div class="close" id="menu-close" aria-label="關閉選單"></div>
     <ul class="links">
       {navItems.map((item) => (
         <li>
@@ -48,97 +50,187 @@ const navItems = [
 <style>
   #header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    position: fixed;
-    top: 0;
+    background-color: #2a2f4a;
+    box-shadow: 0 0 0.25em 0 rgba(0,0,0,0.15);
+    cursor: default;
+    font-weight: 600;
+    height: 3.25em;
     left: 0;
-    right: 0;
+    letter-spacing: 0.25em;
+    line-height: 3.25em;
+    margin: 0;
+    position: fixed;
+    text-transform: uppercase;
+    top: 0;
+    width: 100%;
     z-index: 1000;
-    background: rgba(36, 41, 67, 0.95);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
   }
 
   #header.alt {
-    background: transparent;
-    backdrop-filter: none;
+    transition: opacity 2.5s ease;
+    transition-delay: 0.75s;
+    background-color: transparent;
+    box-shadow: none;
+    position: absolute;
   }
 
-  #header.alt.style2 {
-    background: rgba(36, 41, 67, 0.8);
+  #header.alt.style2 .logo strong {
+    color: #8d82c4;
   }
 
   .logo {
-    font-size: 1.25rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    border-bottom: none;
+    border: 0;
+    display: inline-block;
+    font-size: 0.8em;
+    height: inherit;
+    line-height: inherit;
+    padding: 0 1.5em;
   }
 
   .logo strong {
-    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: #fff;
+    color: #242943;
+    display: inline-block;
+    line-height: 1.65em;
+    margin-right: 0.325em;
+    padding: 0 0.125em 0 calc(0.25em + 0.125em);
+  }
+
+  .logo:hover strong {
+    background-color: #9bf1ff;
+  }
+
+  #header nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    height: inherit;
+    line-height: inherit;
   }
 
   #menu-toggle {
-    display: inline-block;
-    padding: 0.5rem 1.5rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 0;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    border: 0;
+    display: block;
+    font-size: 0.8em;
+    height: inherit;
+    line-height: inherit;
+    padding: 0 0.75em;
+    padding-right: 3.875em;
+    position: relative;
+    vertical-align: middle;
   }
 
-  #menu-toggle:hover {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+  #menu-toggle::before,
+  #menu-toggle::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32'%3E%3Cstyle%3Eline %7B stroke-width: 2px; stroke: %23ffffff; %7D%3C/style%3E%3Cline x1='0' y1='11' x2='24' y2='11' /%3E%3Cline x1='0' y1='21' x2='24' y2='21' /%3E%3Cline x1='0' y1='16' x2='24' y2='16' /%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px 32px;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 2em;
+    top: 0;
+    vertical-align: middle;
+    width: 24px;
+  }
+
+  #menu-toggle::after {
+    transition: opacity 0.2s ease-in-out;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32'%3E%3Cstyle%3Eline %7B stroke-width: 2px; stroke: %239bf1ff; %7D%3C/style%3E%3Cline x1='0' y1='11' x2='24' y2='11' /%3E%3Cline x1='0' y1='21' x2='24' y2='21' /%3E%3Cline x1='0' y1='16' x2='24' y2='16' /%3E%3C/svg%3E");
+    opacity: 0;
+    z-index: 1;
+  }
+
+  #menu-toggle:hover::after,
+  #menu-toggle:active::after {
+    opacity: 1;
   }
 
   #menu {
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 300px;
+    right: 0;
+    width: 100%;
     height: 100vh;
-    background: #2a2f4a;
-    padding: 4rem 2rem 2rem;
+    background: rgba(36, 41, 67, 0.98);
+    padding: 6rem 2rem 2rem;
     z-index: 10001;
-    transition: right 0.3s ease;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
   }
 
   #menu.is-visible {
-    right: 0;
+    opacity: 1;
+    visibility: visible;
   }
 
   #menu .links {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: center;
   }
 
   #menu .links li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   #menu .links a {
     display: block;
-    padding: 0.75rem 0;
-    font-size: 1rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    text-transform: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.2s ease;
   }
 
   #menu .links a:hover {
     color: #9bf1ff;
-    padding-left: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  #menu .close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #menu .close::before,
+  #menu .close::after {
+    content: '';
+    position: absolute;
+    width: 2rem;
+    height: 2px;
+    background: #fff;
+    transition: background 0.2s ease;
+  }
+
+  #menu .close::before {
+    transform: rotate(45deg);
+  }
+
+  #menu .close::after {
+    transform: rotate(-45deg);
+  }
+
+  #menu .close:hover::before,
+  #menu .close:hover::after {
+    background: #9bf1ff;
   }
 
   @media (max-width: 768px) {
@@ -150,12 +242,14 @@ const navItems = [
 
 <script>
   const menuToggle = document.getElementById('menu-toggle');
+  const menuClose = document.getElementById('menu-close');
   const menu = document.getElementById('menu');
   const wrapper = document.getElementById('wrapper');
 
   function toggleMenu() {
     menu?.classList.toggle('is-visible');
     wrapper?.classList.toggle('is-menu-visible');
+    document.body.style.overflow = menu?.classList.contains('is-visible') ? 'hidden' : '';
   }
 
   menuToggle?.addEventListener('click', (e) => {
@@ -163,13 +257,17 @@ const navItems = [
     toggleMenu();
   });
 
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (menu?.classList.contains('is-visible') &&
-        !menu.contains(target) &&
-        target !== menuToggle) {
-      toggleMenu();
-    }
+  menuClose?.addEventListener('click', () => {
+    toggleMenu();
+  });
+
+  // 點擊連結時關閉選單
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (!link.getAttribute('target')) {
+        toggleMenu();
+      }
+    });
   });
 
   document.addEventListener('keydown', (e) => {
