@@ -1,8 +1,25 @@
-_site/
-.sass-cache/
-.jekyll-metadata
-Gemfile.lock
-*.gem
-.jekyll-cache
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+.vercel/
+
+# Environment
 .env
-.sassrc
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
