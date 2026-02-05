@@ -29,8 +29,6 @@ export const siteConfig = {
   urls: {
     roles: '/infos/roles/',
     account: '/infos/account/',
-    setMenu: '/infos/set-menu-info/',
-    menu: '/infos/menu/',
   },
 
   // 預訂系統
