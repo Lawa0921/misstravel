@@ -23,7 +23,7 @@ export const siteConfig = {
   socials: {
     facebook: 'https://www.facebook.com/misstravel0921',
     instagram: 'https://www.instagram.com/misstravel_miaoli',
-    github: 'https://github.com/Lawa0921/Lawa0921.github.io',
+    github: 'https://github.com/Lawa0921/misstravel',
   },
 
   // 特殊頁面 URL
