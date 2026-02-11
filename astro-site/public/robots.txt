@@ -4,24 +4,17 @@
 # Allow all search engines
 User-agent: *
 Allow: /
-Disallow: /assets/js/
-Disallow: /assets/css/
-Disallow: /_site/
 Disallow: /.git/
 
 # Google Image Bot
 User-agent: Googlebot-Image
-Allow: /assets/images/
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.png$
+Allow: /images/
 Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
 
 # Sitemap location
-Sitemap: https://misstravel.me/sitemap.xml
-
-# RSS Feed location
-Sitemap: https://misstravel.me/feed.xml
+Sitemap: https://misstravel.me/sitemap-index.xml
 
 # Crawl-delay for bots that support it
 Crawl-delay: 1
