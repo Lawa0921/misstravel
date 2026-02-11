@@ -9,6 +9,7 @@ export const siteConfig = {
   lang: 'zh-TW',
   locale: 'zh_TW',
   logo: '/images/logo.webp',
+  ogImage: '/images/rooms.webp',
   tilesCount: 6,
 
   // 聯絡資訊
