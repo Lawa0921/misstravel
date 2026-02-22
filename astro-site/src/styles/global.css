@@ -46,6 +46,14 @@ body {
   background-color: var(--color-bg);
   color: var(--color-fg);
   line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > main,
+body > #main {
+  flex: 1;
 }
 
 /* 標題 - 大小與 Bootstrap 一致 */

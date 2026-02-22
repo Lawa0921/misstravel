@@ -187,7 +187,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   }
 
   .inner {
-    max-width: 1200px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 2rem;
   }
@@ -207,6 +207,9 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     gap: 2rem;
     min-height: 400px;
     align-items: center;
+    background: #2a2f4a;
+    border-radius: 8px;
+    padding: 2rem;
   }
 
   .guide-btn {
@@ -236,62 +239,87 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 
   /* Modal styles */
   .modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0);
     z-index: 10000;
+    display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 2rem;
-    overflow-y: auto;
+    visibility: hidden;
+    transition: background 0.3s ease, visibility 0.3s ease;
   }
 
   .modal.active {
-    display: flex;
+    visibility: visible;
+    background: rgba(0, 0, 0, 0.85);
   }
 
   .modal-content {
     background: #242943;
-    border-radius: 8px;
+    border-radius: 12px;
     max-width: 960px;
     width: 100%;
-    margin: 2rem auto;
+    max-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal.active .modal-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem;
+    padding: 1.25rem 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    position: sticky;
-    top: 0;
+    flex-shrink: 0;
     background: #242943;
-    z-index: 10;
+    border-radius: 12px 12px 0 0;
   }
 
   .modal-header h2 {
     margin: 0;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     letter-spacing: 0.1em;
   }
 
   .modal-close {
-    background: none;
+    background: rgba(255, 255, 255, 0.1);
     border: none;
     color: #fff;
-    font-size: 2rem;
+    font-size: 1.25rem;
     cursor: pointer;
-    padding: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
     line-height: 1;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
   }
 
   .modal-body {
     padding: 2rem;
+    overflow-y: auto;
+    flex: 1;
   }
 
   .guide-step {
@@ -366,34 +394,45 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 </style>
 
 <script>
+  function openModal(modal: HTMLElement) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(modal: HTMLElement) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeAllModals() {
+    document.querySelectorAll('.modal.active').forEach(modal => {
+      closeModal(modal as HTMLElement);
+    });
+  }
+
   document.querySelectorAll('.guide-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const modalId = btn.getAttribute('data-modal');
       if (!modalId) return;
       const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
+      if (modal) openModal(modal);
     });
   });
 
   document.querySelectorAll('.modal-close').forEach(btn => {
     btn.addEventListener('click', () => {
-      const modal = btn.closest('.modal');
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+      const modal = btn.closest('.modal') as HTMLElement | null;
+      if (modal) closeModal(modal);
     });
   });
 
   document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+      if (e.target === modal) closeModal(modal as HTMLElement);
     });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllModals();
   });
 </script>
