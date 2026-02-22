@@ -11,7 +11,9 @@ interface Props {
   image?: string;
   keywords?: string;
   headerVariant?: 'default' | 'alt' | 'alt-style2';
-  schemaType?: 'Organization' | 'LocalBusiness';
+  schemaType?: 'Organization' | 'LocalBusiness' | 'Accommodation' | 'BlogPosting';
+  schemaData?: Record<string, unknown>;
+  extraSchemas?: Record<string, unknown>[];
 }
 
 const {
@@ -21,6 +23,8 @@ const {
   keywords,
   headerVariant = 'default',
   schemaType = 'Organization',
+  schemaData,
+  extraSchemas,
 } = Astro.props;
 ---
 
@@ -33,7 +37,7 @@ const {
     keywords={keywords}
   />
   <body>
-    <SchemaOrg type={schemaType} />
+    <SchemaOrg type={schemaType} data={schemaData} extraSchemas={extraSchemas} />
     <Header variant={headerVariant} />
 
     <slot />

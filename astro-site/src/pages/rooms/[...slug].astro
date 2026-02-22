@@ -25,6 +25,21 @@ const relatedRooms = allRooms
   .filter((r) => r.id !== room.id)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: room.data.title,
+  description: room.data.metaDescription || room.data.description,
+  image: carouselImages.map((img) => `${siteConfig.url}${img}`),
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'TWD',
+    lowPrice: room.data.weekdayPrice,
+    highPrice: room.data.standardPrice,
+    offerCount: room.data.numberOfRooms,
+  },
+};
 ---
 
 <BaseLayout
@@ -32,6 +47,8 @@ const relatedRooms = allRooms
   description={room.data.metaDescription}
   keywords={room.data.keywords}
   image={room.data.mainImage}
+  schemaType="LocalBusiness"
+  extraSchemas={[productSchema]}
 >
   <main id="main" class="alt">
     <div class="inner">

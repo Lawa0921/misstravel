@@ -36,7 +36,7 @@ function formatDate(date: Date): string {
               <div class="card-body">
                 <h3>{announcement.data.title}</h3>
                 <p class="description">{announcement.data.description}</p>
-                <div class="date">{formatDate(announcement.data.datetime)}</div>
+                <time class="date" datetime={announcement.data.datetime.toISOString()}>{formatDate(announcement.data.datetime)}</time>
                 <a href={`/announcements/${announcement.id.replace('.md', '')}/`} class="button special small">
                   前往查看
                 </a>

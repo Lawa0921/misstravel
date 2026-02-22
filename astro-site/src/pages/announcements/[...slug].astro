@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { siteConfig } from '../../lib/config';
 
 export async function getStaticPaths() {
   const announcements = await getCollection('announcements');
@@ -12,12 +13,21 @@ export async function getStaticPaths() {
 
 const { announcement } = Astro.props;
 const { Content } = await announcement.render();
+
+const blogPostingData = {
+  headline: announcement.data.title,
+  description: announcement.data.description,
+  datePublished: announcement.data.datetime.toISOString(),
+  ...(announcement.data.image ? { image: `${siteConfig.url}${announcement.data.image}` } : {}),
+};
 ---
 
 <BaseLayout
   title={announcement.data.metaTitle || announcement.data.title}
   description={announcement.data.description}
   image={announcement.data.image}
+  schemaType="BlogPosting"
+  schemaData={blogPostingData}
 >
   <section class="page-header">
     <div class="container">

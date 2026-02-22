@@ -4,9 +4,10 @@ import { siteConfig } from '../../lib/config';
 interface Props {
   type: 'Organization' | 'LocalBusiness' | 'Accommodation' | 'BlogPosting';
   data?: Record<string, unknown>;
+  extraSchemas?: Record<string, unknown>[];
 }
 
-const { type, data = {} } = Astro.props;
+const { type, data = {}, extraSchemas = [] } = Astro.props;
 
 const baseOrganization = {
   '@context': 'https://schema.org',
@@ -67,3 +68,6 @@ const schema = schemas[type] || baseOrganization;
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+{extraSchemas.map((extra) => (
+  <script type="application/ld+json" set:html={JSON.stringify(extra)} />
+))}

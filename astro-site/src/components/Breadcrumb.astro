@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from '../lib/config';
+
 interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -9,8 +11,25 @@ interface Props {
 }
 
 const { items } = Astro.props;
+
+const breadcrumbItems = [
+  { label: '首頁', href: '/' },
+  ...items,
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: `${siteConfig.url}${item.href}` } : {}),
+  })),
+};
 ---
 
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <nav class="breadcrumb-wrapper" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-bullet">・</li>
