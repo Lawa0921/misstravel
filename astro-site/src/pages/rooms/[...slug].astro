@@ -15,6 +15,10 @@ export async function getStaticPaths() {
 const { room } = Astro.props;
 const { Content } = await room.render();
 
+const carouselImages = room.data.images.includes(room.data.mainImage)
+  ? room.data.images
+  : [room.data.mainImage, ...room.data.images];
+
 // Get related rooms (same type or different)
 const allRooms = await getCollection('rooms');
 const relatedRooms = allRooms
@@ -50,7 +54,7 @@ const relatedRooms = allRooms
       <div class="carousel-container">
         <div class="carousel" id="room-carousel">
           <div class="carousel-track">
-            {room.data.images.map((image, index) => (
+            {carouselImages.map((image, index) => (
               <div class="carousel-slide" data-index={index}>
                 <img
                   src={image}
@@ -71,7 +75,7 @@ const relatedRooms = allRooms
             </svg>
           </button>
           <div class="carousel-dots">
-            {room.data.images.map((_, index) => (
+            {carouselImages.map((_, index) => (
               <button
                 class={`dot ${index === 0 ? 'active' : ''}`}
                 data-index={index}
