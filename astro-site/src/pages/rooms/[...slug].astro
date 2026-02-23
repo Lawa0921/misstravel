@@ -86,6 +86,7 @@ const productSchema = {
                   src={image}
                   alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
                   loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
                   fetchpriority={index === 0 ? 'high' : undefined}
                   width="900"
                   height="563"
@@ -160,8 +161,9 @@ const productSchema = {
             <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
               <img
                 src={related.data.mainImage}
-                alt={related.data.shortTitle}
+                alt={`${related.data.shortTitle}住宿外觀`}
                 loading="lazy"
+                decoding="async"
                 width="400"
                 height="150"
               />

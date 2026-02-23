@@ -3,18 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="頁面不存在" noindex>
-  <section class="error-page">
+  <main id="main" class="error-page">
     <div class="container">
       <h1>404</h1>
       <h2>頁面不存在</h2>
       <p>抱歉，您要找的頁面不存在或已被移除。</p>
       <a href="/" class="btn">返回首頁</a>
     </div>
-  </section>
+  </main>
 </BaseLayout>
 
 <style>
-  .error-page {
+  #main.error-page {
     min-height: 100vh;
     display: flex;
     align-items: center;

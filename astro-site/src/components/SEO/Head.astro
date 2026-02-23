@@ -47,7 +47,10 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
 
-  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  {noindex
+    ? <meta name="robots" content="noindex, nofollow" />
+    : <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  }
 
   <!-- Primary Meta Tags -->
   <title>{fullTitle}</title>
@@ -116,11 +119,12 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- DNS Prefetch -->
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="preconnect" href="https://www.youtube.com" />
   <link rel="dns-prefetch" href="https://www.youtube.com" />
 
   <!-- Fonts (preload + async load to avoid render-blocking) -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'" />
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
