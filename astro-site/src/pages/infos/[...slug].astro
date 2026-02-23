@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
+import { siteConfig } from '../../lib/config';
 
 export async function getStaticPaths() {
   const infos = await getCollection('infos');
@@ -13,12 +14,66 @@ export async function getStaticPaths() {
 
 const { info } = Astro.props;
 const { Content } = await info.render();
+
+const slug = info.id.replace('.md', '');
+const extraSchemas: Record<string, unknown>[] = [];
+
+if (slug === 'video') {
+  extraSchemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: '密式旅行露營區園區介紹影片',
+    description: info.data.metaDescription || info.data.description,
+    thumbnailUrl: `https://img.youtube.com/vi/0uTQjhD95c0/maxresdefault.jpg`,
+    uploadDate: '2023-01-01',
+    embedUrl: 'https://www.youtube.com/embed/0uTQjhD95c0',
+    publisher: {
+      '@type': 'Organization',
+      name: '密式旅行',
+      url: siteConfig.url,
+    },
+  });
+}
+
+if (slug === 'account') {
+  extraSchemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '訂房程序為何？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '請利用房型展示線上訂房查看空房位後，傳 Line 或 FB 訊息預訂，完成後於指定時間內匯款並回報，收到訂金後將為您保留房間，餘款到付。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '匯款資訊為何？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '郵局代碼：700，帳號：0041703-0172216，匯款郵局：楠梓亞洲城郵局，戶名：林季霆。匯款後請來電或來信確認。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '退費規定為何？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '14天以上告知取消扣手續費後全額退費；12-13天前扣30%；9-11天前扣50%；6-8天前扣60%；3-5天前扣70%；1-2天前扣80%；當天取消不退款。遇颱風或豪大雨可全額退費或延期。',
+        },
+      },
+    ],
+  });
+}
 ---
 
 <BaseLayout
   title={info.data.metaTitle || info.data.title}
   description={info.data.metaDescription || info.data.description}
   keywords={info.data.keywords}
+  extraSchemas={extraSchemas.length > 0 ? extraSchemas : undefined}
 >
   <main id="main" class="alt">
     <section id="one">

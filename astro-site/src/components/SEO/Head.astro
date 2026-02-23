@@ -1,5 +1,12 @@
 ---
 import { siteConfig } from '../../lib/config';
+import SchemaOrg from './SchemaOrg.astro';
+
+interface ArticleMeta {
+  publishedTime: string;
+  author: string;
+  tags: string[];
+}
 
 interface Props {
   title?: string;
@@ -8,6 +15,12 @@ interface Props {
   keywords?: string;
   canonical?: string;
   type?: 'website' | 'article';
+  noindex?: boolean;
+  schemaType?: 'Organization' | 'LocalBusiness' | 'Accommodation' | 'BlogPosting';
+  schemaData?: Record<string, unknown>;
+  extraSchemas?: Record<string, unknown>[];
+  preloadImage?: string;
+  articleMeta?: ArticleMeta;
 }
 
 const {
@@ -17,6 +30,12 @@ const {
   keywords,
   canonical = Astro.url.href,
   type = 'website',
+  noindex,
+  schemaType = 'Organization',
+  schemaData,
+  extraSchemas,
+  preloadImage,
+  articleMeta,
 } = Astro.props;
 
 const fullTitle = title === siteConfig.metaTitle ? title : `${title} | ${siteConfig.title}`;
@@ -27,6 +46,8 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
+
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
 
   <!-- Primary Meta Tags -->
   <title>{fullTitle}</title>
@@ -48,6 +69,15 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={imageUrl} />
+  {articleMeta && (
+    <>
+      <meta property="article:published_time" content={articleMeta.publishedTime} />
+      <meta property="article:author" content={articleMeta.author} />
+      {articleMeta.tags.map((tag) => (
+        <meta property="article:tag" content={tag} />
+      ))}
+    </>
+  )}
   <meta property="og:image:width" content="945" />
   <meta property="og:image:height" content="709" />
   <meta property="og:image:type" content="image/webp" />
@@ -76,6 +106,9 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
   <link rel="alternate" type="application/rss+xml" title={`${siteConfig.title} RSS Feed`} href="/feed.xml" />
   <link rel="alternate" type="application/feed+json" title={`${siteConfig.title} JSON Feed`} href="/feed.json" />
 
+  <!-- LCP image preload -->
+  {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
+
   <!-- Preload custom font -->
   <link rel="preload" href="/fonts/setofont.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -83,10 +116,16 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="https://www.youtube.com" />
+
   <!-- Fonts (preload + async load to avoid render-blocking) -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'" />
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
   </noscript>
+
+  <!-- Structured Data -->
+  <SchemaOrg type={schemaType} data={schemaData} extraSchemas={extraSchemas} />
 </head>

@@ -66,7 +66,7 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
       data-external={tile.external ? 'true' : undefined}
     >
       <header class="major">
-        <h3 style="font-size: 40px;">
+        <h2 style="font-size: 40px;">
           <a
             href={tile.href}
             class="link"
@@ -75,7 +75,7 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
           >
             {tile.title}
           </a>
-        </h3>
+        </h2>
         <p style="font-size: 24px;">{tile.description}</p>
       </header>
       <a
@@ -180,19 +180,19 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
     padding: 0;
   }
 
-  .tile h3 {
+  .tile h2 {
     margin: 0 0 1rem;
     letter-spacing: 0.15em;
     padding-bottom: 0.75rem;
     border-bottom: 2px solid rgba(255, 255, 255, 0.5);
   }
 
-  .tile h3 a {
+  .tile h2 a {
     color: #fff;
     border-bottom: none;
   }
 
-  .tile h3 a:hover {
+  .tile h2 a:hover {
     color: inherit;
   }
 
@@ -240,7 +240,7 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
       padding: 3em 1.5em;
     }
 
-    .tile h3 {
+    .tile h2 {
       font-size: 1.5em;
     }
   }

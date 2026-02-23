@@ -2,9 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Banner from '../components/Banner.astro';
 import Tiles from '../components/Tiles.astro';
+import { siteConfig } from '../lib/config';
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '密式旅行',
+  url: 'https://misstravel.me',
+  description: siteConfig.metaDescription,
+  inLanguage: 'zh-TW',
+  publisher: { '@type': 'Organization', name: '密式旅行' },
+};
 ---
 
-<BaseLayout headerVariant="alt" schemaType="LocalBusiness">
+<BaseLayout headerVariant="alt" schemaType="LocalBusiness" preloadImage="/images/banner.webp" extraSchemas={[webSiteSchema]}>
   <Banner title="密式旅行" subtitle="秘密景點，深度旅行" />
 
   <main id="main">

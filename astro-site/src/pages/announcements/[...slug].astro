@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../../lib/config';
 
@@ -20,24 +21,29 @@ const blogPostingData = {
   datePublished: announcement.data.datetime.toISOString(),
   ...(announcement.data.image ? { image: `${siteConfig.url}${announcement.data.image}` } : {}),
 };
+
+const articleMeta = {
+  publishedTime: announcement.data.datetime.toISOString(),
+  author: '密式旅行',
+  tags: announcement.data.tags || [],
+};
 ---
 
 <BaseLayout
   title={announcement.data.metaTitle || announcement.data.title}
   description={announcement.data.description}
   image={announcement.data.image}
+  type="article"
   schemaType="BlogPosting"
   schemaData={blogPostingData}
+  articleMeta={articleMeta}
 >
   <section class="page-header">
     <div class="container">
-      <nav class="breadcrumb">
-        <a href="/">首頁</a>
-        <span>/</span>
-        <a href="/announcements/">最新消息</a>
-        <span>/</span>
-        <span>{announcement.data.title}</span>
-      </nav>
+      <Breadcrumb items={[
+        { label: '最新消息', href: '/announcements/' },
+        { label: announcement.data.title }
+      ]} />
       <h1>{announcement.data.title}</h1>
       <div class="meta">
         <time datetime={announcement.data.datetime.toISOString()}>
@@ -60,7 +66,7 @@ const blogPostingData = {
     <div class="inner">
       {announcement.data.image && (
         <div class="featured-image">
-          <img src={announcement.data.image} alt={announcement.data.title} />
+          <img src={announcement.data.image} alt={announcement.data.title} loading="lazy" decoding="async" width="800" height="450" />
         </div>
       )}
       <div class="content">
@@ -77,23 +83,6 @@ const blogPostingData = {
   .page-header {
     padding: 8rem 2rem 3rem;
     background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
-  }
-
-  .breadcrumb {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .breadcrumb a {
-    color: rgba(255, 255, 255, 0.6);
-    border-bottom: none;
-  }
-
-  .breadcrumb a:hover {
-    color: #9bf1ff;
   }
 
   .page-header h1 {

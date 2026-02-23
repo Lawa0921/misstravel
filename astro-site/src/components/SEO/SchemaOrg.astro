@@ -38,9 +38,10 @@ const localBusiness = {
   email: siteConfig.contact.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '苗栗縣泰安鄉',
+    streetAddress: '苗栗縣泰安鄕大興村高熊卡6號',
     addressLocality: '泰安鄉',
     addressRegion: '苗栗縣',
+    postalCode: '365',
     addressCountry: 'TW',
   },
   geo: {
@@ -50,6 +51,17 @@ const localBusiness = {
   },
   priceRange: '$$',
   image: `${siteConfig.url}${siteConfig.logo}`,
+  checkinTime: '15:00',
+  checkoutTime: '12:00',
+  numberOfRooms: 10,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: '桌遊咖啡廳', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '兒童遊戲室', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '兒童沙坑', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '免費停車', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '免費 Wi-Fi', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '多肉植物小舖', value: true },
+  ],
 };
 
 const schemas: Record<string, object> = {

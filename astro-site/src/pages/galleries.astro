@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import { siteConfig } from '../lib/config';
 
 // Gallery images - 36 images matching Jekyll
 const galleryImages = Array.from({ length: 36 }, (_, i) => {
@@ -14,12 +15,26 @@ const galleryImages = Array.from({ length: 36 }, (_, i) => {
   else alt += '夜景與特色設施';
   return { src: `/images/galleries/gallery_${index}.webp`, alt };
 });
+
+const imageGallerySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  name: '密式圖集',
+  description: '探索密式旅行露營區的美麗風景',
+  url: `${siteConfig.url}/galleries/`,
+  image: galleryImages.map((img) => ({
+    '@type': 'ImageObject',
+    contentUrl: `${siteConfig.url}${img.src}`,
+    name: img.alt,
+  })),
+};
 ---
 
 <BaseLayout
   title="密式圖集"
   description="探索密式旅行露營區的美麗風景：雲海繚繞的清晨、絢麗夕陽、舒適住宿空間、兒童遊樂設施、桌遊咖啡廳等。"
   keywords="密式旅行照片,露營區實景,苗栗露營照片,泰安風景,雲海照片,夕陽美景"
+  extraSchemas={[imageGallerySchema]}
 >
   <main id="main" class="alt">
     <section id="one">
@@ -34,7 +49,7 @@ const galleryImages = Array.from({ length: 36 }, (_, i) => {
             {galleryImages.map((image) => (
               <div class="col-6 col-md-4 col-lg-3 item">
                 <a href={image.src} data-lightbox="photos">
-                  <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" />
+                  <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" decoding="async" width="400" height="300" />
                 </a>
               </div>
             ))}
@@ -45,11 +60,11 @@ const galleryImages = Array.from({ length: 36 }, (_, i) => {
   </div>
 
   <!-- Lightbox Overlay -->
-  <div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="圖片瀏覽">
     <div class="lightbox-content">
       <button class="lightbox-close" aria-label="關閉">&times;</button>
       <button class="lightbox-nav lightbox-prev" aria-label="上一張">&lt;</button>
-      <img src="" alt="" id="lightbox-image" />
+      <img src="" alt="密式旅行露營區實景" id="lightbox-image" />
       <button class="lightbox-nav lightbox-next" aria-label="下一張">&gt;</button>
       <div class="lightbox-counter">
         <span id="lightbox-current">1</span> / <span id="lightbox-total">36</span>

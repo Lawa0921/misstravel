@@ -9,5 +9,5 @@ image: ''
 ---
 
 <div class="text-center">
-  <img src="/images/menu.webp" alt="密式旅行菜單" style="max-width: 100%; height: auto;" />
+  <img src="/images/menu.webp" alt="密式旅行菜單" loading="lazy" decoding="async" style="max-width: 100%; height: auto;" width="1200" height="800" />
 </div>

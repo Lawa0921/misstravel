@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
+import { siteConfig } from '../../lib/config';
 
 const announcements = await getCollection('announcements');
 const sortedAnnouncements = announcements.sort(
@@ -14,12 +15,24 @@ function formatDate(date: Date): string {
   const day = date.getDate();
   return `${year} ${month} ${day}`;
 }
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: sortedAnnouncements.map((announcement, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: announcement.data.title,
+    url: `${siteConfig.url}/announcements/${announcement.id.replace('.md', '')}/`,
+  })),
+};
 ---
 
 <BaseLayout
   title="最新消息"
   description="密式旅行露營區最新公告與活動消息"
   keywords="密式旅行公告,露營區消息,最新活動"
+  extraSchemas={[itemListSchema]}
 >
   <main id="main" class="alt">
     <section id="one">
@@ -34,7 +47,7 @@ function formatDate(date: Date): string {
           {sortedAnnouncements.map((announcement) => (
             <article class="announcement-card">
               <div class="card-body">
-                <h3>{announcement.data.title}</h3>
+                <h2>{announcement.data.title}</h2>
                 <p class="description">{announcement.data.description}</p>
                 <time class="date" datetime={announcement.data.datetime.toISOString()}>{formatDate(announcement.data.datetime)}</time>
                 <a href={`/announcements/${announcement.id.replace('.md', '')}/`} class="button special small">
@@ -47,6 +60,9 @@ function formatDate(date: Date): string {
                     src={announcement.data.image}
                     alt={announcement.data.title}
                     loading="lazy"
+                    decoding="async"
+                    width="200"
+                    height="250"
                   />
                 </div>
               )}
@@ -116,7 +132,7 @@ function formatDate(date: Date): string {
     flex-direction: column;
   }
 
-  .card-body h3 {
+  .card-body h2 {
     font-size: 1.25rem;
     letter-spacing: 0.1em;
     margin-bottom: 0.75rem;

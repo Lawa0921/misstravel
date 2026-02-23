@@ -1,12 +1,56 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import { siteConfig } from '../lib/config';
+
+const saleItemProducts = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: '烹飪組合',
+    description: '卡式瓦斯爐、瓦斯罐、湯鍋組、湯勺、不鏽鋼餐具、切割用小刀及砧板',
+    brand: { '@type': 'Brand', name: '密式旅行' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'TWD',
+      price: 200,
+      availability: 'https://schema.org/InStock',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: '烤肉組合',
+    description: '架高烤肉桌/架、煤炭、火種、烤肉網、烤肉夾、烤肉刷、不鏽鋼餐具、切割用小刀及砧板',
+    brand: { '@type': 'Brand', name: '密式旅行' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'TWD',
+      price: 300,
+      availability: 'https://schema.org/InStock',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: '寢具組合',
+    description: '日式記憶雙人床墊、兩顆枕頭、一條雙人被',
+    brand: { '@type': 'Brand', name: '密式旅行' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'TWD',
+      price: 400,
+      availability: 'https://schema.org/InStock',
+    },
+  },
+];
 ---
 
 <BaseLayout
   title="密式柑仔店"
   description="密式柑仔店提供各種露營用品、休閒食品與特色商品，讓您的苗栗泰安露營之旅更加便利與豐富。"
   keywords="密式柑仔店,露營用品,休閒食品,苗栗露營,泰安特產,露營裝備"
+  extraSchemas={saleItemProducts}
 >
   <main id="main" class="alt">
     <div class="inner">
@@ -43,10 +87,10 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   </div>
 
   <!-- Modal: 烹飪組合 -->
-  <div class="modal" id="sale_item_1">
+  <div class="modal" id="sale_item_1" role="dialog" aria-modal="true" aria-labelledby="sale_item_1-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>烹飪組合</h2>
+        <h2 id="sale_item_1-title">烹飪組合</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
@@ -68,10 +112,10 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   </div>
 
   <!-- Modal: 烤肉組合 -->
-  <div class="modal" id="sale_item_2">
+  <div class="modal" id="sale_item_2" role="dialog" aria-modal="true" aria-labelledby="sale_item_2-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>烤肉組合</h2>
+        <h2 id="sale_item_2-title">烤肉組合</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
@@ -95,10 +139,10 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   </div>
 
   <!-- Modal: 寢具組合 -->
-  <div class="modal" id="sale_item_3">
+  <div class="modal" id="sale_item_3" role="dialog" aria-modal="true" aria-labelledby="sale_item_3-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>寢具組合</h2>
+        <h2 id="sale_item_3-title">寢具組合</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
@@ -111,7 +155,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
         <h4 class="red">數量有限，且寢具搬運困難無現場提供如需租用請提前告知</h4>
         <div class="image-row">
           <div class="image-col">
-            <img src="/images/sale_items/sale_items_1.webp" alt="寢具組合內容展示" loading="lazy" />
+            <img src="/images/sale_items/sale_items_1.webp" alt="寢具組合內容展示" loading="lazy" width="600" height="400" />
           </div>
           <div class="text-col">
             <p>寢具組內容如圖<br/>觀山之屋及靜房、默房都僅能放一組、沉房可放兩組</p>
@@ -119,7 +163,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
         </div>
         <div class="image-row">
           <div class="image-col">
-            <img src="/images/sale_items/sale_items_2.webp" alt="觀山之屋及靜房、默房放置兩組寢具示意圖" loading="lazy" />
+            <img src="/images/sale_items/sale_items_2.webp" alt="觀山之屋及靜房、默房放置兩組寢具示意圖" loading="lazy" width="600" height="400" />
           </div>
           <div class="text-col">
             <p>觀山之屋及靜房、默房放兩組會有部分折起</p>
@@ -127,7 +171,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
         </div>
         <div class="image-row">
           <div class="image-col">
-            <img src="/images/sale_items/sale_items_3.webp" alt="沉房放置兩組寢具示意圖" loading="lazy" />
+            <img src="/images/sale_items/sale_items_3.webp" alt="沉房放置兩組寢具示意圖" loading="lazy" width="600" height="400" />
           </div>
           <div class="text-col">
             <p>沉房放兩組示意圖</p>
@@ -138,17 +182,17 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   </div>
 
   <!-- Modal: 各式雜貨 -->
-  <div class="modal" id="sale_item_4">
+  <div class="modal" id="sale_item_4" role="dialog" aria-modal="true" aria-labelledby="sale_item_4-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>各式雜貨</h2>
+        <h2 id="sale_item_4-title">各式雜貨</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
         <h4>密式桌遊咖啡廳同時販售簡單雜貨</h4>
         <div class="image-row">
           <div class="image-col">
-            <img src="/images/sale_items/sale_items_4.webp" alt="密式柑仔店自助販賣區展示" loading="lazy" />
+            <img src="/images/sale_items/sale_items_4.webp" alt="密式柑仔店自助販賣區展示" loading="lazy" width="600" height="400" />
           </div>
           <div class="text-col">
             <p>密式柑仔店採自助販賣<br/>如有需要可隨時自行拿取並自行將費用投至存錢筒即可</p>
@@ -160,10 +204,10 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   </div>
 
   <!-- Modal: 代訂合菜 -->
-  <div class="modal" id="sale_item_6">
+  <div class="modal" id="sale_item_6" role="dialog" aria-modal="true" aria-labelledby="sale_item_6-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>代訂合菜</h2>
+        <h2 id="sale_item_6-title">代訂合菜</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
@@ -183,10 +227,10 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   </div>
 
   <!-- Modal: 簡餐菜單 -->
-  <div class="modal" id="sale_item_7">
+  <div class="modal" id="sale_item_7" role="dialog" aria-modal="true" aria-labelledby="sale_item_7-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>密式菜單</h2>
+        <h2 id="sale_item_7-title">密式菜單</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
@@ -202,27 +246,27 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   </div>
 
   <!-- Modal: 代訂食材/紅瓦舍 -->
-  <div class="modal" id="sale_item_8">
+  <div class="modal" id="sale_item_8" role="dialog" aria-modal="true" aria-labelledby="sale_item_8-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>代訂食材/紅瓦舍</h2>
+        <h2 id="sale_item_8-title">代訂食材/紅瓦舍</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
         <div class="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="/images/sale_items/sale_items_7.webp" alt="紅瓦舍烤肉食材套餐菜單第一頁" loading="lazy" />
+              <img src="/images/sale_items/sale_items_7.webp" alt="紅瓦舍烤肉食材套餐菜單第一頁" loading="lazy" width="600" height="800" />
             </div>
             <div class="carousel-item">
-              <img src="/images/sale_items/sale_items_8.webp" alt="紅瓦舍烤肉食材套餐菜單第二頁" loading="lazy" />
+              <img src="/images/sale_items/sale_items_8.webp" alt="紅瓦舍烤肉食材套餐菜單第二頁" loading="lazy" width="600" height="800" />
             </div>
             <div class="carousel-item">
-              <img src="/images/sale_items/sale_items_9.webp" alt="紅瓦舍烤肉食材套餐菜單第三頁" loading="lazy" />
+              <img src="/images/sale_items/sale_items_9.webp" alt="紅瓦舍烤肉食材套餐菜單第三頁" loading="lazy" width="600" height="800" />
             </div>
           </div>
-          <button class="carousel-prev">&lt;</button>
-          <button class="carousel-next">&gt;</button>
+          <button class="carousel-prev" aria-label="上一張">&lt;</button>
+          <button class="carousel-next" aria-label="下一張">&gt;</button>
           <div class="carousel-indicators">
             <span class="indicator active" data-index="0"></span>
             <span class="indicator" data-index="1"></span>
@@ -241,7 +285,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
         </ul>
         <div class="image-row">
           <div class="image-col">
-            <img src="/images/sale_items/sale_items_6.webp" alt="免洗式低矮烤肉架示意圖" loading="lazy" />
+            <img src="/images/sale_items/sale_items_6.webp" alt="免洗式低矮烤肉架示意圖" loading="lazy" width="600" height="400" />
           </div>
           <div class="text-col">
             <p>業者提供的烤肉架為免洗式很低的烤肉架，密式一律禁止使用，請自備架高 60 cm以上烤肉架或另跟密式租用</p>
@@ -606,6 +650,15 @@ import Breadcrumb from '../components/Breadcrumb.astro';
         document.body.style.overflow = '';
       }
     });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal.active').forEach(modal => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
   });
 
   // Carousel functionality

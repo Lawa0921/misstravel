@@ -1,19 +1,28 @@
 ---
 import Head from '../components/SEO/Head.astro';
-import SchemaOrg from '../components/SEO/SchemaOrg.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+
+interface ArticleMeta {
+  publishedTime: string;
+  author: string;
+  tags: string[];
+}
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   keywords?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
   headerVariant?: 'default' | 'alt' | 'alt-style2';
   schemaType?: 'Organization' | 'LocalBusiness' | 'Accommodation' | 'BlogPosting';
   schemaData?: Record<string, unknown>;
   extraSchemas?: Record<string, unknown>[];
+  preloadImage?: string;
+  articleMeta?: ArticleMeta;
 }
 
 const {
@@ -21,10 +30,14 @@ const {
   description,
   image,
   keywords,
+  type,
+  noindex,
   headerVariant = 'default',
   schemaType = 'Organization',
   schemaData,
   extraSchemas,
+  preloadImage,
+  articleMeta,
 } = Astro.props;
 ---
 
@@ -35,9 +48,16 @@ const {
     description={description}
     image={image}
     keywords={keywords}
+    type={type}
+    noindex={noindex}
+    schemaType={schemaType}
+    schemaData={schemaData}
+    extraSchemas={extraSchemas}
+    preloadImage={preloadImage}
+    articleMeta={articleMeta}
   />
   <body>
-    <SchemaOrg type={schemaType} data={schemaData} extraSchemas={extraSchemas} />
+    <a href="#main" class="skip-link">跳至主要內容</a>
     <Header variant={headerVariant} />
 
     <slot />

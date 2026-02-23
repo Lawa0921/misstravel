@@ -26,18 +26,26 @@ const relatedRooms = allRooms
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
+const roomUrl = `${siteConfig.url}/rooms/${room.id.replace('.md', '')}/`;
 const productSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: room.data.title,
   description: room.data.metaDescription || room.data.description,
   image: carouselImages.map((img) => `${siteConfig.url}${img}`),
+  url: roomUrl,
+  brand: {
+    '@type': 'Brand',
+    name: '密式旅行',
+  },
   offers: {
     '@type': 'AggregateOffer',
     priceCurrency: 'TWD',
     lowPrice: room.data.weekdayPrice,
     highPrice: room.data.standardPrice,
     offerCount: room.data.numberOfRooms,
+    availability: 'https://schema.org/InStock',
+    url: roomUrl,
   },
 };
 ---
@@ -47,6 +55,7 @@ const productSchema = {
   description={room.data.metaDescription}
   keywords={room.data.keywords}
   image={room.data.mainImage}
+  preloadImage={carouselImages[0]}
   schemaType="LocalBusiness"
   extraSchemas={[productSchema]}
 >
@@ -77,6 +86,9 @@ const productSchema = {
                   src={image}
                   alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
                   loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : undefined}
+                  width="900"
+                  height="563"
                 />
               </div>
             ))}
@@ -111,7 +123,7 @@ const productSchema = {
 
       <!-- Booking Notice -->
       <div class="booking-notice">
-        <h4>【訂位須知】</h4>
+        <h3>【訂位須知】</h3>
         <ul>
           <li>訂假日提早一晚夜衝者，當日價格一律半價(限晚上 6 點後至 10 點以前進場)</li>
           <li>營區及露營木屋無提供早晚餐，套房含早餐，無提供晚餐</li>
@@ -132,7 +144,7 @@ const productSchema = {
 
       <!-- Day Type Definition -->
       <div class="day-definition">
-        <h4>【平日、假日定義】</h4>
+        <h3>【平日、假日定義】</h3>
         <ul>
           <li>平日：星期日至星期四</li>
           <li>假日：星期五、星期六、國定假日</li>
@@ -150,6 +162,8 @@ const productSchema = {
                 src={related.data.mainImage}
                 alt={related.data.shortTitle}
                 loading="lazy"
+                width="400"
+                height="150"
               />
               <div class="related-info">
                 <h4>{related.data.shortTitle}</h4>
@@ -325,7 +339,7 @@ const productSchema = {
     margin-bottom: 2rem;
   }
 
-  .booking-notice h4 {
+  .booking-notice h3 {
     color: #fff;
     font-size: 1.1em;
     margin-bottom: 1rem;
@@ -371,7 +385,7 @@ const productSchema = {
     margin-bottom: 2rem;
   }
 
-  .day-definition h4 {
+  .day-definition h3 {
     color: #fff;
     font-size: 1.1em;
     margin-bottom: 1rem;

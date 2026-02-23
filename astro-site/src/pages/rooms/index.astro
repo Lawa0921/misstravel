@@ -2,15 +2,29 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
+import { siteConfig } from '../../lib/config';
 
 const rooms = await getCollection('rooms');
 const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: sortedRooms.map((room, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: room.data.title,
+    url: `${siteConfig.url}/rooms/${room.id.replace('.md', '')}/`,
+    image: `${siteConfig.url}${room.data.mainImage}`,
+  })),
+};
 ---
 
 <BaseLayout
   title="房型展示"
   description="密式旅行提供多樣化住宿選擇：露營車位享受大自然、溫馨小木屋適合家庭、舒適套房給您飯店般體驗。"
   keywords="密式旅行房型,露營車位,小木屋住宿,套房住宿,苗栗住宿價格"
+  extraSchemas={[itemListSchema]}
 >
   <main id="main" class="alt">
     <div class="inner">
@@ -21,12 +35,15 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
       <div class="rooms-grid">
         {sortedRooms.map((room) => (
           <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
-            <h3>{room.data.title}</h3>
+            <h2>{room.data.title}</h2>
             <div class="room-image">
               <img
                 src={room.data.mainImage}
                 alt={`${room.data.shortTitle}住宿外觀`}
                 loading="lazy"
+                decoding="async"
+                width="600"
+                height="400"
               />
             </div>
             <div class="room-prices">
@@ -93,7 +110,7 @@ const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
     transform: translateY(-5px);
   }
 
-  .room-card h3 {
+  .room-card h2 {
     font-size: 1.1rem;
     margin: 0;
     padding: 0.75rem;

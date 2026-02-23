@@ -39,7 +39,7 @@ const breadcrumbSchema = {
       </a>
     </li>
     {items.map((item, index) => (
-      <li class={`breadcrumb-item ${index === items.length - 1 ? 'active' : ''}`}>
+      <li class={`breadcrumb-item ${index === items.length - 1 ? 'active' : ''}`} aria-current={index === items.length - 1 ? 'page' : undefined}>
         {item.href ? (
           <a href={item.href}>{item.label}</a>
         ) : (

@@ -9,5 +9,5 @@ image: ''
 ---
 
 <div class="text-center">
-  <img src="/images/map.webp" alt="密式旅行園區地圖" style="max-width: 100%; height: auto;" />
+  <img src="/images/map.webp" alt="密式旅行園區地圖" loading="lazy" decoding="async" style="max-width: 100%; height: auto;" width="1200" height="800" />
 </div>
