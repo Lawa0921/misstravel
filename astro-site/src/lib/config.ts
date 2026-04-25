@@ -34,7 +34,7 @@ export const siteConfig = {
 
   // 預訂系統
   booking: {
-    url: 'https://traiwan.com/official/booking.php?id=misstravel',
+    url: 'https://roomcloud.cc/hotels/misstravel/booking',
   },
 } as const;
 
