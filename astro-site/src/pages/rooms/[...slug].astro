@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { siteConfig } from '../../lib/config';
 
 export async function getStaticPaths() {
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { room } = Astro.props;
-const { Content } = await room.render();
+const { Content } = await render(room);
 
 const carouselImages = room.data.images.includes(room.data.mainImage)
   ? room.data.images
@@ -65,10 +65,9 @@ const productSchema = {
         { label: '房型展示', href: '/rooms/' },
         { label: room.data.shortTitle }
       ]} />
-      <header class="major">
-        <h1>{room.data.title}</h1>
-      </header>
-    </div>
+    <header class="major">
+      <h1>{room.data.title}</h1>
+    </header>
   </div>
 
   <div id="main-content" class="room-detail">
@@ -89,7 +88,7 @@ const productSchema = {
                   decoding="async"
                   fetchpriority={index === 0 ? 'high' : undefined}
                   width="900"
-                  height="563"
+                  height="675"
                 />
               </div>
             ))}
@@ -176,6 +175,7 @@ const productSchema = {
         </div>
       </div>
     </div>
+  </div>
   </main>
 </BaseLayout>
 
@@ -240,7 +240,7 @@ const productSchema = {
 
   .carousel-slide {
     min-width: 100%;
-    aspect-ratio: 16/10;
+    aspect-ratio: 4/3;
   }
 
   .carousel-slide img {

@@ -1,8 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
-// 房型集合
 const rooms = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/rooms' }),
   schema: z.object({
     title: z.string(),
     shortTitle: z.string(),
@@ -22,9 +23,8 @@ const rooms = defineCollection({
   }),
 });
 
-// 資訊集合
 const infos = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/infos' }),
   schema: z.object({
     title: z.string(),
     metaTitle: z.string().optional(),
@@ -37,9 +37,8 @@ const infos = defineCollection({
   }),
 });
 
-// 公告集合
 const announcements = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/announcements' }),
   schema: z.object({
     title: z.string(),
     metaTitle: z.string().optional(),
