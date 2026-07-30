@@ -103,7 +103,7 @@ describe('4. 正式網域一致性', () => {
       readFileSync(join(distDir, '..', '..', 'vercel.json'), 'utf-8')
     );
     expect(config.installCommand).toBe('cd astro-site && npm ci');
-    expect(config.buildCommand).toBe('cd astro-site && npm test');
+    expect(config.buildCommand).toBe('cd astro-site && npm run verify');
   });
 });
 
