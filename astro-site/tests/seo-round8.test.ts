@@ -1,5 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
-import { execSync } from 'child_process';
+import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { load } from 'cheerio';
 import { join } from 'path';
@@ -13,10 +12,6 @@ function readPage(path: string) {
   }
   return load(readFileSync(filePath, 'utf-8'));
 }
-
-beforeAll(() => {
-  execSync('npm run build', { cwd: join(__dirname, '..'), stdio: 'pipe' });
-}, 120000);
 
 // 1. rooms/[...slug] 圖片 decoding="async"
 describe('1. 房型詳情頁圖片 decoding', () => {
@@ -66,19 +61,54 @@ describe('2. robots max-snippet 控制', () => {
 
 // 3. og:image 尺寸動態化
 describe('3. og:image 尺寸', () => {
-  it('使用自訂 image 的頁面不應硬編碼 945x709', () => {
+  it('使用自訂 image 的頁面應輸出圖片實際尺寸', () => {
     const $ = readPage('rooms/campsite_1/index.html');
-    // 房型頁使用了自訂 image，不應假設是 945x709
     const ogWidth = $('meta[property="og:image:width"]').attr('content');
     const ogHeight = $('meta[property="og:image:height"]').attr('content');
-    // 應該移除硬編碼或改為正確值
-    expect(ogWidth).toBeDefined();
-    expect(ogHeight).toBeDefined();
+    expect(ogWidth).toBe('945');
+    expect(ogHeight).toBe('709');
   });
 });
 
-// 4. VideoObject duration
-describe('4. VideoObject schema 完整性', () => {
+// 4. 唯一正式網域
+describe('4. 正式網域一致性', () => {
+  it('canonical 與 Open Graph URL 應使用 www 主網域', () => {
+    const $ = readPage('index.html');
+    expect($('link[rel="canonical"]').attr('href')).toBe('https://www.misstravel.me/');
+    expect($('meta[property="og:url"]').attr('content')).toBe('https://www.misstravel.me/');
+  });
+
+  it('sitemap 不應產生裸網域 URL', () => {
+    const sitemap = readFileSync(join(distDir, 'sitemap-0.xml'), 'utf-8');
+    expect(sitemap).toContain('https://www.misstravel.me/');
+    expect(sitemap).not.toContain('<loc>https://misstravel.me/');
+  });
+
+  it('Vercel 應將裸網域永久轉址到 www', () => {
+    const config = JSON.parse(
+      readFileSync(join(distDir, '..', '..', 'vercel.json'), 'utf-8')
+    );
+    const redirect = config.redirects.find(
+      (item: { destination?: string }) =>
+        item.destination === 'https://www.misstravel.me/:path*'
+    );
+
+    expect(redirect).toBeDefined();
+    expect(redirect.permanent).toBe(true);
+    expect(redirect.has).toContainEqual({ type: 'host', value: 'misstravel.me' });
+  });
+
+  it('Vercel 部署應使用鎖檔安裝並通過完整測試', () => {
+    const config = JSON.parse(
+      readFileSync(join(distDir, '..', '..', 'vercel.json'), 'utf-8')
+    );
+    expect(config.installCommand).toBe('cd astro-site && npm ci');
+    expect(config.buildCommand).toBe('cd astro-site && npm test');
+  });
+});
+
+// 5. VideoObject duration
+describe('5. VideoObject schema 完整性', () => {
   it('VideoObject 應包含 duration 欄位', () => {
     const $ = readPage('infos/video/index.html');
     const scripts = $('script[type="application/ld+json"]');
@@ -97,8 +127,8 @@ describe('4. VideoObject schema 完整性', () => {
   });
 });
 
-// 5. 相關房型 alt 文字改善
-describe('5. 相關房型 alt 文字', () => {
+// 6. 相關房型 alt 文字改善
+describe('6. 相關房型 alt 文字', () => {
   it('相關房型圖片 alt 應包含「住宿」或更多描述', () => {
     const $ = readPage('rooms/campsite_1/index.html');
     const imgs = $('.related-card img');
@@ -112,8 +142,8 @@ describe('5. 相關房型 alt 文字', () => {
   });
 });
 
-// 6. Lightbox 圖片 decoding
-describe('6. Lightbox 圖片 decoding', () => {
+// 7. Lightbox 圖片 decoding
+describe('7. Lightbox 圖片 decoding', () => {
   it('galleries lightbox img 應有 decoding="async"', () => {
     const $ = readPage('galleries/index.html');
     const lightboxImg = $('#lightbox-image');

@@ -1,5 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
-import { execSync } from 'child_process';
+import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { load } from 'cheerio';
 import { join } from 'path';
@@ -13,10 +12,6 @@ function readPage(path: string) {
   }
   return load(readFileSync(filePath, 'utf-8'));
 }
-
-beforeAll(() => {
-  execSync('npm run build', { cwd: join(__dirname, '..'), stdio: 'pipe' });
-}, 120000);
 
 // 1. 柑仔店 Modal ARIA
 describe('1. 柑仔店 Modal ARIA', () => {

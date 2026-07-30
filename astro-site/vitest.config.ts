@@ -3,6 +3,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     globals: true,
+    globalSetup: './tests/global-setup.ts',
     testTimeout: 120000,
   },
 });

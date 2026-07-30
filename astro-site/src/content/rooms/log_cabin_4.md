@@ -11,7 +11,7 @@ numberOfRooms: 1
 numberOfPeople: 4
 order: 8
 isCampsite: false
-keywords: '依山之屋, 沉木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 1200-2000元, 依山住宿, 涼亭木屋, 小木屋住宿, 郊外休閒, 山景宿設, 有涼亭住宿'
+keywords: '依山之屋, 沉木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 1200-2000元, 依山住宿, 涼亭木屋, 小木屋住宿, 郊外休閒, 山景住宿, 有涼亭住宿'
 mainImage: '/images/log_cabin_4_main.webp'
 images:
   - '/images/log_cabin_air_conditioner_1.webp'

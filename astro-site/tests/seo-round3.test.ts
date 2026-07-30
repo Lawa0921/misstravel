@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { execSync } from 'child_process';
 import { readFileSync, existsSync } from 'fs';
 import { load } from 'cheerio';
 import { join } from 'path';
@@ -23,10 +22,6 @@ function getJsonLd($: ReturnType<typeof load>) {
   });
   return scripts;
 }
-
-beforeAll(() => {
-  execSync('npm run build', { cwd: join(__dirname, '..'), stdio: 'pipe' });
-}, 120000);
 
 // 1. 標題層級（Heading Hierarchy）
 describe('1. 標題層級', () => {
@@ -85,7 +80,7 @@ describe('3. WebSite schema', () => {
     const website = schemas.find((s) => s['@type'] === 'WebSite');
     expect(website).toBeDefined();
     expect(website.name).toBe('密式旅行');
-    expect(website.url).toBe('https://misstravel.me');
+    expect(website.url).toBe('https://www.misstravel.me');
     expect(website.inLanguage).toBe('zh-TW');
   });
 });
@@ -231,5 +226,14 @@ describe('9. 字型快取', () => {
     expect(cacheControl).toBeDefined();
     expect(cacheControl.value).toContain('max-age=31536000');
     expect(cacheControl.value).toContain('immutable');
+  });
+
+  it('圖片快取不應在檔名可原地替換時標示 immutable', () => {
+    const configPath = join(__dirname, '..', '..', 'vercel.json');
+    const vercelConfig = JSON.parse(readFileSync(configPath, 'utf-8'));
+    const imageHeaders = vercelConfig.headers.find((h: any) => h.source === '/images/(.*)');
+    const cacheControl = imageHeaders.headers.find((h: any) => h.key === 'Cache-Control');
+    expect(cacheControl.value).not.toContain('immutable');
+    expect(cacheControl.value).toContain('stale-while-revalidate');
   });
 });

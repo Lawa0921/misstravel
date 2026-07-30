@@ -1,5 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
-import { execSync } from 'child_process';
+import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { load } from 'cheerio';
 import { join } from 'path';
@@ -33,10 +32,6 @@ function getHeadJsonLd($: ReturnType<typeof load>) {
   });
   return scripts;
 }
-
-beforeAll(() => {
-  execSync('npm run build', { cwd: join(__dirname, '..'), stdio: 'pipe' });
-}, 120000);
 
 // 1. 公告詳情頁 og:type 應為 article
 describe('1. 公告頁面 og:type', () => {
@@ -88,12 +83,11 @@ describe('3. LodgingBusiness 結構化資料', () => {
     expect(lodging.checkoutTime).toBe('12:00');
   });
 
-  it('應包含 numberOfRooms', () => {
+  it('不應宣告無法由本站庫存證實的 numberOfRooms', () => {
     const $ = readPage('index.html');
     const schemas = getJsonLd($);
     const lodging = schemas.find((s) => s['@type'] === 'LodgingBusiness');
-    expect(lodging.numberOfRooms).toBeDefined();
-    expect(typeof lodging.numberOfRooms).toBe('number');
+    expect(lodging.numberOfRooms).toBeUndefined();
   });
 
   it('應包含 amenityFeature', () => {
@@ -115,7 +109,7 @@ describe('4. 404 頁面 noindex', () => {
   });
 });
 
-// 5. Product schema 應包含 url、brand、availability
+// 5. Product schema 應包含 url、brand，且不捏造即時庫存
 describe('5. 房間 Product schema', () => {
   it('Product schema 應包含 url', () => {
     const $ = readPage('rooms/suite_1/index.html');
@@ -134,11 +128,12 @@ describe('5. 房間 Product schema', () => {
     expect(product.brand.name).toBe('密式旅行');
   });
 
-  it('Product schema offers 應包含 availability 和 url', () => {
+  it('Product schema offers 應包含 url，但不應宣告固定有庫存', () => {
     const $ = readPage('rooms/suite_1/index.html');
     const schemas = getJsonLd($);
     const product = schemas.find((s) => s['@type'] === 'Product');
-    expect(product.offers.availability).toBe('https://schema.org/InStock');
+    expect(product.offers.availability).toBeUndefined();
+    expect(product.offers.offerCount).toBeUndefined();
     expect(product.offers.url).toContain('/rooms/suite_1/');
   });
 });
@@ -319,5 +314,15 @@ describe('10. 柑仔店 Product schema', () => {
     const bedding = products.find((p) => p.name.includes('寢具'));
     expect(bedding).toBeDefined();
     expect(bedding.offers).toBeDefined();
+  });
+
+  it('柑仔店商品不應宣告無法由本站證實的即時庫存', () => {
+    const $ = readPage('sale_items/index.html');
+    const schemas = getJsonLd($);
+    const products = schemas.filter((s) => s['@type'] === 'Product');
+    expect(products.length).toBeGreaterThan(0);
+    products.forEach((product) => {
+      expect(product.offers.availability).toBeUndefined();
+    });
   });
 });

@@ -1,5 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
-import { execSync } from 'child_process';
+import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { load } from 'cheerio';
 import { join } from 'path';
@@ -21,10 +20,6 @@ function readRawPage(path: string) {
   }
   return readFileSync(filePath, 'utf-8');
 }
-
-beforeAll(() => {
-  execSync('npm run build', { cwd: join(__dirname, '..'), stdio: 'pipe' });
-}, 120000);
 
 // 1. 無效 HTML 修正 - 不應有多餘 stray </div>
 describe('1. HTML 結構有效性', () => {

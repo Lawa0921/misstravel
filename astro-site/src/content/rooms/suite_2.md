@@ -11,7 +11,7 @@ numberOfRooms: 1
 numberOfPeople: 4
 order: 4
 isCampsite: false
-keywords: '密式之頂, 閲陽樓, 四人套房, 苗栗套房, 泰安套房, 密式旅行, 4人住宿, 2400-4600元, 高級套房, 頂級套房, 独立衛浴, 假日含早餐, 有電視冷氣, 精品住宿'
+keywords: '密式之頂, 閲陽樓, 四人套房, 苗栗套房, 泰安套房, 密式旅行, 4人住宿, 2400-4600元, 高級套房, 頂級套房, 獨立衛浴, 假日含早餐, 有電視冷氣, 精品住宿'
 mainImage: '/images/suite_2/suite_2_6.webp?v=20260702'
 images:
   - '/images/suite_2/suite_2_6.webp?v=20260702'
