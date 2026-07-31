@@ -15,7 +15,9 @@ export const siteConfig = {
   // 聯絡資訊
   contact: {
     email: 'misstravel0921@gmail.com',
-    line: 'misstravel0921',
+    line: '@rys8178b',
+    lineUrl: 'https://line.me/R/ti/p/%40rys8178b',
+    lineQr: '/images/line-official-account-qr.svg',
     phone: '0905108958',
   },
 
