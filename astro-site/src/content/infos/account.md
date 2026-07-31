@@ -3,7 +3,7 @@ metaTitle: '密式旅行露營區，訂房流程與匯款資訊'
 title: '訂房流程與匯款資訊'
 order: 1
 description: '查看密式旅行露營區的空房查詢、正式預訂、匯款回報與退款規定'
-metaDescription: '密式旅行露營區訂房流程：RoomCloud 僅供查詢空房，確認日期後請透過官方 LINE 或 Facebook 聯絡預訂，再依通知完成匯款與回報。'
+metaDescription: '密式旅行露營區訂房流程：RoomCloud 僅供查詢空房，確認日期後請透過官方 LINE @rys8178b 或 Facebook 聯絡預訂，再依通知完成匯款與回報。'
 keywords: '密式旅行, 空房查詢, 露營區匯款, 訂房流程, 退款規定, 苗栗露營, 泰安露營區, 露營訂金, 取消政策'
 image: ''
 ---
@@ -17,7 +17,7 @@ image: ''
 
 1. 使用網站的「查詢空房」功能，確認預計入住日期與房型是否仍有空位。
 2. 透過官方管道傳訊預訂：
-   - LINE ID：`misstravel0921`
+   - LINE 官方帳號：[`@rys8178b`](https://line.me/R/ti/p/%40rys8178b)
    - Facebook：搜尋「密式旅行農場」
 3. 待密式旅行回覆並確認房型、日期、金額與訂金保留期限後，再依通知進行匯款。
 4. 請於通知的保留期限內完成訂金匯款；逾期未收到訂金，房位將取消保留，恕不另行通知。
@@ -26,6 +26,12 @@ image: ''
    - 電話：`0905-108-958`
 6. 收到密式旅行的訂位確認後，才代表預訂完成；其餘款項於入住時支付。
 7. 完成訂房即表示已閱讀並同意園內規約、房型介紹、延期及退費規定。
+
+#### 【LINE 官方帳號 QR Code】
+
+<a href="https://line.me/R/ti/p/%40rys8178b" target="_blank" rel="noopener noreferrer" aria-label="加入密式旅行 LINE 官方帳號 @rys8178b">
+  <img src="/images/line-official-account-qr.svg" alt="密式旅行 LINE 官方帳號 @rys8178b QR Code" width="220" height="220" loading="lazy" decoding="async" />
+</a>
 
 #### 【匯款資訊－ATM 轉帳／匯款】
 
