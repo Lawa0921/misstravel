@@ -40,6 +40,7 @@ const {
   articleMeta,
 } = Astro.props;
 
+const shouldNoindex = noindex || Astro.url.pathname.startsWith('/announcements/');
 const fullTitle = title === siteConfig.metaTitle ? title : `${title} | ${siteConfig.title}`;
 const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
 
@@ -70,26 +71,21 @@ const imageMimeType = imageMetadata?.format
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
 
-  {noindex
-    ? <meta name="robots" content="noindex, nofollow" />
+  {shouldNoindex
+    ? <meta name="robots" content="noindex, follow" />
     : <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   }
 
-  <!-- Primary Meta Tags -->
   <title>{fullTitle}</title>
   <meta name="title" content={fullTitle} />
   <meta name="description" content={description} />
   {keywords && <meta name="keywords" content={keywords} />}
   <meta name="author" content={siteConfig.author} />
 
-  <!-- Canonical URL -->
   <link rel="canonical" href={canonical} />
-
-  <!-- Language -->
   <meta property="og:locale" content={siteConfig.locale} />
   <link rel="alternate" hreflang={siteConfig.lang} href={canonical} />
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content={type} />
   <meta property="og:url" content={canonical} />
   <meta property="og:title" content={fullTitle} />
@@ -110,49 +106,23 @@ const imageMimeType = imageMetadata?.format
   <meta property="og:image:alt" content={description} />
   <meta property="og:site_name" content={siteConfig.title} />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content={canonical} />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
 
-  <!-- Theme -->
   <meta name="msapplication-TileColor" content="#da532c" />
   <meta name="theme-color" content="#242943" />
 
-  <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5" />
 
-  <!-- RSS & JSON Feed -->
-  <link rel="alternate" type="application/rss+xml" title={`${siteConfig.title} RSS Feed`} href="/feed.xml" />
-  <link rel="alternate" type="application/feed+json" title={`${siteConfig.title} JSON Feed`} href="/feed.json" />
-
-  <!-- LCP image preload -->
   {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
-
-  <!-- Preload custom font -->
   <link rel="preload" href="/fonts/setofont.woff2" as="font" type="font/woff2" crossorigin />
 
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- DNS Prefetch & Preconnect -->
-  <link rel="preconnect" href="https://www.youtube.com" />
-  <link rel="dns-prefetch" href="https://www.youtube.com" />
-
-  <!-- Fonts (preload + async load to avoid render-blocking) -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
-  </noscript>
-
-  <!-- Structured Data -->
   <SchemaOrg type={schemaType} data={schemaData} extraSchemas={extraSchemas} />
 </head>
