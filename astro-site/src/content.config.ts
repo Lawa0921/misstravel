@@ -2,6 +2,16 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const priceOption = z.object({
+  label: z.string(),
+  numberOfUnits: z.number().int().positive(),
+  numberOfPeople: z.number().int().positive(),
+  weekdayPrice: z.number().nonnegative(),
+  holidayPrice: z.number().nonnegative(),
+  standardPrice: z.number().nonnegative(),
+  isStandard: z.boolean().default(false),
+});
+
 const rooms = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/rooms' }),
   schema: z.object({
@@ -14,6 +24,8 @@ const rooms = defineCollection({
     weekdayPrice: z.number(),
     holidayPrice: z.number(),
     standardPrice: z.number(),
+    pricingNote: z.string().optional(),
+    priceOptions: z.array(priceOption).min(2).optional(),
     numberOfRooms: z.number(),
     numberOfPeople: z.number(),
     order: z.number(),

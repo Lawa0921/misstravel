@@ -33,35 +33,47 @@ const itemListSchema = {
         <h1>房型展示</h1>
       </header>
       <div class="rooms-grid">
-        {sortedRooms.map((room) => (
-          <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
-            <h2>{room.data.title}</h2>
-            <div class="room-image">
-              <img
-                src={room.data.mainImage}
-                alt={`${room.data.shortTitle}住宿外觀`}
-                loading="lazy"
-                decoding="async"
-                width="600"
-                height="400"
-              />
-            </div>
-            <div class="room-prices">
-              <div class="price-row">
-                <span>👑 訂價：{room.data.standardPrice}</span>
-                <span>🥇 連假：{room.data.standardPrice}</span>
+        {sortedRooms.map((room) => {
+          const alternativeOption = room.data.priceOptions?.find((option) => !option.isStandard);
+
+          return (
+            <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
+              <h2>{room.data.title}</h2>
+              <div class="room-image">
+                <img
+                  src={room.data.mainImage}
+                  alt={`${room.data.shortTitle}住宿外觀`}
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="400"
+                />
               </div>
-              <div class="price-row">
-                <span>🥈 假日：{room.data.holidayPrice}</span>
-                <span>🥉 平日：{room.data.weekdayPrice}</span>
+              <div class="room-prices">
+                {room.data.priceOptions && (
+                  <p class="pricing-basis">四帳標準方案｜實際依帳數計價</p>
+                )}
+                <div class="price-row">
+                  <span>👑 訂價：{room.data.standardPrice}</span>
+                  <span>🥇 連假：{room.data.standardPrice}</span>
+                </div>
+                <div class="price-row">
+                  <span>🥈 假日：{room.data.holidayPrice}</span>
+                  <span>🥉 平日：{room.data.weekdayPrice}</span>
+                </div>
+                {alternativeOption && (
+                  <p class="alternative-price">
+                    三帳方案：平日 {alternativeOption.weekdayPrice}／假日 {alternativeOption.holidayPrice}／連假 {alternativeOption.standardPrice} 元
+                  </p>
+                )}
+                <div class="price-row">
+                  <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
+                  <span>👥 人數：{room.data.numberOfPeople}</span>
+                </div>
               </div>
-              <div class="price-row">
-                <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
-                <span>👥 人數：{room.data.numberOfPeople}</span>
-              </div>
-            </div>
-          </a>
-        ))}
+            </a>
+          );
+        })}
       </div>
     </div>
   </main>
@@ -140,6 +152,23 @@ const itemListSchema = {
   .room-prices {
     padding: 0.75rem;
     background: rgba(0, 0, 0, 0.2);
+  }
+
+  .pricing-basis,
+  .alternative-price {
+    margin: 0 0 0.5rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .pricing-basis {
+    color: #ffd306;
+    font-weight: 600;
+  }
+
+  .alternative-price {
+    color: #9bf1ff;
+    font-size: 0.82rem;
   }
 
   .price-row {

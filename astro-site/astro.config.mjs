@@ -13,14 +13,7 @@ export default defineConfig({
     },
     imageService: true,
   }),
-  integrations: [
-    sitemap({
-      serialize(item) {
-        item.lastmod = new Date().toISOString();
-        return item;
-      },
-    }),
-  ],
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
