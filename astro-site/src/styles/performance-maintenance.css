@@ -1,0 +1,19 @@
+html,
+body {
+  min-height: 100%;
+}
+
+body > #wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#wrapper > main,
+#wrapper > #main {
+  flex: 1 0 auto;
+}
+
+#wrapper > #footer {
+  margin-top: auto;
+}
