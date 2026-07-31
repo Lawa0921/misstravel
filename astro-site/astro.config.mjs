@@ -13,7 +13,11 @@ export default defineConfig({
     },
     imageService: true,
   }),
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !new URL(page).pathname.startsWith('/announcements/'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
