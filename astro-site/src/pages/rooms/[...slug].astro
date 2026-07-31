@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import RoomPolicyNotice from '../../components/RoomPolicyNotice.astro';
 import { getCollection, render } from 'astro:content';
 import { siteConfig } from '../../lib/config';
+import { policiesForRoom, selectRelatedRooms } from '../../lib/room-policy';
 
 export async function getStaticPaths() {
   const rooms = await getCollection('rooms');
@@ -14,19 +16,30 @@ export async function getStaticPaths() {
 
 const { room } = Astro.props;
 const { Content } = await render(room);
+const roomId = room.id.replace('.md', '');
+const policy = policiesForRoom(roomId);
 
 const carouselImages = room.data.images.includes(room.data.mainImage)
   ? room.data.images
   : [room.data.mainImage, ...room.data.images];
 
-// Get related rooms (same type or different)
 const allRooms = await getCollection('rooms');
-const relatedRooms = allRooms
-  .filter((r) => r.id !== room.id)
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
+const relatedRooms = selectRelatedRooms(room, allRooms);
 
-const roomUrl = `${siteConfig.url}/rooms/${room.id.replace('.md', '')}/`;
+const roomUrl = `${siteConfig.url}/rooms/${roomId}/`;
+const accommodationSchemaData = {
+  name: room.data.title,
+  description: room.data.metaDescription || room.data.description,
+  image: carouselImages.map((img) => `${siteConfig.url}${img}`),
+  url: roomUrl,
+  checkinTime: policy.times.checkinTime,
+  checkoutTime: policy.times.checkoutTime,
+  accommodationCategory: policy.label,
+  occupancy: {
+    '@type': 'QuantitativeValue',
+    maxValue: room.data.numberOfPeople,
+  },
+};
 const productSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
@@ -54,7 +67,8 @@ const productSchema = {
   keywords={room.data.keywords}
   image={room.data.mainImage}
   preloadImage={carouselImages[0]}
-  schemaType="LocalBusiness"
+  schemaType="Accommodation"
+  schemaData={accommodationSchemaData}
   extraSchemas={[productSchema]}
 >
   <main id="main" class="alt">
@@ -63,117 +77,99 @@ const productSchema = {
         { label: '房型展示', href: '/rooms/' },
         { label: room.data.shortTitle }
       ]} />
-    <header class="major">
-      <h1>{room.data.title}</h1>
-    </header>
-  </div>
+      <header class="major">
+        <h1>{room.data.title}</h1>
+      </header>
+    </div>
 
-  <div id="main-content" class="room-detail">
-    <div class="inner-content">
-      <!-- Important Notice -->
-      <h2 class="notice-title">『預訂前請先詳閱以下介紹(含延期退費說明)並衡量房間大小是否合適』</h2>
+    <div id="main-content" class="room-detail">
+      <div class="inner-content">
+        <h2 class="notice-title">『預訂前請先詳閱以下介紹（含延期退費說明）並衡量空間是否合適』</h2>
 
-      <!-- Image Carousel -->
-      <div class="carousel-container">
-        <div class="carousel" id="room-carousel">
-          <div class="carousel-track">
-            {carouselImages.map((image, index) => (
-              <div class="carousel-slide" data-index={index}>
-                <img
-                  src={image}
-                  alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  fetchpriority={index === 0 ? 'high' : undefined}
-                  width="900"
-                  height="675"
-                />
-              </div>
-            ))}
-          </div>
-          <button class="carousel-btn prev" aria-label="上一張">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <button class="carousel-btn next" aria-label="下一張">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-          <div class="carousel-dots">
-            {carouselImages.map((_, index) => (
-              <button
-                class={`dot ${index === 0 ? 'active' : ''}`}
-                data-index={index}
-                aria-label={`跳至圖片 ${index + 1}`}
-              ></button>
-            ))}
+        <div class="carousel-container">
+          <div class="carousel" id="room-carousel">
+            <div class="carousel-track">
+              {carouselImages.map((image, index) => (
+                <div class="carousel-slide" data-index={index}>
+                  <img
+                    src={image}
+                    alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    fetchpriority={index === 0 ? 'high' : undefined}
+                    width="900"
+                    height="675"
+                  />
+                </div>
+              ))}
+            </div>
+            <button class="carousel-btn prev" aria-label="上一張">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="carousel-btn next" aria-label="下一張">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+            <div class="carousel-dots">
+              {carouselImages.map((_, index) => (
+                <button
+                  class={`dot ${index === 0 ? 'active' : ''}`}
+                  data-index={index}
+                  aria-label={`跳至圖片 ${index + 1}`}
+                ></button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Action Buttons -->
-      <div class="action-buttons">
-        <a href={siteConfig.urls.account} class="btn-action">訂房流程</a>
-        <a href={siteConfig.urls.roles} class="btn-action special">園內規約</a>
-      </div>
+        <div class="action-buttons">
+          <a href={siteConfig.booking.url} class="btn-action" target="_blank" rel="noopener noreferrer">查詢空房</a>
+          <a href={siteConfig.contact.lineUrl} class="btn-action line" target="_blank" rel="noopener noreferrer">LINE 詢問</a>
+          <a href={siteConfig.urls.account} class="btn-action">訂房流程</a>
+          <a href={siteConfig.urls.roles} class="btn-action special">園內規約</a>
+        </div>
 
-      <!-- Booking Notice -->
-      <div class="booking-notice">
-        <h3>【訂位須知】</h3>
-        <ul>
-          <li>訂假日提早一晚夜衝者，當日價格一律半價(限晚上 6 點後至 10 點以前進場)</li>
-          <li>營區及露營木屋無提供早晚餐，套房假日、連續假期附早餐（平日不附），無提供晚餐</li>
-          <li>嚴禁直接在草皮或木板上烤肉及烹煮。若使用烤肉架、焚火台或快速爐等用具，請務必自備架高器具，並離地 60 公分以上</li>
-          <li class="red">木屋區嚴禁攜帶寵物，如欲攜帶寵物請預訂露營營位</li>
-          <li class="red">營位攜帶寵物如離開預訂區域請繫繩，如未繫繩將酌收 100 清潔費用/隻</li>
-          <li>如攜帶訪客入場每人酌收 100 元清潔費，不可抵園區消費，需於晚上 8 點前離開園區，如超過則再加收每人 100 元共計 200 元的加人費。如未登記也未主動告知有訪客，事後被營主發現得勒令立即離場</li>
-          <li>晚上 5 點後訪客禁止進入</li>
-          <li>一帳限一車四人 (加人、加車費另計，加帳一律 800 元)</li>
-          <li>為響應環保，園內住宿無提供盥洗用品，請自備毛巾及浴巾牙刷等盥洗用具</li>
-        </ul>
-      </div>
+        <RoomPolicyNotice roomType={policy.roomType} />
 
-      <!-- Room Details -->
-      <div class="room-content">
-        <Content />
-      </div>
+        <div class="room-content">
+          <Content />
+        </div>
 
-      <!-- Day Type Definition -->
-      <div class="day-definition">
-        <h3>【平日、假日定義】</h3>
-        <ul>
-          <li>平日：星期日至星期四</li>
-          <li>假日：星期五、星期六、國定假日</li>
-          <li>連續假日包含年節期間及國定假日(含連休假期前一晚)</li>
-        </ul>
-      </div>
+        <div class="day-definition">
+          <h3>【平日、假日定義】</h3>
+          <ul>
+            <li>平日：星期日至星期四</li>
+            <li>假日：星期五、星期六、國定假日</li>
+            <li>連續假日包含年節期間及國定假日（含連休假期前一晚）</li>
+          </ul>
+        </div>
 
-      <!-- Related Rooms -->
-      <div class="related-section">
-        <h3>其他住宿選擇</h3>
-        <div class="related-grid">
-          {relatedRooms.map((related) => (
-            <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
-              <img
-                src={related.data.mainImage}
-                alt={`${related.data.shortTitle}住宿外觀`}
-                loading="lazy"
-                decoding="async"
-                width="400"
-                height="150"
-              />
-              <div class="related-info">
-                <h4>{related.data.shortTitle}</h4>
-                <span class="related-price">平日 ${related.data.weekdayPrice} 起</span>
-              </div>
-            </a>
-          ))}
+        <div class="related-section">
+          <h3>相近住宿選擇</h3>
+          <div class="related-grid">
+            {relatedRooms.map((related) => (
+              <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
+                <img
+                  src={related.data.mainImage}
+                  alt={`${related.data.shortTitle}住宿外觀`}
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="150"
+                />
+                <div class="related-info">
+                  <h4>{related.data.shortTitle}</h4>
+                  <span class="related-price">平日 ${related.data.weekdayPrice} 起</span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </main>
 </BaseLayout>
 
@@ -184,10 +180,16 @@ const productSchema = {
     padding-bottom: 0;
   }
 
-  #main.alt > .inner {
+  #main.alt > .inner,
+  .inner-content {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 1.5rem 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  #main.alt > .inner {
+    padding-bottom: 1rem;
   }
 
   .major h1 {
@@ -204,13 +206,6 @@ const productSchema = {
     padding: 2rem 0 4rem;
   }
 
-  .inner-content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  /* Notice Title */
   .notice-title {
     color: #ffd306;
     font-size: 1.35em;
@@ -219,7 +214,6 @@ const productSchema = {
     line-height: 1.6;
   }
 
-  /* Carousel */
   .carousel-container {
     margin-bottom: 2rem;
   }
@@ -264,17 +258,13 @@ const productSchema = {
     transition: background 0.2s ease;
   }
 
-  .carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
+  .carousel-btn:hover,
+  .carousel-btn:focus-visible {
+    background: rgba(0, 0, 0, 0.8);
   }
 
-  .carousel-btn.prev {
-    left: 1rem;
-  }
-
-  .carousel-btn.next {
-    right: 1rem;
-  }
+  .carousel-btn.prev { left: 1rem; }
+  .carousel-btn.next { right: 1rem; }
 
   .carousel-dots {
     position: absolute;
@@ -286,43 +276,48 @@ const productSchema = {
   }
 
   .dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     border: none;
     background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
-    transition: background 0.2s ease;
   }
 
-  .dot.active {
-    background: #fff;
-  }
+  .dot.active { background: #fff; }
 
-  /* Action Buttons */
   .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     margin-bottom: 2rem;
   }
 
   .btn-action {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    letter-spacing: 0.12em;
     border: 2px solid #fff;
     background: transparent;
     color: #fff;
     transition: all 0.2s ease;
   }
 
-  .btn-action:hover {
+  .btn-action:hover,
+  .btn-action:focus-visible {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
+  }
+
+  .btn-action.line {
+    border-color: #9bf1ff;
+    color: #9bf1ff;
   }
 
   .btn-action.special {
@@ -330,37 +325,30 @@ const productSchema = {
     color: #242943;
   }
 
-  .btn-action.special:hover {
-    background: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Booking Notice */
-  .booking-notice {
+  .booking-notice,
+  .day-definition,
+  .room-content {
     margin-bottom: 2rem;
   }
 
-  .booking-notice h3 {
+  .booking-notice h3,
+  .day-definition h3 {
     color: #fff;
     font-size: 1.1em;
     margin-bottom: 1rem;
   }
 
-  .booking-notice ul {
+  .booking-notice ul,
+  .day-definition ul,
+  .room-content :global(ul) {
     padding-left: 1.5rem;
   }
 
-  .booking-notice li {
+  .booking-notice li,
+  .day-definition li,
+  .room-content :global(li) {
     margin-bottom: 0.5rem;
     color: rgba(255, 255, 255, 0.9);
-  }
-
-  .booking-notice li.red {
-    color: #ff6b6b;
-  }
-
-  /* Room Content */
-  .room-content {
-    margin-bottom: 2rem;
   }
 
   .room-content :global(h4) {
@@ -370,37 +358,6 @@ const productSchema = {
     margin-bottom: 1rem;
   }
 
-  .room-content :global(ul) {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .room-content :global(li) {
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Day Definition */
-  .day-definition {
-    margin-bottom: 2rem;
-  }
-
-  .day-definition h3 {
-    color: #fff;
-    font-size: 1.1em;
-    margin-bottom: 1rem;
-  }
-
-  .day-definition ul {
-    padding-left: 1.5rem;
-  }
-
-  .day-definition li {
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Related Rooms */
   .related-section h3 {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -420,7 +377,8 @@ const productSchema = {
     border-bottom: none;
   }
 
-  .related-card:hover {
+  .related-card:hover,
+  .related-card:focus-visible {
     transform: translateY(-5px);
   }
 
@@ -447,21 +405,9 @@ const productSchema = {
   }
 
   @media (max-width: 768px) {
-    .page-header {
-      padding: 6rem 1.5rem 2rem;
-    }
-
-    .page-header h1 {
-      font-size: 1.5rem;
-    }
-
-    .price-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .related-grid {
-      grid-template-columns: 1fr;
-    }
+    .related-grid { grid-template-columns: 1fr; }
+    .action-buttons { flex-direction: column; }
+    .btn-action { width: 100%; }
   }
 </style>
 
@@ -477,9 +423,7 @@ const productSchema = {
 
     function updateCarousel() {
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-      });
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
     }
 
     prevBtn?.addEventListener('click', () => {
@@ -492,29 +436,23 @@ const productSchema = {
       updateCarousel();
     });
 
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        updateCarousel();
-      });
-    });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => {
+      currentIndex = i;
+      updateCarousel();
+    }));
 
-    // Touch support
     let touchStartX = 0;
-    track.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
+    track.addEventListener('touchstart', (event) => {
+      touchStartX = event.touches[0].clientX;
     });
 
-    track.addEventListener('touchend', (e) => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          currentIndex = (currentIndex + 1) % slides.length;
-        } else {
-          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        }
-        updateCarousel();
-      }
+    track.addEventListener('touchend', (event) => {
+      const diff = touchStartX - event.changedTouches[0].clientX;
+      if (Math.abs(diff) <= 50) return;
+      currentIndex = diff > 0
+        ? (currentIndex + 1) % slides.length
+        : (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
     });
   }
 </script>
