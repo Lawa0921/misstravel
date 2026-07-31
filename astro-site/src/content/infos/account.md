@@ -1,7 +1,6 @@
 ---
 metaTitle: '密式旅行露營區，訂房流程與匯款資訊'
-title: '訂房流程與匯款資訊'
-navTitle: '訂房匯款'
+title: '訂房匯款'
 order: 1
 description: '查看密式旅行露營區的空房查詢、正式預訂、匯款回報與退款規定'
 metaDescription: '密式旅行露營區訂房流程：RoomCloud 僅供查詢空房，確認日期後請透過官方 LINE @rys8178b 或 Facebook 聯絡預訂，再依通知完成匯款並由原聯絡管道回報。'
