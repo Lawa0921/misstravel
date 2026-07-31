@@ -38,13 +38,13 @@ describe('空房查詢與正式預訂流程', () => {
     expect(text).toContain('收到密式旅行的訂位確認後，才代表預訂完成');
   });
 
-  it('訂房流程順序應包含查詢、聯絡、匯款、回報與確認', () => {
+  it('訂房流程順序應包含查詢、聯絡、匯款、原管道回報與確認', () => {
     const text = normalizedText('infos/account/index.html');
     const checkpoints = [
       '確認預計入住日期與房型是否仍有空位',
       '透過官方管道傳訊預訂',
       '再依通知進行匯款',
-      '匯款後請透過 Email 或電話回報',
+      '請透過原先與密式旅行聯絡的管道回報匯款資訊',
       '收到密式旅行的訂位確認後',
     ];
 
@@ -56,6 +56,14 @@ describe('空房查詢與正式預訂流程', () => {
     });
   });
 
+  it('匯款後應回到原本的 LINE 或 Facebook 對話通知', () => {
+    const text = normalizedText('infos/account/index.html');
+
+    expect(text).toContain('原先使用 LINE 聯絡者，請回到原 LINE 對話通知');
+    expect(text).toContain('原先使用 Facebook 聯絡者，請回到原 Facebook Messenger 對話通知');
+    expect(text).not.toContain('匯款後請透過 Email 或電話回報');
+  });
+
   it('官方聯絡資料應與全站設定一致', () => {
     const accountText = normalizedText('infos/account/index.html');
     const contactText = normalizedText('infos/contact-method/index.html');
@@ -63,7 +71,6 @@ describe('空房查詢與正式預訂流程', () => {
     expect(accountText).toContain('@rys8178b');
     expect(contactText).toContain('@rys8178b');
     expect(accountText).toContain('密式旅行農場');
-    expect(accountText).toContain('misstravel0921@gmail.com');
     expect(accountText).toContain('0905-108-958');
     expect(accountText).not.toContain('misstravel0921 LINE');
     expect(accountText).not.toContain('line搜尋:電話號碼');
