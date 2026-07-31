@@ -107,6 +107,19 @@ describe('空房查詢與正式預訂流程', () => {
     expect(text).toContain('空房查詢結果不等於房位已保留');
   });
 
+  it('關於密式上方導覽項目應全部為四個中文字', () => {
+    const $ = readPage('infos/index.html');
+    const labels = $('.info-nav .info-link')
+      .map((_, element) => $(element).text().replace(/\s+/g, '').trim())
+      .get();
+
+    expect(labels.length).toBe(8);
+    labels.forEach((label) => {
+      expect(label, label).toMatch(/^[\u4e00-\u9fff]{4}$/);
+    });
+    expect(labels).toContain('訂房匯款');
+  });
+
   it('所有 RoomCloud 連結的可見文字不得暗示可直接完成預訂', () => {
     const htmlFiles = [
       'index.html',
