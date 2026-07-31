@@ -26,13 +26,11 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
             class="button"
             target="_blank"
             rel="noopener noreferrer"
-            aria-describedby="availability-note"
           >
             查詢空房
           </a>
         </li>
       </ul>
-      <p id="availability-note" class="availability-note">空房系統僅供查詢，預訂請再透過 LINE 或 Facebook 聯絡確認。</p>
     </div>
   </div>
 </section>
@@ -94,20 +92,12 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     margin-top: 2em;
   }
 
-  .content > p:not(.availability-note) {
+  .content > p {
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     margin: 0;
-  }
-
-  .availability-note {
-    flex-basis: 100%;
-    margin: 0;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.85);
   }
 
   .actions {
@@ -175,7 +165,7 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
       display: block;
     }
 
-    .content > p:not(.availability-note) {
+    .content > p {
       margin-bottom: 1.5em;
       font-size: 1.25rem;
     }
@@ -187,11 +177,6 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     .button {
       width: 100%;
       text-align: center;
-    }
-
-    .availability-note {
-      margin-top: 1rem;
-      line-height: 1.6;
     }
   }
 </style>
