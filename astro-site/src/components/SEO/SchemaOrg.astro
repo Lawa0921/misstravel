@@ -18,6 +18,7 @@ const baseOrganization = {
   sameAs: [
     siteConfig.socials.facebook,
     siteConfig.socials.instagram,
+    siteConfig.contact.lineUrl,
   ],
   contactPoint: {
     '@type': 'ContactPoint',
@@ -63,6 +64,37 @@ const localBusiness = {
   ],
 };
 
+const bookingFaq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '如何完成訂房？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'RoomCloud 僅供查詢空房。確認日期與房型後，請透過 LINE 官方帳號 @rys8178b 或 Facebook「密式旅行農場」聯絡，由密式旅行回覆房型、金額與訂金期限。完成匯款後請回到原本的 LINE 或 Facebook 對話通知；收到密式旅行的訂位確認後才代表預訂完成。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '匯款後如何回報？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '請使用原本建立訂位聯繫的管道回報。使用 LINE 聯絡者回到原 LINE 對話；使用 Facebook 聯絡者回到原 Messenger 對話，以便在同一段對話中核對訂位資料。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '退費規定為何？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '入住日前 14 天含以上取消，扣除單次退款手續費後退還訂金；12 至 13 天前扣 30%；9 至 11 天前扣 50%；6 至 8 天前扣 60%；3 至 5 天前扣 70%；1 至 2 天前扣 80%；入住當日取消不退款。遇颱風或豪大雨時依園區公告辦理退費或延期。',
+      },
+    },
+  ],
+};
+
 const schemas: Record<string, object> = {
   Organization: baseOrganization,
   LocalBusiness: localBusiness,
@@ -76,9 +108,15 @@ const schemas: Record<string, object> = {
 };
 
 const schema = schemas[type] || baseOrganization;
+const normalizedExtraSchemas = extraSchemas.map((extra) => {
+  if (Astro.url.pathname === '/infos/account/' && extra['@type'] === 'FAQPage') {
+    return bookingFaq;
+  }
+  return extra;
+});
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-{extraSchemas.map((extra) => (
+{normalizedExtraSchemas.map((extra) => (
   <script type="application/ld+json" set:html={JSON.stringify(extra)} />
 ))}
