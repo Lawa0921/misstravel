@@ -10,7 +10,7 @@ image: ''
 
 #### LINE 官方帳號
 
-- **LINE ID**：[`@rys8178b`](https://line.me/R/ti/p/%40rys8178b)
+- **LINE ID**：<a href="https://line.me/R/ti/p/%40rys8178b" target="_blank" rel="noopener noreferrer">@rys8178b</a>
 - 可點擊上方帳號加入好友，或掃描下方 QR Code。
 
 <a href="https://line.me/R/ti/p/%40rys8178b" target="_blank" rel="noopener noreferrer" aria-label="加入密式旅行 LINE 官方帳號 @rys8178b">
