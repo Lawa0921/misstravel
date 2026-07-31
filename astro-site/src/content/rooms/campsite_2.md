@@ -2,16 +2,16 @@
 metaTitle: '密式旅行露營區，沒日之嶺草地露營區'
 title: '沒日之嶺草地營 (3 ~ 4 帳包區)'
 shortTitle: '沒日之嶺'
-description: '沒日之嶺草地營位於營區高處，擁有約19x12公尺的寬闊草地空間，視野遼闊。可包區供3-4帳使用，最多容納16人。提供兩組流理台、衛浴和冰箱，讓您在大自然中享受舒適的露營體驗。'
-metaDescription: '密式旅行沒日之嶺草地營 - 苗栗泰安寬闊草地露營包區，視野遼闊、最多4帳16人。平日3200元、假日4000元、連假4800元。立即預訂享受草地露營樂趣！'
+description: '沒日之嶺草地營位於營區高處，擁有約19x12公尺的寬闊草地空間，視野遼闊。可選3帳或4帳包區方案，最多容納16人。提供兩組流理台、衛浴和冰箱，3帳包區平日2400元起。'
+metaDescription: '密式旅行沒日之嶺草地營 - 苗栗泰安寬闊草地露營包區，可選3帳或4帳方案，最多16人。3帳平日2400元起，立即查看完整價格與營位說明。'
 standardPrice: 4800
-holidayPrice: 4000
-weekdayPrice: 3200
+holidayPrice: 3000
+weekdayPrice: 2400
 numberOfRooms: 1
 numberOfPeople: 16
 order: 1
 isCampsite: true
-keywords: '沒日之嶺, 草地露營, 包區露營, 苗栗露營, 泰安露營, 密式旅行, 16人露營, 4帳包區, 3200-4800元, 草地營位, 大型露營區, 家族露營, 團體露營, 山景露營'
+keywords: '沒日之嶺, 草地露營, 包區露營, 苗栗露營, 泰安露營, 密式旅行, 16人露營, 3帳包區, 4帳包區, 2400-4800元, 草地營位, 家族露營, 團體露營, 山景露營'
 mainImage: '/images/campsite_2_main.webp'
 images:
   - '/images/campsite_2/campsite_2_1.webp'
