@@ -20,20 +20,23 @@ jobs:
         github.event.deployment.environment == 'Production'
       )
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: astro-site
     steps:
-      - name: Check out the production checks
+      - name: Check out the deployed revision
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: main
+          ref: ${{ github.event_name == 'deployment_status' && github.event.deployment.sha || 'main' }}
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
 
-      - name: Verify the production deployment
+      - name: Verify production metadata and canonical routes
         run: npm run smoke:production
+
+      - name: Verify sitemap pages, legacy redirects and booking FAQ
+        run: node scripts/production-route-smoke.mjs
