@@ -1,0 +1,18 @@
+---
+import type { RoomType } from '../lib/room-policy';
+import { ROOM_TYPE_LABELS, ROOM_TYPE_POLICIES, SHARED_POLICIES } from '../lib/room-policy';
+
+interface Props {
+  roomType: RoomType;
+}
+
+const { roomType } = Astro.props;
+---
+
+<section class="booking-notice" data-room-type={roomType} aria-labelledby="booking-policy-title">
+  <h3 id="booking-policy-title">【{ROOM_TYPE_LABELS[roomType]}訂位須知】</h3>
+  <ul>
+    {ROOM_TYPE_POLICIES[roomType].map((policy) => <li>{policy}</li>)}
+    {SHARED_POLICIES.map((policy) => <li>{policy}</li>)}
+  </ul>
+</section>
