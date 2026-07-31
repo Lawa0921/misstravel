@@ -39,7 +39,6 @@ const infos = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/infos' }),
   schema: z.object({
     title: z.string(),
-    navTitle: z.string().regex(/^[\u4e00-\u9fff]{4}$/).optional(),
     metaTitle: z.string().optional(),
     description: z.string(),
     metaDescription: z.string().optional(),
