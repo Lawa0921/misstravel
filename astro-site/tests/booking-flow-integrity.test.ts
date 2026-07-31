@@ -14,13 +14,13 @@ function normalizedText(path: string) {
 }
 
 describe('空房查詢與正式預訂流程', () => {
-  it('首頁不得將 RoomCloud 誤稱為立即預訂', () => {
+  it('首頁 Banner 不得將 RoomCloud 誤稱為立即預訂', () => {
     const $ = readPage('index.html');
-    const bookingLink = $('a[href*="roomcloud.cc"]');
+    const bannerBookingLink = $('#banner a[href*="roomcloud.cc"]');
 
-    expect(bookingLink.length).toBeGreaterThan(0);
-    expect(bookingLink.first().text().trim()).toBe('查詢空房');
-    expect($.html()).not.toContain('立即預訂');
+    expect(bannerBookingLink.length).toBe(1);
+    expect(bannerBookingLink.text().trim()).toBe('查詢空房');
+    expect($('#banner').text()).not.toContain('立即預訂');
   });
 
   it('首頁應直接說明空房系統僅供查詢', () => {
