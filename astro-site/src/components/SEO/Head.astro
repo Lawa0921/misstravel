@@ -1,6 +1,8 @@
 ---
 import { siteConfig } from '../../lib/config';
 import SchemaOrg from './SchemaOrg.astro';
+import sharp, { type Metadata } from 'sharp';
+import { fileURLToPath } from 'node:url';
 
 interface ArticleMeta {
   publishedTime: string;
@@ -40,6 +42,27 @@ const {
 
 const fullTitle = title === siteConfig.metaTitle ? title : `${title} | ${siteConfig.title}`;
 const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
+
+let imageMetadata: Metadata | undefined;
+if (image.startsWith('/')) {
+  const imagePath = image.split(/[?#]/, 1)[0];
+  const imageFile = new URL(`../../../public${imagePath}`, import.meta.url);
+  imageMetadata = await sharp(fileURLToPath(imageFile)).metadata();
+}
+
+const imageMimeTypes: Record<string, string> = {
+  avif: 'image/avif',
+  gif: 'image/gif',
+  heif: 'image/heif',
+  jpeg: 'image/jpeg',
+  png: 'image/png',
+  svg: 'image/svg+xml',
+  tiff: 'image/tiff',
+  webp: 'image/webp',
+};
+const imageMimeType = imageMetadata?.format
+  ? imageMimeTypes[imageMetadata.format]
+  : undefined;
 ---
 
 <head>
@@ -81,9 +104,9 @@ const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
       ))}
     </>
   )}
-  <meta property="og:image:width" content="945" />
-  <meta property="og:image:height" content="709" />
-  <meta property="og:image:type" content="image/webp" />
+  {imageMetadata?.width && <meta property="og:image:width" content={String(imageMetadata.width)} />}
+  {imageMetadata?.height && <meta property="og:image:height" content={String(imageMetadata.height)} />}
+  {imageMimeType && <meta property="og:image:type" content={imageMimeType} />}
   <meta property="og:image:alt" content={description} />
   <meta property="og:site_name" content={siteConfig.title} />
 

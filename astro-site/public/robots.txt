@@ -1,4 +1,4 @@
-# robots.txt for https://misstravel.me/
+# robots.txt for https://www.misstravel.me/
 # Generated for 密式旅行露營區
 
 # Allow all search engines
@@ -14,7 +14,7 @@ Allow: /*.png$
 Allow: /*.jpg$
 
 # Sitemap location
-Sitemap: https://misstravel.me/sitemap-index.xml
+Sitemap: https://www.misstravel.me/sitemap-index.xml
 
 # Crawl-delay for bots that support it
 Crawl-delay: 1

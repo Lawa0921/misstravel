@@ -1,16 +1,29 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
-  "installCommand": "cd astro-site && npm install",
-  "buildCommand": "cd astro-site && npm run build",
+  "installCommand": "cd astro-site && npm ci",
+  "buildCommand": "cd astro-site && npm run verify",
   "outputDirectory": "astro-site/dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "misstravel.me"
+        }
+      ],
+      "destination": "https://www.misstravel.me/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/images/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
       ]
     },

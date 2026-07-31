@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run"
+    "test": "vitest run",
+    "verify": "npm audit --audit-level=high && vitest run"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
@@ -25,5 +26,8 @@
   },
   "overrides": {
     "path-to-regexp": "6.3.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
   }
 }

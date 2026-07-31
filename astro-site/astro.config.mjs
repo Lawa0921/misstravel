@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://misstravel.me',
+  site: 'https://www.misstravel.me',
   output: 'static',
   adapter: vercel({
     webAnalytics: {
