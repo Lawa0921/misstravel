@@ -13,6 +13,10 @@ function normalizedText(path: string) {
   return readPage(path).text().replace(/\s+/g, ' ').trim();
 }
 
+function normalizedContentText(path: string) {
+  return readPage(path)('.info-content').text().replace(/\s+/g, ' ').trim();
+}
+
 describe('空房查詢與正式預訂流程', () => {
   it('首頁 Banner 不得將 RoomCloud 誤稱為立即預訂', () => {
     const $ = readPage('index.html');
@@ -31,7 +35,7 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('訂房流程頁應明確說明 RoomCloud 不會直接完成預訂', () => {
-    const text = normalizedText('infos/account/index.html');
+    const text = normalizedContentText('infos/account/index.html');
 
     expect(text).toContain('RoomCloud 空房系統僅供查詢目前空房');
     expect(text).toContain('不會直接完成預訂');
@@ -39,7 +43,7 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('訂房流程順序應包含查詢、聯絡、匯款、原管道回報與確認', () => {
-    const text = normalizedText('infos/account/index.html');
+    const text = normalizedContentText('infos/account/index.html');
     const checkpoints = [
       '確認預計入住日期與房型是否仍有空位',
       '透過官方管道傳訊預訂',
@@ -57,7 +61,7 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('匯款後應回到原本的 LINE 或 Facebook 對話通知', () => {
-    const text = normalizedText('infos/account/index.html');
+    const text = normalizedContentText('infos/account/index.html');
 
     expect(text).toContain('原先使用 LINE 聯絡者，請回到原 LINE 對話通知');
     expect(text).toContain('原先使用 Facebook 聯絡者，請回到原 Facebook Messenger 對話通知');
@@ -65,8 +69,8 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('官方聯絡資料應與全站設定一致', () => {
-    const accountText = normalizedText('infos/account/index.html');
-    const contactText = normalizedText('infos/contact-method/index.html');
+    const accountText = normalizedContentText('infos/account/index.html');
+    const contactText = normalizedContentText('infos/contact-method/index.html');
 
     expect(accountText).toContain('@rys8178b');
     expect(contactText).toContain('@rys8178b');
@@ -98,7 +102,7 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('匯款頁應保留既有官方帳戶資料與防詐警示', () => {
-    const text = normalizedText('infos/account/index.html');
+    const text = normalizedContentText('infos/account/index.html');
 
     expect(text).toContain('郵局代碼：700');
     expect(text).toContain('郵局帳號：0041703-0172216');
