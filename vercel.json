@@ -15,7 +15,31 @@
       ],
       "destination": "https://www.misstravel.me/:path*",
       "permanent": true
-    }
+    },
+    { "source": "/rooms.html", "destination": "/rooms/", "permanent": true },
+    { "source": "/infos.html", "destination": "/infos/", "permanent": true },
+    { "source": "/galleries.html", "destination": "/galleries/", "permanent": true },
+    { "source": "/sale_items.html", "destination": "/sale_items/", "permanent": true },
+    { "source": "/announcements.html", "destination": "/announcements/", "permanent": true },
+    { "source": "/rooms/campsite_1.html", "destination": "/rooms/campsite_1/", "permanent": true },
+    { "source": "/rooms/campsite_2.html", "destination": "/rooms/campsite_2/", "permanent": true },
+    { "source": "/rooms/campsite_3.html", "destination": "/rooms/campsite_3/", "permanent": true },
+    { "source": "/rooms/log_cabin_1.html", "destination": "/rooms/log_cabin_1/", "permanent": true },
+    { "source": "/rooms/log_cabin_2.html", "destination": "/rooms/log_cabin_2/", "permanent": true },
+    { "source": "/rooms/log_cabin_3.html", "destination": "/rooms/log_cabin_3/", "permanent": true },
+    { "source": "/rooms/log_cabin_4.html", "destination": "/rooms/log_cabin_4/", "permanent": true },
+    { "source": "/rooms/suite_1.html", "destination": "/rooms/suite_1/", "permanent": true },
+    { "source": "/rooms/suite_2.html", "destination": "/rooms/suite_2/", "permanent": true },
+    { "source": "/rooms/suite_3.html", "destination": "/rooms/suite_3/", "permanent": true },
+    { "source": "/infos/account.html", "destination": "/infos/account/", "permanent": true },
+    { "source": "/infos/contact-method.html", "destination": "/infos/contact-method/", "permanent": true },
+    { "source": "/infos/guide.html", "destination": "/infos/guide/", "permanent": true },
+    { "source": "/infos/map.html", "destination": "/infos/map/", "permanent": true },
+    { "source": "/infos/menu.html", "destination": "/infos/menu/", "permanent": true },
+    { "source": "/infos/roles.html", "destination": "/infos/roles/", "permanent": true },
+    { "source": "/infos/set-menu-info.html", "destination": "/infos/set-menu-info/", "permanent": true },
+    { "source": "/infos/video.html", "destination": "/infos/video/", "permanent": true },
+    { "source": "/announcements/website.html", "destination": "/announcements/website/", "permanent": true }
   ],
   "headers": [
     {
