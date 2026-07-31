@@ -11,6 +11,9 @@ const googleMapsUrl = 'https://www.google.com.tw/maps/place/%E5%AF%86%E5%BC%8F%E
         <a href={siteConfig.booking.url} class="footer-action" target="_blank" rel="noopener noreferrer">空房查詢</a>
       </li>
       <li>
+        <a href={siteConfig.contact.lineUrl} class="footer-action line-action" target="_blank" rel="noopener noreferrer">LINE {siteConfig.contact.line}</a>
+      </li>
+      <li>
         <a href={siteConfig.socials.facebook} class="icon alt" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
         </a>
@@ -35,7 +38,6 @@ const googleMapsUrl = 'https://www.google.com.tw/maps/place/%E5%AF%86%E5%BC%8F%E
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         </a>
       </li>
-      <li><strong>Line ID: {siteConfig.contact.line}</strong></li>
       <li><strong>&copy; {siteConfig.title}</strong></li>
     </ul>
   </div>
@@ -54,6 +56,7 @@ const googleMapsUrl = 'https://www.google.com.tw/maps/place/%E5%AF%86%E5%BC%8F%E
   .footer-action { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.4rem 1rem; border: 2px solid #fff; font-weight: 600; letter-spacing: 0.12em; }
   .footer-action:hover,
   .footer-action:focus-visible { background: #fff; color: #242943; }
+  .line-action { border-color: #9bf1ff; }
 
   @media (max-width: 768px) {
     #footer { padding: 1.5em 0; }
