@@ -29,9 +29,7 @@ describe('搜尋資訊與舊網址一致性', () => {
   it('舊版 HTML 網址應永久轉到新路由', () => {
     const config = JSON.parse(readFileSync(join(rootDir, 'vercel.json'), 'utf-8'));
     const redirects = new Map(
-      config.redirects
-        .filter((redirect: { source: string }) => redirect.source.endsWith('.html'))
-        .map((redirect: { source: string; destination: string; permanent: boolean }) => [redirect.source, redirect]),
+      config.redirects.map((redirect: { source: string; destination: string; permanent: boolean }) => [redirect.source, redirect]),
     );
 
     const required = {
@@ -39,8 +37,9 @@ describe('搜尋資訊與舊網址一致性', () => {
       '/infos.html': '/infos/',
       '/galleries.html': '/galleries/',
       '/sale_items.html': '/sale_items/',
-      '/rooms/campsite_1.html': '/rooms/campsite_1/',
-      '/infos/account.html': '/infos/account/',
+      '/rooms/:slug.html': '/rooms/:slug/',
+      '/infos/:slug.html': '/infos/:slug/',
+      '/announcements/:slug.html': '/announcements/:slug/',
     };
 
     Object.entries(required).forEach(([source, destination]) => {
@@ -50,7 +49,7 @@ describe('搜尋資訊與舊網址一致性', () => {
 
   it('正式部署驗收應 checkout 實際部署 SHA', () => {
     const workflow = readFileSync(join(rootDir, '.github', 'workflows', 'production-smoke.yml'), 'utf-8');
-    expect(workflow).toContain("github.event.deployment.sha");
+    expect(workflow).toContain('github.event.deployment.sha');
     expect(workflow).toContain('production-route-smoke.mjs');
     expect(workflow).not.toContain('ref: main');
   });
@@ -60,6 +59,6 @@ describe('搜尋資訊與舊網址一致性', () => {
     expect(smoke).toContain('verifySitemapPages');
     expect(smoke).toContain('verifyLegacyRedirects');
     expect(smoke).toContain('verifyBookingFaq');
-    expect(smoke).toContain("response.status !== 200");
+    expect(smoke).toContain('response.status !== 200');
   });
 });
