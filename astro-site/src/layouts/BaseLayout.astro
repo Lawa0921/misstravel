@@ -3,6 +3,7 @@ import Head from '../components/SEO/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import '../styles/interaction-accessibility.css';
 
 interface ArticleMeta {
   publishedTime: string;
@@ -65,5 +66,6 @@ const {
 
       <Footer />
     </div>
+    <script is:inline src="/scripts/interaction-accessibility.js" defer></script>
   </body>
 </html>
