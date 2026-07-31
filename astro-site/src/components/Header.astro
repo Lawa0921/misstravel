@@ -6,7 +6,6 @@ interface Props {
 }
 
 const { variant = 'default' } = Astro.props;
-
 const headerClass = variant === 'alt' ? 'alt' : variant === 'alt-style2' ? 'alt style2' : '';
 
 const navItems = [
@@ -14,37 +13,35 @@ const navItems = [
   { href: '/infos/', label: '關於密式' },
   { href: '/rooms/', label: '房型展示' },
   { href: '/sale_items/', label: '密式柑仔店' },
-  { href: '/announcements/', label: '最新消息' },
+  { href: '/infos/guide/', label: '交通指南' },
   { href: '/galleries/', label: '密式圖集' },
   { href: siteConfig.booking.url, label: '空房查詢', external: true },
 ];
 ---
 
 <header id="header" class={headerClass}>
-    <a href="/" class="logo">
-      <strong>MISSTRAVEL</strong>
-    </a>
-    <nav aria-label="主要導覽">
-      <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
-    </nav>
-  </header>
-
-  <nav id="menu" aria-label="選單">
-    <button type="button" class="close" id="menu-close" aria-label="關閉選單"></button>
-    <ul class="links">
-      {navItems.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            target={item.external ? '_blank' : undefined}
-            rel={item.external ? 'noopener noreferrer' : undefined}
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+  <a href="/" class="logo"><strong>MISSTRAVEL</strong></a>
+  <nav aria-label="主要導覽">
+    <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
   </nav>
+</header>
+
+<nav id="menu" aria-label="選單" aria-hidden="true">
+  <button type="button" class="close" id="menu-close" aria-label="關閉選單"></button>
+  <ul class="links">
+    {navItems.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
 
 <style>
   #header {
@@ -73,9 +70,7 @@ const navItems = [
     position: absolute;
   }
 
-  #header.alt.style2 .logo strong {
-    color: #8d82c4;
-  }
+  #header.alt.style2 .logo strong { color: #8d82c4; }
 
   .logo {
     border: 0;
@@ -96,9 +91,7 @@ const navItems = [
     padding: 0 0.125em 0 calc(0.25em + 0.125em);
   }
 
-  .logo:hover strong {
-    background-color: #9bf1ff;
-  }
+  .logo:hover strong { background-color: #9bf1ff; }
 
   #header nav {
     display: flex;
@@ -120,8 +113,7 @@ const navItems = [
     text-transform: uppercase;
     height: inherit;
     line-height: inherit;
-    padding: 0 0.75em;
-    padding-right: 3.875em;
+    padding: 0 3.875em 0 0.75em;
     position: relative;
     vertical-align: middle;
   }
@@ -138,7 +130,6 @@ const navItems = [
     position: absolute;
     right: 2em;
     top: 0;
-    vertical-align: middle;
     width: 24px;
   }
 
@@ -150,14 +141,11 @@ const navItems = [
   }
 
   #menu-toggle:hover::after,
-  #menu-toggle:active::after {
-    opacity: 1;
-  }
+  #menu-toggle:active::after { opacity: 1; }
 
   #menu {
     position: fixed;
-    top: 0;
-    right: 0;
+    inset: 0;
     width: 100%;
     height: 100vh;
     background: rgba(36, 41, 67, 0.98);
@@ -172,21 +160,10 @@ const navItems = [
     transition: opacity 0.35s ease, visibility 0.35s ease;
   }
 
-  #menu.is-visible {
-    opacity: 1;
-    visibility: visible;
-  }
+  #menu.is-visible { opacity: 1; visibility: visible; }
 
-  #menu .links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-  }
-
-  #menu .links li {
-    margin-bottom: 0;
-  }
+  #menu .links { list-style: none; padding: 0; margin: 0; text-align: center; }
+  #menu .links li { margin-bottom: 0; }
 
   #menu .links a {
     display: block;
@@ -198,7 +175,8 @@ const navItems = [
     transition: all 0.2s ease;
   }
 
-  #menu .links a:hover {
+  #menu .links a:hover,
+  #menu .links a:focus-visible {
     color: #9bf1ff;
     background: rgba(255, 255, 255, 0.05);
   }
@@ -228,84 +206,61 @@ const navItems = [
     transition: background 0.2s ease;
   }
 
-  #menu .close::before {
-    transform: rotate(45deg);
-  }
-
-  #menu .close::after {
-    transform: rotate(-45deg);
-  }
-
+  #menu .close::before { transform: rotate(45deg); }
+  #menu .close::after { transform: rotate(-45deg); }
   #menu .close:hover::before,
-  #menu .close:hover::after {
-    background: #9bf1ff;
-  }
-
-  /* Wrapper padding to compensate for fixed header */
-  #wrapper {
-    padding-top: 3.25em;
-  }
+  #menu .close:hover::after { background: #9bf1ff; }
 
   @media (max-width: 736px) {
-    #wrapper {
-      padding-top: 2.75em;
-    }
-
-    #header {
-      height: 2.75em;
-      line-height: 2.75em;
-    }
-
-    .logo {
-      padding: 0 1em;
-    }
-
-    #menu-toggle {
-      padding: 0 0.5em;
-      padding-right: 3.25em;
-    }
-
+    #header { height: 2.75em; line-height: 2.75em; }
+    .logo { padding: 0 1em; }
+    #menu-toggle { padding: 0 3.25em 0 0.5em; }
     #menu-toggle::before,
-    #menu-toggle::after {
-      right: 0.75em;
-    }
+    #menu-toggle::after { right: 0.75em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #header.alt,
+    #menu { transition: none; }
   }
 </style>
 
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const menuClose = document.getElementById('menu-close');
+  const menuToggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
+  const menuClose = document.getElementById('menu-close') as HTMLButtonElement | null;
   const menu = document.getElementById('menu');
-  const wrapper = document.getElementById('wrapper');
 
-  function toggleMenu() {
-    menu?.classList.toggle('is-visible');
-    wrapper?.classList.toggle('is-menu-visible');
-    const isVisible = menu?.classList.contains('is-visible');
-    document.body.style.overflow = isVisible ? 'hidden' : '';
-    menuToggle?.setAttribute('aria-expanded', String(!!isVisible));
+  function closeMenu() {
+    if (!menu?.classList.contains('is-visible')) return;
+    menu.classList.remove('is-visible');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    menuToggle?.focus();
+  }
+
+  function openMenu() {
+    menu?.classList.add('is-visible');
+    menu?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    menuToggle?.setAttribute('aria-expanded', 'true');
+    menuClose?.focus();
   }
 
   menuToggle?.addEventListener('click', () => {
-    toggleMenu();
+    if (menu?.classList.contains('is-visible')) closeMenu();
+    else openMenu();
   });
 
-  menuClose?.addEventListener('click', () => {
-    toggleMenu();
-  });
+  menuClose?.addEventListener('click', closeMenu);
 
-  // 點擊連結時關閉選單
-  menu?.querySelectorAll('a').forEach(link => {
+  menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      if (!link.getAttribute('target')) {
-        toggleMenu();
-      }
+      if (!link.getAttribute('target')) closeMenu();
     });
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu?.classList.contains('is-visible')) {
-      toggleMenu();
-    }
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
   });
 </script>
