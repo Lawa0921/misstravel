@@ -17,7 +17,7 @@ image: ''
 
 1. 使用網站的「查詢空房」功能，確認預計入住日期與房型是否仍有空位。
 2. 透過官方管道傳訊預訂：
-   - LINE 官方帳號：[`@rys8178b`](https://line.me/R/ti/p/%40rys8178b)
+   - LINE 官方帳號：<a href="https://line.me/R/ti/p/%40rys8178b" target="_blank" rel="noopener noreferrer">@rys8178b</a>
    - Facebook：搜尋「密式旅行農場」
 3. 待密式旅行回覆並確認房型、日期、金額與訂金保留期限後，再依通知進行匯款。
 4. 請於通知的保留期限內完成訂金匯款；逾期未收到訂金，房位將取消保留，恕不另行通知。
