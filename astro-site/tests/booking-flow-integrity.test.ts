@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { load } from 'cheerio';
 
@@ -57,13 +57,37 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('官方聯絡資料應與全站設定一致', () => {
-    const text = normalizedText('infos/account/index.html');
+    const accountText = normalizedText('infos/account/index.html');
+    const contactText = normalizedText('infos/contact-method/index.html');
 
-    expect(text).toContain('misstravel0921');
-    expect(text).toContain('密式旅行農場');
-    expect(text).toContain('misstravel0921@gmail.com');
-    expect(text).toContain('0905-108-958');
-    expect(text).not.toContain('line搜尋:電話號碼');
+    expect(accountText).toContain('@rys8178b');
+    expect(contactText).toContain('@rys8178b');
+    expect(accountText).toContain('密式旅行農場');
+    expect(accountText).toContain('misstravel0921@gmail.com');
+    expect(accountText).toContain('0905-108-958');
+    expect(accountText).not.toContain('misstravel0921 LINE');
+    expect(accountText).not.toContain('line搜尋:電話號碼');
+  });
+
+  it('LINE 加好友連結與 QR Code 必須指向同一官方帳號', () => {
+    const pages = ['index.html', 'infos/account/index.html', 'infos/contact-method/index.html'];
+    const officialUrl = 'https://line.me/R/ti/p/%40rys8178b';
+
+    pages.forEach((file) => {
+      const $ = readPage(file);
+      const links = $(`a[href="${officialUrl}"]`);
+      expect(links.length, file).toBeGreaterThan(0);
+    });
+
+    const accountPage = readPage('infos/account/index.html');
+    const contactPage = readPage('infos/contact-method/index.html');
+    expect(accountPage('img[src="/images/line-official-account-qr.svg"]').length).toBe(1);
+    expect(contactPage('img[src="/images/line-official-account-qr.svg"]').length).toBe(1);
+
+    const qrPath = join(distDir, 'images', 'line-official-account-qr.svg');
+    expect(existsSync(qrPath)).toBe(true);
+    const qrSvg = readFileSync(qrPath, 'utf-8');
+    expect(qrSvg).toContain('@rys8178b');
   });
 
   it('匯款頁應保留既有官方帳戶資料與防詐警示', () => {
