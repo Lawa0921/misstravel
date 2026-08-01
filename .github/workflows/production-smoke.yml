@@ -38,5 +38,5 @@ jobs:
       - name: Verify production metadata and canonical routes
         run: npm run smoke:production
 
-      - name: Verify sitemap pages, legacy redirects and booking FAQ
+      - name: Verify sitemap pages, legacy redirects and public booking copy
         run: node scripts/production-route-smoke.mjs
