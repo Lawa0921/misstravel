@@ -25,24 +25,19 @@ function readRawPage(path: string) {
 describe('1. HTML 結構有效性', () => {
   it('galleries 頁面 main 內不應有多餘的 stray </div>', () => {
     const $ = readPage('galleries/index.html');
-    // main should directly contain section and lightbox - no stray tags
     const mainHtml = $('main#main').html() || '';
-    // After section closes, the next element should be the lightbox div, not a stray </div>
     expect(mainHtml).not.toMatch(/<\/section>\s*<\/div>\s*<!--/);
   });
 
   it('rooms 詳情頁 main 內結構應有效', () => {
     const $ = readPage('rooms/campsite_1/index.html');
-    // main should contain inner div and main-content div
     const main = $('main#main');
     expect(main.length).toBe(1);
-    // main-content should be inside main
     expect(main.find('#main-content').length).toBe(1);
   });
 
   it('guide 頁面不應有 stray </div>', () => {
     const html = readRawPage('infos/guide/index.html');
-    // Count opening and closing div tags - they should match
     const openDivs = (html.match(/<div[\s>]/g) || []).length;
     const closeDivs = (html.match(/<\/div>/g) || []).length;
     expect(openDivs).toBe(closeDivs);
@@ -112,25 +107,24 @@ describe('4. Lightbox 圖片 CLS 優化', () => {
   });
 });
 
-// 5. Google Fonts preload 應有 crossorigin
-describe('5. Google Fonts preload crossorigin', () => {
-  it('Google Fonts preload link 應有 crossorigin 屬性', () => {
+// 5. 本機字型載入
+describe('5. 本機字型載入', () => {
+  it('首頁應預載本機字型且不載入 Google Fonts', () => {
     const $ = readPage('index.html');
-    const preloadLinks = $('link[rel="preload"][as="style"]').filter((_, el) => {
-      return ($(el).attr('href') || '').includes('fonts.googleapis.com');
-    });
-    expect(preloadLinks.length).toBeGreaterThan(0);
-    preloadLinks.each((_, el) => {
-      expect($(el).attr('crossorigin')).toBeDefined();
-    });
+    const localFont = $('link[rel="preload"][as="font"][href="/fonts/setofont.woff2"]');
+    const googleFonts = $('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]');
+
+    expect(localFont.length).toBe(1);
+    expect(localFont.attr('crossorigin')).toBeDefined();
+    expect(googleFonts.length).toBe(0);
   });
 });
 
-// 6. YouTube preconnect
-describe('6. YouTube preconnect', () => {
-  it('應有 YouTube 的 preconnect（不只 dns-prefetch）', () => {
+// 6. YouTube 連線應按需建立
+describe('6. YouTube 按需連線', () => {
+  it('不含影片的首頁不應建立 YouTube preconnect', () => {
     const $ = readPage('index.html');
     const preconnect = $('link[rel="preconnect"][href="https://www.youtube.com"]');
-    expect(preconnect.length).toBe(1);
+    expect(preconnect.length).toBe(0);
   });
 });

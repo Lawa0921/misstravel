@@ -91,13 +91,15 @@ describe('4. VideoObject 結構化資料', () => {
   });
 });
 
-// 5. DNS prefetch
-describe('5. DNS prefetch', () => {
-  it('首頁應包含 dns-prefetch for youtube.com', () => {
+// 5. 外部資源連線
+describe('5. 外部資源連線', () => {
+  it('首頁不應為僅影片頁使用的 YouTube 建立 dns-prefetch', () => {
     const $ = readPage('index.html');
-    const dnsPrefetch = $('link[rel="dns-prefetch"]');
-    const hrefs = dnsPrefetch.map((_, el) => $(el).attr('href')).get();
-    expect(hrefs).toContain('https://www.youtube.com');
+    const hrefs = $('link[rel="dns-prefetch"]')
+      .map((_, el) => $(el).attr('href'))
+      .get();
+
+    expect(hrefs).not.toContain('https://www.youtube.com');
   });
 });
 
