@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "astro sync && tsc --noEmit",
     "verify": "npm audit --audit-level=high && npm run typecheck && vitest run",
     "smoke:production": "node scripts/production-smoke.mjs"
   },
