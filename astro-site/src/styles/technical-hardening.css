@@ -1,0 +1,58 @@
+html,
+body {
+  min-height: 100%;
+}
+
+body > #wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > #wrapper > main {
+  flex: 1 0 auto;
+}
+
+body > #wrapper > footer {
+  flex-shrink: 0;
+}
+
+.modal[aria-hidden='true'],
+.lightbox-overlay[aria-hidden='true'] {
+  pointer-events: none;
+}
+
+.modal-close:focus-visible,
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible,
+.carousel-btn:focus-visible,
+.dot:focus-visible,
+.indicator:focus-visible,
+.guide-btn:focus-visible,
+.sale-btn:focus-visible {
+  outline: 3px solid #9bf1ff;
+  outline-offset: 3px;
+}
+
+.indicator[role='button'] {
+  border: 2px solid transparent;
+}
+
+.indicator[aria-current='true'] {
+  border-color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
