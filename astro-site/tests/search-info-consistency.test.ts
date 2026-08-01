@@ -14,14 +14,15 @@ function readJsonLd(path: string) {
 }
 
 describe('搜尋資訊與舊網址一致性', () => {
-  it('訂房 FAQ 結構化資料應符合目前流程', () => {
+  it('訂房 FAQ 結構化資料應符合目前流程且不揭露供應商品牌', () => {
     const faq = readJsonLd('infos/account/index.html').find((schema) => schema['@type'] === 'FAQPage');
     expect(faq).toBeTruthy();
     const serialized = JSON.stringify(faq);
 
-    expect(serialized).toContain('RoomCloud 僅供查詢空房');
+    expect(serialized).toContain('線上訂房系統提供目前空房查詢');
     expect(serialized).toContain('@rys8178b');
     expect(serialized).toContain('原本的 LINE 或 Facebook 對話');
+    expect(serialized).not.toContain('RoomCloud');
     expect(serialized).not.toContain('匯款後請來電或來信確認');
     expect(serialized).not.toContain('線上訂房查看空房位');
   });
@@ -60,5 +61,6 @@ describe('搜尋資訊與舊網址一致性', () => {
     expect(smoke).toContain('verifyLegacyRedirects');
     expect(smoke).toContain('verifyBookingFaq');
     expect(smoke).toContain('response.status !== 200');
+    expect(smoke).toContain("!html.includes('RoomCloud')");
   });
 });
