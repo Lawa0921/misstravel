@@ -13,6 +13,7 @@
   let activeDialog = null;
   let returnFocus = null;
   let pendingTrigger = null;
+  let pendingBodyOverflow = null;
   let previousBodyOverflow = '';
 
   function visibleFocusableElements(dialog) {
@@ -39,7 +40,8 @@
 
     if (activeDialog !== dialog) {
       returnFocus = trigger instanceof HTMLElement ? trigger : document.activeElement;
-      previousBodyOverflow = document.body.style.overflow;
+      previousBodyOverflow = pendingBodyOverflow ?? document.body.style.overflow;
+      pendingBodyOverflow = null;
     }
 
     activeDialog = dialog;
@@ -68,6 +70,7 @@
       }
       returnFocus = null;
       pendingTrigger = null;
+      pendingBodyOverflow = null;
     }
   }
 
@@ -83,6 +86,7 @@
     const modalTrigger = target.closest('[data-modal]');
     if (modalTrigger instanceof HTMLElement) {
       pendingTrigger = modalTrigger;
+      pendingBodyOverflow = document.body.style.overflow;
       const modalId = modalTrigger.getAttribute('data-modal');
       const dialog = modalId ? document.getElementById(modalId) : null;
       if (dialog) setTimeout(() => activateDialog(dialog, modalTrigger), 0);
@@ -92,6 +96,7 @@
     const lightboxTrigger = target.closest('[data-lightbox]');
     if (lightboxTrigger instanceof HTMLElement) {
       pendingTrigger = lightboxTrigger;
+      pendingBodyOverflow = document.body.style.overflow;
       setTimeout(() => {
         const dialog = document.querySelector(OPEN_DIALOG_SELECTOR);
         if (dialog) activateDialog(dialog, lightboxTrigger);
@@ -109,7 +114,7 @@
     if (target.matches(OPEN_DIALOG_SELECTOR)) {
       deactivateDialog(target);
     }
-  });
+  }, true);
 
   const dialogObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
