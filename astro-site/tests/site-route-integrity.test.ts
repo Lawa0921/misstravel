@@ -29,7 +29,13 @@ function outputCandidates(pathname: string) {
   const decoded = decodeURIComponent(pathname);
   const clean = decoded.startsWith('/') ? decoded.slice(1) : decoded;
   if (!clean) return [join(distDir, 'index.html')];
-  if (decoded.endsWith('/')) return [join(distDir, clean, 'index.html')];
+  if (decoded.endsWith('/')) {
+    const routeName = clean.replace(/\/$/, '');
+    return [
+      join(distDir, clean, 'index.html'),
+      join(distDir, `${routeName}.html`),
+    ];
+  }
   if (extname(clean)) return [join(distDir, clean)];
   return [join(distDir, clean), join(distDir, clean, 'index.html')];
 }
