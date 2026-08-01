@@ -10,6 +10,13 @@ function readPage(path: string) {
   return load(readFileSync(join(distDir, path), 'utf-8'));
 }
 
+function jsonLd(path: string) {
+  const $ = readPage(path);
+  return $('script[type="application/ld+json"]')
+    .map((_, element) => JSON.parse($(element).text()))
+    .get();
+}
+
 describe('搜尋資訊與舊網址一致性', () => {
   it('公開訂房內容只套用已核准的文案調整', () => {
     const home = readPage('index.html');
@@ -21,20 +28,37 @@ describe('搜尋資訊與舊網址一致性', () => {
     expect(accountText).not.toContain('RoomCloud');
   });
 
-  it('不得在共用 Schema 元件中覆寫原本 FAQ 內容', () => {
+  it('未核准且含舊流程的 FAQ 結構化資料不得發布', () => {
+    const schemas = jsonLd('infos/account/index.html');
+    const serialized = JSON.stringify(schemas);
+
+    expect(schemas.some((schema) => schema['@type'] === 'FAQPage')).toBe(false);
+    expect(serialized).not.toContain('線上訂房查看空房位');
+    expect(serialized).not.toContain('匯款後請來電或來信確認');
+
     const schemaComponent = readFileSync(
       join(rootDir, 'astro-site', 'src', 'components', 'SEO', 'SchemaOrg.astro'),
       'utf-8',
     );
-    const infoPage = readFileSync(
-      join(rootDir, 'astro-site', 'src', 'pages', 'infos', '[...slug].astro'),
+    expect(schemaComponent).toContain('blockedFaqPhrases');
+    expect(schemaComponent).not.toContain('const bookingFaq');
+    expect(schemaComponent).not.toContain('normalizedExtraSchemas');
+  });
+
+  it('住宿結構化資料不得硬編單一入住與退房時間', () => {
+    const schemaComponent = readFileSync(
+      join(rootDir, 'astro-site', 'src', 'components', 'SEO', 'SchemaOrg.astro'),
       'utf-8',
     );
 
-    expect(schemaComponent).toContain('siteConfig.contact.lineUrl');
-    expect(schemaComponent).not.toContain('const bookingFaq');
-    expect(schemaComponent).not.toContain('normalizedExtraSchemas');
-    expect(infoPage).toContain("'@type': 'FAQPage'");
+    expect(schemaComponent).not.toContain("checkinTime: '15:00'");
+    expect(schemaComponent).not.toContain("checkoutTime: '12:00'");
+
+    ['rooms/campsite_1/index.html', 'rooms/log_cabin_1/index.html', 'rooms/suite_1/index.html'].forEach((path) => {
+      const serialized = JSON.stringify(jsonLd(path));
+      expect(serialized, path).not.toContain('checkinTime');
+      expect(serialized, path).not.toContain('checkoutTime');
+    });
   });
 
   it('舊版 HTML 網址應永久轉到新路由', () => {
