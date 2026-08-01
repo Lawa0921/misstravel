@@ -60,21 +60,25 @@ export async function verifyLegacyRedirects(origin = WWW_ORIGIN) {
   console.log(`✓ ${Object.keys(LEGACY_REDIRECTS).length} legacy URLs redirect correctly`);
 }
 
-export async function verifyBookingFaq(origin = WWW_ORIGIN) {
-  const response = await request(`${origin}/infos/account/`);
-  invariant(response.status === 200, `account page returned HTTP ${response.status}`);
-  const html = await response.text();
-  invariant(html.includes('線上訂房系統提供目前空房查詢'), 'booking FAQ did not explain the online booking system');
-  invariant(!html.includes('RoomCloud'), 'booking page exposed the booking vendor name');
-  invariant(html.includes('回到原本的 LINE 或 Facebook 對話通知'), 'booking FAQ did not preserve the original contact channel');
-  invariant(!html.includes('匯款後請來電或來信確認'), 'booking FAQ still contained the old callback instruction');
-  console.log('✓ booking FAQ matches the visible booking flow');
+export async function verifyBookingPresentation(origin = WWW_ORIGIN) {
+  const homeResponse = await request(`${origin}/`);
+  invariant(homeResponse.status === 200, `home page returned HTTP ${homeResponse.status}`);
+  const homeHtml = await homeResponse.text();
+  invariant(!homeHtml.includes('空房系統僅供查詢，預訂請再透過 LINE 或 Facebook 聯絡確認。'), 'home page still contained the removed booking notice');
+
+  const accountResponse = await request(`${origin}/infos/account/`);
+  invariant(accountResponse.status === 200, `account page returned HTTP ${accountResponse.status}`);
+  const accountHtml = await accountResponse.text();
+  invariant(accountHtml.includes('線上訂房系統提供目前空房查詢'), 'booking page did not use the public online booking system name');
+  invariant(!accountHtml.includes('RoomCloud'), 'booking page exposed the booking vendor name');
+  invariant(accountHtml.includes('回到原本的 LINE 或 Facebook 對話通知'), 'booking page did not preserve the original contact channel');
+  console.log('✓ public booking presentation matches the approved copy');
 }
 
 export async function runProductionRouteSmoke() {
   await verifySitemapPages();
   await verifyLegacyRedirects();
-  await verifyBookingFaq();
+  await verifyBookingPresentation();
 }
 
 const isDirectRun = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
