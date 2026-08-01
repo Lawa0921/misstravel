@@ -64,7 +64,8 @@ export async function verifyBookingFaq(origin = WWW_ORIGIN) {
   const response = await request(`${origin}/infos/account/`);
   invariant(response.status === 200, `account page returned HTTP ${response.status}`);
   const html = await response.text();
-  invariant(html.includes('RoomCloud 僅供查詢空房'), 'booking FAQ did not explain RoomCloud');
+  invariant(html.includes('線上訂房系統提供目前空房查詢'), 'booking FAQ did not explain the online booking system');
+  invariant(!html.includes('RoomCloud'), 'booking page exposed the booking vendor name');
   invariant(html.includes('回到原本的 LINE 或 Facebook 對話通知'), 'booking FAQ did not preserve the original contact channel');
   invariant(!html.includes('匯款後請來電或來信確認'), 'booking FAQ still contained the old callback instruction');
   console.log('✓ booking FAQ matches the visible booking flow');
