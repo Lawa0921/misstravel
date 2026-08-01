@@ -74,10 +74,10 @@ describe('全站技術強化', () => {
     expect(csp).not.toContain('fonts.gstatic.com');
   });
 
-  it('verify 流程必須先執行 TypeScript 檢查', () => {
+  it('verify 流程必須先同步 Astro 型別並執行 TypeScript 檢查', () => {
     const packageJson = JSON.parse(readProjectFile('package.json'));
 
-    expect(packageJson.scripts.typecheck).toBe('tsc --noEmit');
+    expect(packageJson.scripts.typecheck).toBe('astro sync && tsc --noEmit');
     expect(packageJson.scripts.verify).toContain('npm run typecheck');
   });
 });
