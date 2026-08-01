@@ -41,13 +41,16 @@ describe('全站技術強化', () => {
     expect($('link[rel="alternate"][type="application/feed+json"][href="/feed.json"]').length).toBe(1);
   });
 
-  it('互動控制器必須能真正關閉 Dialog 並恢復焦點', () => {
+  it('互動控制器必須能真正關閉 Dialog、恢復焦點與解除捲動鎖', () => {
     const script = readFileSync(join(projectDir, 'public', 'scripts', 'interaction-accessibility.js'), 'utf-8');
 
     expect(script).toContain("dialog.classList.remove('active')");
     expect(script).toContain("dialog.setAttribute('aria-hidden', 'true')");
     expect(script).toContain("event.key === 'Escape'");
     expect(script).toContain('returnFocus.focus');
+    expect(script).toContain('pendingBodyOverflow = document.body.style.overflow');
+    expect(script).toContain("document.body.style.overflow = previousBodyOverflow");
+    expect(script).toContain('}, true);');
     expect(script).toContain("control.setAttribute('aria-current'");
   });
 
