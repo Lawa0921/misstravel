@@ -15,7 +15,15 @@
       ],
       "destination": "https://www.misstravel.me/:path*",
       "permanent": true
-    }
+    },
+    { "source": "/rooms.html", "destination": "/rooms/", "permanent": true },
+    { "source": "/infos.html", "destination": "/infos/", "permanent": true },
+    { "source": "/galleries.html", "destination": "/galleries/", "permanent": true },
+    { "source": "/sale_items.html", "destination": "/sale_items/", "permanent": true },
+    { "source": "/announcements.html", "destination": "/announcements/", "permanent": true },
+    { "source": "/rooms/:slug.html", "destination": "/rooms/:slug/", "permanent": true },
+    { "source": "/infos/:slug.html", "destination": "/infos/:slug/", "permanent": true },
+    { "source": "/announcements/:slug.html", "destination": "/announcements/:slug/", "permanent": true }
   ],
   "headers": [
     {

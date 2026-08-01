@@ -13,33 +13,39 @@ function normalizedText(path: string) {
   return readPage(path).text().replace(/\s+/g, ' ').trim();
 }
 
+function normalizedContentText(path: string) {
+  return readPage(path)('.info-content').text().replace(/\s+/g, ' ').trim();
+}
+
 describe('空房查詢與正式預訂流程', () => {
-  it('首頁 Banner 不得將 RoomCloud 誤稱為立即預訂', () => {
+  it('首頁 Banner 應只以查詢空房對外呈現', () => {
     const $ = readPage('index.html');
     const bannerBookingLink = $('#banner a[href*="roomcloud.cc"]');
 
     expect(bannerBookingLink.length).toBe(1);
     expect(bannerBookingLink.text().trim()).toBe('查詢空房');
     expect($('#banner').text()).not.toContain('立即預訂');
+    expect($('#banner').text()).not.toContain('RoomCloud');
   });
 
-  it('首頁應直接說明空房系統僅供查詢', () => {
+  it('首頁不應顯示訂房流程說明文字', () => {
     const text = normalizedText('index.html');
 
-    expect(text).toContain('空房系統僅供查詢');
-    expect(text).toContain('LINE 或 Facebook 聯絡確認');
+    expect(text).not.toContain('空房系統僅供查詢');
+    expect(text).not.toContain('LINE 或 Facebook 聯絡確認');
   });
 
-  it('訂房流程頁應明確說明 RoomCloud 不會直接完成預訂', () => {
-    const text = normalizedText('infos/account/index.html');
+  it('訂房流程頁應以線上訂房系統對外呈現', () => {
+    const text = normalizedContentText('infos/account/index.html');
 
-    expect(text).toContain('RoomCloud 空房系統僅供查詢目前空房');
+    expect(text).toContain('線上訂房系統提供目前空房查詢');
     expect(text).toContain('不會直接完成預訂');
     expect(text).toContain('收到密式旅行的訂位確認後，才代表預訂完成');
+    expect(text).not.toContain('RoomCloud');
   });
 
   it('訂房流程順序應包含查詢、聯絡、匯款、原管道回報與確認', () => {
-    const text = normalizedText('infos/account/index.html');
+    const text = normalizedContentText('infos/account/index.html');
     const checkpoints = [
       '確認預計入住日期與房型是否仍有空位',
       '透過官方管道傳訊預訂',
@@ -57,7 +63,7 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('匯款後應回到原本的 LINE 或 Facebook 對話通知', () => {
-    const text = normalizedText('infos/account/index.html');
+    const text = normalizedContentText('infos/account/index.html');
 
     expect(text).toContain('原先使用 LINE 聯絡者，請回到原 LINE 對話通知');
     expect(text).toContain('原先使用 Facebook 聯絡者，請回到原 Facebook Messenger 對話通知');
@@ -65,8 +71,8 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('官方聯絡資料應與全站設定一致', () => {
-    const accountText = normalizedText('infos/account/index.html');
-    const contactText = normalizedText('infos/contact-method/index.html');
+    const accountText = normalizedContentText('infos/account/index.html');
+    const contactText = normalizedContentText('infos/contact-method/index.html');
 
     expect(accountText).toContain('@rys8178b');
     expect(contactText).toContain('@rys8178b');
@@ -98,7 +104,7 @@ describe('空房查詢與正式預訂流程', () => {
   });
 
   it('匯款頁應保留既有官方帳戶資料與防詐警示', () => {
-    const text = normalizedText('infos/account/index.html');
+    const text = normalizedContentText('infos/account/index.html');
 
     expect(text).toContain('郵局代碼：700');
     expect(text).toContain('郵局帳號：0041703-0172216');
@@ -120,7 +126,7 @@ describe('空房查詢與正式預訂流程', () => {
     expect(labels).toContain('訂房匯款');
   });
 
-  it('所有 RoomCloud 連結的可見文字不得暗示可直接完成預訂', () => {
+  it('所有空房查詢連結的可見文字不得暗示可直接完成預訂', () => {
     const htmlFiles = [
       'index.html',
       'rooms/index.html',
