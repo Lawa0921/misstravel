@@ -75,12 +75,12 @@ describe('3. LodgingBusiness 結構化資料', () => {
     expect(lodging.address.postalCode).toBe('365');
   });
 
-  it('應包含 checkinTime 和 checkoutTime', () => {
+  it('未建立條件式資料模型前不得硬編單一入住與退房時間', () => {
     const $ = readPage('index.html');
     const schemas = getJsonLd($);
     const lodging = schemas.find((s) => s['@type'] === 'LodgingBusiness');
-    expect(lodging.checkinTime).toBe('15:00');
-    expect(lodging.checkoutTime).toBe('12:00');
+    expect(lodging.checkinTime).toBeUndefined();
+    expect(lodging.checkoutTime).toBeUndefined();
   });
 
   it('不應宣告無法由本站庫存證實的 numberOfRooms', () => {

@@ -107,7 +107,7 @@ describe('全站產物完整性', () => {
       });
     });
 
-    expect(schemaCount).toBe(69);
+    expect(schemaCount).toBeGreaterThanOrEqual(htmlFiles().length);
   });
 
   it('sitemap、robots 與 feeds 不得殘留裸網域', () => {

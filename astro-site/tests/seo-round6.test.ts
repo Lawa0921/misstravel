@@ -82,33 +82,25 @@ describe('3. 地圖與菜單頁圖片 lazy loading', () => {
 // 4. 房間詳情頁 preloadImage
 describe('4. 房間詳情頁 LCP preload', () => {
   it('房間詳情頁應有 preload link for mainImage', () => {
-    // 測試 campsite_1 頁面
     const $ = readPage('rooms/campsite_1/index.html');
     const preloadLinks = $('link[rel="preload"][as="image"]');
     const hrefs = preloadLinks.map((_, el) => $(el).attr('href')).get();
-    // 應包含該房間的 mainImage 或第一張輪播圖
     expect(hrefs.some((h) => h && h.includes('campsite_1')), 'missing preload for room image').toBe(true);
   });
 });
 
-// 5. FAQPage schema for 匯款資訊頁
+// 5. 未核准且含舊流程的 FAQPage 不得輸出
 describe('5. FAQPage 結構化資料', () => {
-  it('匯款資訊頁應包含 FAQPage JSON-LD', () => {
+  it('匯款資訊頁不得發布仍含舊流程的 FAQPage JSON-LD', () => {
     const $ = readPage('infos/account/index.html');
-    const scripts = $('script[type="application/ld+json"]');
-    let hasFAQ = false;
-    scripts.each((_, el) => {
-      const json = JSON.parse($(el).html() || '{}');
-      const schemas = Array.isArray(json) ? json : [json];
-      for (const schema of schemas) {
-        if (schema['@type'] === 'FAQPage') {
-          hasFAQ = true;
-          expect(schema.mainEntity).toBeDefined();
-          expect(schema.mainEntity.length).toBeGreaterThan(0);
-        }
-      }
-    });
-    expect(hasFAQ, 'FAQPage schema not found').toBe(true);
+    const schemas = $('script[type="application/ld+json"]')
+      .map((_, el) => JSON.parse($(el).html() || '{}'))
+      .get();
+    const serialized = JSON.stringify(schemas);
+
+    expect(schemas.some((schema) => schema['@type'] === 'FAQPage')).toBe(false);
+    expect(serialized).not.toContain('線上訂房查看空房位');
+    expect(serialized).not.toContain('匯款後請來電或來信確認');
   });
 });
 
@@ -137,21 +129,11 @@ describe('7. 外部連結 rel 屬性', () => {
     externalLinks.each((_, el) => {
       const $link = $(el);
       const href = $link.attr('href') || '';
-      // 只檢查非站內連結
       if (!href.includes('misstravel.me')) {
-        expect(
-          $link.attr('target'),
-          `missing target="_blank" on ${href}`
-        ).toBe('_blank');
+        expect($link.attr('target'), `missing target="_blank" on ${href}`).toBe('_blank');
         const rel = $link.attr('rel') || '';
-        expect(
-          rel.includes('noopener'),
-          `missing noopener on ${href}`
-        ).toBe(true);
-        expect(
-          rel.includes('noreferrer'),
-          `missing noreferrer on ${href}`
-        ).toBe(true);
+        expect(rel.includes('noopener'), `missing noopener on ${href}`).toBe(true);
+        expect(rel.includes('noreferrer'), `missing noreferrer on ${href}`).toBe(true);
       }
     });
   });
@@ -170,6 +152,6 @@ describe('8. Content-Security-Policy header', () => {
       (h: { key: string }) => h.key === 'Content-Security-Policy'
     );
     expect(csp, 'CSP header not found').toBeDefined();
-    expect(csp.value).toContain("default-src");
+    expect(csp.value).toContain('default-src');
   });
 });

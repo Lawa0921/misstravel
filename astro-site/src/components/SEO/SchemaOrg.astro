@@ -52,8 +52,6 @@ const localBusiness = {
   },
   priceRange: '$$',
   image: `${siteConfig.url}${siteConfig.logo}`,
-  checkinTime: '15:00',
-  checkoutTime: '12:00',
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: '桌遊咖啡廳', value: true },
     { '@type': 'LocationFeatureSpecification', name: '兒童遊戲室', value: true },
@@ -76,10 +74,22 @@ const schemas: Record<string, object> = {
   },
 };
 
+// Do not publish stale booking FAQ copy. Once the source FAQ is updated and
+// these retired phrases disappear, the schema will be emitted automatically.
+const blockedFaqPhrases = [
+  '線上訂房查看空房位',
+  '匯款後請來電或來信確認',
+];
+const safeExtraSchemas = extraSchemas.filter((extra) => {
+  if (extra['@type'] !== 'FAQPage') return true;
+  const serialized = JSON.stringify(extra);
+  return !blockedFaqPhrases.some((phrase) => serialized.includes(phrase));
+});
+
 const schema = schemas[type] || baseOrganization;
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-{extraSchemas.map((extra) => (
+{safeExtraSchemas.map((extra) => (
   <script type="application/ld+json" set:html={JSON.stringify(extra)} />
 ))}
