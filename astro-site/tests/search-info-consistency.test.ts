@@ -6,25 +6,35 @@ import { load } from 'cheerio';
 const rootDir = join(__dirname, '..', '..');
 const distDir = join(__dirname, '..', 'dist');
 
-function readJsonLd(path: string) {
-  const $ = load(readFileSync(join(distDir, path), 'utf-8'));
-  return $('script[type="application/ld+json"]')
-    .map((_, element) => JSON.parse($(element).text()))
-    .get();
+function readPage(path: string) {
+  return load(readFileSync(join(distDir, path), 'utf-8'));
 }
 
 describe('搜尋資訊與舊網址一致性', () => {
-  it('訂房 FAQ 結構化資料應符合目前流程且不揭露供應商品牌', () => {
-    const faq = readJsonLd('infos/account/index.html').find((schema) => schema['@type'] === 'FAQPage');
-    expect(faq).toBeTruthy();
-    const serialized = JSON.stringify(faq);
+  it('公開訂房內容只套用已核准的文案調整', () => {
+    const home = readPage('index.html');
+    const account = readPage('infos/account/index.html');
+    const accountText = account('.info-content').text().replace(/\s+/g, ' ').trim();
 
-    expect(serialized).toContain('線上訂房系統提供目前空房查詢');
-    expect(serialized).toContain('@rys8178b');
-    expect(serialized).toContain('原本的 LINE 或 Facebook 對話');
-    expect(serialized).not.toContain('RoomCloud');
-    expect(serialized).not.toContain('匯款後請來電或來信確認');
-    expect(serialized).not.toContain('線上訂房查看空房位');
+    expect(home('#banner').text()).not.toContain('空房系統僅供查詢，預訂請再透過 LINE 或 Facebook 聯絡確認。');
+    expect(accountText).toContain('線上訂房系統提供目前空房查詢');
+    expect(accountText).not.toContain('RoomCloud');
+  });
+
+  it('不得在共用 Schema 元件中覆寫原本 FAQ 內容', () => {
+    const schemaComponent = readFileSync(
+      join(rootDir, 'astro-site', 'src', 'components', 'SEO', 'SchemaOrg.astro'),
+      'utf-8',
+    );
+    const infoPage = readFileSync(
+      join(rootDir, 'astro-site', 'src', 'pages', 'infos', '[...slug].astro'),
+      'utf-8',
+    );
+
+    expect(schemaComponent).toContain('siteConfig.contact.lineUrl');
+    expect(schemaComponent).not.toContain('const bookingFaq');
+    expect(schemaComponent).not.toContain('normalizedExtraSchemas');
+    expect(infoPage).toContain("'@type': 'FAQPage'");
   });
 
   it('舊版 HTML 網址應永久轉到新路由', () => {
@@ -55,12 +65,12 @@ describe('搜尋資訊與舊網址一致性', () => {
     expect(workflow).not.toContain('ref: main');
   });
 
-  it('正式路由驗收應檢查 sitemap、舊網址與訂房 FAQ', () => {
+  it('正式路由驗收應檢查 sitemap、舊網址與公開訂房文案', () => {
     const smoke = readFileSync(join(__dirname, '..', 'scripts', 'production-route-smoke.mjs'), 'utf-8');
     expect(smoke).toContain('verifySitemapPages');
     expect(smoke).toContain('verifyLegacyRedirects');
-    expect(smoke).toContain('verifyBookingFaq');
+    expect(smoke).toContain('verifyBookingPresentation');
     expect(smoke).toContain('response.status !== 200');
-    expect(smoke).toContain("!html.includes('RoomCloud')");
+    expect(smoke).toContain("!accountHtml.includes('RoomCloud')");
   });
 });
