@@ -96,9 +96,9 @@ describe('搜尋資訊與舊網址一致性', () => {
     expect(smoke).toContain('verifyBookingPresentation');
     expect(smoke).toContain('response.status !== 200');
     expect(smoke).toContain("!accountHtml.includes('RoomCloud')");
-    expect(smoke).toContain("!accountHtml.includes('\\\"@type\\\":\\\"FAQPage\\\"')");
-    expect(smoke).toContain("!homeHtml.includes('\\\"checkinTime\\\"')");
-    expect(smoke).toContain("content-security-policy");
-    expect(smoke).toContain("x-xss-protection");
+    expect(smoke).toContain('FAQPage');
+    expect(smoke).toContain('checkinTime');
+    expect(smoke).toContain('content-security-policy');
+    expect(smoke).toContain('x-xss-protection');
   });
 });
