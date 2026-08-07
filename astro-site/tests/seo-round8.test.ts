@@ -70,7 +70,7 @@ describe('3. og:image 尺寸', () => {
   });
 });
 
-// 4. 唯一正式網域與部署責任分離
+// 4. 唯一正式網域
 describe('4. 正式網域一致性', () => {
   it('canonical 與 Open Graph URL 應使用 www 主網域', () => {
     const $ = readPage('index.html');
@@ -98,14 +98,12 @@ describe('4. 正式網域一致性', () => {
     expect(redirect.has).toContainEqual({ type: 'host', value: 'misstravel.me' });
   });
 
-  it('Vercel 應使用鎖檔安裝並只負責建置，完整驗證由 GitHub CI 執行', () => {
-    const rootDir = join(distDir, '..', '..');
-    const config = JSON.parse(readFileSync(join(rootDir, 'vercel.json'), 'utf-8'));
-    const workflow = readFileSync(join(rootDir, '.github', 'workflows', 'ci.yml'), 'utf-8');
-
+  it('Vercel 部署應使用鎖檔安裝並通過完整測試', () => {
+    const config = JSON.parse(
+      readFileSync(join(distDir, '..', '..', 'vercel.json'), 'utf-8')
+    );
     expect(config.installCommand).toBe('cd astro-site && npm ci');
-    expect(config.buildCommand).toBe('cd astro-site && npm run build');
-    expect(workflow).toContain('run: npm run verify');
+    expect(config.buildCommand).toBe('cd astro-site && npm run verify');
   });
 });
 
@@ -137,6 +135,7 @@ describe('6. 相關房型 alt 文字', () => {
     expect(imgs.length).toBeGreaterThan(0);
     imgs.each((_, el) => {
       const alt = $(el).attr('alt') || '';
+      // alt 應不只是短標題，至少要有 "住宿" 相關描述
       expect(alt.length).toBeGreaterThan(3);
       expect(alt).toMatch(/住宿|外觀|營區/);
     });
