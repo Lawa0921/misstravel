@@ -83,7 +83,9 @@ export async function verifyBookingPresentation(origin = WWW_ORIGIN) {
   const accountHtml = await accountResponse.text();
   invariant(accountHtml.includes('線上訂房系統提供目前空房查詢'), 'booking page did not use the public online booking system name');
   invariant(!accountHtml.includes('RoomCloud'), 'booking page exposed the booking vendor name');
-  invariant(accountHtml.includes('回到原本的 LINE 或 Facebook 對話通知'), 'booking page did not preserve the original contact channel');
+  invariant(accountHtml.includes('匯款後，請透過原先與密式旅行聯絡的管道回報匯款資訊'), 'booking page did not preserve the approved payment reporting instruction');
+  invariant(accountHtml.includes('原先使用 LINE 聯絡者，請回到原 LINE 對話通知'), 'booking page did not preserve the LINE reporting channel');
+  invariant(accountHtml.includes('原先使用 Facebook 聯絡者，請回到原 Facebook Messenger 對話通知'), 'booking page did not preserve the Facebook reporting channel');
   invariant(!accountHtml.includes('匯款後請來電或來信確認'), 'booking page still contained the old payment callback instruction');
   invariant(!accountHtml.includes('"@type":"FAQPage"'), 'booking page still published the stale FAQPage schema');
 
