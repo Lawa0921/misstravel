@@ -63,8 +63,20 @@ export async function verifyLegacyRedirects(origin = WWW_ORIGIN) {
 export async function verifyBookingPresentation(origin = WWW_ORIGIN) {
   const homeResponse = await request(`${origin}/`);
   invariant(homeResponse.status === 200, `home page returned HTTP ${homeResponse.status}`);
+
+  const csp = homeResponse.headers.get('content-security-policy') || '';
+  invariant(homeResponse.headers.get('x-content-type-options') === 'nosniff', 'home page missing X-Content-Type-Options: nosniff');
+  invariant(homeResponse.headers.get('x-frame-options') === 'DENY', 'home page missing X-Frame-Options: DENY');
+  invariant((homeResponse.headers.get('strict-transport-security') || '').includes('includeSubDomains'), 'home page HSTS did not include subdomains');
+  invariant(csp.includes("object-src 'none'"), 'CSP did not block object-src');
+  invariant(csp.includes("frame-ancestors 'none'"), 'CSP did not block frame ancestors');
+  invariant(!homeResponse.headers.has('x-xss-protection'), 'home page still returned obsolete X-XSS-Protection');
+
   const homeHtml = await homeResponse.text();
+  invariant(homeHtml.includes('查詢空房'), 'home page did not contain the availability CTA');
   invariant(!homeHtml.includes('空房系統僅供查詢，預訂請再透過 LINE 或 Facebook 聯絡確認。'), 'home page still contained the removed booking notice');
+  invariant(!homeHtml.includes('"checkinTime"'), 'home page schema still hard-coded checkinTime');
+  invariant(!homeHtml.includes('"checkoutTime"'), 'home page schema still hard-coded checkoutTime');
 
   const accountResponse = await request(`${origin}/infos/account/`);
   invariant(accountResponse.status === 200, `account page returned HTTP ${accountResponse.status}`);
@@ -72,7 +84,10 @@ export async function verifyBookingPresentation(origin = WWW_ORIGIN) {
   invariant(accountHtml.includes('線上訂房系統提供目前空房查詢'), 'booking page did not use the public online booking system name');
   invariant(!accountHtml.includes('RoomCloud'), 'booking page exposed the booking vendor name');
   invariant(accountHtml.includes('回到原本的 LINE 或 Facebook 對話通知'), 'booking page did not preserve the original contact channel');
-  console.log('✓ public booking presentation matches the approved copy');
+  invariant(!accountHtml.includes('匯款後請來電或來信確認'), 'booking page still contained the old payment callback instruction');
+  invariant(!accountHtml.includes('"@type":"FAQPage"'), 'booking page still published the stale FAQPage schema');
+
+  console.log('✓ production booking copy, schema and security headers match the approved state');
 }
 
 export async function runProductionRouteSmoke() {
