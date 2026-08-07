@@ -7,7 +7,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -20,8 +20,10 @@ jobs:
       run:
         working-directory: astro-site
     steps:
-      - name: Check out repository
+      - name: Check out verification branch
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: verify/vercel-preview-20260807
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -32,6 +34,20 @@ jobs:
 
       - name: Refresh verification lockfile
         run: npm install --package-lock-only --ignore-scripts
+
+      - name: Commit refreshed lockfile
+        if: github.actor != 'github-actions[bot]'
+        working-directory: ..
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add astro-site/package-lock.json
+          if git diff --cached --quiet; then
+            echo "Lockfile already up to date"
+          else
+            git commit -m "更新 js-yaml 4.3.1 lockfile"
+            git push origin HEAD:verify/vercel-preview-20260807
+          fi
 
       - name: Install dependencies
         run: npm ci
