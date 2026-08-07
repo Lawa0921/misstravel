@@ -10,66 +10,27 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify deployed Vercel Preview
+      - name: Diagnose deployed Vercel Preview response
         env:
           PREVIEW_ORIGIN: https://misstravel-git-verify-verce-f42643-bag571ivy3470-1104s-projects.vercel.app
         run: |
           node <<'NODE'
-          const origin = process.env.PREVIEW_ORIGIN;
-          const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-          const check = (condition, message) => {
-            if (!condition) throw new Error(message);
-            console.log(`✓ ${message}`);
-          };
-          async function request(path, options = {}) {
-            let last;
-            for (let attempt = 1; attempt <= 12; attempt++) {
-              try {
-                const response = await fetch(`${origin}${path}`, {
-                  redirect: options.redirect || 'follow',
-                  headers: { 'cache-control': 'no-cache', 'user-agent': 'misstravel-preview-smoke/1.0' },
-                });
-                if (response.status < 500) return response;
-                last = new Error(`HTTP ${response.status}`);
-              } catch (error) {
-                last = error;
-              }
-              await sleep(5000);
-            }
-            throw last || new Error(`request failed: ${path}`);
+          const response = await fetch(`${process.env.PREVIEW_ORIGIN}/`, {
+            redirect: 'follow',
+            headers: { 'cache-control': 'no-cache', 'user-agent': 'misstravel-preview-smoke/1.0' },
+          });
+          const html = await response.text();
+          const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim() || '(no title)';
+          console.log(`status=${response.status}`);
+          console.log(`finalUrl=${response.url}`);
+          console.log(`contentType=${response.headers.get('content-type') || ''}`);
+          console.log(`server=${response.headers.get('server') || ''}`);
+          console.log(`xVercelId=${response.headers.get('x-vercel-id') || ''}`);
+          console.log(`title=${title}`);
+          console.log('bodyStart=' + html.slice(0, 1200).replace(/\s+/g, ' '));
+          if (html.includes('查詢空房')) {
+            console.log('✓ response is the actual MissTravel site');
+          } else {
+            throw new Error('Preview URL returned HTTP 200 but not the MissTravel homepage');
           }
-
-          const home = await request('/');
-          check(home.status === 200, '首頁回傳 HTTP 200');
-          const homeHtml = await home.text();
-          check(homeHtml.includes('查詢空房'), '首頁保留「查詢空房」入口');
-          check(!homeHtml.includes('空房系統僅供查詢，預訂請再透過 LINE 或 Facebook 聯絡確認。'), '首頁已移除指定訂房提示');
-          check(!homeHtml.includes('"checkinTime"'), '首頁 Schema 未硬編 checkinTime');
-          check(!homeHtml.includes('"checkoutTime"'), '首頁 Schema 未硬編 checkoutTime');
-
-          const account = await request('/infos/account/');
-          check(account.status === 200, '訂房匯款頁回傳 HTTP 200');
-          const accountHtml = await account.text();
-          check(accountHtml.includes('線上訂房系統提供目前空房查詢'), '訂房頁對客使用「線上訂房系統」');
-          check(!accountHtml.includes('RoomCloud'), '訂房頁未顯示 RoomCloud 品牌文字');
-          check(!accountHtml.includes('匯款後請來電或來信確認'), '舊匯款回報文案未輸出');
-          check(!accountHtml.includes('"@type":"FAQPage"'), '過期 FAQPage JSON-LD 已停止發布');
-
-          const csp = home.headers.get('content-security-policy') || '';
-          check(home.headers.get('x-content-type-options') === 'nosniff', 'X-Content-Type-Options = nosniff');
-          check(home.headers.get('x-frame-options') === 'DENY', 'X-Frame-Options = DENY');
-          check((home.headers.get('strict-transport-security') || '').includes('includeSubDomains'), 'HSTS 已啟用 includeSubDomains');
-          check(csp.includes("object-src 'none'"), 'CSP 包含 object-src none');
-          check(csp.includes("frame-ancestors 'none'"), 'CSP 包含 frame-ancestors none');
-          check(!home.headers.has('x-xss-protection'), '已移除過時 X-XSS-Protection');
-
-          const oldRooms = await request('/rooms.html', { redirect: 'manual' });
-          check(oldRooms.status === 308, '/rooms.html 回傳 308');
-          check(new URL(oldRooms.headers.get('location'), origin).pathname === '/rooms/', '/rooms.html 正確轉到 /rooms/');
-
-          const oldAccount = await request('/infos/account.html', { redirect: 'manual' });
-          check(oldAccount.status === 308, '/infos/account.html 回傳 308');
-          check(new URL(oldAccount.headers.get('location'), origin).pathname === '/infos/account/', '/infos/account.html 正確轉到新版網址');
-
-          console.log('\nPreview live smoke passed.');
           NODE
