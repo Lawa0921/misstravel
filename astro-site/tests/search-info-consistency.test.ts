@@ -89,12 +89,16 @@ describe('搜尋資訊與舊網址一致性', () => {
     expect(workflow).not.toContain('ref: main');
   });
 
-  it('正式路由驗收應檢查 sitemap、舊網址與公開訂房文案', () => {
+  it('正式路由驗收應檢查 sitemap、舊網址、訂房文案、Schema 與安全標頭', () => {
     const smoke = readFileSync(join(__dirname, '..', 'scripts', 'production-route-smoke.mjs'), 'utf-8');
     expect(smoke).toContain('verifySitemapPages');
     expect(smoke).toContain('verifyLegacyRedirects');
     expect(smoke).toContain('verifyBookingPresentation');
     expect(smoke).toContain('response.status !== 200');
     expect(smoke).toContain("!accountHtml.includes('RoomCloud')");
+    expect(smoke).toContain('FAQPage');
+    expect(smoke).toContain('checkinTime');
+    expect(smoke).toContain('content-security-policy');
+    expect(smoke).toContain('x-xss-protection');
   });
 });
