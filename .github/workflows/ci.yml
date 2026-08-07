@@ -37,7 +37,7 @@ jobs:
 
       - name: Commit refreshed lockfile
         if: github.actor != 'github-actions[bot]'
-        working-directory: ..
+        working-directory: ${{ github.workspace }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
