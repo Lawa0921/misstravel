@@ -27,7 +27,8 @@
     "vitest": "^4.1.9"
   },
   "overrides": {
-    "path-to-regexp": "6.3.0"
+    "path-to-regexp": "6.3.0",
+    "js-yaml": "5.2.2"
   },
   "allowScripts": {
     "esbuild@0.28.1": true
