@@ -9,13 +9,18 @@ const server = spawn('npm', ['run', 'preview', '--', '--host', '127.0.0.1', '--p
 });
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+let ready = false;
 for (let i = 0; i < 40; i += 1) {
   try {
     const response = await fetch('http://127.0.0.1:4321/');
-    if (response.ok) break;
+    if (response.ok) {
+      ready = true;
+      break;
+    }
   } catch {}
   await sleep(250);
 }
+if (!ready) throw new Error('Astro preview did not become ready');
 
 const browser = await chromium.launch({ headless: true });
 const pages = ['/', '/rooms/', '/rooms/log_cabin_4/', '/galleries/'];
@@ -64,4 +69,7 @@ try {
 } finally {
   await browser.close();
   server.kill('SIGTERM');
+  server.unref();
 }
+
+process.exit(0);
