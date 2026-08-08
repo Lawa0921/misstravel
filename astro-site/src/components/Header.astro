@@ -26,7 +26,7 @@ const navItems = [
   </nav>
 </header>
 
-<nav id="menu" aria-label="選單" aria-hidden="true">
+<nav id="menu" aria-label="選單" aria-hidden="true" tabindex="-1">
   <button type="button" class="close" id="menu-close" aria-label="關閉選單"></button>
   <ul class="links">
     {navItems.map((item) => (
@@ -157,10 +157,14 @@ const navItems = [
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
   }
 
-  #menu.is-visible { opacity: 1; visibility: visible; }
+  #menu.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
 
   #menu .links { list-style: none; padding: 0; margin: 0; text-align: center; }
   #menu .links li { margin-bottom: 0; }
@@ -229,6 +233,22 @@ const navItems = [
   const menuToggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
   const menuClose = document.getElementById('menu-close') as HTMLButtonElement | null;
   const menu = document.getElementById('menu');
+  const menuFocusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(',');
+
+  function getMenuFocusableElements() {
+    if (!menu) return [];
+    return Array.from(menu.querySelectorAll<HTMLElement>(menuFocusableSelector)).filter((element) => {
+      const style = window.getComputedStyle(element);
+      return !element.hidden && element.getAttribute('aria-hidden') !== 'true' && style.display !== 'none' && style.visibility !== 'hidden';
+    });
+  }
 
   function closeMenu() {
     if (!menu?.classList.contains('is-visible')) return;
@@ -236,7 +256,14 @@ const navItems = [
     menu.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     menuToggle?.setAttribute('aria-expanded', 'false');
-    menuToggle?.focus();
+    menuToggle?.focus({ preventScroll: true });
+  }
+
+  function focusMenuCloseWhenVisible() {
+    requestAnimationFrame(() => {
+      if (!menu?.classList.contains('is-visible')) return;
+      menuClose?.focus({ preventScroll: true });
+    });
   }
 
   function openMenu() {
@@ -244,7 +271,7 @@ const navItems = [
     menu?.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     menuToggle?.setAttribute('aria-expanded', 'true');
-    menuClose?.focus();
+    focusMenuCloseWhenVisible();
   }
 
   menuToggle?.addEventListener('click', () => {
@@ -260,7 +287,37 @@ const navItems = [
     });
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeMenu();
+  menu?.addEventListener('keydown', (event) => {
+    if (!menu.classList.contains('is-visible')) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusables = getMenuFocusableElements();
+    if (focusables.length === 0) {
+      event.preventDefault();
+      menu.focus({ preventScroll: true });
+      return;
+    }
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const activeElement = document.activeElement;
+
+    if (!menu.contains(activeElement)) {
+      event.preventDefault();
+      first.focus({ preventScroll: true });
+    } else if (event.shiftKey && activeElement === first) {
+      event.preventDefault();
+      last.focus({ preventScroll: true });
+    } else if (!event.shiftKey && activeElement === last) {
+      event.preventDefault();
+      first.focus({ preventScroll: true });
+    }
   });
 </script>

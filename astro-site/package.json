@@ -8,8 +8,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
+    "test:e2e": "playwright test",
+    "astro:check": "astro check",
     "typecheck": "astro sync && tsc --noEmit",
-    "verify": "npm audit --audit-level=high && npm run typecheck && vitest run",
+    "verify": "npm audit --audit-level=high && npm run astro:check && npm run typecheck && vitest run",
     "smoke:production": "node scripts/production-smoke.mjs"
   },
   "dependencies": {
@@ -22,6 +24,8 @@
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.62.1",
     "cheerio": "^1.2.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"

@@ -54,6 +54,19 @@ describe('全站技術強化', () => {
     expect(script).toContain("control.setAttribute('aria-current'");
   });
 
+  it('主選單應在開啟時鎖定 Tab 焦點並於關閉後回到觸發按鈕', () => {
+    const header = readProjectFile('src/components/Header.astro');
+
+    expect(header).toContain('getMenuFocusableElements');
+    expect(header).toContain("event.key !== 'Tab'");
+    expect(header).toContain('menu.contains(activeElement)');
+    expect(header).toContain('activeElement === first');
+    expect(header).toContain('activeElement === last');
+    expect(header).toContain('focusMenuCloseWhenVisible');
+    expect(header).toContain('requestAnimationFrame');
+    expect(header).toContain('menuToggle?.focus({ preventScroll: true })');
+  });
+
   it('共用樣式應修正 Footer 位置並尊重 reduced motion', () => {
     const css = readProjectFile('src/styles/technical-hardening.css');
 
@@ -77,10 +90,16 @@ describe('全站技術強化', () => {
     expect(csp).not.toContain('fonts.gstatic.com');
   });
 
-  it('verify 流程必須先同步 Astro 型別並執行 TypeScript 檢查', () => {
+  it('CI 必須執行 Astro template diagnostics、TypeScript 與真實瀏覽器測試', () => {
     const packageJson = JSON.parse(readProjectFile('package.json'));
+    const workflow = readFileSync(join(rootDir, '.github', 'workflows', 'ci.yml'), 'utf-8');
 
+    expect(packageJson.scripts['astro:check']).toBe('astro check');
     expect(packageJson.scripts.typecheck).toBe('astro sync && tsc --noEmit');
+    expect(packageJson.scripts.verify).toContain('npm run astro:check');
     expect(packageJson.scripts.verify).toContain('npm run typecheck');
+    expect(packageJson.scripts['test:e2e']).toBe('playwright test');
+    expect(workflow).toContain('npx playwright install --with-deps chromium');
+    expect(workflow).toContain('run: npm run test:e2e');
   });
 });
