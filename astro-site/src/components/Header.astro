@@ -26,7 +26,7 @@ const navItems = [
   </nav>
 </header>
 
-<nav id="menu" aria-label="選單" aria-hidden="true">
+<nav id="menu" aria-label="選單" aria-hidden="true" tabindex="-1">
   <button type="button" class="close" id="menu-close" aria-label="關閉選單"></button>
   <ul class="links">
     {navItems.map((item) => (
@@ -229,6 +229,22 @@ const navItems = [
   const menuToggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
   const menuClose = document.getElementById('menu-close') as HTMLButtonElement | null;
   const menu = document.getElementById('menu');
+  const menuFocusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(',');
+
+  function getMenuFocusableElements() {
+    if (!menu) return [];
+    return Array.from(menu.querySelectorAll<HTMLElement>(menuFocusableSelector)).filter((element) => {
+      const style = window.getComputedStyle(element);
+      return !element.hidden && element.getAttribute('aria-hidden') !== 'true' && style.display !== 'none' && style.visibility !== 'hidden';
+    });
+  }
 
   function closeMenu() {
     if (!menu?.classList.contains('is-visible')) return;
@@ -261,6 +277,36 @@ const navItems = [
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeMenu();
+    if (!menu?.classList.contains('is-visible')) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusables = getMenuFocusableElements();
+    if (focusables.length === 0) {
+      event.preventDefault();
+      menu.focus();
+      return;
+    }
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const activeElement = document.activeElement;
+
+    if (!menu.contains(activeElement)) {
+      event.preventDefault();
+      first.focus();
+    } else if (event.shiftKey && activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 </script>
