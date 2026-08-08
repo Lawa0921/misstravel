@@ -28,7 +28,7 @@ describe('搜尋資訊與舊網址一致性', () => {
     expect(accountText).not.toContain('RoomCloud');
   });
 
-  it('未核准且含舊流程的 FAQ 結構化資料不得發布', () => {
+  it('停用的 FAQ 結構化資料與過期來源不得存在', () => {
     const schemas = jsonLd('infos/account/index.html');
     const serialized = JSON.stringify(schemas);
 
@@ -40,9 +40,16 @@ describe('搜尋資訊與舊網址一致性', () => {
       join(rootDir, 'astro-site', 'src', 'components', 'SEO', 'SchemaOrg.astro'),
       'utf-8',
     );
-    expect(schemaComponent).toContain('blockedFaqPhrases');
-    expect(schemaComponent).not.toContain('const bookingFaq');
-    expect(schemaComponent).not.toContain('normalizedExtraSchemas');
+    const infoPage = readFileSync(
+      join(rootDir, 'astro-site', 'src', 'pages', 'infos', '[...slug].astro'),
+      'utf-8',
+    );
+
+    expect(schemaComponent).not.toContain('blockedFaqPhrases');
+    expect(schemaComponent).not.toContain('safeExtraSchemas');
+    expect(infoPage).not.toContain("'@type': 'FAQPage'");
+    expect(infoPage).not.toContain('線上訂房查看空房位');
+    expect(infoPage).not.toContain('匯款後請來電或來信確認');
   });
 
   it('住宿結構化資料不得硬編單一入住與退房時間', () => {
