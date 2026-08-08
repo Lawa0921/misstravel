@@ -88,10 +88,16 @@ describe('全站技術強化', () => {
     expect(csp).not.toContain('fonts.gstatic.com');
   });
 
-  it('verify 流程必須先同步 Astro 型別並執行 TypeScript 檢查', () => {
+  it('CI 必須執行 Astro template diagnostics、TypeScript 與真實瀏覽器測試', () => {
     const packageJson = JSON.parse(readProjectFile('package.json'));
+    const workflow = readFileSync(join(rootDir, '.github', 'workflows', 'ci.yml'), 'utf-8');
 
+    expect(packageJson.scripts['astro:check']).toBe('astro check');
     expect(packageJson.scripts.typecheck).toBe('astro sync && tsc --noEmit');
+    expect(packageJson.scripts.verify).toContain('npm run astro:check');
     expect(packageJson.scripts.verify).toContain('npm run typecheck');
+    expect(packageJson.scripts['test:e2e']).toBe('playwright test');
+    expect(workflow).toContain('npx playwright install --with-deps chromium');
+    expect(workflow).toContain('run: npm run test:e2e');
   });
 });
