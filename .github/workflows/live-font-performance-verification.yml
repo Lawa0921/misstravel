@@ -1,9 +1,9 @@
 name: Live Font Performance Verification
 
 on:
-  push:
-    branches:
-      - verify/font-production-20260808
+  pull_request:
+    paths:
+      - '.github/workflows/live-font-performance-verification.yml'
 
 permissions:
   contents: read
