@@ -252,7 +252,14 @@ const navItems = [
     menu.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     menuToggle?.setAttribute('aria-expanded', 'false');
-    menuToggle?.focus();
+    menuToggle?.focus({ preventScroll: true });
+  }
+
+  function focusMenuCloseWhenVisible() {
+    requestAnimationFrame(() => {
+      if (!menu?.classList.contains('is-visible')) return;
+      menuClose?.focus({ preventScroll: true });
+    });
   }
 
   function openMenu() {
@@ -260,7 +267,7 @@ const navItems = [
     menu?.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     menuToggle?.setAttribute('aria-expanded', 'true');
-    menuClose?.focus();
+    focusMenuCloseWhenVisible();
   }
 
   menuToggle?.addEventListener('click', () => {
@@ -290,7 +297,7 @@ const navItems = [
     const focusables = getMenuFocusableElements();
     if (focusables.length === 0) {
       event.preventDefault();
-      menu.focus();
+      menu.focus({ preventScroll: true });
       return;
     }
 
@@ -300,13 +307,13 @@ const navItems = [
 
     if (!menu.contains(activeElement)) {
       event.preventDefault();
-      first.focus();
+      first.focus({ preventScroll: true });
     } else if (event.shiftKey && activeElement === first) {
       event.preventDefault();
-      last.focus();
+      last.focus({ preventScroll: true });
     } else if (!event.shiftKey && activeElement === last) {
       event.preventDefault();
-      first.focus();
+      first.focus({ preventScroll: true });
     }
   });
 </script>
