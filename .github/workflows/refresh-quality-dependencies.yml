@@ -1,0 +1,45 @@
+name: Refresh Quality Dependencies
+
+on:
+  push:
+    branches:
+      - agent/non-content-quality-pass
+    paths:
+      - .github/workflows/refresh-quality-dependencies.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: agent/non-content-quality-pass
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: astro-site/package-lock.json
+
+      - name: Add quality dependencies
+        working-directory: astro-site
+        run: |
+          npm install --package-lock-only --save-dev @astrojs/check@latest @playwright/test@latest
+          npm audit --audit-level=high
+
+      - name: Commit package metadata
+        run: |
+          if git diff --quiet -- astro-site/package.json astro-site/package-lock.json; then
+            echo "Dependencies already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add astro-site/package.json astro-site/package-lock.json
+          git commit -m "加入 Astro check 與 Playwright 品質依賴"
+          git push
