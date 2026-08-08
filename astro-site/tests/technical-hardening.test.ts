@@ -62,7 +62,9 @@ describe('全站技術強化', () => {
     expect(header).toContain('menu.contains(activeElement)');
     expect(header).toContain('activeElement === first');
     expect(header).toContain('activeElement === last');
-    expect(header).toContain('menuToggle?.focus()');
+    expect(header).toContain('focusMenuCloseWhenVisible');
+    expect(header).toContain('requestAnimationFrame');
+    expect(header).toContain('menuToggle?.focus({ preventScroll: true })');
   });
 
   it('共用樣式應修正 Footer 位置並尊重 reduced motion', () => {
