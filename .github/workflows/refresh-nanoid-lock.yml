@@ -1,0 +1,45 @@
+name: Refresh Nanoid Lock
+
+on:
+  push:
+    branches:
+      - fix/separate-vercel-build-from-ci
+    paths:
+      - .github/workflows/refresh-nanoid-lock.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: fix/separate-vercel-build-from-ci
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: astro-site/package-lock.json
+
+      - name: Refresh vulnerable transitive dependency in lockfile
+        working-directory: astro-site
+        run: |
+          npm audit fix --package-lock-only
+          npm audit --audit-level=high
+
+      - name: Commit refreshed lockfile
+        run: |
+          if git diff --quiet -- astro-site/package-lock.json; then
+            echo "Lockfile already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add astro-site/package-lock.json
+          git commit -m "更新 nanoid 安全修補版鎖檔"
+          git push
