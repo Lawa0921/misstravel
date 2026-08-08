@@ -54,6 +54,17 @@ describe('全站技術強化', () => {
     expect(script).toContain("control.setAttribute('aria-current'");
   });
 
+  it('主選單應在開啟時鎖定 Tab 焦點並於關閉後回到觸發按鈕', () => {
+    const header = readProjectFile('src/components/Header.astro');
+
+    expect(header).toContain('getMenuFocusableElements');
+    expect(header).toContain("event.key !== 'Tab'");
+    expect(header).toContain('menu.contains(activeElement)');
+    expect(header).toContain('activeElement === first');
+    expect(header).toContain('activeElement === last');
+    expect(header).toContain('menuToggle?.focus()');
+  });
+
   it('共用樣式應修正 Footer 位置並尊重 reduced motion', () => {
     const css = readProjectFile('src/styles/technical-hardening.css');
 
