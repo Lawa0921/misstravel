@@ -43,7 +43,6 @@ const mediaStats = mediaFiles.map((file) => ({
   rel: normalize(relative(repoRoot, file)),
   size: statSync(file).size,
 })).sort((a, b) => b.size - a.size);
-
 const totalMediaBytes = mediaStats.reduce((sum, item) => sum + item.size, 0);
 
 const hashGroups = new Map();
@@ -59,44 +58,76 @@ const duplicateGroups = [...hashGroups.values()]
 const duplicateWaste = duplicateGroups.reduce((sum, group) => sum + group[0].size * (group.length - 1), 0);
 
 const textFiles = walk(siteRoot, (file) => textExtensions.has(extname(file).toLowerCase()));
-const searchableText = textFiles.map((file) => {
+const textChunks = textFiles.map((file) => {
   try { return readFileSync(file, 'utf8'); } catch { return ''; }
-}).join('\n');
+});
+const searchableText = textChunks.join('\n');
+const dynamicMediaPatterns = [];
+for (const text of textChunks) {
+  for (const match of text.matchAll(/`([^`]*?)\$\{[^}]+\}([^`]*)`/g)) {
+    const prefix = match[1];
+    const suffix = match[2];
+    if (prefix.includes('/images/') || prefix.includes('/fonts/')) dynamicMediaPatterns.push({ prefix, suffix });
+  }
+}
 
 const publicMedia = mediaStats.filter((item) => item.file.startsWith(publicRoot + sep));
 const unusedCandidates = publicMedia.filter((item) => {
   const publicPath = '/' + normalize(relative(publicRoot, item.file));
   const barePath = normalize(relative(publicRoot, item.file));
   const basename = item.file.split(sep).at(-1);
-  return !searchableText.includes(publicPath) && !searchableText.includes(barePath) && !searchableText.includes(basename);
+  const dynamicMatch = dynamicMediaPatterns.some(({ prefix, suffix }) => publicPath.startsWith(prefix) && publicPath.endsWith(suffix));
+  return !dynamicMatch && !searchableText.includes(publicPath) && !searchableText.includes(barePath) && !searchableText.includes(basename);
 }).sort((a, b) => b.size - a.size);
 const unusedBytes = unusedCandidates.reduce((sum, item) => sum + item.size, 0);
 
-function git(args) {
-  return execFileSync('git', args, { cwd: repoRoot, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
+function git(args, options = {}) {
+  return execFileSync('git', args, { cwd: repoRoot, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024, ...options });
 }
 
-let largestHistorical = [];
-let gitObjectStats = '';
-try {
-  gitObjectStats = git(['count-objects', '-vH']).trim();
-  const objects = git(['rev-list', '--objects', '--all']).trim().split('\n').filter(Boolean);
-  const input = objects.map((line) => line.split(' ')[0]).join('\n') + '\n';
-  const checked = execFileSync('git', ['cat-file', '--batch-check=%(objecttype) %(objectname) %(objectsize) %(rest)'], {
+function revListObjects(ref) {
+  const lines = git(['rev-list', '--objects', ref]).trim().split('\n').filter(Boolean);
+  const map = new Map();
+  for (const line of lines) {
+    const splitAt = line.indexOf(' ');
+    const sha = splitAt === -1 ? line : line.slice(0, splitAt);
+    const path = splitAt === -1 ? '' : line.slice(splitAt + 1);
+    if (!map.has(sha)) map.set(sha, path);
+  }
+  return map;
+}
+
+function blobStats(objectMap) {
+  if (objectMap.size === 0) return [];
+  const input = [...objectMap.keys()].join('\n') + '\n';
+  const checked = execFileSync('git', ['cat-file', '--batch-check=%(objecttype) %(objectname) %(objectsize)'], {
     cwd: repoRoot,
     encoding: 'utf8',
     input,
     maxBuffer: 512 * 1024 * 1024,
   });
-  largestHistorical = checked.split('\n')
+  return checked.split('\n')
     .filter((line) => line.startsWith('blob '))
     .map((line) => {
-      const match = line.match(/^blob ([0-9a-f]+) (\d+)(?: (.*))?$/);
-      return match ? { sha: match[1], size: Number(match[2]), path: match[3] || '' } : null;
+      const match = line.match(/^blob ([0-9a-f]+) (\d+)$/);
+      return match ? { sha: match[1], size: Number(match[2]), path: objectMap.get(match[1]) || '' } : null;
     })
     .filter(Boolean)
-    .sort((a, b) => b.size - a.size)
-    .slice(0, 50);
+    .sort((a, b) => b.size - a.size);
+}
+
+let gitObjectStats = '';
+let allBlobs = [];
+let mainBlobs = [];
+let legacyOnly = [];
+try {
+  gitObjectStats = git(['count-objects', '-vH']).trim();
+  const allObjects = revListObjects('--all');
+  const mainObjects = revListObjects('origin/main');
+  allBlobs = blobStats(allObjects);
+  mainBlobs = blobStats(mainObjects);
+  const mainShas = new Set(mainBlobs.map((item) => item.sha));
+  legacyOnly = allBlobs.filter((item) => !mainShas.has(item.sha));
 } catch (error) {
   console.error('Git history audit failed:', error.message);
 }
@@ -108,6 +139,8 @@ console.log(`Exact duplicate groups: ${duplicateGroups.length}`);
 console.log(`Exact duplicate removable bytes: ${fmt(duplicateWaste)}`);
 console.log(`Unused public media candidates: ${unusedCandidates.length}`);
 console.log(`Unused candidate bytes: ${fmt(unusedBytes)}`);
+console.log(`Largest blob reachable from main: ${mainBlobs[0] ? fmt(mainBlobs[0].size) : '(none)'}`);
+console.log(`Largest blob only reachable from non-main refs: ${legacyOnly[0] ? fmt(legacyOnly[0].size) : '(none)'}`);
 console.log('Git object stats:');
 console.log(gitObjectStats || '(unavailable)');
 
@@ -123,5 +156,8 @@ for (const group of duplicateGroups.slice(0, 30)) {
 console.log('\n=== UNUSED PUBLIC MEDIA CANDIDATES TOP 80 ===');
 for (const item of unusedCandidates.slice(0, 80)) console.log(`${fmt(item.size).padStart(10)}  ${item.rel}`);
 
-console.log('\n=== LARGEST GIT BLOBS TOP 50 ===');
-for (const item of largestHistorical) console.log(`${fmt(item.size).padStart(10)}  ${item.sha}  ${item.path}`);
+console.log('\n=== LARGEST BLOBS REACHABLE FROM MAIN TOP 50 ===');
+for (const item of mainBlobs.slice(0, 50)) console.log(`${fmt(item.size).padStart(10)}  ${item.sha}  ${item.path}`);
+
+console.log('\n=== LARGEST BLOBS ONLY ON NON-MAIN REFS TOP 80 ===');
+for (const item of legacyOnly.slice(0, 80)) console.log(`${fmt(item.size).padStart(10)}  ${item.sha}  ${item.path}`);
