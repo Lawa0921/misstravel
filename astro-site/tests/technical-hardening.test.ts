@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { load } from 'cheerio';
 
@@ -32,6 +32,13 @@ describe('全站技術強化', () => {
     expect(html).not.toContain('fonts.gstatic.com');
     expect(html).not.toContain('rel="preconnect" href="https://www.youtube.com"');
     expect(html).not.toContain('rel="dns-prefetch" href="https://www.youtube.com"');
+  });
+
+  it('全站本機字型不得回退為完整 5 MB 級字集', () => {
+    const fontPath = join(projectDir, 'public', 'fonts', 'setofont.woff2');
+    const fontSize = statSync(fontPath).size;
+
+    expect(fontSize).toBeLessThan(512 * 1024);
   });
 
   it('RSS 與 JSON Feed 宣告必須保留', () => {
