@@ -80,7 +80,8 @@ const productSchema = {
             {carouselImages.map((image, index) => (
               <div class="carousel-slide" data-index={index}>
                 <img
-                  src={image}
+                  src={index < 2 ? image : undefined}
+                  data-src={index < 2 ? undefined : image}
                   alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
@@ -470,10 +471,39 @@ const productSchema = {
   if (carousel) {
     const track = carousel.querySelector('.carousel-track') as HTMLElement;
     const slides = carousel.querySelectorAll('.carousel-slide');
+    const slideImages = Array.from(carousel.querySelectorAll<HTMLImageElement>('.carousel-slide img'));
     const dots = carousel.querySelectorAll('.dot');
     const prevBtn = carousel.querySelector('.prev');
     const nextBtn = carousel.querySelector('.next');
     let currentIndex = 0;
+    let navigationToken = 0;
+
+    function normalizeIndex(index: number) {
+      return (index + slides.length) % slides.length;
+    }
+
+    function prepareImage(index: number) {
+      const image = slideImages[normalizeIndex(index)];
+      const deferredSrc = image?.dataset.src;
+      if (image && deferredSrc) {
+        image.loading = 'eager';
+        image.src = deferredSrc;
+        delete image.dataset.src;
+      }
+      return image;
+    }
+
+    async function waitForImage(image?: HTMLImageElement) {
+      if (!image || image.complete) return;
+      try {
+        await image.decode();
+      } catch {
+        await new Promise<void>((resolve) => {
+          image.addEventListener('load', () => resolve(), { once: true });
+          image.addEventListener('error', () => resolve(), { once: true });
+        });
+      }
+    }
 
     function updateCarousel() {
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -482,38 +512,47 @@ const productSchema = {
       });
     }
 
-    prevBtn?.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateCarousel();
-    });
+    function preloadNeighbors() {
+      prepareImage(currentIndex + 1);
+      prepareImage(currentIndex - 1);
+    }
 
-    nextBtn?.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
+    async function navigateTo(index: number) {
+      const targetIndex = normalizeIndex(index);
+      const token = ++navigationToken;
+      const targetImage = prepareImage(targetIndex);
+      await waitForImage(targetImage);
+      if (token !== navigationToken) return;
+      currentIndex = targetIndex;
       updateCarousel();
-    });
+      preloadNeighbors();
+    }
+
+    prevBtn?.addEventListener('pointerenter', () => prepareImage(currentIndex - 1));
+    prevBtn?.addEventListener('focus', () => prepareImage(currentIndex - 1));
+    prevBtn?.addEventListener('click', () => void navigateTo(currentIndex - 1));
+
+    nextBtn?.addEventListener('pointerenter', () => prepareImage(currentIndex + 1));
+    nextBtn?.addEventListener('focus', () => prepareImage(currentIndex + 1));
+    nextBtn?.addEventListener('click', () => void navigateTo(currentIndex + 1));
 
     dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        updateCarousel();
-      });
+      dot.addEventListener('pointerenter', () => prepareImage(i));
+      dot.addEventListener('focus', () => prepareImage(i));
+      dot.addEventListener('click', () => void navigateTo(i));
     });
 
-    // Touch support
     let touchStartX = 0;
     track.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
+      prepareImage(currentIndex + 1);
+      prepareImage(currentIndex - 1);
     });
 
     track.addEventListener('touchend', (e) => {
       const diff = touchStartX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          currentIndex = (currentIndex + 1) % slides.length;
-        } else {
-          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        }
-        updateCarousel();
+        void navigateTo(diff > 0 ? currentIndex + 1 : currentIndex - 1);
       }
     });
   }
