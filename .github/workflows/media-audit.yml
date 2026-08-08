@@ -5,6 +5,7 @@ on:
     paths:
       - 'astro-site/scripts/media-audit.mjs'
       - 'astro-site/scripts/performance-audit.mjs'
+      - 'astro-site/public/fonts/setofont.woff2'
       - '.github/workflows/media-audit.yml'
 
 permissions:
