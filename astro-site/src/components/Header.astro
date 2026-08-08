@@ -157,10 +157,14 @@ const navItems = [
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
   }
 
-  #menu.is-visible { opacity: 1; visibility: visible; }
+  #menu.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
 
   #menu .links { list-style: none; padding: 0; margin: 0; text-align: center; }
   #menu .links li { margin-bottom: 0; }
