@@ -1,0 +1,112 @@
+name: Live Font Performance Verification
+
+on:
+  push:
+    branches:
+      - verify/font-production-20260808
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out verification branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: astro-site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: astro-site
+        run: npm ci
+
+      - name: Install Chromium
+        working-directory: astro-site
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify production font and mobile initial load
+        working-directory: astro-site
+        env:
+          PRODUCTION_ORIGIN: https://www.misstravel.me
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from '@playwright/test';
+
+          const origin = process.env.PRODUCTION_ORIGIN;
+          const fmt = (bytes) => bytes >= 1024 * 1024
+            ? `${(bytes / 1024 / 1024).toFixed(2)} MB`
+            : `${(bytes / 1024).toFixed(2)} KB`;
+          const check = (condition, message) => {
+            if (!condition) throw new Error(message);
+            console.log(`✓ ${message}`);
+          };
+
+          const fontResponse = await fetch(`${origin}/fonts/setofont.woff2`, { cache: 'no-store' });
+          check(fontResponse.ok, `正式字型 HTTP ${fontResponse.status}`);
+          const fontBytes = (await fontResponse.arrayBuffer()).byteLength;
+          console.log(`Live font size: ${fmt(fontBytes)}`);
+          check(fontBytes < 512 * 1024, `正式字型小於 512 KB（${fmt(fontBytes)}）`);
+
+          const browser = await chromium.launch({ headless: true });
+          try {
+            const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+            const page = await context.newPage();
+            const resources = [];
+
+            page.on('response', async (response) => {
+              if (!response.url().startsWith(origin)) return;
+              try {
+                const body = await response.body();
+                resources.push({
+                  url: response.url(),
+                  type: response.request().resourceType(),
+                  bytes: body.byteLength,
+                });
+              } catch {}
+            });
+
+            await page.goto(`${origin}/`, { waitUntil: 'networkidle' });
+            await page.evaluate(() => document.fonts.ready);
+
+            const bodyText = await page.locator('body').innerText();
+            check(bodyText.includes('密式旅行'), '正式首頁主要中文內容正常');
+            check(!bodyText.includes('�'), '正式首頁沒有 Unicode replacement character');
+
+            const fontFamily = await page.locator('body').evaluate((el) => getComputedStyle(el).fontFamily);
+            console.log(`Body font-family: ${fontFamily}`);
+            check(fontFamily.toLowerCase().includes('setofont'), '正式首頁仍使用 setofont 字型家族');
+
+            const unique = new Map();
+            for (const resource of resources) {
+              const prior = unique.get(resource.url);
+              if (!prior || resource.bytes > prior.bytes) unique.set(resource.url, resource);
+            }
+            const list = [...unique.values()];
+            const totalBytes = list.reduce((sum, item) => sum + item.bytes, 0);
+            console.log(`Live mobile homepage same-origin resources: ${fmt(totalBytes)} across ${list.length} requests`);
+            check(totalBytes < 1024 * 1024, `正式首頁手機初始同源資源低於 1 MB（${fmt(totalBytes)}）`);
+
+            const liveFontResource = list.find((item) => item.url.includes('/fonts/setofont.woff2'));
+            check(Boolean(liveFontResource), '瀏覽器實際載入 setofont.woff2');
+            check(liveFontResource.bytes < 512 * 1024, `瀏覽器收到的字型低於 512 KB（${fmt(liveFontResource.bytes)}）`);
+
+            await page.goto(`${origin}/rooms/log_cabin_4/`, { waitUntil: 'networkidle' });
+            await page.evaluate(() => document.fonts.ready);
+            const roomText = await page.locator('body').innerText();
+            check(roomText.includes('訂位須知'), '代表房型頁中文內容正常');
+            check(!roomText.includes('�'), '代表房型頁沒有 Unicode replacement character');
+
+            await context.close();
+          } finally {
+            await browser.close();
+          }
+
+          console.log('Live font performance verification passed.');
+          NODE
