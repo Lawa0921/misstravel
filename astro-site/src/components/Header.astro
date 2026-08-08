@@ -287,8 +287,8 @@ const navItems = [
     });
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (!menu?.classList.contains('is-visible')) return;
+  menu?.addEventListener('keydown', (event) => {
+    if (!menu.classList.contains('is-visible')) return;
 
     if (event.key === 'Escape') {
       event.preventDefault();
