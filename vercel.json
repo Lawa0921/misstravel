@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
   "installCommand": "cd astro-site && npm ci",
-  "buildCommand": "cd astro-site && npm run verify",
+  "buildCommand": "cd astro-site && npm run build",
   "outputDirectory": "astro-site/dist",
   "redirects": [
     {
