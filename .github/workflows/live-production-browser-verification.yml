@@ -1,0 +1,125 @@
+name: Live Production Browser Verification
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    if: github.head_ref == 'verify/live-browser-20260808'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: astro-site
+    steps:
+      - name: Check out verification branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: astro-site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify current production in a real browser
+        env:
+          PRODUCTION_ORIGIN: https://www.misstravel.me
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from '@playwright/test';
+
+          const origin = process.env.PRODUCTION_ORIGIN;
+          const browser = await chromium.launch({ headless: true });
+          const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+          const page = await context.newPage();
+
+          const check = (condition, message) => {
+            if (!condition) throw new Error(message);
+            console.log(`✓ ${message}`);
+          };
+
+          const isFocused = async (selector) => page.locator(selector).evaluate((el) => el === document.activeElement);
+
+          await page.goto(`${origin}/`, { waitUntil: 'networkidle' });
+          check((await page.locator('#menu-toggle').count()) === 1, '正式站載入新版主選單');
+          await page.locator('#menu-toggle').click();
+          await page.locator('#menu').waitFor({ state: 'visible' });
+          await page.waitForFunction(() => document.activeElement?.id === 'menu-close');
+          check(await isFocused('#menu-close'), '桌面選單開啟後焦點進入關閉按鈕');
+          check((await page.locator('#menu').getAttribute('aria-hidden')) === 'false', '桌面選單 aria-hidden=false');
+
+          const lastLink = page.locator('#menu a').last();
+          await lastLink.focus();
+          await page.keyboard.press('Tab');
+          check(await isFocused('#menu-close'), 'Tab 從最後一項循環到關閉按鈕');
+          await page.keyboard.press('Shift+Tab');
+          check(await lastLink.evaluate((el) => el === document.activeElement), 'Shift+Tab 從關閉按鈕循環到最後一項');
+          await page.keyboard.press('Escape');
+          await page.waitForFunction(() => document.activeElement?.id === 'menu-toggle');
+          check(await isFocused('#menu-toggle'), 'Escape 關閉後焦點回到 Menu');
+
+          await page.setViewportSize({ width: 390, height: 844 });
+          await page.reload({ waitUntil: 'networkidle' });
+          await page.locator('#menu-toggle').click();
+          await page.waitForFunction(() => document.activeElement?.id === 'menu-close');
+          check(await isFocused('#menu-close'), '手機選單開啟後焦點正確');
+          await page.keyboard.press('Escape');
+          await page.waitForFunction(() => document.activeElement?.id === 'menu-toggle');
+          check(await isFocused('#menu-toggle'), '手機選單關閉後焦點正確返回');
+
+          await page.setViewportSize({ width: 1280, height: 900 });
+          await page.goto(`${origin}/galleries/`, { waitUntil: 'networkidle' });
+          const galleryFirst = page.locator('[data-lightbox="photos"]').first();
+          await galleryFirst.click();
+          await page.locator('#lightbox.active').waitFor();
+          await page.waitForFunction(() => document.activeElement?.classList.contains('lightbox-close'));
+          await page.keyboard.press('ArrowRight');
+          check((await page.locator('#lightbox-current').textContent())?.trim() === '2', '正式站 Lightbox 方向鍵有效');
+          await page.keyboard.press('Escape');
+          await page.waitForFunction(() => !document.querySelector('#lightbox')?.classList.contains('active'));
+          check(await galleryFirst.evaluate((el) => el === document.activeElement), 'Lightbox 關閉後焦點返回原圖片');
+
+          await page.goto(`${origin}/sale_items/`, { waitUntil: 'networkidle' });
+          const saleTrigger = page.getByRole('button', { name: '烹飪組合' });
+          await saleTrigger.click();
+          await page.locator('#sale_item_1.active').waitFor();
+          check((await page.locator('body').evaluate((el) => getComputedStyle(el).overflow)) === 'hidden', 'Modal 開啟時鎖定頁面捲動');
+          await page.keyboard.press('Escape');
+          await page.waitForFunction(() => !document.querySelector('#sale_item_1')?.classList.contains('active'));
+          check(await saleTrigger.evaluate((el) => el === document.activeElement), 'Modal 關閉後焦點返回觸發按鈕');
+
+          await page.goto(`${origin}/rooms/campsite_1/`, { waitUntil: 'networkidle' });
+          const carousel = page.locator('#room-carousel');
+          check((await carousel.getAttribute('role')) === 'region', '房型輪播 ARIA region 已上線');
+          check((await carousel.locator('.dot').first().getAttribute('aria-current')) === 'true', '房型輪播初始 aria-current 正確');
+          await carousel.locator('.next').click();
+          check((await carousel.locator('.dot').nth(1).getAttribute('aria-current')) === 'true', '房型輪播切換後 aria-current 正確');
+
+          await page.goto(`${origin}/infos/account/`, { waitUntil: 'networkidle' });
+          const accountHtml = await page.content();
+          check(accountHtml.includes('線上訂房系統提供目前空房查詢'), '正式訂房頁保留核准可見文案');
+          check(!accountHtml.includes('RoomCloud'), '正式訂房頁未顯示 RoomCloud');
+          const hasFaqPage = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) => scripts.some((script) => {
+            try {
+              const json = JSON.parse(script.textContent || '{}');
+              const values = Array.isArray(json) ? json : [json];
+              return values.some((value) => value?.['@type'] === 'FAQPage');
+            } catch {
+              return false;
+            }
+          }));
+          check(!hasFaqPage, '正式訂房頁未輸出停用 FAQPage Schema');
+
+          await browser.close();
+          console.log('Live production browser verification passed.');
+          NODE
