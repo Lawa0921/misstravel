@@ -29,7 +29,7 @@ const rooms = defineCollection({
     numberOfRooms: z.number(),
     numberOfPeople: z.number(),
     order: z.number(),
-    isCampsite: z.boolean().default(false),
+    category: z.enum(['campsite', 'cabin', 'suite']),
     mainImage: z.string(),
     images: z.array(z.string()).default([]),
   }),
