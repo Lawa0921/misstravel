@@ -25,7 +25,7 @@ priceOptions:
 numberOfRooms: 1
 numberOfPeople: 16
 order: 0
-isCampsite: true
+category: 'campsite'
 keywords: '櫻花之盡, 木棧板露營, 包區露營, 苗栗露營, 泰安露營, 密式旅行, 16人露營, 3帳包區, 4帳包區, 依帳數計價, 2400-4800元, 木平台露營, 家族露營, 團體露營, 櫻花露營區'
 mainImage: '/images/campsite_1_main.webp'
 images:
