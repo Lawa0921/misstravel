@@ -19,6 +19,18 @@ const carouselImages = room.data.images.includes(room.data.mainImage)
   ? room.data.images
   : [room.data.mainImage, ...room.data.images];
 
+const roomCategoryLabels = {
+  campsite: '露營營位',
+  cabin: '露營木屋',
+  suite: '套房',
+} as const;
+const roomCategoryLabel = roomCategoryLabels[room.data.category];
+const weekdayPrices = [
+  room.data.weekdayPrice,
+  ...(room.data.priceOptions?.map((option) => option.weekdayPrice) ?? []),
+];
+const startingWeekdayPrice = Math.min(...weekdayPrices);
+
 // Prefer the same accommodation category, then the closest capacity and weekday price.
 const allRooms = await getCollection('rooms');
 const relatedRooms = allRooms
@@ -77,10 +89,25 @@ const productSchema = {
         { label: '房型展示', href: '/rooms/' },
         { label: room.data.shortTitle }
       ]} />
-    <header class="major">
-      <h1>{room.data.title}</h1>
-    </header>
-  </div>
+      <header class="major">
+        <h1>{room.data.title}</h1>
+      </header>
+      <div class="room-summary" aria-label="房型摘要">
+        <div class="summary-facts">
+          <span class="summary-category">{roomCategoryLabel}</span>
+          <span>👥 {room.data.numberOfPeople} 人</span>
+          <span>平日 NT${startingWeekdayPrice.toLocaleString('zh-TW')} 起</span>
+        </div>
+        <a
+          href={siteConfig.booking.url}
+          class="availability-cta"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          查詢空房
+        </a>
+      </div>
+    </div>
 
   <div id="main-content" class="room-detail">
     <div class="inner-content">
@@ -212,6 +239,54 @@ const productSchema = {
     display: inline-block;
     padding-bottom: 0.5rem;
     margin-bottom: 0;
+  }
+
+  .room-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .summary-facts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1rem;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.9rem;
+  }
+
+  .summary-category {
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(155, 241, 255, 0.12);
+    color: #9bf1ff;
+    font-weight: 600;
+  }
+
+  .availability-cta {
+    flex: 0 0 auto;
+    display: inline-block;
+    padding: 0.7rem 1.1rem;
+    border: 2px solid #9bf1ff;
+    border-radius: 6px;
+    background: #9bf1ff;
+    color: #242943;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .availability-cta:hover,
+  .availability-cta:focus-visible {
+    background: transparent;
+    color: #9bf1ff;
   }
 
   #main-content {
@@ -395,7 +470,7 @@ const productSchema = {
     color: rgba(255, 255, 255, 0.9);
   }
 
-  /* Day Definition */
+  /* Day Type Definition */
   .day-definition {
     margin-bottom: 2rem;
   }
@@ -468,6 +543,16 @@ const productSchema = {
 
     .page-header h1 {
       font-size: 1.5rem;
+    }
+
+    .room-summary {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .availability-cta {
+      width: 100%;
+      text-align: center;
     }
 
     .price-grid {
