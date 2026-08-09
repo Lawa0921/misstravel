@@ -6,6 +6,11 @@ import { siteConfig } from '../../lib/config';
 
 const rooms = await getCollection('rooms');
 const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
+const categories = [
+  { id: 'campsite', label: '露營營位', icon: '🏕️' },
+  { id: 'cabin', label: '露營木屋', icon: '🏡' },
+  { id: 'suite', label: '套房', icon: '🛏️' },
+] as const;
 
 const itemListSchema = {
   '@context': 'https://schema.org',
@@ -22,8 +27,8 @@ const itemListSchema = {
 
 <BaseLayout
   title="房型展示"
-  description="密式旅行提供多樣化住宿選擇：露營車位享受大自然、溫馨小木屋適合家庭、舒適套房給您飯店般體驗。"
-  keywords="密式旅行房型,露營車位,小木屋住宿,套房住宿,苗栗住宿價格"
+  description="密式旅行提供多樣化住宿選擇：露營營位享受大自然、溫馨露營木屋適合家庭、舒適套房提供完整住宿空間。"
+  keywords="密式旅行房型,露營營位,露營木屋,套房住宿,苗栗住宿價格"
   extraSchemas={[itemListSchema]}
 >
   <main id="main" class="alt">
@@ -32,49 +37,80 @@ const itemListSchema = {
       <header class="major">
         <h1>房型展示</h1>
       </header>
-      <div class="rooms-grid">
-        {sortedRooms.map((room) => {
-          const alternativeOption = room.data.priceOptions?.find((option) => !option.isStandard);
 
+      <nav class="category-nav" aria-label="住宿類型快速導覽">
+        {categories.map((category) => {
+          const count = sortedRooms.filter((room) => room.data.category === category.id).length;
           return (
-            <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
-              <h2>{room.data.title}</h2>
-              <div class="room-image">
-                <img
-                  src={room.data.mainImage}
-                  alt={`${room.data.shortTitle}住宿外觀`}
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="400"
-                />
-              </div>
-              <div class="room-prices">
-                {room.data.priceOptions && (
-                  <p class="pricing-basis">四帳標準方案｜實際依帳數計價</p>
-                )}
-                <div class="price-row">
-                  <span>👑 訂價：{room.data.standardPrice}</span>
-                  <span>🥇 連假：{room.data.standardPrice}</span>
-                </div>
-                <div class="price-row">
-                  <span>🥈 假日：{room.data.holidayPrice}</span>
-                  <span>🥉 平日：{room.data.weekdayPrice}</span>
-                </div>
-                {alternativeOption && (
-                  <p class="alternative-price">
-                    三帳方案：平日 {alternativeOption.weekdayPrice}／假日 {alternativeOption.holidayPrice}／連假 {alternativeOption.standardPrice} 元
-                  </p>
-                )}
-                <div class="price-row">
-                  <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
-                  <span>👥 人數：{room.data.numberOfPeople}</span>
-                </div>
-              </div>
+            <a href={`#${category.id}`} class="category-link">
+              <span class="category-icon" aria-hidden="true">{category.icon}</span>
+              <span>{category.label}</span>
+              <small>{count} 種選擇</small>
             </a>
           );
         })}
-      </div>
+      </nav>
+
+      {categories.map((category) => {
+        const categoryRooms = sortedRooms.filter((room) => room.data.category === category.id);
+
+        return (
+          <section id={category.id} class="room-category" aria-labelledby={`${category.id}-title`}>
+            <div class="category-heading">
+              <span class="category-heading-icon" aria-hidden="true">{category.icon}</span>
+              <div>
+                <p>住宿類型</p>
+                <h2 id={`${category.id}-title`}>{category.label}</h2>
+              </div>
+              <span class="category-count">{categoryRooms.length} 種選擇</span>
+            </div>
+
+            <div class="rooms-grid">
+              {categoryRooms.map((room) => {
+                const alternativeOption = room.data.priceOptions?.find((option) => !option.isStandard);
+
+                return (
+                  <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
+                    <h3>{room.data.title}</h3>
+                    <div class="room-image">
+                      <img
+                        src={room.data.mainImage}
+                        alt={`${room.data.shortTitle}住宿外觀`}
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="400"
+                      />
+                    </div>
+                    <div class="room-prices">
+                      {room.data.priceOptions && (
+                        <p class="pricing-basis">四帳標準方案｜實際依帳數計價</p>
+                      )}
+                      <div class="price-row">
+                        <span>👑 訂價：{room.data.standardPrice}</span>
+                        <span>🥇 連假：{room.data.standardPrice}</span>
+                      </div>
+                      <div class="price-row">
+                        <span>🥈 假日：{room.data.holidayPrice}</span>
+                        <span>🥉 平日：{room.data.weekdayPrice}</span>
+                      </div>
+                      {alternativeOption && (
+                        <p class="alternative-price">
+                          三帳方案：平日 {alternativeOption.weekdayPrice}／假日 {alternativeOption.holidayPrice}／連假 {alternativeOption.standardPrice} 元
+                        </p>
+                      )}
+                      <div class="price-row">
+                        <span>{room.data.category === 'campsite' ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
+                        <span>👥 人數：{room.data.numberOfPeople}</span>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
     </div>
   </main>
 </BaseLayout>
@@ -92,7 +128,7 @@ const itemListSchema = {
   }
 
   header.major {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   header.major h1 {
@@ -101,6 +137,85 @@ const itemListSchema = {
     padding-bottom: 0.5rem;
     border-bottom: solid 2px #fff;
     display: inline-block;
+  }
+
+  .category-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .category-link {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.75rem;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .category-link:hover,
+  .category-link:focus-visible {
+    background: rgba(155, 241, 255, 0.12);
+    border-color: #9bf1ff;
+    transform: translateY(-2px);
+  }
+
+  .category-icon {
+    grid-row: 1 / 3;
+    font-size: 1.5rem;
+  }
+
+  .category-link small {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.75rem;
+  }
+
+  .room-category {
+    scroll-margin-top: 6rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .room-category:last-child {
+    margin-bottom: 0;
+  }
+
+  .category-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .category-heading-icon {
+    font-size: 2rem;
+  }
+
+  .category-heading p {
+    margin: 0 0 0.15rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+  }
+
+  .category-heading h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  .category-count {
+    margin-left: auto;
+    color: #9bf1ff;
+    font-size: 0.85rem;
   }
 
   .rooms-grid {
@@ -122,7 +237,7 @@ const itemListSchema = {
     transform: translateY(-5px);
   }
 
-  .room-card h2 {
+  .room-card h3 {
     font-size: 1.1rem;
     margin: 0;
     padding: 0.75rem;
@@ -201,6 +316,23 @@ const itemListSchema = {
 
     header.major h1 {
       font-size: 2rem;
+    }
+
+    .category-nav {
+      grid-template-columns: 1fr;
+      margin-bottom: 2rem;
+    }
+
+    .room-category {
+      margin-bottom: 2.5rem;
+    }
+
+    .category-heading {
+      align-items: flex-start;
+    }
+
+    .category-count {
+      font-size: 0.78rem;
     }
 
     .rooms-grid {
