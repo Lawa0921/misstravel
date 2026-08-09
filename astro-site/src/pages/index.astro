@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Banner from '../components/Banner.astro';
+import StayChoices from '../components/StayChoices.astro';
 import Tiles from '../components/Tiles.astro';
 import { siteConfig } from '../lib/config';
 
@@ -19,6 +20,7 @@ const webSiteSchema = {
   <Banner title="密式旅行" subtitle="秘密景點，深度旅行" />
 
   <main id="main">
+    <StayChoices />
     <Tiles />
   </main>
 </BaseLayout>
