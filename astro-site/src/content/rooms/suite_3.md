@@ -10,7 +10,7 @@ weekdayPrice: 1600
 numberOfRooms: 2
 numberOfPeople: 2
 order: 5
-isCampsite: false
+category: 'suite'
 keywords: '映月之屋, 雙人套房, 苗栗套房, 泰安套房, 密式旅行, 2人住宿, 1600-2800元, 情侶套房, 小型套房, 獨立衛浴, 假日含早餐, 有電視冷氣, 浪漫住宿, 蜜月住宿'
 mainImage: '/images/suite_3/new_01.webp'
 images:
