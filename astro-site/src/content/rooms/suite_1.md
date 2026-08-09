@@ -10,6 +10,7 @@ weekdayPrice: 2400
 numberOfRooms: 1
 numberOfPeople: 4
 order: 3
+category: 'suite'
 isCampsite: false
 keywords: '密式之眼, 近雲樓, 四人套房, 苗栗套房, 泰安套房, 密式旅行, 4人住宿, 2400-4600元, 高級套房, 山景套房, 獨立衛浴, 假日含早餐, 有電視冷氣, 精緻住宿'
 mainImage: '/images/suite_1/suite_1_4.webp?v=20260702'
