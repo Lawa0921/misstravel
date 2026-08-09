@@ -71,7 +71,7 @@ const itemListSchema = {
 
                 return (
                   <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
-                    <h3>{room.data.title}</h3>
+                    <h2>{room.data.title}</h2>
                     <div class="room-image">
                       <img
                         src={room.data.mainImage}
@@ -237,7 +237,7 @@ const itemListSchema = {
     transform: translateY(-5px);
   }
 
-  .room-card h3 {
+  .room-card h2 {
     font-size: 1.1rem;
     margin: 0;
     padding: 0.75rem;
