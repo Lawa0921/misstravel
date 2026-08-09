@@ -13,18 +13,19 @@ function readRoomsPage() {
 describe('房型列表三分類導覽', () => {
   it('應提供露營營位、露營木屋與套房三個快速導覽入口', () => {
     const $ = readRoomsPage();
-    const links = $('.category-nav .category-link')
-      .toArray()
-      .map((element) => ({
-        href: $(element).attr('href'),
-        text: $(element).text().replace(/\s+/g, ' ').trim(),
-      }));
+    const links = $('.category-nav .category-link');
+    const expected = [
+      { href: '#campsite', label: '露營營位', count: '3 種選擇' },
+      { href: '#cabin', label: '露營木屋', count: '4 種選擇' },
+      { href: '#suite', label: '套房', count: '3 種選擇' },
+    ];
 
-    expect(links).toEqual([
-      { href: '#campsite', text: '🏕️ 露營營位 3 種選擇' },
-      { href: '#cabin', text: '🏡 露營木屋 4 種選擇' },
-      { href: '#suite', text: '🛏️ 套房 3 種選擇' },
-    ]);
+    expect(links).toHaveLength(3);
+    links.each((index, element) => {
+      expect($(element).attr('href')).toBe(expected[index].href);
+      expect($(element).find('span').not('.category-icon').text().trim()).toBe(expected[index].label);
+      expect($(element).find('small').text().trim()).toBe(expected[index].count);
+    });
   });
 
   it('所有房型應只出現在自己的分類區塊一次', () => {
@@ -42,7 +43,7 @@ describe('房型列表三分類導覽', () => {
       expect(cards, `${category} 房型數量`).toHaveLength(expectation.count);
       cards.each((_, element) => {
         expect($(element).attr('href')).toMatch(new RegExp(`^${expectation.prefix}`));
-        expect($(element).find('h3')).toHaveLength(1);
+        expect($(element).find('h2')).toHaveLength(1);
       });
     }
   });
