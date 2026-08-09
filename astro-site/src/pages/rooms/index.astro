@@ -67,7 +67,7 @@ const itemListSchema = {
                   </p>
                 )}
                 <div class="price-row">
-                  <span>{room.data.isCampsite ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
+                  <span>{room.data.category === 'campsite' ? '🏕️ 區域' : '🏠 房數'}：{room.data.numberOfRooms}</span>
                   <span>👥 人數：{room.data.numberOfPeople}</span>
                 </div>
               </div>
