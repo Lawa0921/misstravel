@@ -44,7 +44,7 @@ describe('3 至 4 帳包區價格完整性', () => {
     const $ = readPage('rooms/index.html');
 
     for (const title of ['櫻花之盡', '沒日之嶺']) {
-      const card = $('.room-card').filter((_, element) => $(element).find('h2, h3').text().includes(title));
+      const card = $('.room-card').filter((_, element) => $(element).find('h2').text().includes(title));
       const text = card.text().replace(/\s+/g, ' ');
 
       expect(card).toHaveLength(1);
@@ -81,7 +81,7 @@ describe('3 至 4 帳包區價格完整性', () => {
   it('其他住宿卡片不應出現帳數計價提示', () => {
     const $ = readPage('rooms/index.html');
     const normalCards = $('.room-card').filter((_, element) => {
-      const title = $(element).find('h2, h3').text();
+      const title = $(element).find('h2').text();
       return !title.includes('櫻花之盡') && !title.includes('沒日之嶺');
     });
 
