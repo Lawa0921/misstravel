@@ -90,18 +90,47 @@ test('柑仔店 Modal 關閉後應恢復焦點與頁面捲動', async ({ page })
   await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
 });
 
-test('房型輪播應同步目前投影片 ARIA 狀態並支援方向鍵', async ({ page }) => {
-  await page.goto('/rooms/campsite_1/');
+test('房型輪播應延後非相鄰圖片請求並維持 ARIA 與鍵盤操作', async ({ page }) => {
+  const requestedImages: string[] = [];
+  const responseReads: Promise<void>[] = [];
+  let sameOriginBytes = 0;
+
+  page.on('request', (request) => {
+    const url = new URL(request.url());
+    if (url.pathname.startsWith('/images/log_cabin_4/')) requestedImages.push(url.pathname);
+  });
+
+  page.on('response', (response) => {
+    const url = new URL(response.url());
+    if (url.origin !== 'http://127.0.0.1:4334') return;
+    responseReads.push(
+      response.body()
+        .then((body) => { sameOriginBytes += body.byteLength; })
+        .catch(() => undefined),
+    );
+  });
+
+  await page.goto('/rooms/log_cabin_4/', { waitUntil: 'networkidle' });
+  await Promise.all(responseReads);
 
   const carousel = page.locator('#room-carousel');
   const dots = carousel.locator('.dot');
+  const images = carousel.locator('.carousel-slide img');
   const next = carousel.locator('.next');
+  const deferredImage = '/images/log_cabin_4/log_cabin_4_1.webp';
 
+  console.log(`log_cabin_4 initial same-origin resources: ${(sameOriginBytes / 1024 / 1024).toFixed(2)} MB`);
+  expect(sameOriginBytes).toBeLessThan(2 * 1024 * 1024);
+  expect(requestedImages).toEqual([]);
   await expect(carousel).toHaveAttribute('role', 'region');
   await expect(dots.first()).toHaveAttribute('aria-current', 'true');
+  await expect(images.nth(2)).toHaveAttribute('data-src', deferredImage);
+  expect(await images.nth(2).getAttribute('src')).toBeNull();
 
   await next.click();
   await expect(dots.nth(1)).toHaveAttribute('aria-current', 'true');
+  await expect(images.nth(2)).toHaveAttribute('src', deferredImage);
+  await expect.poll(() => requestedImages.includes(deferredImage)).toBe(true);
 
   await next.focus();
   await page.keyboard.press('ArrowLeft');
