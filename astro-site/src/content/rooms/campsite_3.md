@@ -11,7 +11,6 @@ numberOfRooms: 1
 numberOfPeople: 8
 order: 2
 category: 'campsite'
-isCampsite: true
 keywords: '密式雨棚, 雨棚露營, 小型包區, 苗栗露營, 泰安露營, 密式旅行, 8人露營, 2帳包區, 1600-2400元, 雨天露營, 避雨露營, 有棚露營, 小團體露營, 經濟實惠'
 mainImage: '/images/campsite_3_main.webp'
 images:

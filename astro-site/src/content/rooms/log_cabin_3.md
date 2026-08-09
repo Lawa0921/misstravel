@@ -11,7 +11,6 @@ numberOfRooms: 1
 numberOfPeople: 4
 order: 7
 category: 'cabin'
-isCampsite: false
 keywords: '依山之屋, 默木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 1200-2000元, 依山住宿, 安靜住宿, 小木屋住宿, 郊外休閒, 山景住宿, 禪意住宿'
 mainImage: '/images/log_cabin_3_main.webp'
 images:

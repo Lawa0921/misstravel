@@ -11,7 +11,6 @@ numberOfRooms: 5
 numberOfPeople: 4
 order: 9
 category: 'cabin'
-isCampsite: false
 keywords: '觀山之屋, 小木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 1200-2000元, 山景木屋, 5間木屋, 平價住宿, 觀山住宿, 自然風住宿, 郊外休閒'
 mainImage: '/images/log_cabin_1/log_cabin_1_10.webp'
 images:

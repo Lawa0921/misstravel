@@ -26,7 +26,6 @@ numberOfRooms: 1
 numberOfPeople: 16
 order: 1
 category: 'campsite'
-isCampsite: true
 keywords: '沒日之嶺, 草地露營, 包區露營, 苗栗露營, 泰安露營, 密式旅行, 16人露營, 3帳包區, 4帳包區, 依帳數計價, 2400-4800元, 草地營位, 家族露營, 團體露營, 山景露營'
 mainImage: '/images/campsite_2_main.webp'
 images:

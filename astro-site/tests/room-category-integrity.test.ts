@@ -34,16 +34,16 @@ describe('房型分類資料完整性', () => {
     }
   });
 
-  it('三分類導入期間應維持既有 isCampsite 相容性', () => {
-    for (const [slug, category] of Object.entries(expectedCategories)) {
+  it('房型資料不得再使用舊 isCampsite 雙重分類來源', () => {
+    for (const slug of Object.keys(expectedCategories)) {
       const source = readFileSync(join(contentDir, `${slug}.md`), 'utf-8');
-      const expectedLegacyValue = category === 'campsite';
-      expect(source, `${slug}: isCampsite 應與 category 一致`).toContain(`isCampsite: ${expectedLegacyValue}`);
+      expect(source, `${slug}: 不應保留 isCampsite`).not.toMatch(/^isCampsite:/m);
     }
   });
 
-  it('Astro content schema 應限制 category 僅能使用三種合法值', () => {
+  it('Astro content schema 應只保留 category 三分類', () => {
     const schema = readFileSync(join(projectDir, 'src', 'content.config.ts'), 'utf-8');
     expect(schema).toContain("category: z.enum(['campsite', 'cabin', 'suite'])");
+    expect(schema).not.toContain('isCampsite');
   });
 });
