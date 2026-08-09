@@ -19,11 +19,25 @@ const carouselImages = room.data.images.includes(room.data.mainImage)
   ? room.data.images
   : [room.data.mainImage, ...room.data.images];
 
-// Get related rooms (same type or different)
+// Prefer the same accommodation category, then the closest capacity and weekday price.
 const allRooms = await getCollection('rooms');
 const relatedRooms = allRooms
-  .filter((r) => r.id !== room.id)
-  .sort((a, b) => a.data.order - b.data.order)
+  .filter((candidate) => candidate.id !== room.id)
+  .sort((a, b) => {
+    const categoryDifference = Number(a.data.category !== room.data.category)
+      - Number(b.data.category !== room.data.category);
+    if (categoryDifference !== 0) return categoryDifference;
+
+    const capacityDifference = Math.abs(a.data.numberOfPeople - room.data.numberOfPeople)
+      - Math.abs(b.data.numberOfPeople - room.data.numberOfPeople);
+    if (capacityDifference !== 0) return capacityDifference;
+
+    const priceDifference = Math.abs(a.data.weekdayPrice - room.data.weekdayPrice)
+      - Math.abs(b.data.weekdayPrice - room.data.weekdayPrice);
+    if (priceDifference !== 0) return priceDifference;
+
+    return a.data.order - b.data.order;
+  })
   .slice(0, 3);
 
 const roomUrl = `${siteConfig.url}/rooms/${room.id.replace('.md', '')}/`;
