@@ -61,7 +61,9 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
   {displayItems.map((tile, index) => (
     <article
       class="tile"
-      style={`background-image: url('${tile.image}'); animation-delay: ${index * 0.1}s`}
+      data-motion-card=""
+      data-reveal=""
+      style={`background-image: url('${tile.image}'); --motion-order: ${index}`}
     >
       <header class="major">
         <h2>
@@ -97,28 +99,14 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
     display: flex;
     align-items: center;
     padding: 4em;
-    opacity: 0;
-    animation: fadeInUp 0.6s ease forwards;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    transition: transform 0.25s ease, opacity 0.25s ease, filter 1s ease;
   }
 
   .tile:nth-child(4n - 1),
   .tile:nth-child(4n - 2) {
     flex: 1 auto;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   .tile::before {
@@ -146,9 +134,28 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
     content: '';
     position: absolute;
     inset: 0;
-    background-color: rgba(36, 41, 67, 0.25);
-    z-index: 1;
+    background-image:
+      radial-gradient(
+        circle 260px at var(--motion-x) var(--motion-y),
+        rgba(133, 205, 225, 0.24),
+        transparent 64%
+      ),
+      radial-gradient(
+        circle 180px at calc(100% - var(--motion-x)) calc(100% - var(--motion-y)),
+        rgba(231, 168, 104, 0.14),
+        transparent 70%
+      ),
+      linear-gradient(rgba(36, 41, 67, 0.25), rgba(36, 41, 67, 0.25));
+    background-position: center, center, center;
+    background-size: auto, auto, auto;
+    z-index: 2;
+    opacity: 0.42;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
   }
+
+  .tile:hover::after,
+  .tile:focus-within::after { opacity: 0.88; }
 
   .tile .major {
     position: relative;
@@ -234,8 +241,6 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
   @media (prefers-reduced-motion: reduce) {
     .tile {
       opacity: 1;
-      animation: none;
-      transition: none;
     }
   }
 </style>

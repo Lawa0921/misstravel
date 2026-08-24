@@ -46,8 +46,13 @@ const imageGallerySchema = {
 
         <div class="lightbox-gallery">
           <div class="row photos">
-            {galleryImages.map((image) => (
-              <div class="col-6 col-md-4 col-lg-3 item">
+            {galleryImages.map((image, index) => (
+              <div
+                class="col-6 col-md-4 col-lg-3 item"
+                data-motion-card=""
+                data-reveal=""
+                style={`--motion-order: ${index % 4}`}
+              >
                 <a href={image.src} data-lightbox="photos">
                   <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" decoding="async" width="400" height="300" />
                 </a>
@@ -106,6 +111,15 @@ const imageGallerySchema = {
     if (lightboxImage) {
       lightboxImage.src = images[currentIndex];
       lightboxImage.alt = `密式旅行露營區實景 ${currentIndex + 1}`;
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        lightboxImage.animate(
+          [
+            { opacity: 0.35, transform: 'scale(0.985)' },
+            { opacity: 1, transform: 'scale(1)' },
+          ],
+          { duration: 260, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+        );
+      }
     }
     if (lightboxCurrent) {
       lightboxCurrent.textContent = String(currentIndex + 1);
@@ -203,6 +217,7 @@ const imageGallerySchema = {
     display: block;
     border-bottom: none;
     overflow: hidden;
+    border-radius: 4px;
   }
 
   .item img {
@@ -243,7 +258,7 @@ const imageGallerySchema = {
 
   /* Lightbox Overlay */
   .lightbox-overlay {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -253,16 +268,37 @@ const imageGallerySchema = {
     z-index: 10000;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: blur(0);
+    transition:
+      opacity 0.35s ease,
+      backdrop-filter 0.35s ease,
+      visibility 0s linear 0.35s;
   }
 
   .lightbox-overlay.active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    backdrop-filter: blur(12px);
+    transition:
+      opacity 0.35s ease,
+      backdrop-filter 0.35s ease,
+      visibility 0s linear;
   }
 
   .lightbox-content {
     position: relative;
     max-width: 90vw;
     max-height: 90vh;
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+    transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .lightbox-overlay.active .lightbox-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   .lightbox-content img {

@@ -66,11 +66,17 @@ const itemListSchema = {
             </div>
 
             <div class="rooms-grid">
-              {categoryRooms.map((room) => {
+              {categoryRooms.map((room, roomIndex) => {
                 const alternativeOption = room.data.priceOptions?.find((option) => !option.isStandard);
 
                 return (
-                  <a href={`/rooms/${room.id.replace('.md', '')}/`} class="room-card">
+                  <a
+                    href={`/rooms/${room.id.replace('.md', '')}/`}
+                    class="room-card"
+                    data-motion-card=""
+                    data-reveal=""
+                    style={`--motion-order: ${roomIndex}`}
+                  >
                     <h2>{room.data.title}</h2>
                     <div class="room-image">
                       <img
@@ -229,12 +235,6 @@ const itemListSchema = {
     border: 3px solid #dee2e6;
     border-radius: 8px;
     overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .room-card:hover {
-    box-shadow: 0px 9px 15px 2px rgba(137, 142, 150, 0.25);
-    transform: translateY(-5px);
   }
 
   .room-card h2 {

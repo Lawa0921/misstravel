@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/technical-hardening.css';
+import '../styles/motion-effects.css';
 
 interface ArticleMeta {
   publishedTime: string;
@@ -67,5 +68,6 @@ const {
       <Footer />
     </div>
     <script is:inline src="/scripts/interaction-accessibility.js" defer></script>
+    <script is:inline src="/scripts/motion-effects.js" defer></script>
   </body>
 </html>
