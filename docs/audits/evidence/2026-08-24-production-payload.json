@@ -1,0 +1,745 @@
+{
+  "measuredAt": "2026-08-24T03:53:18.808Z",
+  "playwright": "1.62.1",
+  "chromium": "151.0.7922.34",
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "deviceScaleFactor": 1
+  },
+  "waitUntil": "networkidle",
+  "postWaitMs": 250,
+  "freshPageAndContextPerRoute": true,
+  "deduplication": "first response per URL",
+  "metric": "decoded response.body bytes, not wire transfer size",
+  "results": [
+    {
+      "route": "/",
+      "decodedBodyBytes": 741162,
+      "imageBodyBytes": 476060,
+      "uniqueResources": 13,
+      "items": [
+        {
+          "url": "https://www.misstravel.me/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 16327
+        },
+        {
+          "url": "https://www.misstravel.me/assets/index.BXIriHYU.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 5159
+        },
+        {
+          "url": "https://www.misstravel.me/assets/BaseLayout.D8h86cn2.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 17427
+        },
+        {
+          "url": "https://www.misstravel.me/images/banner.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 131226
+        },
+        {
+          "url": "https://www.misstravel.me/fonts/setofont.woff2",
+          "status": 200,
+          "contentType": "font/woff2",
+          "decodedBodyBytes": 217904
+        },
+        {
+          "url": "https://www.misstravel.me/images/announcements.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 48212
+        },
+        {
+          "url": "https://www.misstravel.me/images/booking.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 20748
+        },
+        {
+          "url": "https://www.misstravel.me/images/sale_items.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 33386
+        },
+        {
+          "url": "https://www.misstravel.me/images/landing_banner.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 53402
+        },
+        {
+          "url": "https://www.misstravel.me/images/rooms.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 123138
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 65948
+        },
+        {
+          "url": "https://www.misstravel.me/_vercel/insights/script.js",
+          "status": 404,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 0
+        },
+        {
+          "url": "https://www.misstravel.me/scripts/interaction-accessibility.js",
+          "status": 200,
+          "contentType": "application/javascript; charset=utf-8",
+          "decodedBodyBytes": 8285
+        }
+      ]
+    },
+    {
+      "route": "/rooms/",
+      "decodedBodyBytes": 1948130,
+      "imageBodyBytes": 1678132,
+      "uniqueResources": 15,
+      "items": [
+        {
+          "url": "https://www.misstravel.me/rooms/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 26382
+        },
+        {
+          "url": "https://www.misstravel.me/assets/BaseLayout.D8h86cn2.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 17427
+        },
+        {
+          "url": "https://www.misstravel.me/scripts/interaction-accessibility.js",
+          "status": 200,
+          "contentType": "application/javascript; charset=utf-8",
+          "decodedBodyBytes": 8285
+        },
+        {
+          "url": "https://www.misstravel.me/_vercel/insights/script.js",
+          "status": 404,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 0
+        },
+        {
+          "url": "https://www.misstravel.me/fonts/setofont.woff2",
+          "status": 200,
+          "contentType": "font/woff2",
+          "decodedBodyBytes": 217904
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_1/log_cabin_1_10.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 75678
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_2_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 120862
+        },
+        {
+          "url": "https://www.misstravel.me/images/campsite_2_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 142660
+        },
+        {
+          "url": "https://www.misstravel.me/images/campsite_3_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 231446
+        },
+        {
+          "url": "https://www.misstravel.me/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 243640
+        },
+        {
+          "url": "https://www.misstravel.me/images/campsite_1_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 156272
+        },
+        {
+          "url": "https://www.misstravel.me/images/suite_3/new_01.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 81808
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_4_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 262644
+        },
+        {
+          "url": "https://www.misstravel.me/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 249336
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_3_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 113786
+        }
+      ]
+    },
+    {
+      "route": "/rooms/log_cabin_4/",
+      "decodedBodyBytes": 1079597,
+      "imageBodyBytes": 804240,
+      "uniqueResources": 11,
+      "items": [
+        {
+          "url": "https://www.misstravel.me/rooms/log_cabin_4/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 27056
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_4_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 262644
+        },
+        {
+          "url": "https://www.misstravel.me/assets/BaseLayout.D8h86cn2.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 17427
+        },
+        {
+          "url": "https://www.misstravel.me/assets/_..DtFneBtq.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 4685
+        },
+        {
+          "url": "https://www.misstravel.me/fonts/setofont.woff2",
+          "status": 200,
+          "contentType": "font/woff2",
+          "decodedBodyBytes": 217904
+        },
+        {
+          "url": "https://www.misstravel.me/scripts/interaction-accessibility.js",
+          "status": 200,
+          "contentType": "application/javascript; charset=utf-8",
+          "decodedBodyBytes": 8285
+        },
+        {
+          "url": "https://www.misstravel.me/_vercel/insights/script.js",
+          "status": 404,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 0
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_1/log_cabin_1_10.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 75678
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_2_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 120862
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_air_conditioner_1.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 231270
+        },
+        {
+          "url": "https://www.misstravel.me/images/log_cabin_3_main.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 113786
+        }
+      ]
+    },
+    {
+      "route": "/galleries/",
+      "decodedBodyBytes": 2411583,
+      "imageBodyBytes": 2130610,
+      "uniqueResources": 41,
+      "items": [
+        {
+          "url": "https://www.misstravel.me/galleries/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 37357
+        },
+        {
+          "url": "https://www.misstravel.me/assets/BaseLayout.D8h86cn2.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 17427
+        },
+        {
+          "url": "https://www.misstravel.me/fonts/setofont.woff2",
+          "status": 200,
+          "contentType": "font/woff2",
+          "decodedBodyBytes": 217904
+        },
+        {
+          "url": "https://www.misstravel.me/_vercel/insights/script.js",
+          "status": 404,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 0
+        },
+        {
+          "url": "https://www.misstravel.me/scripts/interaction-accessibility.js",
+          "status": 200,
+          "contentType": "application/javascript; charset=utf-8",
+          "decodedBodyBytes": 8285
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_33.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 69280
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_10.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 110468
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_24.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 29880
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_1.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 53714
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_18.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 53052
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_9.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 82690
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_36.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 135314
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_16.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 50742
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_6.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 57072
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_23.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 34196
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_32.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 92784
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_12.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 21446
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_20.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 21100
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_35.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 89004
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_21.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 31436
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_26.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 52536
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_7.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 111106
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_4.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 16370
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_19.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 47490
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_25.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 103128
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_22.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 41042
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_8.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 36260
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_13.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 33782
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_17.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 28488
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_31.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 77960
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_15.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 43266
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_11.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 28808
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_3.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 133814
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_29.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 36520
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_14.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 39812
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_28.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 48394
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_2.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 120914
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_27.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 43374
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_30.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 28508
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_34.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 91120
+        },
+        {
+          "url": "https://www.misstravel.me/images/galleries/gallery_5.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 35740
+        }
+      ]
+    },
+    {
+      "route": "/infos/guide/",
+      "decodedBodyBytes": 1501996,
+      "imageBodyBytes": 1228922,
+      "uniqueResources": 21,
+      "items": [
+        {
+          "url": "https://www.misstravel.me/infos/guide/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 29458
+        },
+        {
+          "url": "https://www.misstravel.me/assets/BaseLayout.D8h86cn2.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 17427
+        },
+        {
+          "url": "https://www.misstravel.me/scripts/interaction-accessibility.js",
+          "status": 200,
+          "contentType": "application/javascript; charset=utf-8",
+          "decodedBodyBytes": 8285
+        },
+        {
+          "url": "https://www.misstravel.me/_vercel/insights/script.js",
+          "status": 404,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 0
+        },
+        {
+          "url": "https://www.misstravel.me/fonts/setofont.woff2",
+          "status": 200,
+          "contentType": "font/woff2",
+          "decodedBodyBytes": 217904
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_7.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 144286
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_7.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 84998
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_4.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 68144
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_8.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 206862
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_3.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 48542
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_5.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 99730
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_8.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 76962
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_4.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 93318
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_1.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 20474
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_5.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 44298
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_6.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 79218
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_1.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 42394
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_2.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 26974
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_2_3.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 45504
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_2.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 42026
+        },
+        {
+          "url": "https://www.misstravel.me/images/guide/guide_1_6.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "decodedBodyBytes": 105192
+        }
+      ]
+    },
+    {
+      "route": "/sale_items/",
+      "decodedBodyBytes": 276965,
+      "imageBodyBytes": 0,
+      "uniqueResources": 6,
+      "items": [
+        {
+          "url": "https://www.misstravel.me/sale_items/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 28417
+        },
+        {
+          "url": "https://www.misstravel.me/assets/sale_items.BA06aS9W.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 4932
+        },
+        {
+          "url": "https://www.misstravel.me/assets/BaseLayout.D8h86cn2.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 17427
+        },
+        {
+          "url": "https://www.misstravel.me/scripts/interaction-accessibility.js",
+          "status": 200,
+          "contentType": "application/javascript; charset=utf-8",
+          "decodedBodyBytes": 8285
+        },
+        {
+          "url": "https://www.misstravel.me/_vercel/insights/script.js",
+          "status": 404,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 0
+        },
+        {
+          "url": "https://www.misstravel.me/fonts/setofont.woff2",
+          "status": 200,
+          "contentType": "font/woff2",
+          "decodedBodyBytes": 217904
+        }
+      ]
+    },
+    {
+      "route": "/infos/video/",
+      "decodedBodyBytes": 261993,
+      "imageBodyBytes": 0,
+      "uniqueResources": 5,
+      "items": [
+        {
+          "url": "https://www.misstravel.me/infos/video/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 18377
+        },
+        {
+          "url": "https://www.misstravel.me/assets/BaseLayout.D8h86cn2.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "decodedBodyBytes": 17427
+        },
+        {
+          "url": "https://www.misstravel.me/scripts/interaction-accessibility.js",
+          "status": 200,
+          "contentType": "application/javascript; charset=utf-8",
+          "decodedBodyBytes": 8285
+        },
+        {
+          "url": "https://www.misstravel.me/_vercel/insights/script.js",
+          "status": 404,
+          "contentType": "text/html; charset=utf-8",
+          "decodedBodyBytes": 0
+        },
+        {
+          "url": "https://www.misstravel.me/fonts/setofont.woff2",
+          "status": 200,
+          "contentType": "font/woff2",
+          "decodedBodyBytes": 217904
+        }
+      ]
+    }
+  ]
+}

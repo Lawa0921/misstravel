@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { siteConfig } from '../lib/config';
+import { resolveSiteUrl, siteConfig } from '../lib/config';
 import type { APIContext } from 'astro';
 
 export async function GET(context: APIContext) {
@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
     .sort((a, b) => new Date(b.data.datetime).getTime() - new Date(a.data.datetime).getTime())
     .slice(0, 10);
 
-  const siteUrl = context.site?.toString() ?? siteConfig.url;
+  const siteUrl = resolveSiteUrl(context.site);
 
   const feed = {
     version: 'https://jsonfeed.org/version/1.1',

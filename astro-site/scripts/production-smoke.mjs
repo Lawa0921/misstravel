@@ -2,6 +2,7 @@ import { pathToFileURL } from 'node:url';
 
 export const WWW_ORIGIN = 'https://www.misstravel.me';
 export const APEX_ORIGIN = 'https://misstravel.me';
+export const EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN = 'b311aa2b042c4c22ac9e1cee767d4eff';
 export const EXPECTED_SITEMAP_PATHS = [
   '/',
   '/announcements/',
@@ -85,6 +86,59 @@ export function jsonLdDocuments(html) {
   }
 
   return documents;
+}
+
+export function assertVideoObject(html) {
+  const schemas = jsonLdDocuments(html).flatMap((document) => (
+    Array.isArray(document) ? document : [document]
+  ));
+  const video = schemas.find((schema) => schema?.['@type'] === 'VideoObject');
+
+  invariant(video, 'page did not include a VideoObject schema');
+  invariant(
+    video.uploadDate === '2017-11-07T00:26:31-08:00',
+    'VideoObject uploadDate was incorrect',
+  );
+  invariant(video.duration === 'PT2M37S', 'VideoObject duration was incorrect');
+}
+
+export function assertNotFound(status, html) {
+  invariant(status === 404, `expected HTTP 404, received ${status}`);
+  const robots = metaContent(html, 'name', 'robots') ?? '';
+  invariant(/\bnoindex\b/i.test(robots), '404 page did not include noindex robots');
+}
+
+export function assertCloudflareBeacon(html, expectedToken) {
+  const scripts = openingTags(html, 'script').filter(
+    (tag) => attribute(tag, 'data-cf-beacon') !== undefined,
+  );
+  invariant(scripts.length === 1, `expected one Cloudflare beacon, found ${scripts.length}`);
+
+  const script = scripts[0];
+  invariant(
+    attribute(script, 'src') === 'https://static.cloudflareinsights.com/beacon.min.js',
+    'Cloudflare beacon used an unexpected script source',
+  );
+  invariant(attribute(script, 'type') === 'module', 'Cloudflare beacon must be a module script');
+
+  const rawConfig = attribute(script, 'data-cf-beacon')
+    ?.replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+    .replaceAll('&amp;', '&');
+  let config;
+  try {
+    config = JSON.parse(rawConfig ?? '');
+  } catch {
+    throw new Error('Cloudflare beacon data-cf-beacon was not valid JSON');
+  }
+
+  invariant(
+    typeof config?.token === 'string' && /^[a-f0-9]{32}$/i.test(config.token),
+    'Cloudflare beacon did not include a valid site token',
+  );
+  if (expectedToken !== undefined) {
+    invariant(config.token === expectedToken, 'Cloudflare beacon site token was incorrect');
+  }
 }
 
 export function absoluteLinks(html) {
@@ -241,6 +295,9 @@ export async function runProductionSmoke() {
     await eventually(`${label} metadata and schema`, async () => {
       const body = await expectOk(freshUrl(pathname), 'text/html');
       assertHtmlPage(body, `${WWW_ORIGIN}${pathname}`, { requireBookingLink });
+      if (pathname === '/') {
+        assertCloudflareBeacon(body, EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN);
+      }
     });
   }
 
@@ -258,6 +315,18 @@ export async function runProductionSmoke() {
     const body = await expectOk(freshUrl('/sitemap-0.xml'), 'xml');
     assertSitemap(body);
   });
+
+  await eventually('video page VideoObject schema', async () => {
+    const body = await expectOk(freshUrl('/infos/video/'), 'text/html');
+    assertHtmlPage(body, `${WWW_ORIGIN}/infos/video/`);
+    assertVideoObject(body);
+  });
+
+  await eventually('unknown path is a noindex 404', async () => {
+    const { response, body } = await request(freshUrl('/__production_smoke_not_found__/'));
+    assertNotFound(response.status, body);
+  });
+
 }
 
 const isDirectRun = process.argv[1]

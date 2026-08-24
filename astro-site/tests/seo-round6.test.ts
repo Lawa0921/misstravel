@@ -153,5 +153,10 @@ describe('8. Content-Security-Policy header', () => {
     );
     expect(csp, 'CSP header not found').toBeDefined();
     expect(csp.value).toContain('default-src');
+    expect(csp.value).toContain('script-src');
+    expect(csp.value).toContain('https://static.cloudflareinsights.com');
+    expect(csp.value).toContain('connect-src');
+    expect(csp.value).toContain('https://cloudflareinsights.com');
+    expect(csp.value).not.toContain('https://va.vercel-scripts.com');
   });
 });
