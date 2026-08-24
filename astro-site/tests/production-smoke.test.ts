@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import {
   assertHtmlPage,
+  assertAnalyticsScript,
+  assertNotFound,
   assertRedirect,
   assertRobots,
   assertSitemap,
   assertSitemapIndex,
+  assertVideoObject,
   EXPECTED_SITEMAP_PATHS,
   jsonLdDocuments,
 } from '../scripts/production-smoke.mjs';
@@ -26,6 +29,12 @@ const validHtml = `
       <a href="https://roomcloud.cc/booking/example">訂房</a>
     </body>
   </html>
+`;
+
+const videoHtml = `
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"VideoObject","uploadDate":"2017-11-07T00:26:31-08:00","duration":"PT2M37S"}
+  </script>
 `;
 
 describe('正式環境 smoke 檢查器', () => {
@@ -83,5 +92,31 @@ describe('正式環境 smoke 檢查器', () => {
       '<url><loc>https://www.misstravel.me/rooms/</loc></url>',
       '',
     ))).toThrow(/missing expected paths/);
+  });
+
+  it('只接受 VideoObject 的真實日期與時長', () => {
+    expect(() => assertVideoObject(videoHtml)).not.toThrow();
+    expect(() => assertVideoObject(videoHtml.replace('2017-11-07T00:26:31-08:00', '2023-01-01')))
+      .toThrow(/uploadDate/);
+    expect(() => assertVideoObject(videoHtml.replace('PT2M37S', 'PT1M30S')))
+      .toThrow(/duration/);
+  });
+
+  it('只接受帶 noindex 的真正 404 頁', () => {
+    expect(() => assertNotFound(404, '<meta name="robots" content="noindex, nofollow">'))
+      .not.toThrow();
+    expect(() => assertNotFound(200, '<meta name="robots" content="noindex">'))
+      .toThrow(/404/);
+    expect(() => assertNotFound(404, '<meta name="robots" content="index">'))
+      .toThrow(/noindex/);
+  });
+
+  it('只接受 200 JavaScript 的 Vercel Analytics loader', () => {
+    expect(() => assertAnalyticsScript(200, 'application/javascript; charset=utf-8'))
+      .not.toThrow();
+    expect(() => assertAnalyticsScript(404, 'text/html; charset=utf-8'))
+      .toThrow(/200/);
+    expect(() => assertAnalyticsScript(200, 'text/html; charset=utf-8'))
+      .toThrow(/JavaScript/);
   });
 });

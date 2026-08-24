@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { load } from 'cheerio';
 import sharp from 'sharp';
+import { resolveSiteUrl } from '../src/lib/config';
 
 const projectDir = join(__dirname, '..');
 const distDir = join(projectDir, 'dist');
@@ -110,6 +111,50 @@ describe('全站產物完整性', () => {
     expect(schemaCount).toBeGreaterThanOrEqual(htmlFiles().length);
   });
 
+  it('圖集應用 36 張縮圖載入、原圖連結與原圖 ImageGallery schema', async () => {
+    const galleryPath = join(distDir, 'galleries', 'index.html');
+    const $ = load(readFileSync(galleryPath, 'utf-8'));
+    const links = $('[data-lightbox="photos"]');
+
+    expect(links).toHaveLength(36);
+
+    links.each((index, element) => {
+      const number = index + 1;
+      expect($(element).attr('href')).toBe(`/images/galleries/gallery_${number}.webp`);
+      expect($(element).find('img').attr('src'))
+        .toBe(`/images/galleries/thumbs/gallery_${number}.webp`);
+    });
+
+    const schemas = $('script[type="application/ld+json"]')
+      .toArray()
+      .map((element) => JSON.parse($(element).html() || '{}'));
+    const gallery = schemas.find((schema) => schema['@type'] === 'ImageGallery');
+
+    expect(gallery).toBeDefined();
+    expect(gallery.image).toHaveLength(36);
+    gallery.image.forEach((image: { contentUrl: string }, index: number) => {
+      expect(image.contentUrl).toBe(
+        `https://www.misstravel.me/images/galleries/gallery_${index + 1}.webp`,
+      );
+    });
+
+    let totalThumbnailBytes = 0;
+    for (let number = 1; number <= 36; number += 1) {
+      const sourcePath = join(publicDir, 'images', 'galleries', `gallery_${number}.webp`);
+      const thumbPath = join(publicDir, 'images', 'galleries', 'thumbs', `gallery_${number}.webp`);
+      expect(existsSync(thumbPath), `missing gallery thumbnail ${number}`).toBe(true);
+
+      const thumbnail = await sharp(thumbPath).metadata();
+      expect(thumbnail.width, `thumbnail ${number} width`).toBe(480);
+      expect(thumbnail.height, `thumbnail ${number} height`).toBe(360);
+      const thumbnailBytes = readFileSync(thumbPath).byteLength;
+      totalThumbnailBytes += thumbnailBytes;
+      expect(thumbnailBytes, `thumbnail ${number} bytes`)
+        .toBeLessThan(readFileSync(sourcePath).byteLength);
+    }
+    expect(totalThumbnailBytes).toBeLessThan(1 * 1024 * 1024);
+  });
+
   it('sitemap、robots 與 feeds 不得殘留裸網域', () => {
     [
       'sitemap-index.xml',
@@ -121,5 +166,29 @@ describe('全站產物完整性', () => {
       expect(readFileSync(join(distDir, file), 'utf-8'), file)
         .not.toContain('https://misstravel.me');
     });
+  });
+
+  it('JSON Feed 的 URL 應是合法 canonical 絕對 URL', () => {
+    const feed = JSON.parse(readFileSync(join(distDir, 'feed.json'), 'utf-8'));
+    const urls = [
+      feed.home_page_url,
+      feed.feed_url,
+      ...feed.items.flatMap((item: { id: string; url: string }) => [item.id, item.url]),
+    ];
+
+    expect(urls.length).toBeGreaterThan(2);
+    urls.forEach((value: string) => {
+      const url = new URL(value);
+      expect(url.origin).toBe('https://www.misstravel.me');
+      expect(url.pathname).toMatch(/^\//);
+    });
+  });
+
+  it('resolveSiteUrl 應為 fallback 與 URL base 補上單一斜線', () => {
+    expect(resolveSiteUrl()).toBe('https://www.misstravel.me/');
+    expect(resolveSiteUrl(new URL('https://www.misstravel.me/')))
+      .toBe('https://www.misstravel.me/');
+    expect(resolveSiteUrl(new URL('https://www.misstravel.me')))
+      .toBe('https://www.misstravel.me/');
   });
 });

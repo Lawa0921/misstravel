@@ -41,3 +41,7 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+export function resolveSiteUrl(site?: URL): string {
+  return new URL('.', site ?? siteConfig.url).href;
+}

@@ -13,7 +13,11 @@ const galleryImages = Array.from({ length: 36 }, (_, i) => {
   else if (index <= 24) alt += '套房與小木屋內部';
   else if (index <= 30) alt += '戶外活動區域與景觀';
   else alt += '夜景與特色設施';
-  return { src: `/images/galleries/gallery_${index}.webp`, alt };
+  return {
+    src: `/images/galleries/gallery_${index}.webp`,
+    thumbSrc: `/images/galleries/thumbs/gallery_${index}.webp`,
+    alt,
+  };
 });
 
 const imageGallerySchema = {
@@ -49,7 +53,7 @@ const imageGallerySchema = {
             {galleryImages.map((image) => (
               <div class="col-6 col-md-4 col-lg-3 item">
                 <a href={image.src} data-lightbox="photos">
-                  <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" decoding="async" width="400" height="300" />
+                  <img class="img-fluid" src={image.thumbSrc} alt={image.alt} loading="lazy" decoding="async" width="400" height="300" />
                 </a>
               </div>
             ))}

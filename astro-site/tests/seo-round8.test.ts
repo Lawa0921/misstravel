@@ -111,7 +111,7 @@ describe('4. 正式網域一致性', () => {
 
 // 5. VideoObject duration
 describe('5. VideoObject schema 完整性', () => {
-  it('VideoObject 應包含 duration 欄位', () => {
+  it('VideoObject 應使用影片真實上傳日期與時長', () => {
     const $ = readPage('infos/video/index.html');
     const scripts = $('script[type="application/ld+json"]');
     let hasVideo = false;
@@ -121,7 +121,8 @@ describe('5. VideoObject schema 完整性', () => {
       for (const schema of schemas) {
         if (schema['@type'] === 'VideoObject') {
           hasVideo = true;
-          expect(schema.duration).toBeDefined();
+          expect(schema.uploadDate).toBe('2017-11-07T00:26:31-08:00');
+          expect(schema.duration).toBe('PT2M37S');
         }
       }
     });

@@ -87,6 +87,34 @@ export function jsonLdDocuments(html) {
   return documents;
 }
 
+export function assertVideoObject(html) {
+  const schemas = jsonLdDocuments(html).flatMap((document) => (
+    Array.isArray(document) ? document : [document]
+  ));
+  const video = schemas.find((schema) => schema?.['@type'] === 'VideoObject');
+
+  invariant(video, 'page did not include a VideoObject schema');
+  invariant(
+    video.uploadDate === '2017-11-07T00:26:31-08:00',
+    'VideoObject uploadDate was incorrect',
+  );
+  invariant(video.duration === 'PT2M37S', 'VideoObject duration was incorrect');
+}
+
+export function assertNotFound(status, html) {
+  invariant(status === 404, `expected HTTP 404, received ${status}`);
+  const robots = metaContent(html, 'name', 'robots') ?? '';
+  invariant(/\bnoindex\b/i.test(robots), '404 page did not include noindex robots');
+}
+
+export function assertAnalyticsScript(status, contentType) {
+  invariant(status === 200, `expected analytics script HTTP 200, received ${status}`);
+  invariant(
+    contentType?.toLowerCase().includes('javascript'),
+    'analytics script did not return a JavaScript Content-Type',
+  );
+}
+
 export function absoluteLinks(html) {
   return openingTags(html, 'a')
     .map((tag) => attribute(tag, 'href'))
@@ -257,6 +285,22 @@ export async function runProductionSmoke() {
   await eventually('sitemap URLs', async () => {
     const body = await expectOk(freshUrl('/sitemap-0.xml'), 'xml');
     assertSitemap(body);
+  });
+
+  await eventually('video page VideoObject schema', async () => {
+    const body = await expectOk(freshUrl('/infos/video/'), 'text/html');
+    assertHtmlPage(body, `${WWW_ORIGIN}/infos/video/`);
+    assertVideoObject(body);
+  });
+
+  await eventually('unknown path is a noindex 404', async () => {
+    const { response, body } = await request(freshUrl('/__production_smoke_not_found__/'));
+    assertNotFound(response.status, body);
+  });
+
+  await eventually('Vercel Analytics loader', async () => {
+    const { response } = await request(freshUrl('/_vercel/insights/script.js'));
+    assertAnalyticsScript(response.status, response.headers.get('content-type'));
   });
 }
 
