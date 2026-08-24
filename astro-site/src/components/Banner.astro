@@ -9,7 +9,7 @@ interface Props {
 const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Astro.props;
 ---
 
-<section id="banner" class="major">
+<section id="banner" class="major" data-motion-scene="">
   <div class="inner">
     <header class="major">
       <h1>{title} / MissTravel</h1>
@@ -44,21 +44,35 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     min-height: 30em;
     max-height: 50em;
     padding: 4em 0 2em;
+    margin-bottom: -3.25em;
+    top: -3.25em;
+    overflow: hidden;
+  }
+
+  #banner::before {
+    content: '';
+    position: absolute;
+    inset: -3%;
     background-image: url('/images/banner.webp');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    margin-bottom: -3.25em;
-    top: -3.25em;
+    transform: translate3d(var(--scene-x), var(--scene-y), 0) scale(1.06);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   #banner::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: #242943;
-    opacity: 0.85;
+    background:
+      radial-gradient(
+        circle at var(--scene-pointer-x) var(--scene-pointer-y),
+        rgba(111, 195, 223, 0.22),
+        transparent 32%
+      ),
+      linear-gradient(115deg, rgba(18, 26, 45, 0.76), rgba(36, 41, 67, 0.9) 55%, rgba(35, 57, 51, 0.78));
     z-index: 1;
+    transition: background 0.25s ease;
   }
 
   .inner {
@@ -67,6 +81,12 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     padding: 0 3em;
     max-width: 65em;
     width: 100%;
+    animation: banner-arrive 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes banner-arrive {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   header.major h1 {
@@ -137,12 +157,6 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     border-color: #9bf1ff;
   }
 
-  @media (max-width: 1280px) {
-    #banner {
-      background-attachment: scroll;
-    }
-  }
-
   @media (max-width: 736px) {
     #banner {
       height: auto;
@@ -177,6 +191,14 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     .button {
       width: 100%;
       text-align: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #banner::before,
+    .inner {
+      animation: none;
+      transform: none;
     }
   }
 </style>

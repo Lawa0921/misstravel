@@ -1,0 +1,96 @@
+/* Local prototype: night-trail depth without changing page content. */
+
+[data-motion-card] {
+  --motion-x: 50%;
+  --motion-y: 50%;
+  --motion-lift: 0px;
+  --motion-rotate-x: 0deg;
+  --motion-rotate-y: 0deg;
+  position: relative;
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--motion-order, 0) * 55ms),
+    filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--motion-order, 0) * 55ms),
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease;
+}
+
+[data-motion-card] :is(.room-image, a[data-lightbox]) {
+  position: relative;
+}
+
+[data-motion-card] :is(.room-image, a[data-lightbox])::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: radial-gradient(
+      circle 230px at var(--motion-x) var(--motion-y),
+      rgba(133, 205, 225, 0.2),
+      transparent 66%
+    ),
+    radial-gradient(
+      circle 180px at calc(100% - var(--motion-x)) calc(100% - var(--motion-y)),
+      rgba(231, 168, 104, 0.14),
+      transparent 70%
+    );
+  opacity: 0.2;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+html[data-motion='ready'] [data-reveal] {
+  opacity: 0;
+  filter: blur(8px) saturate(0.75);
+}
+
+html[data-motion='ready'] [data-reveal].is-revealed {
+  opacity: 1;
+  filter: blur(0) saturate(1);
+}
+
+[data-motion-scene] {
+  --scene-x: 0px;
+  --scene-y: 0px;
+  --scene-pointer-x: 50%;
+  --scene-pointer-y: 45%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-motion-card] {
+    transform: perspective(1100px)
+      translate3d(0, var(--motion-lift), 0)
+      rotateX(var(--motion-rotate-x))
+      rotateY(var(--motion-rotate-y));
+    transform-style: preserve-3d;
+  }
+
+  [data-motion-card]:hover,
+  [data-motion-card]:focus-within {
+    --motion-lift: -8px;
+    box-shadow:
+      0 24px 55px rgba(4, 10, 28, 0.34),
+      0 0 0 1px rgba(155, 241, 255, 0.3);
+    will-change: transform;
+  }
+
+  [data-motion-card]:hover :is(.room-image, a[data-lightbox])::before,
+  [data-motion-card]:focus-within :is(.room-image, a[data-lightbox])::before {
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion-card],
+  [data-motion-card]:hover,
+  [data-motion-card]:focus-within {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  [data-motion-card] :is(.room-image, a[data-lightbox])::before {
+    display: none;
+  }
+}

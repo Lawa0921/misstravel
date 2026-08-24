@@ -1,5 +1,94 @@
 import { expect, test } from '@playwright/test';
 
+test.describe('山霧景深互動', () => {
+  test('照片光影不得使用近似 @ 的等高線圖樣', async ({ page }) => {
+    await page.goto('/rooms/');
+
+    const roomImageEffect = await page.locator('.room-image').first().evaluate((element) =>
+      getComputedStyle(element, '::before').backgroundImage,
+    );
+    expect(roomImageEffect).not.toBe('none');
+    expect(roomImageEffect).not.toContain('image/svg+xml');
+
+    await page.goto('/');
+    expect(await page.locator('#tiles .tile').first().evaluate((element) =>
+      getComputedStyle(element, '::after').backgroundImage,
+    )).not.toContain('image/svg+xml');
+  });
+
+  test('首頁卡片應在捲入後浮現並回應指標位置', async ({ page }) => {
+    await page.goto('/');
+
+    const tile = page.locator('#tiles .tile').first();
+    await tile.scrollIntoViewIfNeeded();
+    await expect(tile).toHaveAttribute('data-motion-card', '');
+    await expect(tile).toHaveClass(/is-revealed/);
+
+    const box = await tile.boundingBox();
+    expect(box).not.toBeNull();
+    await page.mouse.move(box!.x + box!.width * 0.2, box!.y + box!.height * 0.25);
+
+    await expect.poll(() => tile.evaluate((element) =>
+      element.style.getPropertyValue('--motion-x'),
+    )).not.toBe('50%');
+    await expect.poll(() => tile.evaluate((element) =>
+      element.style.getPropertyValue('--motion-rotate-x'),
+    )).toMatch(/deg$/);
+
+    await tile.evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+      element.dispatchEvent(new PointerEvent('pointermove', {
+        clientX: rect.right - 1,
+        clientY: rect.top + 1,
+      }));
+      element.dispatchEvent(new PointerEvent('pointerleave'));
+    });
+    await expect.poll(() => tile.evaluate((element) =>
+      element.style.getPropertyValue('--motion-rotate-x'),
+    )).toBe('0deg');
+    await expect.poll(() => tile.evaluate((element) =>
+      element.style.getPropertyValue('--motion-rotate-y'),
+    )).toBe('0deg');
+  });
+
+  test('房型與圖集應共用同一套互動語言', async ({ page }) => {
+    await page.goto('/rooms/');
+    await expect(page.locator('.room-card').first()).toHaveAttribute('data-motion-card', '');
+
+    await page.goto('/galleries/');
+    await expect(page.locator('.item').first()).toHaveAttribute('data-motion-card', '');
+  });
+
+  test('快速跳捲後圖集不得留下透明卡片', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.IntersectionObserver = class {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+        takeRecords() { return []; }
+        root = null;
+        rootMargin = '';
+        scrollMargin = '';
+        thresholds = [];
+      };
+    });
+    await page.goto('/galleries/');
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.waitForTimeout(1600);
+
+    await expect(page.locator('.item:not(.is-revealed)')).toHaveCount(0);
+  });
+
+  test('減少動畫偏好下應停用景深轉動', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/rooms/');
+
+    await expect(page.locator('html')).toHaveAttribute('data-motion', 'reduced');
+    await expect(page.locator('.room-card').first()).toHaveClass(/is-revealed/);
+    await expect(page.locator('.room-card').first()).toHaveCSS('transform', 'none');
+  });
+});
+
 test.describe('主選單鍵盤操作', () => {
   test('Tab 焦點應鎖在選單內，Escape 後回到 Menu', async ({ page }) => {
     await page.goto('/');
