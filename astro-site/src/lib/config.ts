@@ -1,3 +1,5 @@
+import cloudflareWebAnalytics from './cloudflare-web-analytics.json';
+
 // 站點配置 - 從 Jekyll _config.yml 遷移
 export const siteConfig = {
   title: 'Misstravel',
@@ -40,7 +42,7 @@ export const siteConfig = {
   },
 } as const;
 
-export const cloudflareWebAnalyticsToken = 'b311aa2b042c4c22ac9e1cee767d4eff';
+export const cloudflareWebAnalyticsToken = cloudflareWebAnalytics.token;
 
 export type SiteConfig = typeof siteConfig;
 

@@ -9,12 +9,15 @@
 
 ## 修正 PR 狀態
 
-- 本 PR 明確採用 **Cloudflare Web Analytics manual beacon**，維持 DNS-only、不改 proxy。2026-08-24 API 查核證實既有唯一 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`；DNS-only 使 automatic injection 無法作用，因此由 code 加入 manual beacon。曾一度嘗試改為 false 造成 lite 副作用，平台已完整還原原狀，最終沒有 Cloudflare setting、DNS 或 proxy change。
+- PR#53 明確採用 **Cloudflare Web Analytics manual beacon**，維持 DNS-only、不改 proxy。2026-08-24 API 查核證實既有唯一 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`；DNS-only 使 automatic injection 無法作用，因此由 code 加入 manual beacon。曾一度嘗試改為 false 造成 lite 副作用，平台已完整還原原狀，最終沒有 Cloudflare setting、DNS 或 proxy change。
 - 已實作：共用 Head beacon、`vercel.json` 的 Cloudflare `script-src`/`connect-src` CSP、Cloudflare homepage contract smoke，並移除 Astro/Vercel Analytics injection；另有 VideoObject 真值、JSON Feed URL fallback、production video/404 gate、36 張 `480×360` quality-80 WebP thumbnails 與 gallery payload/integrity tests。
-- 尚未部署：PR 尚未 merge；deployment 後仍需確認 beacon request、瀏覽器 view ingestion 與 Cloudflare dashboard 延遲收數。未讀取或提交任何 Cloudflare API credential。
-- Production smoke 的 Cloudflare gate 目前鎖定 homepage HTML beacon source、module type 與 token contract；它不宣稱 browser view ingestion，後者仍需 deployment 後人工或後續 browser gate 驗證。
+- PR#53 已 merge/deploy；本次新增 browser gate 尚未部署，deployment 後仍需確認 gate 與 Cloudflare dashboard 延遲收數。未讀取或提交任何 Cloudflare API credential。
+- Node production smoke 保留 homepage HTML beacon source、module type 與 token contract；本次 gate PR 另在 production deployment workflow 加入 Chromium browser ingestion gate，驗證真實 POST/response/CORS，不把 HTML 當成平台收數成功。
+- PR#53 部署後既有 Node smoke 綠燈，但 production RUM endpoint 的 HTTP probe 觀察到 `404`；Chromium 實際 `POST https://cloudflareinsights.com/cdn-cgi/rum` 因 CORS 沒有可讀 response 並觸發 `requestfailed`。同一 browser gate 在 Cloudflare 官方測試站收到 `2xx`，因此問題落在本站 production site/token 平台狀態，不是瀏覽器能力。本次 gate PR 新增 deployment-only browser gate，會把缺 POST、非 `2xx`、requestfailed/CORS、重複 POST、錯 token、beacon JS 非 `200` 與 deployed CSP origin 缺失判為失敗。
+- 平台後續仍需 owner 在 Dashboard 將 automatic zone site 轉為 manual hostname；EU lite/privacy 行為需 owner 另行決策。本次 gate PR 不改 Cloudflare platform setting、DNS、proxy 或 token。
+- 不變條件：DNS-only 時保留 manual beacon；未來若改為 proxy，automatic injection 與 manual beacon 必須二選一，不能同時啟用。
 - 新增 36 張衍生縮圖，原始 `public/images/galleries/gallery_*.webp` 未修改；lightbox anchor 與 ImageGallery JSON-LD 仍指向原圖。
-- 本地驗證（尚未部署）：Cloudflare targeted 29/29、完整 `npm run verify` 186 tests、`npm run test:e2e` 6/6；這些不替代 deployment 後的 production/ingestion 驗證。
+- 本地驗證（尚未部署）：Cloudflare evaluator 22/22、`npm run verify` 208/208、`npm run test:e2e` 6/6。現網 browser gate 依預期以 `RUM response 0`/`net::ERR_FAILED` CORS fail；另有 endpoint HTTP probe `404` 證據，但不混入 browser evidence。
 
 ## 一頁結論（remediation 前快照）
 
@@ -30,7 +33,7 @@ Remediation 前公開證據可以證明「網站訪問」沒有任何可工作�
 
 最小、風險最低的恢復方案，是先選一套統計作為唯一真相：
 
-- 本 PR 的唯一來源是 Cloudflare Web Analytics：維持 DNS-only，手動加入 Cloudflare beacon 與必要 CSP allowlist；不必只為統計把整站改成 Cloudflare proxy。
+- PR#53 的唯一來源是 Cloudflare Web Analytics：維持 DNS-only，手動加入 Cloudflare beacon 與必要 CSP allowlist；不必只為統計把整站改成 Cloudflare proxy。
 - Vercel Analytics injection 已移除；既有 production 的 Vercel 404 仍是 remediation 前快照，不能作為新版本驗收條件。
 - 不建議同時開兩套再比較原始 visit 數字；兩邊的去重、bot 與隱私規則不同，數字本來就不會相等。
 
@@ -50,12 +53,12 @@ Dashboard 與 Search Console 仍未在本工作流驗證，因此無法宣稱瀏
 
 | 優先級 | 項目 | 證據 | 建議的最小動作 | 完成判準 |
 |---|---|---|---|---|
-| P0 | 恢復一套訪問統計 | API 已證實既有 Cloudflare site；remediation 前無 beacon、Vercel loader 404 | 本 PR 以真實 token 加入 manual beacon/CSP/strict HTML contract；移除 Vercel injection，維持 DNS-only | local contract 綠；deployment 後另以 browser view request 與後台延遲收數驗證 |
+| P0 | 恢復一套訪問統計 | API 已證實既有 Cloudflare site；remediation 前無 beacon、Vercel loader 404 | PR#53 以真實 token 加入 manual beacon/CSP/strict HTML contract；移除 Vercel injection，維持 DNS-only | local contract 綠；deployment 後另以 browser view request 與後台延遲收數驗證 |
 | P1 | 辨識 intended production artifact | 首頁 marker 與 CSS hash 不同 | 先到 Vercel 查 production deployment 的 branch/commit，確認它是否應跟 `main`；確認後才決定是否部署 | 報告 intended commit 與線上 commit；若需部署，再以 marker/hash 與 smoke 驗收 |
-| P0 SEO | 修正假的 VideoObject 日期/時長 | remediation 前 source 寫 2023-01-01、PT1M30S；YouTube 真值為 2017-11-07T00:26:31-08:00、157 秒 | 本 PR 將 `uploadDate`/`duration` 改為真值並加 exact smoke assertion | merge/deploy 後 build JSON-LD 與影片來源一致，production smoke 覆蓋影片頁 |
-| P1 效能 | 圖集縮圖 | remediation 前 `/galleries/` 解碼後圖片 payload 約 2.03 MiB；原圖未改 | 本 PR 新增 36 張 Sharp quality-80、480×360 WebP，`<img>` 用縮圖、anchor/schema 保留原圖 | 本機 thumbnail total `<1 MiB`、integrity 與 E2E budget 綠，lightbox 互動不退化 |
-| P1 | 防止 Analytics 靜默再壞 | remediation 前 smoke 只檢查失效的 Vercel loader | 本 PR 將既有 production smoke 改成 Cloudflare homepage beacon source/token contract | 缺 beacon、錯誤 source/token 或非 module 讓 smoke 失敗；view ingestion 另於部署後驗證 |
-| P2 SEO | 擴充 production SEO smoke | remediation 前 smoke 未抽查影片、未知 404 與 analytics endpoint | 本 PR 在既有 script 加 video、404、Cloudflare beacon 三個 case，不加新框架 | 假 VideoObject、soft 404 或 Cloudflare beacon contract 回歸會讓 smoke 失敗 |
+| P0 SEO | 修正假的 VideoObject 日期/時長 | remediation 前 source 寫 2023-01-01、PT1M30S；YouTube 真值為 2017-11-07T00:26:31-08:00、157 秒 | PR#53 將 `uploadDate`/`duration` 改為真值並加 exact smoke assertion | merge/deploy 後 build JSON-LD 與影片來源一致，production smoke 覆蓋影片頁 |
+| P1 效能 | 圖集縮圖 | remediation 前 `/galleries/` 解碼後圖片 payload 約 2.03 MiB；原圖未改 | PR#53 新增 36 張 Sharp quality-80、480×360 WebP，`<img>` 用縮圖、anchor/schema 保留原圖 | 本機 thumbnail total `<1 MiB`、integrity 與 E2E budget 綠，lightbox 互動不退化 |
+| P1 | 防止 Analytics 靜默再壞 | remediation 前 smoke 只檢查失效的 Vercel loader | PR#53 將既有 production smoke 改成 Cloudflare homepage beacon source/token contract | 缺 beacon、錯誤 source/token 或非 module 讓 smoke 失敗；view ingestion 另於部署後驗證 |
+| P2 SEO | 擴充 production SEO smoke | remediation 前 smoke 未抽查影片、未知 404 與 analytics endpoint | PR#53 在既有 script 加 video、404、Cloudflare beacon 三個 case，不加新框架 | 假 VideoObject、soft 404 或 Cloudflare beacon contract 回歸會讓 smoke 失敗 |
 | P2 效能 | 減少首頁非首屏背景圖 eager load | 首頁 6 個 CSS background 都會抓，圖片共 0.45 MiB | 有實際預算壓力時改成 native lazy `<img>`；先不加 IntersectionObserver | 首屏以外 tile 不在 initial requests，視覺與無障礙不退化 |
 | P3 | 修正 JSON Feed fallback | `context.site` 缺失時字串會黏成錯誤 URL | 用 `new URL()` 組網址並加一個 fallback 測試 | 有/無 `context.site` 都產生合法絕對 URL |
 
@@ -88,7 +91,7 @@ Dashboard 與 Search Console 仍未在本工作流驗證，因此無法宣稱瀏
 - Chromium resource log 也沒有 Cloudflare beacon/request。
 - Cloudflare automatic setup 需要 proxied site；DNS-only site 必須手動放 snippet。官方說明：[Web Analytics get started](https://developers.cloudflare.com/web-analytics/get-started/)、[Web Analytics FAQ](https://developers.cloudflare.com/web-analytics/faq/)。
 
-`vercel.json` 現已允許 manual beacon 所需的 Cloudflare `script-src` 與 `connect-src` origins；這符合 Cloudflare 對 manual embedding 的 [CSP 說明](https://developers.cloudflare.com/web-analytics/faq/)。本地 smoke 只驗 HTML contract，不能取代 deployment 後真實 browser network 驗證。
+`vercel.json` 現已允許 manual beacon 所需的 Cloudflare `script-src` 與 `connect-src` origins；這符合 Cloudflare 對 manual embedding 的 [CSP 說明](https://developers.cloudflare.com/web-analytics/faq/)。Node local smoke 只驗 HTML contract；deployment-only browser gate 才驗真實 browser network。
 
 ### 已證實 3：Vercel Analytics loader 404（remediation 前快照）
 
@@ -101,9 +104,9 @@ Dashboard 與 Search Console 仍未在本工作流驗證，因此無法宣稱瀏
 
 ### Remediation 後狀態
 
-**本 PR 已切換至 Cloudflare Web Analytics manual beacon。** 2026-08-24 API 查核證實既有唯一 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`（site tag 如上）；DNS-only 使 automatic injection 無法作用，因此 code 改加 manual beacon。曾一度嘗試改 false 造成 lite 副作用後已完整還原，最終沒有 Cloudflare setting、DNS 或 proxy change。public site token 已加入共用 Head；程式以 TDD 鎖定 beacon、CSP 與 production homepage contract，並移除 Vercel injection。
+**PR#53 已切換至 Cloudflare Web Analytics manual beacon。** 2026-08-24 API 查核證實既有唯一 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`（site tag 如上）；DNS-only 使 automatic injection 無法作用，因此 code 改加 manual beacon。曾一度嘗試改 false 造成 lite 副作用後已完整還原，最終沒有 Cloudflare setting、DNS 或 proxy change。public site token 已加入共用 Head；本次 gate PR 以 TDD 鎖定 beacon、CSP、Node HTML contract 與 deployment-only browser ingestion contract，並移除 Vercel injection。
 
-Manual beacon 適合在需要 Cloudflare Web Analytics dashboard、同時維持 DNS-only 時使用；本 PR 已採此路線。只為 page views 把 DNS 改成 proxied 會同時引入 CDN/cache/TLS/redirect 行為變化，範圍遠大於必要修復。
+Manual beacon 適合在需要 Cloudflare Web Analytics dashboard、同時維持 DNS-only 時使用；PR#53 已採此路線。只為 page views 把 DNS 改成 proxied 會同時引入 CDN/cache/TLS/redirect 行為變化，範圍遠大於必要修復。
 
 ## 效能調查
 
@@ -130,8 +133,8 @@ Lighthouse 是受模擬網路與單次波動影響的 lab data，不是 Search C
 
 ### 已證實的主要瓶頸
 
-1. **圖片 pipeline 沒真正被使用（remediation 前快照；gallery thumbnail 為本 PR 例外）。** `astro.config.mjs` 有 `imageService: true`，專案也已安裝 Sharp；remediation 前 source 的 `<img>` 沒有 `srcset`、`sizes`、`astro:assets`/`<Image>`，瀏覽器多半取得 public 裡的原尺寸檔。本 PR 只對 gallery 一次性加入 36 張 public thumbnails，未引入 runtime image pipeline；這能證明仍有 responsive-image 改善空間，不能單獨證明對 LCP 的收益。
-2. **圖集的 `loading="lazy"` 在本次環境不是按需邊界。** remediation 前 `/galleries/` 一次輸出 36 張原圖，本次 fresh page/network-idle 量測全部進入 response；Chrome 的 lazy-load 距離門檻可能隨網路與版本改變。本 PR 已對圖集先導入 36 張小 thumbnail，必要時仍載原圖，再以 payload 與 E2E budget 驗證。
+1. **圖片 pipeline 沒真正被使用（remediation 前快照；gallery thumbnail 為 PR#53 例外）。** `astro.config.mjs` 有 `imageService: true`，專案也已安裝 Sharp；remediation 前 source 的 `<img>` 沒有 `srcset`、`sizes`、`astro:assets`/`<Image>`，瀏覽器多半取得 public 裡的原尺寸檔。PR#53 只對 gallery 一次性加入 36 張 public thumbnails，未引入 runtime image pipeline；這能證明仍有 responsive-image 改善空間，不能單獨證明對 LCP 的收益。
+2. **圖集的 `loading="lazy"` 在本次環境不是按需邊界。** remediation 前 `/galleries/` 一次輸出 36 張原圖，本次 fresh page/network-idle 量測全部進入 response；Chrome 的 lazy-load 距離門檻可能隨網路與版本改變。PR#53 已對圖集先導入 36 張小 thumbnail，必要時仍載原圖，再以 payload 與 E2E budget 驗證。
 3. **Public 圖片總量大。** 233 張共 29.85 MiB；最大房型圖是 4032×3024、1.78 MiB，遠高於常見手機顯示尺寸。總 repo 大小本身不直接拖慢單頁，但代表若引用原圖，代價很高。
 4. **首頁 tile 用 CSS background。** 六張 tile 圖不能使用 native `<img loading="lazy">`，首次進首頁都會抓；目前約 0.45 MiB，收益小於先修 gallery/rooms。
 5. **圖片 cache 只有一天。** Lighthouse 估計重訪可少約 187 KiB，但 public URL 沒有內容 hash。不能直接把它們設成一年 immutable，否則換圖後訪客可能長期看到舊圖；先版本化檔名或導入產物 hash，再拉長 TTL。
@@ -156,10 +159,10 @@ Lighthouse 是受模擬網路與單次波動影響的 lab data，不是 Search C
 
 ### 確定缺口與刻意不做的項目
 
-1. **VideoObject 真值錯誤（remediation 前快照；本 PR 已修正 source/test）。** remediation 前 `src/pages/infos/[...slug].astro:28-29` 寫死 `uploadDate: 2023-01-01`、`duration: PT1M30S`；YouTube 頁面 metadata 實際是 `2017-11-07T00:26:31-08:00` 與 `lengthSeconds: 157`（ISO 8601 為 `PT2M37S`）。本 PR 已改為完整日期時間與真實時長，merge/deploy 後仍須由 production smoke 驗證。[Google Video structured data](https://developers.google.com/search/docs/appearance/structured-data/video)
+1. **VideoObject 真值錯誤（remediation 前快照；PR#53 已修正 source/test）。** remediation 前 `src/pages/infos/[...slug].astro:28-29` 寫死 `uploadDate: 2023-01-01`、`duration: PT1M30S`；YouTube 頁面 metadata 實際是 `2017-11-07T00:26:31-08:00` 與 `lengthSeconds: 157`（ISO 8601 為 `PT2M37S`）。PR#53 已改為完整日期時間與真實時長，merge/deploy 後仍須由 production smoke 驗證。[Google Video structured data](https://developers.google.com/search/docs/appearance/structured-data/video)
 2. **現在不應硬補 BlogPosting author。** Google Article 文件明說沒有必填欄位，`author`/`author.url` 是支援的建議屬性；目前公告正文沒有可見作者署名，直接在 JSON-LD 填一個使用者看不到的作者反而違反結構化資料應對應可見內容的原則。等產品決定顯示真實 byline 時，再以同一人物/組織補 `author`；本報告不再把 `url` 或 `mainEntityOfPage` 當成 Google 文件要求。[Google Article structured data](https://developers.google.com/search/docs/appearance/structured-data/article)
-3. **Production smoke 抽樣不足（remediation 前快照；本 PR 已改為 Cloudflare contract）。** remediation 前只驗首頁、rooms、代表房型、robots、sitemap；本 PR 已加入影片 VideoObject、未知 404/noindex、首頁 Cloudflare beacon source/module/token contract。此 local gate 不宣稱 browser view ingestion。
-4. **JSON Feed fallback 有條件式壞網址（本 PR 已修正）。** `src/pages/feed.json.ts` 現在透過 `resolveSiteUrl(URL | undefined)` 正規化 fallback；正常 build 有 `site`，仍以 integrity test 鎖住有/無 base 的合法絕對 URL。
+3. **Production smoke 抽樣不足（remediation 前快照；PR#53/本次 gate PR 已改為 Cloudflare contract）。** remediation 前只驗首頁、rooms、代表房型、robots、sitemap；PR#53 已加入影片 VideoObject、未知 404/noindex、首頁 Cloudflare beacon source/module/token contract；本次 gate PR 再加入 deployment-only browser POST/2xx/CORS gate。
+4. **JSON Feed fallback 有條件式壞網址（PR#53 已修正）。** `src/pages/feed.json.ts` 現在透過 `resolveSiteUrl(URL | undefined)` 正規化 fallback；正常 build 有 `site`，仍以 integrity test 鎖住有/無 base 的合法絕對 URL。
 
 ### 需要 Google 工具才能定案
 
@@ -281,9 +284,9 @@ remediation 前調查沒有修改價格、訂房/付款流程、營運規則、�
 
 ## 建議執行順序
 
-1. 本 PR 已依 API 查核的既有 site 原狀，透過失敗測試鎖住 beacon/CSP/homepage contract；DNS-only 下由 code 加 manual beacon，Vercel injection 已移除。
-2. Merge 後維持 DNS-only，部署並以 browser network view request 與 Cloudflare dashboard 延遲收數驗證 ingestion；local HTML gate 不單獨宣稱收數成功。
-3. `/galleries/` 的 36 張 responsive thumbnails 已在本 PR 導入；以現有 Playwright/integrity payload budget 驗證，並保留 lightbox 的原圖需求。`/rooms/` 仍待另案評估。
-4. Search Console 驗證輪播圖片後，才決定是否改完整 `src` 輸出；Feed fallback 已在本 PR 修正。
+1. PR#53 已依 API 查核的既有 site 原狀，透過失敗測試鎖住 beacon/CSP/homepage contract；DNS-only 下由 code 加 manual beacon，Vercel injection 已移除。
+2. 本次 browser gate 會在 production deployment 後自動執行，也可用 `workflow_dispatch` 人工重跑；gate 轉綠前 prerequisite 是 owner 完成 Dashboard 的 automatic zone site → manual hostname conversion，並決定 EU lite/privacy 行為。完成平台 conversion、privacy decision 後維持 DNS-only 部署，再以 browser network view request 與 Cloudflare dashboard 延遲收數驗證 ingestion；local HTML gate 不單獨宣稱收數成功。
+3. `/galleries/` 的 36 張 responsive thumbnails 已在 PR#53 導入；以現有 Playwright/integrity payload budget 驗證，並保留 lightbox 的原圖需求。`/rooms/` 仍待另案評估。
+4. Search Console 驗證輪播圖片後，才決定是否改完整 `src` 輸出；Feed fallback 已在 PR#53 修正。
 
 未建議新增 SEO 套件、圖片套件、另一套監測服務或 custom cache layer；現有 Astro、Sharp、Vercel 與測試框架已足夠完成上述工作。
