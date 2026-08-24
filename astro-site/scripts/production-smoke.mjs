@@ -1,8 +1,9 @@
 import { pathToFileURL } from 'node:url';
+import cloudflareWebAnalytics from '../src/lib/cloudflare-web-analytics.json' with { type: 'json' };
 
 export const WWW_ORIGIN = 'https://www.misstravel.me';
 export const APEX_ORIGIN = 'https://misstravel.me';
-export const EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN = 'b311aa2b042c4c22ac9e1cee767d4eff';
+export const EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN = cloudflareWebAnalytics.token;
 export const EXPECTED_SITEMAP_PATHS = [
   '/',
   '/announcements/',
