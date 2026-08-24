@@ -8,9 +8,6 @@ export default defineConfig({
   site: 'https://www.misstravel.me',
   output: 'static',
   adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
     imageService: true,
   }),
   integrations: [sitemap()],

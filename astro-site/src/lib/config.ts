@@ -40,6 +40,8 @@ export const siteConfig = {
   },
 } as const;
 
+export const cloudflareWebAnalyticsToken = 'b311aa2b042c4c22ac9e1cee767d4eff';
+
 export type SiteConfig = typeof siteConfig;
 
 export function resolveSiteUrl(site?: URL): string {

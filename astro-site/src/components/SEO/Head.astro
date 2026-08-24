@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from '../../lib/config';
+import { cloudflareWebAnalyticsToken, siteConfig } from '../../lib/config';
 import SchemaOrg from './SchemaOrg.astro';
 import sharp, { type Metadata } from 'sharp';
 import { fileURLToPath } from 'node:url';
@@ -127,4 +127,10 @@ const imageMimeType = imageMetadata?.format
   <link rel="preload" href="/fonts/setofont.woff2" as="font" type="font/woff2" crossorigin />
 
   <SchemaOrg type={schemaType} data={schemaData} extraSchemas={extraSchemas} />
+  <script
+    type="module"
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={JSON.stringify({ token: cloudflareWebAnalyticsToken })}
+  ></script>
 </head>

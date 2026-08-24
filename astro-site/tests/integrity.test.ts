@@ -4,6 +4,7 @@ import { join, relative, sep } from 'node:path';
 import { load } from 'cheerio';
 import sharp from 'sharp';
 import { resolveSiteUrl } from '../src/lib/config';
+import { EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN } from '../scripts/production-smoke.mjs';
 
 const projectDir = join(__dirname, '..');
 const distDir = join(projectDir, 'dist');
@@ -182,6 +183,25 @@ describe('全站產物完整性', () => {
       expect(url.origin).toBe('https://www.misstravel.me');
       expect(url.pathname).toMatch(/^\//);
     });
+  });
+
+  it('全站只輸出 Cloudflare Web Analytics beacon，且不殘留 Vercel loader', () => {
+    htmlFiles().forEach((file) => {
+      const page = displayPath(file);
+      const html = readFileSync(file, 'utf-8');
+      const $ = load(html);
+      const beacons = $('script[data-cf-beacon]');
+
+      expect(beacons, page).toHaveLength(1);
+      expect(beacons.attr('src'), page)
+        .toBe('https://static.cloudflareinsights.com/beacon.min.js');
+      expect(JSON.parse(beacons.attr('data-cf-beacon') || '{}'), page)
+        .toEqual({ token: EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN });
+      expect(html, page).not.toContain('/_vercel/insights/script.js');
+    });
+
+    const astroConfig = readFileSync(join(projectDir, 'astro.config.mjs'), 'utf-8');
+    expect(astroConfig).not.toContain('webAnalytics');
   });
 
   it('resolveSiteUrl 應為 fallback 與 URL base 補上單一斜線', () => {

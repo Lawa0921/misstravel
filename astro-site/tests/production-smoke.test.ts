@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   assertHtmlPage,
-  assertAnalyticsScript,
+  assertCloudflareBeacon,
   assertNotFound,
   assertRedirect,
   assertRobots,
@@ -11,6 +13,7 @@ import {
   EXPECTED_SITEMAP_PATHS,
   jsonLdDocuments,
 } from '../scripts/production-smoke.mjs';
+import { EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN } from '../scripts/production-smoke.mjs';
 
 const canonical = 'https://www.misstravel.me/rooms/campsite_1/';
 
@@ -37,7 +40,19 @@ const videoHtml = `
   </script>
 `;
 
+const cloudflareBeaconHtml = `
+  <script type="module" defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='${JSON.stringify({ token: EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN })}'></script>
+`;
+
 describe('正式環境 smoke 檢查器', () => {
+  it('正式 homepage runner 必須傳入獨立 Cloudflare token 真值', () => {
+    const smokeSource = readFileSync(join(__dirname, '../scripts/production-smoke.mjs'), 'utf-8');
+    expect(smokeSource).toMatch(
+      /assertCloudflareBeacon\(body, EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN\)/,
+    );
+  });
+
   it('接受順序不同但完整的 canonical metadata 與 RoomCloud 連結', () => {
     expect(() => assertHtmlPage(validHtml, canonical, { requireBookingLink: true })).not.toThrow();
     expect(jsonLdDocuments(validHtml)).toHaveLength(1);
@@ -111,12 +126,24 @@ describe('正式環境 smoke 檢查器', () => {
       .toThrow(/noindex/);
   });
 
-  it('只接受 200 JavaScript 的 Vercel Analytics loader', () => {
-    expect(() => assertAnalyticsScript(200, 'application/javascript; charset=utf-8'))
+  it('只接受 Cloudflare Web Analytics beacon contract', () => {
+    expect(() => assertCloudflareBeacon(
+      cloudflareBeaconHtml,
+      EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN,
+    ))
       .not.toThrow();
-    expect(() => assertAnalyticsScript(404, 'text/html; charset=utf-8'))
-      .toThrow(/200/);
-    expect(() => assertAnalyticsScript(200, 'text/html; charset=utf-8'))
-      .toThrow(/JavaScript/);
+    expect(() => assertCloudflareBeacon(
+      cloudflareBeaconHtml.replace('cloudflareinsights.com/beacon.min.js', 'example.com/beacon.js'),
+    )).toThrow(/beacon/);
+    expect(() => assertCloudflareBeacon(
+      cloudflareBeaconHtml.replace(
+        EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN,
+        '00000000000000000000000000000000',
+      ),
+      EXPECTED_CLOUDFLARE_WEB_ANALYTICS_TOKEN,
+    )).toThrow(/token/);
+    expect(() => assertCloudflareBeacon(
+      cloudflareBeaconHtml.replace('data-cf-beacon=', 'data-cf-beacon="not-json" '),
+    )).toThrow(/JSON/);
   });
 });
