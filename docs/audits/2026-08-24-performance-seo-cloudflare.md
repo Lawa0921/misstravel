@@ -11,13 +11,13 @@
 
 - PR#53 明確採用 **Cloudflare Web Analytics manual beacon**，維持 DNS-only、不改 proxy。2026-08-24 API 查核證實既有唯一 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`；DNS-only 使 automatic injection 無法作用，因此由 code 加入 manual beacon。曾一度嘗試改為 false 造成 lite 副作用，平台已完整還原原狀，最終沒有 Cloudflare setting、DNS 或 proxy change。
 - 已實作：共用 Head beacon、`vercel.json` 的 Cloudflare `script-src`/`connect-src` CSP、Cloudflare homepage contract smoke，並移除 Astro/Vercel Analytics injection；另有 VideoObject 真值、JSON Feed URL fallback、production video/404 gate、36 張 `480×360` quality-80 WebP thumbnails 與 gallery payload/integrity tests。
-- PR#53 已 merge/deploy；本次新增 browser gate 尚未部署，deployment 後仍需確認 gate 與 Cloudflare dashboard 延遲收數。未讀取或提交任何 Cloudflare API credential。
+- PR#53、browser gate PR#54 與 manual site token PR#55 均已 merge/deploy；Cloudflare API credential 未提交至 repo。
 - Node production smoke 保留 homepage HTML beacon source、module type 與 token contract；本次 gate PR 另在 production deployment workflow 加入 Chromium browser ingestion gate，驗證真實 POST/response/CORS，不把 HTML 當成平台收數成功。
 - PR#53 部署後既有 Node smoke 綠燈，但 production RUM endpoint 的 HTTP probe 觀察到 `404`；Chromium 實際 `POST https://cloudflareinsights.com/cdn-cgi/rum` 因 CORS 沒有可讀 response 並觸發 `requestfailed`。同一 browser gate 在 Cloudflare 官方測試站收到 `2xx`，因此問題落在本站 production site/token 平台狀態，不是瀏覽器能力。本次 gate PR 新增 deployment-only browser gate，會把缺 POST、非 `2xx`、requestfailed/CORS、重複 POST、錯 token、beacon JS 非 `200` 與 deployed CSP origin 缺失判為失敗。
-- 平台後續仍需 owner 在 Dashboard 將 automatic zone site 轉為 manual hostname；EU lite/privacy 行為需 owner 另行決策。本次 gate PR 不改 Cloudflare platform setting、DNS、proxy 或 token。
+- Cloudflare API 拒絕把既有 automatic zone site 原地轉為 manual（`autoInstallRequired`），因此保留舊 site/history，另建 `auto_install=false`、host `misstravel.me` 的 manual site；PR#55 將共用 public site token 切到新 site。manual site 沒有舊 automatic site 的 `lite` ruleset，這是需知悉的 privacy 行為差異；DNS 與 proxy 未改。
 - 不變條件：DNS-only 時保留 manual beacon；未來若改為 proxy，automatic injection 與 manual beacon 必須二選一，不能同時啟用。
 - 新增 36 張衍生縮圖，原始 `public/images/galleries/gallery_*.webp` 未修改；lightbox anchor 與 ImageGallery JSON-LD 仍指向原圖。
-- 本地驗證（尚未部署）：Cloudflare evaluator 22/22、`npm run verify` 208/208、`npm run test:e2e` 6/6。現網 browser gate 依預期以 `RUM response 0`/`net::ERR_FAILED` CORS fail；另有 endpoint HTTP probe `404` 證據，但不混入 browser evidence。
+- 最終驗證：Cloudflare evaluator 22/22、`npm run verify` 208/208、`npm run test:e2e` 6/6；PR#55 production browser gate 與獨立本機 Chromium 均為單一 POST、HTTP `204`、無 request failure。Cloudflare GraphQL 已在新 site tag 查到 `www.misstravel.me` `/` 的 3 筆 page load groups。
 
 ## 一頁結論（remediation 前快照）
 
@@ -45,7 +45,7 @@ Remediation 前公開證據可以證明「網站訪問」沒有任何可工作�
 - **高機率**：符合官方故障條件，但需要平台後台才能確認。
 - **待確認**：需要 Search Console、Cloudflare/Vercel 帳號或歷史 zone audit log。
 
-Dashboard 與 Search Console 仍未在本工作流驗證，因此無法宣稱瀏覽器 view 已入帳；但 2026-08-24 API 查核已證實既有唯一 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`。DNS-only 使 automatic injection 無法作用，故修正集中在 code manual beacon；曾一度嘗試改 false 造成 lite 副作用後已完整還原，最終沒有 Cloudflare setting、DNS 或 proxy change。Repo remediation 前歷史從未出現 Cloudflare beacon，且 2026-02-04 起曾有 Vercel adapter 的 `webAnalytics.enabled`；停止記錄的精確歷史事件不能由公開資料反推。
+Remediation 前的 API 查核證實既有 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`。DNS-only 使 automatic injection 無法作用，故 PR#53 先加入 code manual beacon；PR#55 再切到新建的 manual hostname site。最終 browser gate 收到 `204`，Cloudflare GraphQL 也已證實 view 入帳；Search Console 與舊資料停止記錄的精確歷史事件仍不能由本工作流反推。
 
 另有一個重要限制：目前 production 與 worktree 不是同一份可辨識的頁面 artifact。Current source/本機 build 有首頁 `StayChoices`，production 沒有，CSS hash 也不同。以下 production 量測代表線上版本，不可直接當成目前 source 修改後的結果。
 
@@ -104,7 +104,7 @@ Dashboard 與 Search Console 仍未在本工作流驗證，因此無法宣稱瀏
 
 ### Remediation 後狀態
 
-**PR#53 已切換至 Cloudflare Web Analytics manual beacon。** 2026-08-24 API 查核證實既有唯一 site 原狀為 `auto_install=true`、`enabled=true`、`lite=true`（site tag 如上）；DNS-only 使 automatic injection 無法作用，因此 code 改加 manual beacon。曾一度嘗試改 false 造成 lite 副作用後已完整還原，最終沒有 Cloudflare setting、DNS 或 proxy change。public site token 已加入共用 Head；本次 gate PR 以 TDD 鎖定 beacon、CSP、Node HTML contract 與 deployment-only browser ingestion contract，並移除 Vercel injection。
+**PR#53 已加入 Cloudflare Web Analytics manual beacon；PR#54/#55 已完成真實 ingestion gate 與 manual site token 切換。** 舊 automatic site 保留歷史且未改；新 manual site 綁定 `misstravel.me`。public site token 由共用設定供 Head 與 smoke 使用；deployment-only browser gate 以 TDD 鎖定 beacon、CSP、單一 POST、`2xx` response 與無 CORS/request failure，Vercel injection 已移除。
 
 Manual beacon 適合在需要 Cloudflare Web Analytics dashboard、同時維持 DNS-only 時使用；PR#53 已採此路線。只為 page views 把 DNS 改成 proxied 會同時引入 CDN/cache/TLS/redirect 行為變化，範圍遠大於必要修復。
 
@@ -285,7 +285,7 @@ remediation 前調查沒有修改價格、訂房/付款流程、營運規則、�
 ## 建議執行順序
 
 1. PR#53 已依 API 查核的既有 site 原狀，透過失敗測試鎖住 beacon/CSP/homepage contract；DNS-only 下由 code 加 manual beacon，Vercel injection 已移除。
-2. 本次 browser gate 會在 production deployment 後自動執行，也可用 `workflow_dispatch` 人工重跑；gate 轉綠前 prerequisite 是 owner 完成 Dashboard 的 automatic zone site → manual hostname conversion，並決定 EU lite/privacy 行為。完成平台 conversion、privacy decision 後維持 DNS-only 部署，再以 browser network view request 與 Cloudflare dashboard 延遲收數驗證 ingestion；local HTML gate 不單獨宣稱收數成功。
+2. Browser gate 會在 production deployment 後自動執行，也可用 `workflow_dispatch` 人工重跑；PR#55 已以 manual hostname site 讓 gate 轉綠，並由 Cloudflare GraphQL確認入帳。未來若改成 proxied，須先移除 code manual beacon 或停用 automatic injection，避免雙算。
 3. `/galleries/` 的 36 張 responsive thumbnails 已在 PR#53 導入；以現有 Playwright/integrity payload budget 驗證，並保留 lightbox 的原圖需求。`/rooms/` 仍待另案評估。
 4. Search Console 驗證輪播圖片後，才決定是否改完整 `src` 輸出；Feed fallback 已在 PR#53 修正。
 
