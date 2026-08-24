@@ -70,32 +70,6 @@ test('圖集 Lightbox 應支援方向鍵、Escape 與焦點返回', async ({ pag
   await expect(firstImageLink).toBeFocused();
 });
 
-test('圖集縮圖 network-idle payload 應低於 1 MiB', async ({ page }) => {
-  const responseReads: Promise<void>[] = [];
-  let thumbnailBytes = 0;
-
-  page.on('response', (response) => {
-    const url = new URL(response.url());
-    if (
-      url.origin !== 'http://127.0.0.1:4334'
-      || !url.pathname.startsWith('/images/galleries/thumbs/')
-    ) return;
-
-    responseReads.push(
-      response.body()
-        .then((body) => { thumbnailBytes += body.byteLength; })
-        .catch(() => undefined),
-    );
-  });
-
-  await page.goto('/galleries/', { waitUntil: 'networkidle' });
-  await Promise.all(responseReads);
-
-  console.log(`gallery thumbnail payload: ${(thumbnailBytes / 1024 / 1024).toFixed(2)} MB`);
-  expect(thumbnailBytes).toBeGreaterThan(0);
-  expect(thumbnailBytes).toBeLessThan(1 * 1024 * 1024);
-});
-
 test('柑仔店 Modal 關閉後應恢復焦點與頁面捲動', async ({ page }) => {
   await page.goto('/sale_items/');
 

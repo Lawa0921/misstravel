@@ -112,7 +112,7 @@ describe('全站產物完整性', () => {
     expect(schemaCount).toBeGreaterThanOrEqual(htmlFiles().length);
   });
 
-  it('圖集應用 36 張縮圖載入、原圖連結與原圖 ImageGallery schema', async () => {
+  it('圖集應直接呈現 36 張原圖', () => {
     const galleryPath = join(distDir, 'galleries', 'index.html');
     const $ = load(readFileSync(galleryPath, 'utf-8'));
     const links = $('[data-lightbox="photos"]');
@@ -123,7 +123,7 @@ describe('全站產物完整性', () => {
       const number = index + 1;
       expect($(element).attr('href')).toBe(`/images/galleries/gallery_${number}.webp`);
       expect($(element).find('img').attr('src'))
-        .toBe(`/images/galleries/thumbs/gallery_${number}.webp`);
+        .toBe(`/images/galleries/gallery_${number}.webp`);
     });
 
     const schemas = $('script[type="application/ld+json"]')
@@ -139,21 +139,6 @@ describe('全站產物完整性', () => {
       );
     });
 
-    let totalThumbnailBytes = 0;
-    for (let number = 1; number <= 36; number += 1) {
-      const sourcePath = join(publicDir, 'images', 'galleries', `gallery_${number}.webp`);
-      const thumbPath = join(publicDir, 'images', 'galleries', 'thumbs', `gallery_${number}.webp`);
-      expect(existsSync(thumbPath), `missing gallery thumbnail ${number}`).toBe(true);
-
-      const thumbnail = await sharp(thumbPath).metadata();
-      expect(thumbnail.width, `thumbnail ${number} width`).toBe(480);
-      expect(thumbnail.height, `thumbnail ${number} height`).toBe(360);
-      const thumbnailBytes = readFileSync(thumbPath).byteLength;
-      totalThumbnailBytes += thumbnailBytes;
-      expect(thumbnailBytes, `thumbnail ${number} bytes`)
-        .toBeLessThan(readFileSync(sourcePath).byteLength);
-    }
-    expect(totalThumbnailBytes).toBeLessThan(1 * 1024 * 1024);
   });
 
   it('sitemap、robots 與 feeds 不得殘留裸網域', () => {
