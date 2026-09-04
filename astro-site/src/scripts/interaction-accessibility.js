@@ -37,6 +37,11 @@
   function activateDialog(dialog, trigger) {
     if (!(dialog instanceof HTMLElement)) return;
     prepareDialog(dialog);
+    dialog.querySelectorAll('img[data-src]').forEach((image) => {
+      if (!(image instanceof HTMLImageElement)) return;
+      image.src = image.dataset.src;
+      delete image.dataset.src;
+    });
 
     if (activeDialog !== dialog) {
       returnFocus = trigger instanceof HTMLElement ? trigger : document.activeElement;
