@@ -52,26 +52,6 @@ const relatedRooms = allRooms
   })
   .slice(0, 3);
 
-const roomUrl = `${siteConfig.url}/rooms/${room.id.replace('.md', '')}/`;
-const productSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: room.data.title,
-  description: room.data.metaDescription || room.data.description,
-  image: carouselImages.map((img) => `${siteConfig.url}${img}`),
-  url: roomUrl,
-  brand: {
-    '@type': 'Brand',
-    name: '密式旅行',
-  },
-  offers: {
-    '@type': 'AggregateOffer',
-    priceCurrency: 'TWD',
-    lowPrice: room.data.weekdayPrice,
-    highPrice: room.data.standardPrice,
-    url: roomUrl,
-  },
-};
 ---
 
 <BaseLayout
@@ -81,7 +61,6 @@ const productSchema = {
   image={room.data.mainImage}
   preloadImage={carouselImages[0]}
   schemaType="LocalBusiness"
-  extraSchemas={[productSchema]}
 >
   <main id="main" class="alt">
     <div class="inner">
@@ -154,6 +133,18 @@ const productSchema = {
           </div>
         </div>
       </div>
+      <noscript class="carousel-noscript">
+        {carouselImages.slice(2).map((image, index) => (
+          <img
+            src={image}
+            alt={`${room.data.shortTitle} 圖片 ${index + 3}`}
+            loading="lazy"
+            decoding="async"
+            width="900"
+            height="675"
+          />
+        ))}
+      </noscript>
 
       <!-- Action Buttons -->
       <div class="action-buttons">

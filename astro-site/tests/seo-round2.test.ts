@@ -109,32 +109,20 @@ describe('4. 404 頁面 noindex', () => {
   });
 });
 
-// 5. Product schema 應包含 url、brand，且不捏造即時庫存
-describe('5. 房間 Product schema', () => {
-  it('Product schema 應包含 url', () => {
+// 5. 房型頁只描述住宿商家，不捏造可購買商品/庫存
+describe('5. 房型頁結構化資料', () => {
+  it('不應輸出與即時庫存無關的 Product/AggregateOffer schema', () => {
     const $ = readPage('rooms/suite_1/index.html');
     const schemas = getJsonLd($);
-    const product = schemas.find((s) => s['@type'] === 'Product');
-    expect(product).toBeDefined();
-    expect(product.url).toContain('/rooms/suite_1/');
+    expect(schemas.some((schema) => schema['@type'] === 'Product')).toBe(false);
+    expect(schemas.some((schema) => schema['@type'] === 'AggregateOffer')).toBe(false);
   });
 
-  it('Product schema 應包含 brand', () => {
+  it('應保留住宿商家與麵包屑 schema', () => {
     const $ = readPage('rooms/suite_1/index.html');
     const schemas = getJsonLd($);
-    const product = schemas.find((s) => s['@type'] === 'Product');
-    expect(product.brand).toBeDefined();
-    expect(product.brand['@type']).toBe('Brand');
-    expect(product.brand.name).toBe('密式旅行');
-  });
-
-  it('Product schema offers 應包含 url，但不應宣告固定有庫存', () => {
-    const $ = readPage('rooms/suite_1/index.html');
-    const schemas = getJsonLd($);
-    const product = schemas.find((s) => s['@type'] === 'Product');
-    expect(product.offers.availability).toBeUndefined();
-    expect(product.offers.offerCount).toBeUndefined();
-    expect(product.offers.url).toContain('/rooms/suite_1/');
+    expect(schemas.some((schema) => schema['@type'] === 'LodgingBusiness')).toBe(true);
+    expect(schemas.some((schema) => schema['@type'] === 'BreadcrumbList')).toBe(true);
   });
 });
 
@@ -173,8 +161,8 @@ describe('7. JSON-LD 在 head 內', () => {
   it('房間頁的 JSON-LD 應在 <head> 內', () => {
     const $ = readPage('rooms/suite_1/index.html');
     const headSchemas = getHeadJsonLd($);
-    const product = headSchemas.find((s) => s['@type'] === 'Product');
-    expect(product).toBeDefined();
+    expect(headSchemas.some((schema) => schema['@type'] === 'LodgingBusiness')).toBe(true);
+    expect(headSchemas.some((schema) => schema['@type'] === 'Product')).toBe(false);
   });
 
   it('body 內不應有 JSON-LD scripts', () => {

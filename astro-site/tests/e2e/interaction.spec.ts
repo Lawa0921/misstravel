@@ -179,6 +179,25 @@ test('柑仔店 Modal 關閉後應恢復焦點與頁面捲動', async ({ page })
   await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
 });
 
+test('交通指引只在開啟對應 modal 時載入圖片', async ({ page }) => {
+  const requestedImages: string[] = [];
+  page.on('request', (request) => {
+    const pathname = new URL(request.url()).pathname;
+    if (pathname.startsWith('/images/guide/')) requestedImages.push(pathname);
+  });
+
+  await page.goto('/infos/guide/', { waitUntil: 'networkidle' });
+  expect(requestedImages).toEqual([]);
+  await expect(page.locator('#guide_1 img[src]')).toHaveCount(0);
+  await expect(page.locator('#guide_2 img[src]')).toHaveCount(0);
+
+  await page.getByRole('button', { name: '經大湖市區' }).click();
+  await expect(page.locator('#guide_1')).toHaveClass(/active/);
+  await expect(page.locator('#guide_1 img[src]')).toHaveCount(12);
+  await expect(page.locator('#guide_2 img[src]')).toHaveCount(0);
+  expect(requestedImages.every((path) => path.includes('/guide_1_'))).toBe(true);
+});
+
 test('房型輪播應延後非相鄰圖片請求並維持 ARIA 與鍵盤操作', async ({ page }) => {
   const requestedImages: string[] = [];
   const responseReads: Promise<void>[] = [];

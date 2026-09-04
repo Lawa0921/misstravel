@@ -25,6 +25,16 @@ describe('1. 交通指引圖片 width/height', () => {
       expect($img.attr('height'), `missing height on ${$img.attr('src')}`).toBeDefined();
     });
   });
+
+  it('隱藏 guide modal 圖片應延後到開啟時才載入', () => {
+    const $ = readPage('infos/guide/index.html');
+    const imgs = $('.step-image img');
+    expect(imgs.length).toBe(27);
+    imgs.each((_, el) => {
+      expect($(el).attr('src')).toBeUndefined();
+      expect($(el).attr('data-src')).toMatch(/^\/images\/guide\/guide_[12]_\d+\.webp$/);
+    });
+  });
 });
 
 // 2. set-menu-info.astro 圖片 width/height + loading="lazy"

@@ -2,6 +2,8 @@
 import Head from '../components/SEO/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import interactionAccessibilityUrl from '../scripts/interaction-accessibility.js?url&no-inline';
+import motionEffectsUrl from '../scripts/motion-effects.js?url&no-inline';
 import '../styles/global.css';
 import '../styles/technical-hardening.css';
 import '../styles/motion-effects.css';
@@ -67,7 +69,7 @@ const {
 
       <Footer />
     </div>
-    <script is:inline src="/scripts/interaction-accessibility.js" defer></script>
-    <script is:inline src="/scripts/motion-effects.js" defer></script>
+    <script is:inline src={interactionAccessibilityUrl} defer></script>
+    <script is:inline src={motionEffectsUrl} defer></script>
   </body>
 </html>

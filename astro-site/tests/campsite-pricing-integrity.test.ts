@@ -17,13 +17,6 @@ function readPage(path: string) {
   return load(readFileSync(join(distDir, path), 'utf-8'));
 }
 
-function productSchema($: ReturnType<typeof load>) {
-  return $('script[type="application/ld+json"]')
-    .toArray()
-    .map((element) => JSON.parse($(element).html() || '{}'))
-    .find((schema) => schema['@type'] === 'Product');
-}
-
 describe('3 至 4 帳包區價格完整性', () => {
   it.each(campsiteSlugs)('%s 應維持四帳標準價格與三帳替代方案', (slug) => {
     const source = readRoomSource(slug);
@@ -67,15 +60,6 @@ describe('3 至 4 帳包區價格完整性', () => {
     expect(text).toContain('平日 3200 元、假日 4000 元、連續假日 4800 元');
     expect(text).toContain('3 帳包區（12 人以下）');
     expect(text).toContain('平日 2400 元、假日 3000 元、連續假日 3600 元');
-  });
-
-  it.each(campsiteSlugs)('%s Product schema 應維持四帳標準價，不把三帳誤標為標準價', (slug) => {
-    const $ = readPage(`rooms/${slug}/index.html`);
-    const schema = productSchema($);
-
-    expect(schema).toBeDefined();
-    expect(schema.offers.lowPrice).toBe(3200);
-    expect(schema.offers.highPrice).toBe(4800);
   });
 
   it('其他住宿卡片不應出現帳數計價提示', () => {

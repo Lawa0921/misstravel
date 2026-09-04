@@ -19,10 +19,17 @@ describe('全站技術強化', () => {
   it('所有頁面應載入共用互動控制器', () => {
     ['index.html', 'galleries/index.html', 'sale_items/index.html'].forEach((path) => {
       const $ = readDistPage(path);
-      const script = $('script[src="/scripts/interaction-accessibility.js"]');
+      const script = $('script[src^="/assets/interaction-accessibility."][src$=".js"]');
       expect(script.length, path).toBe(1);
       expect(script.attr('defer'), path).toBeDefined();
     });
+  });
+
+  it('所有頁面應載入雜湊後的共用 motion script', () => {
+    const $ = readDistPage('index.html');
+    const script = $('script[src^="/assets/motion-effects."][src$=".js"]');
+    expect(script.length).toBe(1);
+    expect(script.attr('defer')).toBeDefined();
   });
 
   it('首頁不得建立未使用的 Google Fonts 與 YouTube 連線', () => {
@@ -49,7 +56,7 @@ describe('全站技術強化', () => {
   });
 
   it('互動控制器必須能真正關閉 Dialog、恢復焦點與解除捲動鎖', () => {
-    const script = readFileSync(join(projectDir, 'public', 'scripts', 'interaction-accessibility.js'), 'utf-8');
+    const script = readFileSync(join(projectDir, 'src', 'scripts', 'interaction-accessibility.js'), 'utf-8');
 
     expect(script).toContain("dialog.classList.remove('active')");
     expect(script).toContain("dialog.setAttribute('aria-hidden', 'true')");
@@ -59,6 +66,21 @@ describe('全站技術強化', () => {
     expect(script).toContain("document.body.style.overflow = previousBodyOverflow");
     expect(script).toContain('}, true);');
     expect(script).toContain("control.setAttribute('aria-current'");
+    expect(script).toContain("dialog.querySelectorAll('img[data-src]')");
+  });
+
+  it('room carousel 應提供只含延遲圖片的無 JavaScript 備援', () => {
+    const $ = readDistPage('rooms/suite_1/index.html');
+    const fallback = $('noscript.carousel-noscript');
+    expect(fallback.length).toBe(1);
+    const fallback$ = load(fallback.text());
+    const fallbackImages = fallback$('img');
+    expect(fallbackImages).toHaveLength($('.carousel-slide img[data-src]').length);
+    expect(fallbackImages.length).toBeGreaterThan(0);
+    fallbackImages.each((_, element) => {
+      expect(fallback$(element).attr('src')).toBeDefined();
+      expect(fallback$(element).attr('data-src')).toBeUndefined();
+    });
   });
 
   it('主選單應在開啟時鎖定 Tab 焦點並於關閉後回到觸發按鈕', () => {

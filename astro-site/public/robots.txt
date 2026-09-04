@@ -16,9 +16,6 @@ Allow: /*.jpg$
 # Sitemap location
 Sitemap: https://www.misstravel.me/sitemap-index.xml
 
-# Crawl-delay for bots that support it
-Crawl-delay: 1
-
 # Bad bots block list
 User-agent: MJ12bot
 Disallow: /
