@@ -70,8 +70,13 @@ describe('搜尋資訊與舊網址一致性', () => {
 
   it('舊版 HTML 網址應永久轉到新路由', () => {
     const config = JSON.parse(readFileSync(join(rootDir, 'vercel.json'), 'utf-8'));
+    const redirectEntries = config.redirects as Array<{
+      source: string;
+      destination: string;
+      permanent: boolean;
+    }>;
     const redirects = new Map(
-      config.redirects.map((redirect: { source: string; destination: string; permanent: boolean }) => [redirect.source, redirect]),
+      redirectEntries.map((redirect) => [redirect.source, redirect]),
     );
 
     const required = {
@@ -79,6 +84,10 @@ describe('搜尋資訊與舊網址一致性', () => {
       '/infos.html': '/infos/',
       '/galleries.html': '/galleries/',
       '/sale_items.html': '/sale_items/',
+      '/infos/2022-10-06-roles.html': '/infos/roles/',
+      '/infos/2022-10-06-account.html': '/infos/account/',
+      '/infos/2022-10-06-set-menu-info.html': '/infos/set-menu-info/',
+      '/infos/2022-10-06-menu.html': '/infos/menu/',
       '/rooms/:slug.html': '/rooms/:slug/',
       '/infos/:slug.html': '/infos/:slug/',
       '/announcements/:slug.html': '/announcements/:slug/',
@@ -86,6 +95,19 @@ describe('搜尋資訊與舊網址一致性', () => {
 
     Object.entries(required).forEach(([source, destination]) => {
       expect(redirects.get(source)).toMatchObject({ destination, permanent: true });
+    });
+
+    const genericIndex = redirectEntries.findIndex(({ source }) => source === '/infos/:slug.html');
+    expect(genericIndex).toBeGreaterThanOrEqual(0);
+    [
+      '/infos/2022-10-06-roles.html',
+      '/infos/2022-10-06-account.html',
+      '/infos/2022-10-06-set-menu-info.html',
+      '/infos/2022-10-06-menu.html',
+    ].forEach((source) => {
+      const explicitIndex = redirectEntries.findIndex((redirect) => redirect.source === source);
+      expect(explicitIndex, `${source} must be an explicit redirect`).toBeGreaterThanOrEqual(0);
+      expect(explicitIndex, `${source} must precede the generic info redirect`).toBeLessThan(genericIndex);
     });
   });
 

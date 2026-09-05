@@ -7,6 +7,10 @@ export const LEGACY_REDIRECTS = {
   '/galleries.html': '/galleries/',
   '/sale_items.html': '/sale_items/',
   '/announcements.html': '/announcements/',
+  '/infos/2022-10-06-roles.html': '/infos/roles/',
+  '/infos/2022-10-06-account.html': '/infos/account/',
+  '/infos/2022-10-06-set-menu-info.html': '/infos/set-menu-info/',
+  '/infos/2022-10-06-menu.html': '/infos/menu/',
   '/rooms/campsite_1.html': '/rooms/campsite_1/',
   '/rooms/log_cabin_1.html': '/rooms/log_cabin_1/',
   '/rooms/suite_1.html': '/rooms/suite_1/',
@@ -50,12 +54,14 @@ export async function verifySitemapPages(origin = WWW_ORIGIN) {
 
 export async function verifyLegacyRedirects(origin = WWW_ORIGIN) {
   for (const [source, destination] of Object.entries(LEGACY_REDIRECTS)) {
-    const response = await request(`${origin}${source}`, { redirect: 'manual' });
+    const query = '?legacy_smoke=preserve';
+    const response = await request(`${origin}${source}${query}`, { redirect: 'manual' });
     invariant(response.status === 308, `${source} returned HTTP ${response.status}`);
     const location = response.headers.get('location');
     invariant(location, `${source} did not return Location`);
-    const actual = new URL(location, origin).pathname;
-    invariant(actual === destination, `${source} redirected to ${actual}, expected ${destination}`);
+    const actual = new URL(location, origin);
+    invariant(actual.pathname === destination, `${source} redirected to ${actual.pathname}, expected ${destination}`);
+    invariant(actual.search === query, `${source} did not preserve query ${query}`);
   }
   console.log(`✓ ${Object.keys(LEGACY_REDIRECTS).length} legacy URLs redirect correctly`);
 }
