@@ -16,6 +16,7 @@
       "destination": "https://www.misstravel.me/:path*",
       "permanent": true
     },
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
     { "source": "/rooms.html", "destination": "/rooms/", "permanent": true },
     { "source": "/infos.html", "destination": "/infos/", "permanent": true },
     { "source": "/galleries.html", "destination": "/galleries/", "permanent": true },
