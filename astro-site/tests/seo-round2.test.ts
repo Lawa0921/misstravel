@@ -90,6 +90,19 @@ describe('3. LodgingBusiness 結構化資料', () => {
     expect(lodging.numberOfRooms).toBeUndefined();
   });
 
+  it('應以 sameAs 連結官方社群與 Google 地圖，供搜尋引擎辨識品牌實體', () => {
+    const $ = readPage('index.html');
+    const schemas = getJsonLd($);
+    const lodging = schemas.find((s) => s['@type'] === 'LodgingBusiness');
+    expect(lodging.sameAs).toEqual(
+      expect.arrayContaining([
+        'https://www.facebook.com/misstravel0921',
+        'https://www.instagram.com/misstravel_miaoli',
+        'https://www.google.com/maps?cid=9727131956713515891',
+      ]),
+    );
+  });
+
   it('應包含 amenityFeature', () => {
     const $ = readPage('index.html');
     const schemas = getJsonLd($);

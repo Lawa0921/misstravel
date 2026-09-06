@@ -27,6 +27,7 @@ export const siteConfig = {
   socials: {
     facebook: 'https://www.facebook.com/misstravel0921',
     instagram: 'https://www.instagram.com/misstravel_miaoli',
+    googleMaps: 'https://www.google.com/maps?cid=9727131956713515891',
     github: 'https://github.com/Lawa0921/misstravel',
   },
 

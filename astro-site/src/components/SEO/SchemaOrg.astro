@@ -9,17 +9,21 @@ interface Props {
 
 const { type, data = {}, extraSchemas = [] } = Astro.props;
 
+// 官方社群與 Google 商家地圖，讓搜尋引擎把品牌實體對應到本站
+const sameAs = [
+  siteConfig.socials.facebook,
+  siteConfig.socials.instagram,
+  siteConfig.socials.googleMaps,
+  siteConfig.contact.lineUrl,
+];
+
 const baseOrganization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: siteConfig.author,
   url: siteConfig.url,
   logo: `${siteConfig.url}${siteConfig.logo}`,
-  sameAs: [
-    siteConfig.socials.facebook,
-    siteConfig.socials.instagram,
-    siteConfig.contact.lineUrl,
-  ],
+  sameAs,
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: siteConfig.contact.phone,
@@ -35,6 +39,7 @@ const localBusiness = {
   name: siteConfig.author,
   description: siteConfig.description,
   url: siteConfig.url,
+  sameAs,
   telephone: siteConfig.contact.phone,
   email: siteConfig.contact.email,
   address: {

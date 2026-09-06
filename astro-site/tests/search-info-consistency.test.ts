@@ -80,6 +80,7 @@ describe('搜尋資訊與舊網址一致性', () => {
     );
 
     const required = {
+      '/sitemap.xml': '/sitemap-index.xml',
       '/rooms.html': '/rooms/',
       '/infos.html': '/infos/',
       '/galleries.html': '/galleries/',
