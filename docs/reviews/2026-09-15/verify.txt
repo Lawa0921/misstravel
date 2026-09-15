@@ -58,7 +58,7 @@ tests/seo-round4.test.ts:89:11 - warning ts(6133): '$' is declared but its value
 89     const $ = readPage('infos/index.html');
              ~
 
-Result (60 files): 
+Result (60 files):
 - 0 errors
 - 0 warnings
 - 6 hints
@@ -92,35 +92,35 @@ Result (60 files):
 13:15:21 [vite] ✓ built in 54ms
 13:15:21 [build] Rearranging server assets...
 
- generating static routes 
-13:15:21   ├─ /404.html (+11ms) 
-13:15:21   ├─ /announcements/index.html (+4ms) 
-13:15:21   ├─ /announcements/website/index.html (+3ms) 
-13:15:21   ├─ /feed.json (+2ms) 
-13:15:21   ├─ /feed.xml (+24ms) 
-13:15:21   ├─ /galleries/index.html (+3ms) 
-13:15:21   ├─ /infos/guide/index.html (+3ms) 
-13:15:21   ├─ /infos/set-menu-info/index.html (+3ms) 
-13:15:21   ├─ /infos/index.html (+5ms) 
-13:15:21   ├─ /infos/account/index.html (+3ms) 
-13:15:21   ├─ /infos/contact-method/index.html (+3ms) 
-13:15:21   ├─ /infos/map/index.html (+2ms) 
-13:15:21   ├─ /infos/menu/index.html (+2ms) 
-13:15:21   ├─ /infos/roles/index.html (+2ms) 
-13:15:21   ├─ /infos/video/index.html (+1ms) 
-13:15:21   ├─ /rooms/index.html (+5ms) 
-13:15:21   ├─ /rooms/campsite_1/index.html (+6ms) 
-13:15:21   ├─ /rooms/campsite_2/index.html (+3ms) 
-13:15:21   ├─ /rooms/campsite_3/index.html (+2ms) 
-13:15:21   ├─ /rooms/log_cabin_1/index.html (+3ms) 
-13:15:21   ├─ /rooms/log_cabin_2/index.html (+1ms) 
-13:15:21   ├─ /rooms/log_cabin_3/index.html (+2ms) 
-13:15:21   ├─ /rooms/log_cabin_4/index.html (+2ms) 
-13:15:21   ├─ /rooms/suite_1/index.html (+2ms) 
-13:15:21   ├─ /rooms/suite_2/index.html (+3ms) 
-13:15:21   ├─ /rooms/suite_3/index.html (+4ms) 
-13:15:21   ├─ /sale_items/index.html (+4ms) 
-13:15:21   ├─ /index.html (+3ms) 
+ generating static routes
+13:15:21   ├─ /404.html (+11ms)
+13:15:21   ├─ /announcements/index.html (+4ms)
+13:15:21   ├─ /announcements/website/index.html (+3ms)
+13:15:21   ├─ /feed.json (+2ms)
+13:15:21   ├─ /feed.xml (+24ms)
+13:15:21   ├─ /galleries/index.html (+3ms)
+13:15:21   ├─ /infos/guide/index.html (+3ms)
+13:15:21   ├─ /infos/set-menu-info/index.html (+3ms)
+13:15:21   ├─ /infos/index.html (+5ms)
+13:15:21   ├─ /infos/account/index.html (+3ms)
+13:15:21   ├─ /infos/contact-method/index.html (+3ms)
+13:15:21   ├─ /infos/map/index.html (+2ms)
+13:15:21   ├─ /infos/menu/index.html (+2ms)
+13:15:21   ├─ /infos/roles/index.html (+2ms)
+13:15:21   ├─ /infos/video/index.html (+1ms)
+13:15:21   ├─ /rooms/index.html (+5ms)
+13:15:21   ├─ /rooms/campsite_1/index.html (+6ms)
+13:15:21   ├─ /rooms/campsite_2/index.html (+3ms)
+13:15:21   ├─ /rooms/campsite_3/index.html (+2ms)
+13:15:21   ├─ /rooms/log_cabin_1/index.html (+3ms)
+13:15:21   ├─ /rooms/log_cabin_2/index.html (+1ms)
+13:15:21   ├─ /rooms/log_cabin_3/index.html (+2ms)
+13:15:21   ├─ /rooms/log_cabin_4/index.html (+2ms)
+13:15:21   ├─ /rooms/suite_1/index.html (+2ms)
+13:15:21   ├─ /rooms/suite_2/index.html (+3ms)
+13:15:21   ├─ /rooms/suite_3/index.html (+4ms)
+13:15:21   ├─ /sale_items/index.html (+4ms)
+13:15:21   ├─ /index.html (+3ms)
 13:15:21 ✓ Completed in 195ms.
 
 13:15:21 [build] ✓ Completed in 569ms.
@@ -158,4 +158,3 @@ Result (60 files):
       Tests  233 passed (233)
    Start at  13:15:19
    Duration  2.76s (transform 1.97s, setup 0ms, import 7.75s, tests 2.82s, environment 3ms)
-
