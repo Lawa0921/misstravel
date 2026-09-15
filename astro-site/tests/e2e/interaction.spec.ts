@@ -268,3 +268,32 @@ test.describe('減少動畫的真實鍵盤流程', () => {
     await expect(photo).toBeFocused();
   });
 });
+
+
+test('圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點', async ({ page }) => {
+  await page.goto('/galleries/');
+  const result = await page.evaluate(async () => {
+    const trigger = document.querySelector<HTMLAnchorElement>('[data-lightbox="photos"]')!;
+    const dialog = document.getElementById('lightbox')!;
+    trigger.focus();
+    const originalRaf = window.requestAnimationFrame;
+    const callbacks: FrameRequestCallback[] = [];
+    window.requestAnimationFrame = (callback) => { callbacks.push(callback); return callbacks.length; };
+    try {
+      trigger.click();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      const wasOpen = dialog.classList.contains('active');
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      const wasClosed = !dialog.classList.contains('active');
+      window.requestAnimationFrame = originalRaf;
+      callbacks.forEach((callback) => callback(performance.now()));
+      return { wasOpen, wasClosed, callbacks: callbacks.length, restored: document.activeElement === trigger };
+    } finally {
+      window.requestAnimationFrame = originalRaf;
+    }
+  });
+  expect(result.wasOpen).toBe(true);
+  expect(result.wasClosed).toBe(true);
+  expect(result.callbacks).toBeGreaterThan(0);
+  expect(result.restored).toBe(true);
+});

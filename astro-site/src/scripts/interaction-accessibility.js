@@ -54,6 +54,8 @@
     document.body.style.overflow = 'hidden';
 
     requestAnimationFrame(() => {
+      // A queued open callback must never steal restored focus after closing.
+      if (activeDialog !== dialog || !dialog.classList.contains('active')) return;
       const focusables = visibleFocusableElements(dialog);
       (focusables[0] || dialog).focus({ preventScroll: true });
     });
