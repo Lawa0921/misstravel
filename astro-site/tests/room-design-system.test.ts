@@ -19,13 +19,15 @@ describe('房型頁編輯式設計契約', () => {
     expect($('.room-card h2')).toHaveLength(0);
   });
 
-  it('分類錨點是可觸控的 pill，且使用房型頁專屬設計 token', () => {
+  it('分類錨點是可觸控的 pill，且共用全站深色設計 token', () => {
     const source = readFileSync(join(projectDir, 'src/pages/rooms/index.astro'), 'utf-8');
 
     expect(source).toContain('min-height: 44px');
-    expect(source).toContain('--room-navy: #242943');
-    expect(source).toContain('--room-champagne:');
-    expect(source).toContain('--room-aqua:');
+    expect(source).toContain('background: var(--color-bg)');
+    expect(source).toContain('background: var(--color-surface)');
+    expect(source).not.toContain('--room-');
+    expect(source).toContain('var(--color-champagne)');
+    expect(source).toContain('var(--color-aqua)');
     expect(source).toContain('prefers-reduced-motion: reduce');
   });
 

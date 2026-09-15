@@ -235,13 +235,8 @@ const relatedRooms = allRooms
 
 <style>
   #main.alt {
-    --room-navy: #242943;
-    --room-deep: #171b32;
-    --room-paper: #f8f4ec;
-    --room-champagne: #e8c982;
-    --room-aqua: #9bf1ff;
-    background: linear-gradient(180deg, var(--room-navy) 0%, var(--room-deep) 100%);
-    color: var(--room-paper);
+    background: var(--color-bg);
+    color: var(--color-paper);
     padding: 6.5rem 0 0;
   }
 
@@ -259,7 +254,7 @@ const relatedRooms = allRooms
     max-width: 100%;
     text-wrap: balance;
     margin: 0;
-    color: var(--room-paper);
+    color: var(--color-paper);
     font-size: clamp(2rem, 5vw, 3.8rem);
     line-height: 1.18;
     letter-spacing: 0.08em;
@@ -275,13 +270,13 @@ const relatedRooms = allRooms
     padding: 1.15rem 1.25rem;
     border: 1px solid rgba(232, 201, 130, 0.42);
     border-radius: 0.9rem;
-    background: rgba(248, 244, 236, 0.07);
+    background: var(--color-surface);
     box-shadow: 0 1rem 2.5rem rgba(8, 10, 24, 0.18);
   }
 
   .summary-kicker {
     grid-column: 1 / -1;
-    color: var(--room-champagne);
+    color: var(--color-champagne);
     font-size: 0.68rem;
     letter-spacing: 0.2em;
   }
@@ -299,21 +294,21 @@ const relatedRooms = allRooms
     padding: 0.3rem 0.7rem;
     border: 1px solid rgba(155, 241, 255, 0.42);
     border-radius: 999px;
-    color: var(--room-aqua);
+    color: var(--color-aqua);
     font-weight: 600;
   }
 
   .summary-fact strong {
-    color: var(--room-champagne);
+    color: var(--color-champagne);
     font-weight: 600;
   }
 
   .summary-alternative {
-    color: var(--room-aqua);
+    color: var(--color-aqua);
   }
 
   .summary-alternative strong {
-    color: var(--room-aqua);
+    color: var(--color-aqua);
   }
 
   .availability-cta {
@@ -322,10 +317,10 @@ const relatedRooms = allRooms
     align-items: center;
     justify-content: center;
     padding: 0.7rem 1.15rem;
-    border: 1px solid var(--room-champagne);
+    border: 1px solid var(--color-aqua);
     border-radius: 999px;
-    background: var(--room-champagne);
-    color: var(--room-deep);
+    background: var(--color-aqua);
+    color: var(--color-bg);
     font-weight: 700;
     letter-spacing: 0.1em;
     transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
@@ -333,14 +328,14 @@ const relatedRooms = allRooms
 
   .availability-cta:hover,
   .availability-cta:focus-visible {
-    border-color: var(--room-aqua);
-    background: var(--room-aqua);
-    color: var(--room-deep);
+    border-color: var(--color-paper);
+    background: var(--color-paper);
+    color: var(--color-bg);
   }
 
   #main-content {
-    background: var(--room-paper);
-    color: var(--room-deep);
+    background: var(--color-bg);
+    color: var(--color-paper);
     padding: 3.5rem 0 5rem;
   }
 
@@ -356,12 +351,12 @@ const relatedRooms = allRooms
     align-items: start;
     margin-bottom: 2.25rem;
     padding: 1.25rem 1.35rem;
-    border-left: 3px solid var(--room-champagne);
-    background: #eee7d9;
+    border-left: 3px solid var(--color-champagne);
+    background: var(--color-surface);
   }
 
   .notice-mark {
-    color: #71501c;
+    color: var(--color-champagne);
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -369,7 +364,7 @@ const relatedRooms = allRooms
 
   .eyebrow {
     margin: 0 0 0.45rem;
-    color: #71501c;
+    color: var(--color-champagne);
     font-size: 0.7rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -377,7 +372,7 @@ const relatedRooms = allRooms
 
   .notice-title {
     margin: 0;
-    color: var(--room-deep);
+    color: var(--color-paper);
     font-size: clamp(1rem, 2vw, 1.3rem);
     line-height: 1.65;
   }
@@ -389,15 +384,15 @@ const relatedRooms = allRooms
   .carousel {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(36, 41, 67, 0.2);
+    border: 1px solid var(--color-border);
     border-radius: 1rem;
-    background: #ddd7ca;
+    background: var(--color-bg);
     box-shadow: 0 1.5rem 3.5rem rgba(36, 41, 67, 0.15);
     outline: none;
   }
 
   .carousel:focus-visible {
-    box-shadow: 0 0 0 3px var(--room-aqua), 0 1.5rem 3.5rem rgba(36, 41, 67, 0.15);
+    box-shadow: 0 0 0 3px var(--color-aqua), 0 1.5rem 3.5rem rgba(36, 41, 67, 0.15);
   }
 
   .carousel-track {
@@ -428,7 +423,7 @@ const relatedRooms = allRooms
     border: 1px solid rgba(248, 244, 236, 0.7);
     border-radius: 50%;
     background: rgba(23, 27, 50, 0.7);
-    color: var(--room-paper);
+    color: var(--color-paper);
     cursor: pointer;
     transform: translateY(-50%);
     transition: background 180ms ease, color 180ms ease;
@@ -436,8 +431,8 @@ const relatedRooms = allRooms
 
   .carousel-btn:hover,
   .carousel-btn:focus-visible {
-    background: var(--room-aqua);
-    color: var(--room-deep);
+    background: var(--color-aqua);
+    color: var(--color-bg);
   }
 
   .carousel-btn.prev { left: 1rem; }
@@ -470,8 +465,8 @@ const relatedRooms = allRooms
 
   .dot.active,
   .dot[aria-current='true'] {
-    border-color: var(--room-champagne);
-    background: var(--room-champagne);
+    border-color: var(--color-champagne);
+    background: var(--color-champagne);
   }
 
   .carousel-noscript {
@@ -500,9 +495,9 @@ const relatedRooms = allRooms
     align-items: center;
     justify-content: center;
     padding: 0.7rem 1.2rem;
-    border: 1px solid var(--room-navy);
+    border: 1px solid var(--color-aqua);
     border-radius: 999px;
-    color: var(--room-navy);
+    color: var(--color-aqua);
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -511,20 +506,21 @@ const relatedRooms = allRooms
 
   .btn-action:hover,
   .btn-action:focus-visible {
-    background: var(--room-navy);
-    color: var(--room-paper);
+    background: var(--color-aqua);
+    color: var(--color-bg);
   }
 
   .btn-action.special {
-    border-color: var(--room-navy);
-    background: var(--room-navy);
-    color: var(--room-paper);
+    border-color: var(--color-aqua);
+    background: var(--color-aqua);
+    color: var(--color-bg);
   }
 
   .btn-action.special:hover,
   .btn-action.special:focus-visible {
-    border-color: #176f80;
-    background: #176f80;
+    border-color: var(--color-paper);
+    background: var(--color-paper);
+    color: var(--color-bg);
   }
 
   .booking-notice,
@@ -536,16 +532,16 @@ const relatedRooms = allRooms
 
   .booking-notice {
     padding: 1.5rem;
-    border: 1px solid rgba(36, 41, 67, 0.16);
+    border: 1px solid var(--color-border);
     border-radius: 0.8rem;
-    background: #fffdf8;
+    background: var(--color-surface);
   }
 
   .booking-notice h3,
   .day-definition h3,
   .related-section h3 {
     margin: 0 0 1.1rem;
-    color: var(--room-navy);
+    color: var(--color-paper);
     font-size: 1.15rem;
     letter-spacing: 0.1em;
   }
@@ -561,7 +557,7 @@ const relatedRooms = allRooms
   .day-definition li,
   .room-content :global(li) {
     margin-bottom: 0.65rem;
-    color: #34364a;
+    color: var(--color-paper);
   }
 
   .booking-notice li:last-child,
@@ -571,18 +567,18 @@ const relatedRooms = allRooms
   }
 
   .booking-notice li.red {
-    color: #a33b42;
+    color: var(--color-danger);
   }
 
   .room-content :global(h4) {
     margin: 2rem 0 1rem;
-    color: #71501c;
+    color: var(--color-champagne);
     font-size: 1.15rem;
   }
 
   .day-definition {
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(36, 41, 67, 0.16);
+    border-top: 1px solid var(--color-border);
   }
 
   .related-section h3 {
@@ -597,18 +593,18 @@ const relatedRooms = allRooms
 
   .related-card {
     overflow: hidden;
-    border: 1px solid rgba(36, 41, 67, 0.16);
+    border: 1px solid var(--color-border);
     border-radius: 0.75rem;
-    background: #fffdf8;
-    color: var(--room-navy);
+    background: var(--color-surface);
+    color: var(--color-paper);
     transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   }
 
   .related-card:hover,
   .related-card:focus-visible {
-    border-color: #176f80;
+    border-color: var(--color-aqua);
     box-shadow: 0 0.75rem 1.5rem rgba(36, 41, 67, 0.12);
-    color: var(--room-navy);
+    color: var(--color-paper);
     transform: translateY(-3px);
   }
 
@@ -630,7 +626,7 @@ const relatedRooms = allRooms
   }
 
   .related-price {
-    color: #176f80;
+    color: var(--color-aqua);
     font-size: 0.9rem;
   }
 

@@ -130,16 +130,9 @@ const itemListSchema = {
 
 <style>
   #main {
-    --room-navy: #242943;
-    --room-ink: #171b32;
-    --room-paper: #f8f4ec;
-    --room-champagne: #e8c982;
-    --room-aqua: #9bf1ff;
-    background:
-      radial-gradient(circle at 86% 4%, rgba(232, 201, 130, 0.14), transparent 29rem),
-      linear-gradient(180deg, var(--room-navy) 0%, #1c203b 100%);
+    background: var(--color-bg);
     padding: 6.5rem 0 5rem;
-    color: var(--room-paper);
+    color: var(--color-paper);
   }
 
   .inner {
@@ -156,13 +149,13 @@ const itemListSchema = {
     display: block;
     width: 4.5rem;
     margin-top: 1rem;
-    border-top: 2px solid var(--room-champagne);
+    border-top: 2px solid var(--color-champagne);
     content: '';
   }
 
   header.major h1 {
     margin: 0;
-    color: var(--room-paper);
+    color: var(--color-paper);
     font-size: clamp(2.25rem, 5vw, 4.6rem);
     line-height: 1.12;
     letter-spacing: 0.08em;
@@ -183,17 +176,17 @@ const itemListSchema = {
     padding: 0.65rem 1rem;
     border: 1px solid rgba(232, 201, 130, 0.42);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--room-paper);
+    background: var(--color-surface);
+    color: var(--color-paper);
     box-shadow: 0 0.5rem 1.5rem rgba(9, 12, 28, 0.12);
     transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
   }
 
   .category-link:hover,
   .category-link:focus-visible {
-    border-color: var(--room-aqua);
+    border-color: var(--color-aqua);
     background: rgba(155, 241, 255, 0.14);
-    color: var(--room-aqua);
+    color: var(--color-aqua);
     transform: translateY(-2px);
   }
 
@@ -202,7 +195,7 @@ const itemListSchema = {
   }
 
   .category-link small {
-    color: rgba(248, 244, 236, 0.62);
+    color: var(--color-paper-muted);
     font-size: 0.74rem;
     letter-spacing: 0.04em;
   }
@@ -222,14 +215,14 @@ const itemListSchema = {
   }
 
   .category-heading-icon {
-    color: var(--room-champagne);
+    color: var(--color-champagne);
     font-size: 2rem;
     line-height: 1;
   }
 
   .category-heading p {
     margin: 0 0 0.35rem;
-    color: rgba(248, 244, 236, 0.6);
+    color: var(--color-paper-muted);
     font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -237,14 +230,14 @@ const itemListSchema = {
 
   .category-heading h2 {
     margin: 0;
-    color: var(--room-paper);
+    color: var(--color-paper);
     font-size: clamp(1.55rem, 3vw, 2.2rem);
     letter-spacing: 0.1em;
   }
 
   .category-count {
     margin-left: auto;
-    color: var(--room-aqua);
+    color: var(--color-aqua);
     font-size: 0.82rem;
     letter-spacing: 0.08em;
   }
@@ -260,10 +253,10 @@ const itemListSchema = {
     min-width: 0;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid rgba(232, 201, 130, 0.24);
+    border: 1px solid var(--color-border);
     border-radius: 1rem;
-    background: rgba(248, 244, 236, 0.96);
-    color: var(--room-ink);
+    background: var(--color-surface);
+    color: var(--color-paper);
     box-shadow: 0 1rem 2.5rem rgba(8, 10, 24, 0.22);
     transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
   }
@@ -271,9 +264,9 @@ const itemListSchema = {
   .room-card:hover,
   .room-card:focus-visible,
   .room-card:focus-within {
-    border-color: var(--room-aqua);
+    border-color: var(--color-aqua);
     box-shadow: 0 1.25rem 3rem rgba(8, 10, 24, 0.32);
-    color: var(--room-ink);
+    color: var(--color-paper);
     transform: translateY(-4px);
   }
 
@@ -282,7 +275,7 @@ const itemListSchema = {
     min-height: 4.2rem;
     margin: 0;
     padding: 1.2rem 1.25rem 0.8rem;
-    color: var(--room-navy);
+    color: var(--color-paper);
     font-size: clamp(1rem, 2vw, 1.25rem);
     letter-spacing: 0.08em;
   }
@@ -291,7 +284,7 @@ const itemListSchema = {
     order: 2;
     aspect-ratio: 3 / 2;
     overflow: hidden;
-    background: #d9d4c9;
+    background: var(--color-bg);
   }
 
   .room-image img {
@@ -311,7 +304,7 @@ const itemListSchema = {
     display: grid;
     gap: 0.6rem;
     padding: 1rem 1.25rem 1.25rem;
-    background: var(--room-paper);
+    background: var(--color-surface);
   }
 
   .pricing-basis,
@@ -323,26 +316,26 @@ const itemListSchema = {
   }
 
   .pricing-basis {
-    color: #8d671d;
+    color: var(--color-champagne);
     font-size: 0.8rem;
     font-weight: 600;
   }
 
   .standard-capacity,
   .alternative-capacity {
-    color: #5a5d6c;
+    color: var(--color-paper-muted);
     font-size: 0.875rem;
   }
 
   .alternative-price {
     padding-top: 0.5rem;
-    border-top: 1px solid rgba(36, 41, 67, 0.12);
-    color: #167081;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-aqua);
     font-size: 0.9rem;
   }
 
   .alternative-capacity {
-    color: #167081;
+    color: var(--color-aqua);
   }
 
   .price-row {
@@ -354,7 +347,7 @@ const itemListSchema = {
 
   .price-row span {
     min-width: 0;
-    color: #3d4052;
+    color: var(--color-paper);
     font-size: 0.9rem;
     line-height: 1.5;
   }

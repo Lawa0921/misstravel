@@ -14,7 +14,10 @@
 }
 
 :root {
+  color-scheme: dark;
   --color-bg: #242943;
+  --color-surface: #2a2f4a;
+  --color-danger: #ff9b92;
   --color-bg-alt: #1c2034;
   --color-primary: #242943;
   --color-paper: #f5f0e6;
