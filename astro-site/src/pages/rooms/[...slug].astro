@@ -69,7 +69,7 @@ const relatedRooms = allRooms
       <header class="major">
         <h1>{room.data.title}</h1>
       </header>
-      <div class="room-summary" aria-label="房型摘要">
+      <div class="room-summary" role="region" aria-label="房型摘要">
         <span class="summary-kicker">STAY / 密式旅行</span>
         <div class="summary-facts">
           <span class="summary-category">{roomCategoryLabel}</span>
@@ -631,7 +631,7 @@ const relatedRooms = allRooms
 
   .related-price {
     color: #176f80;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   @media (max-width: 768px) {

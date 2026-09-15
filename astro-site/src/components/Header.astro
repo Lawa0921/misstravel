@@ -20,7 +20,7 @@ const navItems = [
 ];
 
 const desktopItems = navItems.filter((item) => ['/', '/rooms/', '/infos/guide/', '/galleries/'].includes(item.href));
-const isCurrent = (href: string, external = false) => !external && (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
+const isCurrent = (href: string, external = false) => !external && currentPath === href;
 ---
 
 <header id="header" class={headerClass}>
@@ -31,7 +31,7 @@ const isCurrent = (href: string, external = false) => !external && (href === '/'
     ))}
   </nav>
   <div class="menu-control">
-    <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu 開啟選單">Menu</button>
+    <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu 選單">Menu</button>
   </div>
 </header>
 

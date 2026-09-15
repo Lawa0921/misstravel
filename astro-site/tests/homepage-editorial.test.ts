@@ -56,6 +56,26 @@ describe('首頁 Dusk Mountain editorial contract', () => {
     expect($('#menu').attr('aria-hidden')).toBe('true');
   });
 
+
+  it.each([
+    ['infos/guide/index.html', '/infos/guide/'],
+    ['infos/index.html', '/infos/'],
+    ['rooms/index.html', '/rooms/'],
+    ['galleries/index.html', '/galleries/'],
+  ])('%s 只應將真正目前頁面標示為 aria-current', (file, href) => {
+    const $ = readPage(file);
+    const current = $('#menu [aria-current="page"]');
+    expect(current).toHaveLength(1);
+    expect(current.attr('href')).toBe(href);
+    expect($('#desktop-nav [aria-current="page"]').length).toBeLessThanOrEqual(1);
+  });
+
+  it('房型詳細頁不得將分類清單錯標成目前頁面', () => {
+    const $ = readPage('rooms/suite_1/index.html');
+    expect($('#menu [aria-current="page"]')).toHaveLength(0);
+    expect($('#desktop-nav [aria-current="page"]')).toHaveLength(0);
+  });
+
   it('首頁 footer 應保留訂房、LINE、社群與聯絡階層', () => {
     const $ = readPage('index.html');
 
