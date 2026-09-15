@@ -1,5 +1,5 @@
 import {chromium} from '@playwright/test';
-import {readdir,readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readdir,writeFile,mkdir} from 'node:fs/promises';
 import sharp from 'sharp';
 import {execFileSync} from 'node:child_process';
 const out=process.env.AUDIT_OUTPUT || '/tmp/misstravel-visual-signoff-20260915/pages';
@@ -26,12 +26,19 @@ for(const width of [1440,390,360,768]){
    if ([390,1440].includes(width)) {
      for (const image of await p.locator('main img[src]').all()) {
        if (!(await image.isVisible())) continue;
-       await image.scrollIntoViewIfNeeded();
+       if (await image.evaluate(e=>Boolean(e.closest('[aria-hidden="true"]')))) continue;
+       // Move only the document vertically. Never scroll a clipped carousel sideways.
+       await image.evaluate(e=>window.scrollTo({top:Math.max(0,e.getBoundingClientRect().top+scrollY-150),behavior:'instant'}));
        await image.evaluate(e=>e.decode().catch(()=>{}));
        await p.waitForTimeout(85);
      }
      await p.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
      await p.waitForTimeout(300);
+   }
+   // Fail rather than save evidence from a carousel displaced by the audit itself.
+   if (await p.locator('#room-carousel').count()) {
+     const state=await p.locator('#room-carousel').evaluate(e=>({left:e.scrollLeft,image:e.querySelector('.carousel-slide.active img')?.naturalWidth}));
+     if (state.left!==0 || !state.image) throw new Error('Carousel capture state invalid: '+JSON.stringify(state));
    }
    const metrics=await p.evaluate(()=>({h1:document.querySelector('h1')?.textContent?.trim(),h1Count:document.querySelectorAll('h1').length,mainCount:document.querySelectorAll('main').length,width:innerWidth,scrollWidth:document.documentElement.scrollWidth,background:getComputedStyle(document.body).backgroundColor,broken:[...document.images].filter(i=>i.getAttribute('src')&&i.getClientRects().length&&(!i.complete||!i.naturalWidth)).map(i=>i.getAttribute('src'))}));
    const status=response?.status();const ok=(route==='/404.html'?[200,404].includes(status):status===200)&&metrics.h1Count===1&&metrics.mainCount===1&&metrics.scrollWidth<=width+1&&metrics.broken.length===0;
