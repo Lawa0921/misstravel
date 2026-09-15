@@ -1,0 +1,205 @@
+{
+  "sourceCommit": "f9ea6149d35e1646d1f136441ba7bc1eba4ea831",
+  "rooms": [
+    {
+      "slug": "campsite_1",
+      "name": "櫻花之盡木棧板營 (3 ~ 4 帳包區)",
+      "beforeDescription": "密式旅行櫻花之盡木棧板營 - 苗栗泰安木棧板露營包區，四帳為標準方案，實際依帳數計價。三帳平日2400元、四帳平日3200元，最多16人。",
+      "afterDescription": "密式旅行櫻花之盡木棧板營：三帳12人以下平日2400元，四帳16人以下平日3200元。線上系統顯示四帳價，三帳依現場帳數收費；連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，櫻花之盡木棧板露營區",
+      "canonical": "https://www.misstravel.me/rooms/campsite_1/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/campsite_1/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/campsite_1/#webpage"
+        }
+      ],
+      "carouselImageCount": 19,
+      "photoCount": 14
+    },
+    {
+      "slug": "campsite_2",
+      "name": "沒日之嶺草地營 (3 ~ 4 帳包區)",
+      "beforeDescription": "密式旅行沒日之嶺草地營 - 苗栗泰安草地露營包區，四帳為標準方案，實際依帳數計價。三帳平日2400元、四帳平日3200元，最多16人。",
+      "afterDescription": "密式旅行沒日之嶺草地營：草地約19乘12公尺，三帳12人以下平日2400元，四帳16人以下平日3200元。實際依帳數計價；連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，沒日之嶺草地露營區",
+      "canonical": "https://www.misstravel.me/rooms/campsite_2/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/campsite_2/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/campsite_2/#webpage"
+        }
+      ],
+      "carouselImageCount": 10,
+      "photoCount": 7
+    },
+    {
+      "slug": "campsite_3",
+      "name": "密式雨棚區 ( 2 帳包區)",
+      "beforeDescription": "密式旅行雨棚露營區 - 苗栗泰安有棚露營地，全天候不用擔心天氣。適合2帳8人小團體。平日1600元、假日2000元、連假2400元。立即預訂！",
+      "afterDescription": "密式旅行雨棚區：兩帳包區適用8人以下，雨棚約11乘8公尺，提供流理台、衛浴與桌椅。平日1600元、假日2000元、連假2400元；連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，雨棚露營區",
+      "canonical": "https://www.misstravel.me/rooms/campsite_3/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/campsite_3/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/campsite_3/#webpage"
+        }
+      ],
+      "carouselImageCount": 11,
+      "photoCount": 5
+    },
+    {
+      "slug": "log_cabin_1",
+      "name": "觀山之屋露營木屋",
+      "beforeDescription": "密式旅行觀山之屋小木屋，位於苗栗泰安鄉，提供4人舒適住宿。享有山景視野、戶外平台、冷氣設備。平日1200元、假日1700元、連假2000元。立即預訂體驗山林之美！",
+      "afterDescription": "密式旅行觀山之屋四人露營木屋，附房外平台，使用公用流理台、衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，觀山之屋露營小木屋",
+      "canonical": "https://www.misstravel.me/rooms/log_cabin_1/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/log_cabin_1/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/log_cabin_1/#webpage"
+        }
+      ],
+      "carouselImageCount": 15,
+      "photoCount": 11
+    },
+    {
+      "slug": "log_cabin_2",
+      "name": "依山之屋 - 靜 露營木屋",
+      "beforeDescription": "密式旅行依山之屋-靜木屋 - 苗栗泰安溫馨露營木屋，適合4人住宿、遠離喧囂。平日1200元、假日1700元、連假2000元。立即預訂感受山林寧靜！",
+      "afterDescription": "密式旅行依山之屋靜房：四人露營木屋，使用半個室外平台、公用流理台、衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，依山之屋 - 靜露營小木屋",
+      "canonical": "https://www.misstravel.me/rooms/log_cabin_2/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/log_cabin_2/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/log_cabin_2/#webpage"
+        }
+      ],
+      "carouselImageCount": 12,
+      "photoCount": 7
+    },
+    {
+      "slug": "log_cabin_3",
+      "name": "依山之屋 - 默 露營木屋",
+      "beforeDescription": "密式旅行依山之屋-默木屋 - 苗栗泰安靜謐露營木屋，4人住宿最佳選擇。平日1200元、假日1700元、連假2000元。立即預訂享受禪意山居！",
+      "afterDescription": "密式旅行依山之屋默房：四人露營木屋，使用半個室外平台、公用流理台、衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，依山之屋 - 默露營小木屋",
+      "canonical": "https://www.misstravel.me/rooms/log_cabin_3/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/log_cabin_3/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/log_cabin_3/#webpage"
+        }
+      ],
+      "carouselImageCount": 16,
+      "photoCount": 11
+    },
+    {
+      "slug": "log_cabin_4",
+      "name": "依山之屋 - 沉 露營木屋",
+      "beforeDescription": "密式旅行依山之屋-沉木屋 - 苗栗泰安附涼亭露營木屋，寬敞舒適4人住宿。平日1200元、假日1700元、連假2000元。立即預訂享受涼亭休閒時光！",
+      "afterDescription": "密式旅行依山之屋沉房：四人露營木屋，附涼亭與桌子，使用公用衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，依山之屋 - 沉露營小木屋",
+      "canonical": "https://www.misstravel.me/rooms/log_cabin_4/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/log_cabin_4/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/log_cabin_4/#webpage"
+        }
+      ],
+      "carouselImageCount": 11,
+      "photoCount": 6
+    },
+    {
+      "slug": "suite_1",
+      "name": "密式之眼近雲樓四人套房",
+      "beforeDescription": "密式旅行近雲樓四人套房 - 密式之眼，苗栗泰安最舒適的高級住宿。享山景視野、獨立衛浴、假日含早餐。平日2400元、假日4000元、連假4600元。立即預訂！",
+      "afterDescription": "密式旅行密式之眼近雲樓四人套房，附獨立衛浴、電視與冷暖氣。平日2400元不附早餐；假日4000元、連假4600元附早餐。連續假期限接三天兩夜以上預訂；加人及戶外搭帳條件見房型說明。",
+      "title": "密式旅行露營區，近雲樓四人住宿套房",
+      "canonical": "https://www.misstravel.me/rooms/suite_1/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/suite_1/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/suite_1/#webpage"
+        }
+      ],
+      "carouselImageCount": 16,
+      "photoCount": 12
+    },
+    {
+      "slug": "suite_2",
+      "name": "密式之頂閲陽樓四人套房",
+      "beforeDescription": "密式旅行閲陽樓四人套房 - 密式之頂，苗栗泰安頂級山景住宿。獨立衛浴、假日含早餐、設備齊全。平日2400元、假日4000元、連假4600元。立即預訂！",
+      "afterDescription": "密式旅行密式之頂閲陽樓四人套房，附獨立衛浴、電視與冷暖氣，炊煮限室外平台。平日2400元不附早餐；假日4000元、連假4600元附早餐。連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，閲陽樓四人住宿套房",
+      "canonical": "https://www.misstravel.me/rooms/suite_2/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/suite_2/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/suite_2/#webpage"
+        }
+      ],
+      "carouselImageCount": 18,
+      "photoCount": 15
+    },
+    {
+      "slug": "suite_3",
+      "name": "映月之屋雙人套房",
+      "beforeDescription": "密式旅行映月之屋雙人套房 - 苗栗泰安浪漫情侶住宿，2間精緻套房。獨立衛浴、假日含早餐。平日1600元、假日2500元、連假2800元。立即預訂浪漫之旅！",
+      "afterDescription": "密式旅行映月之屋雙人套房，附房內衛浴、電視與冷暖氣。平日1600元不附早餐；假日2500元、連假2800元附早餐。連續假期限接三天兩夜以上預訂。",
+      "title": "密式旅行露營區，映月之屋雙人住宿套房",
+      "canonical": "https://www.misstravel.me/rooms/suite_3/",
+      "entities": [
+        {
+          "type": "Accommodation",
+          "id": "https://www.misstravel.me/rooms/suite_3/#accommodation"
+        },
+        {
+          "type": "WebPage",
+          "id": "https://www.misstravel.me/rooms/suite_3/#webpage"
+        }
+      ],
+      "carouselImageCount": 19,
+      "photoCount": 15
+    }
+  ]
+}

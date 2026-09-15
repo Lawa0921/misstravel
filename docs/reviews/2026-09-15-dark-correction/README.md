@@ -1,3 +1,5 @@
+> 後續十個房型 SEO 與資料一致性已補齊；目前整體交付請看 [最新 SEO 完成驗收](../2026-09-15-seo-completion/README.md)。本頁保留為深色修正歷史紀錄。
+
 # 深色配色修正：PR #63
 
 這份報告取代先前深淺混用的設計截圖。唯一設計指南仍是 [docs/DESIGN_GUIDE.md](../../DESIGN_GUIDE.md)。
