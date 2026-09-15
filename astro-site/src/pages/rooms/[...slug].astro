@@ -124,6 +124,7 @@ const relatedRooms = allRooms
                   aria-hidden={index === 0 ? 'false' : 'true'}
                 >
                 <img
+                  data-room-photo={index === 0 ? `/rooms/${room.id.replace('.md', '')}/` : undefined}
                   src={index < 2 ? image : undefined}
                   data-src={index < 2 ? undefined : image}
                   alt={getRoomImageMetadata(image).alt}

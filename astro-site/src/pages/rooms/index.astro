@@ -82,6 +82,7 @@ const itemListSchema = {
                     <h3>{room.data.title}</h3>
                     <div class="room-image">
                       <img
+                        data-room-photo={`/rooms/${room.id.replace('.md', '')}/`}
                         src={room.data.mainImage}
                         alt={getRoomImageMetadata(room.data.mainImage).alt}
                         loading="lazy"

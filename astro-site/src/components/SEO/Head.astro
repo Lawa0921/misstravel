@@ -1,6 +1,7 @@
 ---
 import { cloudflareWebAnalyticsToken, siteConfig } from '../../lib/config';
 import SchemaOrg from './SchemaOrg.astro';
+import pageTransitionsSource from '../../scripts/page-transitions.js?raw';
 import { getImageMetadata } from '../../lib/image-metadata';
 import sharp, { type Metadata } from 'sharp';
 import { resolve } from 'node:path';
@@ -139,6 +140,7 @@ const imageMimeType = imageMetadata?.format
   {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
   <link rel="preload" href="/fonts/setofont.woff2" as="font" type="font/woff2" crossorigin />
 
+  <script is:inline set:html={pageTransitionsSource} />
   <SchemaOrg type={schemaType} data={schemaData} extraSchemas={extraSchemas} />
   <script
     type="module"

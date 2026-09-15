@@ -82,8 +82,9 @@ for (const reduced of [false, true]) {
       await expect.poll(() => page.evaluate(() => window.__navigationAudit.ready)).toBe(true);
       const state = await page.evaluate(() => window.__navigationAudit);
       expect(state.skipped).toBe(false);
-      expect(state.names).toContain('mist-page-in');
-      expect(state.names).toContain('mist-page-out');
+      expect(state.names).toContain('content-settle');
+      expect(state.names).not.toContain('mist-page-in');
+      expect(state.names).not.toContain('mist-page-out');
       await expect.poll(() => page.evaluate(() => window.__navigationAudit.finished)).toBe(true);
     }
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(36, 41, 67)');
