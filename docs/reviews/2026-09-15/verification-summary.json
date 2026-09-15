@@ -1,0 +1,61 @@
+{
+  "sourceCommit": "99799d9f758277ec82b43d86dd4dbea31d1c202b",
+  "sourceBase": "0cb0334c3deefe2efe38117c24de20afda777d45",
+  "npmAuditVulnerabilities": 0,
+  "unitAndIntegration": {
+    "files": 24,
+    "passed": 233,
+    "failed": 0
+  },
+  "playwright": {
+    "passed": 14,
+    "failed": 0,
+    "retries": 0
+  },
+  "visitorAcceptance": {
+    "checks": 419,
+    "passed": 419,
+    "failed": 0
+  },
+  "axe": {
+    "routeViewportChecks": 20,
+    "violations": 0
+  },
+  "protectedFiles": {
+    "checked": 251,
+    "changed": []
+  },
+  "originalWorktreeModified": false,
+  "ciRun": "https://github.com/Lawa0921/misstravel/actions/runs/34932000231",
+  "ciConclusion": "success",
+  "vercel": {
+    "state": "ready",
+    "anonymousStatus": 302,
+    "requiresExistingVercelSignIn": true,
+    "url": "https://misstravel-git-feat-editori-44e386-bag571ivy3470-1104s-projects.vercel.app"
+  },
+  "localPreview": {
+    "url": "http://localhost:4336/",
+    "windowsHttpStatus": 200
+  },
+  "limits": [
+    "Independent AI review, not human approval",
+    "Automated axe checks are not a complete accessibility certification",
+    "No live booking or payment submitted",
+    "No Search Console rankings or field Core Web Vitals measured",
+    "Production site not changed"
+  ],
+  "dialogFocusStress": {
+    "scenarios": 3,
+    "runsPerScenario": 10,
+    "passed": 30,
+    "failed": 0,
+    "retries": 0
+  },
+  "independentAIReview": {
+    "verdict": "PASS",
+    "reviewedCommit": "99799d9f758277ec82b43d86dd4dbea31d1c202b",
+    "report": "independent-review-final.md",
+    "humanApproval": false
+  }
+}
