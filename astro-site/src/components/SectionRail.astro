@@ -1,0 +1,38 @@
+---
+interface Props { links?: { href: string; label: string }[]; setupOnly?: boolean; }
+const { links = [], setupOnly = false } = Astro.props;
+---
+{!setupOnly && <nav class="section-rail room-section-rail" data-section-rail aria-label="房型內容導覽"><span class="rail-indicator" aria-hidden="true"></span>{links.map(link=><a class="section-link" href={link.href}>{link.label}</a>)}</nav>}
+<script>
+  document.querySelectorAll<HTMLElement>('[data-section-rail]').forEach(rail => {
+    const links=[...rail.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')];
+    const sections=links.map(link=>document.getElementById(decodeURIComponent(link.hash.slice(1))));
+    const indicator=rail.querySelector<HTMLElement>('.rail-indicator');
+    let frame=0;
+    function update(){
+      frame=0;let active=0;const top=rail.getBoundingClientRect().bottom+36;
+      sections.forEach((section,index)=>{if(section && section.getBoundingClientRect().top<=top)active=index;});
+      links.forEach((link,index)=>{if(index===active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+      const chosen=links[active];
+      if(chosen&&indicator){indicator.style.width=`${chosen.offsetWidth}px`;indicator.style.height=`${chosen.offsetHeight}px`;indicator.style.transform=`translate(${chosen.offsetLeft}px,${chosen.offsetTop}px)`;}
+    }
+    function schedule(){if(!frame)frame=requestAnimationFrame(update);}
+    rail.dataset.railReady='true';update();
+    addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);addEventListener('pageshow',schedule);
+    if('ResizeObserver' in window)new ResizeObserver(schedule).observe(rail);
+    document.fonts.ready.then(schedule);
+  });
+</script>
+<style is:global>
+  .section-rail { isolation:isolate; }
+  .section-rail .rail-indicator { pointer-events:none;position:absolute;left:0;top:0;z-index:-1;background:rgba(157,216,208,.13);border:1px solid rgba(157,216,208,.5);border-radius:.65rem;transition:transform 260ms cubic-bezier(.2,.8,.2,1),width 260ms cubic-bezier(.2,.8,.2,1);opacity:0; }
+  .section-rail[data-rail-ready] .rail-indicator { opacity:1; }
+  .section-rail[data-rail-ready] a { border-color:transparent;background:transparent;box-shadow:none; }
+  .section-rail a[aria-current='location'] { color:var(--color-aqua); }
+  .room-section-rail { position:sticky;top:4.5rem;z-index:40;display:flex;gap:.25rem;align-items:center;width:min(calc(100% - 3rem),62rem);margin:0 auto .5rem;padding:.5rem;background:rgba(36,41,67,.97);border:1px solid var(--color-border);border-radius:.9rem;backdrop-filter:blur(18px); }
+  .room-section-rail a { flex:1;display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:.5rem .75rem;border:0;border-radius:.65rem;font-size:.9rem;white-space:nowrap;color:var(--color-paper-muted); }
+  .room-section-rail a:hover { color:var(--color-paper); }
+  #room-carousel,#room-booking,#room-info,#room-related { scroll-margin-top:10rem; }
+  @media(max-width:767px){.room-section-rail{top:4rem;width:calc(100% - 1.5rem);}.room-section-rail a{font-size:.8rem;padding:.5rem .25rem;}}
+  @media(prefers-reduced-motion:reduce){.section-rail .rail-indicator{transition:none;}}
+</style>

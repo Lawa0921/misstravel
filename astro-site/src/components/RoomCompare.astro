@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import { getRoomImageMetadata } from '../lib/image-metadata';
+const rooms = (await getCollection('rooms')).sort((a,b) => a.data.order-b.data.order);
+const categories = {campsite:'露營營位',cabin:'露營木屋',suite:'套房'};
+const money = (value: number) => `NT$${value.toLocaleString('zh-TW')}`;
+---
+<div class="compare-tray" id="compare-tray" hidden>
+  <div class="compare-selection">
+    <span class="compare-kicker">YOUR STAY</span>
+    <strong>已選 <span id="compare-count">0</span> / 3</strong>
+  </div>
+  <div class="compare-chips" role="group" aria-label="已選房型">
+    {rooms.map(room => <button type="button" class="compare-chip" data-compare-remove={room.id} hidden aria-label={`移除${room.data.shortTitle}`}>
+      <img src={room.data.mainImage} alt="" width="44" height="36" loading="lazy" decoding="async" />
+      <span>{room.data.shortTitle}</span><span aria-hidden="true">×</span>
+    </button>)}
+  </div>
+  <button type="button" class="compare-clear" id="compare-clear">清空</button>
+  <button type="button" id="compare-open" class="compare-open" data-modal="room-compare" disabled>比較房型 <span aria-hidden="true">↗</span></button>
+</div>
+<p class="compare-feedback" id="compare-feedback" role="status" aria-live="polite"></p>
+<div class="modal compare-dialog" id="room-compare" role="dialog" aria-modal="true" aria-labelledby="compare-title" aria-hidden="true">
+  <div class="modal-content compare-panel">
+    <header class="compare-heading"><div><span class="compare-kicker">SIDE BY SIDE</span><h2 id="compare-title">比較房型</h2></div><button type="button" class="modal-close" aria-label="關閉房型比較">×</button></header>
+    <p class="compare-help">完整費用及入住條件請見房型說明。只在此分頁保留選擇。</p>
+    <div class="compare-columns" tabindex="0" role="region" aria-label="房型比較內容，可左右捲動">
+      {rooms.map(room => {
+        const options = room.data.priceOptions?.length ? [...room.data.priceOptions].sort((a,b) => a.weekdayPrice-b.weekdayPrice) : [{label:room.data.shortTitle,numberOfPeople:room.data.numberOfPeople,weekdayPrice:room.data.weekdayPrice,holidayPrice:room.data.holidayPrice,standardPrice:room.data.standardPrice}];
+        return <article class="compare-room" data-compare-room={room.id} hidden>
+          <img class="compare-photo" src={room.data.mainImage} alt={getRoomImageMetadata(room.data.mainImage).alt} width="600" height="400" loading="lazy" decoding="async" />
+          <span class="compare-type">{categories[room.data.category]}</span><h3>{room.data.title}</h3>
+          {options.map(option => <section class="compare-plan"><h4>{option.label} · {option.numberOfPeople} 人以下</h4><dl><div><dt>平日</dt><dd>{money(option.weekdayPrice)}</dd></div><div><dt>假日</dt><dd>{money(option.holidayPrice)}</dd></div><div><dt>連續假日</dt><dd>{money(option.standardPrice)}</dd></div></dl></section>)}
+          {room.data.pricingNote && <p class="compare-note">{room.data.pricingNote}</p>}
+          <p class="compare-description">{room.data.description}</p>
+          <a class="compare-detail" href={`/rooms/${room.id.replace('.md', '')}/`}>查看房型 <span aria-hidden="true">→</span></a>
+        </article>;
+      })}
+    </div>
+  </div>
+</div>
+<script>
+  const controls = [...document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]')];
+  const valid = new Set(controls.map(button => button.dataset.compareToggle!));
+  const tray = document.getElementById('compare-tray')!;
+  const dialog = document.getElementById('room-compare')!;
+  const open = document.getElementById('compare-open') as HTMLButtonElement;
+  const feedback = document.getElementById('compare-feedback')!;
+  const storageKey = 'misstravel:compare:v1';
+  let selected: string[] = [];
+  let timer: ReturnType<typeof setTimeout>;
+  try { const saved: unknown = JSON.parse(sessionStorage.getItem(storageKey) || '[]'); if (Array.isArray(saved)) selected=[...new Set(saved.filter(id => typeof id==='string' && valid.has(id)))].slice(0,3); } catch { /* Optional per-tab persistence. */ }
+  function announce(message: string) { clearTimeout(timer); feedback.textContent=message;feedback.classList.add('visible');timer=setTimeout(()=>feedback.classList.remove('visible'),2400); }
+  function sync() {
+    controls.forEach(button=>{const on=selected.includes(button.dataset.compareToggle!);button.setAttribute('aria-pressed',String(on));button.querySelector('[data-compare-label]')!.textContent=on?'已加入':'加入比較';});
+    document.querySelectorAll<HTMLElement>('[data-compare-remove]').forEach(e=>e.hidden=!selected.includes(e.dataset.compareRemove!));
+    document.querySelectorAll<HTMLElement>('[data-compare-room]').forEach(e=>e.hidden=!selected.includes(e.dataset.compareRoom!));
+    document.getElementById('compare-count')!.textContent=String(selected.length); tray.hidden=selected.length===0;open.disabled=selected.length<2;
+    document.documentElement.toggleAttribute('data-compare-active',selected.length>0);
+    try { sessionStorage.setItem(storageKey,JSON.stringify(selected)); } catch { /* No navigation depends on storage. */ }
+  }
+  controls.forEach(button=>button.addEventListener('click',()=>{
+    const id=button.dataset.compareToggle!;
+    if(selected.includes(id)) selected=selected.filter(item=>item!==id);
+    else if(selected.length===3){announce('最多比較三種房型，請先移除一項。');return;}
+    else selected.push(id);
+    sync();announce(selected.length===1?'再加入一種房型即可比較。':`已選 ${selected.length} 種房型`);
+  }));
+  document.querySelectorAll<HTMLButtonElement>('[data-compare-remove]').forEach(button=>button.addEventListener('click',()=>{
+    const id=button.dataset.compareRemove!;selected=selected.filter(item=>item!==id);sync();
+    if(tray.hidden) controls.find(item=>item.dataset.compareToggle===id)?.focus({preventScroll:true});
+    else (tray.querySelector('[data-compare-remove]:not([hidden])') as HTMLButtonElement)?.focus({preventScroll:true});
+  }));
+  document.getElementById('compare-clear')!.addEventListener('click',()=>{const first=selected[0];selected=[];sync();controls.find(item=>item.dataset.compareToggle===first)?.focus({preventScroll:true});announce('已清空選擇。');});
+  open.addEventListener('click',()=>{if(selected.length<2)return;dialog.classList.add('active');});
+  dialog.querySelector('.modal-close')!.addEventListener('click',()=>dialog.classList.remove('active'));
+  document.documentElement.dataset.compareReady='true';sync();
+  window.addEventListener('pageshow',sync);
+</script>
+<style>
+  [hidden] { display:none !important; }
+  .compare-tray { position:fixed;z-index:1100;left:50%;bottom:max(1rem,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(64rem,calc(100% - 2rem));display:flex;align-items:center;gap:1rem;padding:.8rem 1rem;background:rgba(42,47,74,.97);border:1px solid var(--color-border);border-radius:1.1rem;box-shadow:0 12px 50px #0a0e2670;backdrop-filter:blur(18px);animation:tray-in 220ms ease-out; }
+  .compare-selection { display:grid;gap:.15rem;white-space:nowrap; }
+  .compare-kicker { font-size:.65rem;letter-spacing:.18em;color:var(--color-champagne); }
+  .compare-selection strong { font-size:.9rem; }
+  .compare-chips { display:flex;gap:.4rem;flex:1;min-width:0;overflow-x:auto; }
+  .compare-chip { display:flex;align-items:center;gap:.4rem;min-height:44px;padding:.25rem .55rem .25rem .25rem;background:var(--color-bg);border:1px solid var(--color-border);border-radius:.6rem;color:var(--color-paper);font:inherit;font-size:.8rem;cursor:pointer;white-space:nowrap; }
+  .compare-chip img { width:44px;height:36px;object-fit:cover;border-radius:.3rem; }
+  .compare-clear { border:0;background:none;color:var(--color-paper-muted);font:inherit;min-height:44px;padding:.5rem;cursor:pointer; }
+  .compare-open { border:0;background:var(--color-aqua);color:var(--color-bg);font:inherit;font-weight:700;min-height:44px;border-radius:.65rem;padding:.7rem 1rem;white-space:nowrap;cursor:pointer; }
+  .compare-open:disabled { background:var(--color-bg);color:var(--color-paper-muted);cursor:default; }
+  .compare-open span { margin-left:.6rem; }
+  .compare-feedback { position:fixed;z-index:1101;bottom:7.5rem;left:50%;transform:translate(-50%,10px);padding:.65rem 1rem;border-radius:.6rem;background:var(--color-bg-alt);border:1px solid var(--color-border);width:max-content;max-width:calc(100vw - 2rem);pointer-events:none;opacity:0;transition:opacity 160ms,transform 160ms; }
+  .compare-feedback.visible { opacity:1;transform:translate(-50%,0); }
+  .compare-dialog { display:none;position:fixed;inset:0;z-index:10000;background:#111629d9;padding:3vh 2vw;align-items:center;justify-content:center; }
+  .compare-dialog.active { display:flex; }
+  .compare-panel { width:min(70rem,100%);max-height:94dvh;overflow:auto;background:var(--color-bg);border:1px solid var(--color-border);border-radius:1.25rem;box-shadow:0 20px 100px #0006;overscroll-behavior:contain;animation:panel-in 240ms cubic-bezier(.2,.8,.2,1); }
+  .compare-heading { position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.5rem;background:var(--color-bg);border-bottom:1px solid var(--color-border); }
+  .compare-heading h2 { margin:.3rem 0 0;font-size:1.65rem; }
+  .modal-close { flex:none;width:44px;height:44px;border:0;background:var(--color-surface);border-radius:50%;color:var(--color-paper);font-size:1.8rem;cursor:pointer; }
+  .compare-help { color:var(--color-paper-muted);padding:1rem 1.5rem 0;font-size:.9rem; }
+  .compare-columns { display:flex;gap:1rem;overflow-x:auto;overscroll-behavior-x:contain;padding:0 1.5rem 1.5rem;scroll-snap-type:x proximity; }
+  .compare-room { flex:1 0 230px;min-width:0;scroll-snap-align:start;border:1px solid var(--color-border);border-radius:.8rem;overflow:hidden;padding:0 1rem 1rem;background:var(--color-surface);display:flex;flex-direction:column; }
+  .compare-photo { width:calc(100% + 2rem);max-width:none;margin:0 -1rem 1rem;height:150px;object-fit:cover; }
+  .compare-type { font-size:.7rem;letter-spacing:.12em;color:var(--color-champagne); }
+  .compare-room h3 { font-size:1.1rem;margin:.5rem 0 1rem;min-height:3rem; }
+  .compare-plan { border-top:1px solid var(--color-border);padding-top:.9rem;margin-bottom:1rem; }
+  .compare-plan h4 { font-size:.85rem;line-height:1.6;margin:0 0 .6rem; }
+  .compare-plan dl { margin:0; }.compare-plan dl>div { display:flex;justify-content:space-between;gap:1rem;font-size:.85rem;margin:.3rem 0; }
+  .compare-plan dd { margin:0;color:var(--color-aqua);font-variant-numeric:tabular-nums; }
+  .compare-note,.compare-description { font-size:.85rem;line-height:1.8;color:var(--color-paper-muted); }
+  .compare-detail { margin-top:auto;display:flex;justify-content:space-between;align-items:center;min-height:44px;border:0;border-top:1px solid var(--color-border);padding-top:.7rem;color:var(--color-aqua); }
+  @keyframes tray-in { from { opacity:0;translate:0 12px; } to { opacity:1;translate:0 0; } }
+  @keyframes panel-in { from { opacity:0;transform:translateY(16px); } to { opacity:1;transform:none; } }
+  @media(max-width:767px){.compare-tray{gap:.5rem;flex-wrap:wrap;padding:.75rem;width:calc(100% - 1.5rem);}.compare-selection{flex:1;}.compare-chips{order:4;flex-basis:100%;}.compare-chip{flex:1;justify-content:center;}.compare-chip span:not(:last-child){display:none;}.compare-feedback{bottom:9.5rem;}.compare-panel{max-height:94dvh;}.compare-columns{padding-inline:1rem;}.compare-heading{padding:1rem;}.compare-help{padding-inline:1rem;}.compare-room{flex:0 0 80%;}.compare-clear{font-size:.8rem;}}
+  @media(prefers-reduced-motion:reduce){.compare-tray,.compare-panel{animation:none;}.compare-feedback{transition:none;}}
+</style>

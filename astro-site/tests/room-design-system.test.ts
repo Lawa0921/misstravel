@@ -46,7 +46,10 @@ describe('房型頁編輯式設計契約', () => {
     expect(shared).toContain("event.key === 'ArrowLeft'");
     expect(shared).toContain("event.key === 'ArrowRight'");
     expect(source).not.toContain("carousel.addEventListener('keydown'");
-    expect(source).toContain('waitForImage');
+    expect(source).toContain('waitForPhoto');
+    const readiness=readFileSync(join(projectDir,'src/scripts/photo-ready.ts'),'utf-8');
+    expect(readiness).toContain('naturalWidth > 0');
+    expect(readiness).toContain('setTimeout');
     expect(source).toContain('<noscript class="carousel-noscript">');
     expect(source).toContain('data-src');
   });

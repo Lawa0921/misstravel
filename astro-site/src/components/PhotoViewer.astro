@@ -1,0 +1,121 @@
+---
+interface Props { id: string; label: string; mode: 'gallery' | 'room'; images: {src:string;alt:string}[]; }
+const {id,label,mode,images}=Astro.props;
+---
+<div class="lightbox-overlay photo-viewer" id={id} role="dialog" aria-modal="true" aria-label={label} aria-hidden="true" data-photo-viewer={mode}>
+  <div class="lightbox-content viewer-layout">
+    <header class="viewer-toolbar">
+      <button type="button" class="lightbox-close" aria-label="關閉">×</button>
+      <span class="viewer-title">{label}</span>
+      <div class="lightbox-counter"><span id={mode==='gallery'?'lightbox-current':undefined} data-viewer-current>1</span> / <span id={mode==='gallery'?'lightbox-total':undefined}>{images.length}</span></div>
+      <button type="button" class="viewer-zoom" aria-label="放大照片" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6M10 7v6"/></svg><span>放大</span></button>
+    </header>
+    <div class="viewer-stage" tabindex="0" role="group" aria-label="照片，可左右切換">
+      <img src="" alt={images[0]?.alt||label} id={mode==='gallery'?'lightbox-image':undefined} data-viewer-image decoding="async" width="945" height="709" />
+      <span class="viewer-loading" role="status" hidden>照片準備中</span>
+    </div>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="上一張"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="下一張"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+    <footer class="viewer-footer"><p class="viewer-caption" aria-live="polite">{images[0]?.alt}</p><div class="viewer-filmstrip" role="group" aria-label="照片快速選擇">{images.map((image,index)=><button type="button" class="viewer-thumb" data-viewer-index={index} aria-label={`顯示第 ${index+1} 張圖片`} aria-current={index===0?'true':'false'}><img data-thumb-src={image.src} alt="" width="72" height="48" decoding="async" /></button>)}</div></footer>
+  </div>
+  <script is:inline type="application/json" data-viewer-data set:html={JSON.stringify(images).replace(/</g,'\u003c')} />
+</div>
+<script>
+  import { attachPhotoGestures } from '../scripts/photo-gestures';
+  import { waitForPhoto } from '../scripts/photo-ready';
+  document.querySelectorAll<HTMLElement>('[data-photo-viewer]').forEach(viewer=>{
+    const mode=viewer.dataset.photoViewer;
+    const images: {src:string;alt:string}[]=JSON.parse(viewer.querySelector('[data-viewer-data]')!.textContent!);
+    const image=viewer.querySelector<HTMLImageElement>('[data-viewer-image]')!;
+    const current=viewer.querySelector<HTMLElement>('[data-viewer-current]')!;
+    const caption=viewer.querySelector<HTMLElement>('.viewer-caption')!;
+    const stage=viewer.querySelector<HTMLElement>('.viewer-stage')!;
+    const zoom=viewer.querySelector<HTMLButtonElement>('.viewer-zoom')!;
+    const loading=viewer.querySelector<HTMLElement>('.viewer-loading')!;
+    const strip=viewer.querySelector<HTMLElement>('.viewer-filmstrip')!;
+    const thumbs=[...viewer.querySelectorAll<HTMLButtonElement>('[data-viewer-index]')];
+    let index=0,requested=0,token=0,zoomed=false;
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+    function resetZoom(){zoomed=false;if(viewer.classList.contains('is-zoomed'))viewer.classList.remove('is-zoomed');zoom.setAttribute('aria-pressed','false');zoom.setAttribute('aria-label','放大照片');zoom.querySelector('span')!.textContent='放大';stage.scrollTo({left:0,top:0,behavior:'instant'});image.style.removeProperty('transform');}
+    function sync(){
+      current.textContent=String(index+1);caption.textContent=images[index].alt;
+      thumbs.forEach((thumb,i)=>thumb.setAttribute('aria-current',String(i===index)));
+      const active=thumbs[index];if(active){const left=active.offsetLeft;if(left<strip.scrollLeft)strip.scrollLeft=left;else if(left+active.offsetWidth>strip.scrollLeft+strip.clientWidth)strip.scrollLeft=left+active.offsetWidth-strip.clientWidth;}
+    }
+    async function select(next:number){
+      requested=(next+images.length)%images.length;const target=requested,id=++token;
+      const preload=new Image();preload.src=images[target].src;
+      loading.textContent='照片準備中';loading.hidden=true;const wait=setTimeout(()=>{if(id===token)loading.hidden=false;},180);
+      const ready=await waitForPhoto(preload);
+      clearTimeout(wait);if(id!==token||!viewer.classList.contains('active'))return;
+      if(!ready){loading.textContent='照片無法開啟，請選擇其他照片。';loading.hidden=false;return;}
+      loading.hidden=true;resetZoom();image.hidden=false;index=target;image.src=images[index].src;image.alt=images[index].alt;sync();
+      if(!reduced.matches)image.animate([{opacity:.75},{opacity:1}],{duration:140,easing:'ease-out'});
+    }
+    function open(next:number){
+      viewer.classList.add('active');document.body.style.overflow='hidden';
+      // Only visible thumbnails request original images; don't download the whole set on page load.
+      if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const thumb=entry.target as HTMLImageElement;if(thumb.dataset.thumbSrc){thumb.src=thumb.dataset.thumbSrc;delete thumb.dataset.thumbSrc;}observer.unobserve(thumb);}),{root:strip,rootMargin:'80px'});viewer.querySelectorAll<HTMLImageElement>('[data-thumb-src]').forEach(thumb=>observer.observe(thumb));viewer.addEventListener('viewer:close',()=>observer.disconnect(),{once:true});}
+      else viewer.querySelectorAll<HTMLImageElement>('[data-thumb-src]').forEach(thumb=>{thumb.src=thumb.dataset.thumbSrc!;delete thumb.dataset.thumbSrc;});
+      // Give opening feedback immediately, but keep later selections on the loaded image until ready.
+      requested=next;index=next;image.hidden=true;image.removeAttribute('src');image.alt=images[index].alt;sync();resetZoom();void select(next);
+    }
+    function close(){viewer.classList.remove('active');viewer.dispatchEvent(new Event('viewer:close'));++token;loading.hidden=true;resetZoom();}
+    const triggers=mode==='gallery'?[...document.querySelectorAll<HTMLElement>('[data-lightbox="photos"]')]:[...document.querySelectorAll<HTMLElement>('[data-lightbox="room-photo"]')];
+    triggers.forEach((trigger,i)=>trigger.addEventListener('click',event=>{
+      if(event instanceof MouseEvent&&(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey))return;
+      event.preventDefault();const active=mode==='room'?Number(document.querySelector('.carousel-slide.active')?.getAttribute('data-index')||0):i;open(active);
+    }));
+    viewer.querySelector('.lightbox-close')!.addEventListener('click',close);
+    viewer.querySelector('.lightbox-prev')!.addEventListener('click',()=>void select(requested-1));
+    viewer.querySelector('.lightbox-next')!.addEventListener('click',()=>void select(requested+1));
+    thumbs.forEach((thumb,i)=>thumb.addEventListener('click',()=>void select(i)));
+    viewer.addEventListener('click',event=>{if(event.target===viewer)close();});
+    document.addEventListener('keydown',event=>{
+      if(!viewer.classList.contains('active'))return;
+      if(event.key==='Escape'){close();return;}
+      if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(zoomed){stage.scrollBy({left:event.key==='ArrowLeft'?-120:120,behavior:'instant'});}else void select(requested+(event.key==='ArrowLeft'?-1:1));}
+    });
+    function toggleZoom(){zoomed=!zoomed;viewer.classList.toggle('is-zoomed',zoomed);zoom.setAttribute('aria-pressed',String(zoomed));zoom.setAttribute('aria-label',zoomed?'還原照片大小':'放大照片');zoom.querySelector('span')!.textContent=zoomed?'還原':'放大';if(zoomed){requestAnimationFrame(()=>{stage.scrollLeft=(stage.scrollWidth-stage.clientWidth)/2;stage.scrollTop=(stage.scrollHeight-stage.clientHeight)/2;});}else stage.scrollTo({left:0,top:0,behavior:'instant'});}
+    zoom.addEventListener('click',toggleZoom);stage.addEventListener('dblclick',toggleZoom);
+    let pan: {id:number;x:number;y:number;left:number;top:number}|null=null;
+    stage.addEventListener('pointerdown',event=>{
+      if(!zoomed||event.pointerType!=='mouse'||event.button!==0)return;
+      pan={id:event.pointerId,x:event.clientX,y:event.clientY,left:stage.scrollLeft,top:stage.scrollTop};
+      stage.setPointerCapture(event.pointerId);stage.classList.add('is-panning');event.preventDefault();
+    });
+    stage.addEventListener('pointermove',event=>{if(!pan||pan.id!==event.pointerId)return;stage.scrollLeft=pan.left+pan.x-event.clientX;stage.scrollTop=pan.top+pan.y-event.clientY;});
+    const endPan=()=>{const id=pan?.id;pan=null;stage.classList.remove('is-panning');if(id!==undefined&&stage.hasPointerCapture(id))stage.releasePointerCapture(id);};
+    stage.addEventListener('pointerup',endPan);stage.addEventListener('pointercancel',endPan);stage.addEventListener('lostpointercapture',event=>{if(event.target===stage)endPan();});
+
+    attachPhotoGestures(stage,{disabled:()=>zoomed,onMove:dx=>image.style.transform=`translateX(${dx*.5}px)`,onEnd:direction=>{image.style.removeProperty('transform');if(direction)void select(requested+direction);}});
+    // Shared dialog accessibility owns focus, scroll lock and Escape restoration.
+    new MutationObserver(()=>{if(!viewer.classList.contains('active')){++token;resetZoom();loading.hidden=true;viewer.dispatchEvent(new Event('viewer:close'));}}).observe(viewer,{attributes:true,attributeFilter:['class']});
+  });
+  document.documentElement.dataset.viewerReady='true';
+</script>
+<style>
+  .photo-viewer {position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:var(--color-bg-alt);opacity:0;visibility:hidden;pointer-events:none;transition:opacity 180ms,visibility 0s linear 180ms;}
+  .photo-viewer.active {opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s;}
+  .viewer-layout {position:relative;width:100%;height:100dvh;display:grid;grid-template-rows:68px minmax(0,1fr) auto;max-height:none;}
+  .viewer-toolbar {display:flex;align-items:center;gap:1rem;padding:.5rem max(1rem,4vw);border-bottom:1px solid var(--color-border);background:var(--color-bg);}
+  .viewer-title{font-size:.9rem;color:var(--color-paper-muted);}.lightbox-counter{margin-left:auto;font-variant-numeric:tabular-nums;font-size:.9rem;letter-spacing:.15em;color:var(--color-champagne);}
+  .lightbox-close,.viewer-zoom,.lightbox-nav {display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid var(--color-border);border-radius:50%;background:var(--color-surface);color:var(--color-paper);cursor:pointer;}
+  .lightbox-close{border:0;background:none;font-size:2rem;}.viewer-zoom{gap:.5rem;border-radius:999px;padding:.5rem .8rem;font:inherit;font-size:.85rem;}.lightbox-nav:hover,.viewer-zoom:hover{border-color:var(--color-aqua);color:var(--color-aqua);}
+  .viewer-stage{min-height:0;position:relative;margin:1.5rem max(4rem,8vw) .75rem;display:flex;justify-content:center;align-items:center;overflow:hidden;touch-action:pan-y pinch-zoom;cursor:grab;}
+  .viewer-stage img[hidden]{display:none;}
+  .viewer-stage img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;user-select:none;-webkit-user-drag:none;}
+  .lightbox-nav{position:absolute;top:46%;width:48px;height:48px;}.lightbox-prev{left:1.3rem;}.lightbox-next{right:1.3rem;}
+  .viewer-footer{min-width:0;padding:.5rem max(1rem,4vw) max(.75rem,env(safe-area-inset-bottom));background:var(--color-bg);}
+  .viewer-caption{margin:0 0 .6rem;font-size:.85rem;line-height:1.5;color:var(--color-paper-muted);text-align:center;}
+  .viewer-filmstrip{position:relative;display:flex;gap:.4rem;max-width:70rem;margin:auto;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding:.2rem;}
+  .viewer-thumb{width:76px;height:54px;flex:0 0 76px;border:1px solid transparent;border-radius:.35rem;background:var(--color-surface);padding:3px;cursor:pointer;opacity:.55;transition:opacity 140ms,border-color 140ms;}
+  .viewer-thumb[aria-current='true'],.viewer-thumb:hover,.viewer-thumb:focus-visible{opacity:1;border-color:var(--color-aqua);}.viewer-thumb img{width:100%;height:100%;object-fit:cover;border-radius:.15rem;}
+  .viewer-loading{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);padding:.4rem .8rem;background:var(--color-bg);border:1px solid var(--color-border);border-radius:.5rem;font-size:.8rem;white-space:nowrap;}.viewer-loading[hidden]{display:none;}
+  .is-zoomed .viewer-stage{display:block;overflow:auto;cursor:grab;touch-action:pan-x pan-y pinch-zoom;}
+  .is-zoomed .viewer-stage.is-panning{cursor:grabbing;}
+  .is-zoomed .viewer-stage img{max-width:none;max-height:none;width:180%;height:auto;}
+  @media(max-width:640px){.viewer-layout{grid-template-rows:60px minmax(0,1fr) auto;}.viewer-toolbar{gap:.5rem;padding-inline:.65rem;}.viewer-title{font-size:.8rem;}.viewer-stage{margin:.75rem .65rem;}.lightbox-nav{top:auto;bottom:135px;z-index:1;width:44px;height:44px;background:rgba(42,47,74,.92);}.lightbox-prev{left:.8rem;}.lightbox-next{right:.8rem;}.viewer-zoom span{display:none;}.viewer-zoom{padding:.5rem;}.viewer-caption{min-height:2.5rem;font-size:.8rem;}.viewer-filmstrip{padding:.2rem;}.viewer-thumb{width:64px;flex-basis:64px;height:48px;}}
+  @media(max-height:520px){.viewer-caption,.viewer-filmstrip{display:none;}.viewer-footer{padding:0;}.viewer-stage{margin:.5rem 4rem;}.lightbox-nav{top:50%;bottom:auto;}}
+  @media(prefers-reduced-motion:reduce){.photo-viewer,.viewer-thumb{transition:none;}}
+</style>

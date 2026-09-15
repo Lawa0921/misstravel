@@ -1,4 +1,6 @@
 ---
+import RoomCompare from '../../components/RoomCompare.astro';
+import SectionRail from '../../components/SectionRail.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
@@ -39,7 +41,8 @@ const itemListSchema = {
         <h1>房型展示</h1>
       </header>
 
-      <nav class="category-nav" aria-label="住宿類型快速導覽">
+      <nav class="category-nav section-rail" data-section-rail aria-label="住宿類型快速導覽">
+          <span class="rail-indicator" aria-hidden="true"></span>
         {categories.map((category) => {
           const count = sortedRooms.filter((room) => room.data.category === category.id).length;
           return (
@@ -51,6 +54,7 @@ const itemListSchema = {
           );
         })}
       </nav>
+      <SectionRail setupOnly />
 
       {categories.map((category) => {
         const categoryRooms = sortedRooms.filter((room) => room.data.category === category.id);
@@ -72,6 +76,7 @@ const itemListSchema = {
                 const alternativeOption = room.data.priceOptions?.find((option) => !option.isStandard);
 
                 return (
+                  <article class="room-option">
                   <a
                     href={`/rooms/${room.id.replace('.md', '')}/`}
                     class="room-card"
@@ -120,6 +125,8 @@ const itemListSchema = {
                       </div>
                     </div>
                   </a>
+                  <button type="button" class="compare-toggle" data-compare-toggle={room.id} aria-pressed="false" aria-label={`比較${room.data.shortTitle}`}><span class="compare-toggle-icon" aria-hidden="true">+</span><span data-compare-label>加入比較</span></button>
+                  </article>
                 );
               })}
             </div>
@@ -127,6 +134,7 @@ const itemListSchema = {
         );
       })}
     </div>
+    <RoomCompare />
   </main>
 </BaseLayout>
 
@@ -164,10 +172,11 @@ const itemListSchema = {
   }
 
   .category-nav {
+    position:sticky;top:4.5rem;z-index:40;padding:.6rem;border:1px solid var(--color-border);border-radius:1rem;background:rgba(36,41,67,.97);backdrop-filter:blur(18px);
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
   }
 
   .category-link {
@@ -203,7 +212,7 @@ const itemListSchema = {
   }
 
   .room-category {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 10rem;
     margin-bottom: 6rem;
   }
 
@@ -250,10 +259,21 @@ const itemListSchema = {
     gap: 1.25rem;
   }
 
+  .room-option { position:relative;min-width:0;display:flex;flex-direction:column; }
+  .compare-toggle { display:none;align-items:center;justify-content:center;gap:.5rem;margin:.5rem .25rem 0;align-self:flex-end;min-height:44px;padding:.4rem .8rem;border:1px solid var(--color-border);border-radius:999px;background:transparent;color:var(--color-paper-muted);font:inherit;font-size:.8rem;cursor:pointer;transition:background 160ms,color 160ms,transform 160ms; }
+  :global(html[data-compare-ready]) .compare-toggle { display:inline-flex; }
+  .compare-toggle[aria-pressed="true"] { color:var(--color-aqua);border-color:var(--color-aqua);background:rgba(157,216,208,.1); }
+  .compare-toggle-icon { font-size:1.2rem;line-height:1;transition:transform 160ms; }
+  .compare-toggle[aria-pressed="true"] .compare-toggle-icon { transform:rotate(45deg); }
+  .compare-toggle:active { transform:scale(.97); }
+  :global(html[data-compare-active]) #main { padding-bottom:10rem; }
+  @media(max-width:767px){.category-nav{top:4rem;gap:.2rem;flex-wrap:nowrap;overflow-x:auto;}.category-link{flex:1;justify-content:center;padding:.6rem .5rem;font-size:.85rem;}.category-link small{display:none;}}
+
   .room-card {
     display: flex;
     min-width: 0;
     flex-direction: column;
+    flex:1;
     overflow: hidden;
     border: 1px solid var(--color-border);
     border-radius: 1rem;

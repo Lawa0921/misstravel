@@ -15,6 +15,19 @@
   let pendingTrigger = null;
   let pendingBodyOverflow = null;
   let previousBodyOverflow = '';
+  const inertBackground = new Map();
+  function restoreBackground() { inertBackground.forEach((value, node) => { node.inert = value; }); inertBackground.clear(); }
+  function isolateDialog(dialog) {
+    let branch = dialog;
+    while (branch.parentElement && branch.parentElement !== document.documentElement) {
+      [...branch.parentElement.children].forEach((sibling) => {
+        if (sibling === branch || !(sibling instanceof HTMLElement) || /^(SCRIPT|STYLE|LINK)$/.test(sibling.tagName)) return;
+        if (!inertBackground.has(sibling)) inertBackground.set(sibling, sibling.inert);
+        sibling.inert = true;
+      });
+      branch = branch.parentElement;
+    }
+  }
 
   function visibleFocusableElements(dialog) {
     return [...dialog.querySelectorAll(FOCUSABLE_SELECTOR)].filter((element) => {
@@ -50,6 +63,7 @@
     }
 
     activeDialog = dialog;
+    isolateDialog(dialog);
     dialog.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
@@ -68,6 +82,7 @@
     dialog.setAttribute('aria-hidden', 'true');
 
     if (activeDialog === dialog) {
+      restoreBackground();
       activeDialog = null;
       if (!document.querySelector(OPEN_DIALOG_SELECTOR)) {
         document.body.style.overflow = previousBodyOverflow;
@@ -231,4 +246,7 @@
   }
 
   document.querySelectorAll('.carousel').forEach(enhanceCarousel);
+  // Leave a usable document in native history, including comparisons followed by a room link.
+  window.addEventListener('pageswap', () => { if (activeDialog) deactivateDialog(activeDialog); });
+  window.addEventListener('pagehide', () => { if (activeDialog) deactivateDialog(activeDialog); });
 })();
