@@ -1,0 +1,504 @@
+{
+  "base": "1276582069e6d6d6ef92ac8f03840928ffd9fa51",
+  "contracts": [
+    {
+      "file": "404.html",
+      "seo": "2f156cc378d6d567d2e8e821d8b44e3af9d635cc369236dfa684fe031651e74c",
+      "regions": []
+    },
+    {
+      "file": "index.html",
+      "seo": "6c5b451f1d83cef2260868274e77f8477c6644bd3e4d7ad66af64d77672a7c09",
+      "regions": []
+    },
+    {
+      "file": "announcements/index.html",
+      "seo": "be388a50473cf67f136fe1847cc6c5a3898958262a46fc27c1050c497ab7ac32",
+      "regions": []
+    },
+    {
+      "file": "galleries/index.html",
+      "seo": "171122d3bcd4fec4ca8fbc3a377461cd9dcb0027f4e92b02a099370d50a47b74",
+      "regions": []
+    },
+    {
+      "file": "infos/index.html",
+      "seo": "fd6f7df65ac3777a15dac4f51a698bcba4c24075333ea138b6d1e44646ec57b6",
+      "regions": [
+        {
+          "selector": ".spotlights .content",
+          "index": 0,
+          "text": "90e1aff4cbf789be35ee0077beeed7e79d34e72d8f63e7d1685c3323650c78c2",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".spotlights .content",
+          "index": 1,
+          "text": "5de2cd9ec02274d843c7122cca5868a900ab47dad2e45aafaece984a56a3de9d",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".spotlights .content",
+          "index": 2,
+          "text": "302464eaed3a1ad66d52182d8baaafbf89a5715e8a4061241ae2dd4bda6504aa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".spotlights .content",
+          "index": 3,
+          "text": "7302ad626f6eacf21348728281822a91000d37af3cef97a47a7838bfcc48a13d",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".spotlights .content",
+          "index": 4,
+          "text": "bfb84901a0363f0fff5263dd1b59b2ce6adbd9e06e5d33a8a211b47fe2307e33",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".spotlights .content",
+          "index": 5,
+          "text": "ef0fd146e1d7a62280a4697d9df4538fa9c6f01ee2c2e68ae22d5f85da40f30c",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".spotlights .content",
+          "index": 6,
+          "text": "4bee08df3eb500c2b5238f58ebb9ccfbee759ba5727655a61a7d8fcd41315c27",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".spotlights .content",
+          "index": 7,
+          "text": "5b193b404d79f811f9e13e1a555983b827de5605eecd7773b0ca5ae68bbf6d4e",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/index.html",
+      "seo": "9b440a713f15b7a683dc09bbf1011c7dc31307b5c4ee842a046c690e3e386667",
+      "regions": []
+    },
+    {
+      "file": "sale_items/index.html",
+      "seo": "884bd35ffb48647e915b3b9a854fd51b727a5fceb1ec9972d330dc77023e51ae",
+      "regions": [
+        {
+          "selector": ".modal-body",
+          "index": 0,
+          "text": "6389bef57ce4473b2fc5edd7251bca232f9bd585c51f2472bf5a5a140154f31d",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 1,
+          "text": "d015184def0d0db311171f3639ebf8e6d53c1b188fd6bfdd1728d92e847104a6",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 2,
+          "text": "7a56a0a52d7d2bcf204ecbd6ee5e6febb1d9b7188c8cfdb3084511fbd72bab66",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 3,
+          "text": "d5739eb92a30c33b0504318f473e722a2c13bdf28b5dc128d1c3e48bce548ffe",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 4,
+          "text": "0abbd32d9436dbc506e571ac99078d1d46a439eece85f27fb27cf042cb2946c0",
+          "links": "7c689d0e60701e7d8da860f44b5a73abefed34d0e32cf4df5d29407147c9b7e0"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 5,
+          "text": "3652053683d9a143ca58f6990ae5306bf0e4d4769909a714f9b5e438c0c41a2a",
+          "links": "dea393b2eb28fe4e0bd69acd18755c7382c6b5329b61b46d17132cf66ff6fbf6"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 6,
+          "text": "12bcd33c001feb2b5648c4dcd466ad5c87b4fd5c0932b7ed015cc0a09986256c",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "announcements/website/index.html",
+      "seo": "71132f810492a00f349c5e4aa991b48fd8af792e796882d2a344aefea420b974",
+      "regions": [
+        {
+          "selector": ".content",
+          "index": 0,
+          "text": "5f647098db5b11657ec159510135108070c1fb83042892bf48139278bc91ad2a",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "infos/account/index.html",
+      "seo": "3ac185b8ed3da1c1c719b2801f19fa95bb87e4a1c7d703c2955c9300a088178e",
+      "regions": [
+        {
+          "selector": ".info-content",
+          "index": 0,
+          "text": "0ac751ff85ac15b5a55b8897c861df8b820b9eac24cf20ddbc3f7dcc17018f6f",
+          "links": "6c681e0610065902344d10c8a8a7ae54e28e2fd93ee5ea53b252fb689a2a6266"
+        }
+      ]
+    },
+    {
+      "file": "infos/contact-method/index.html",
+      "seo": "6846a03e94381249c5ea6fc3e34e50a83a79052ce393323e79ed556a294945c2",
+      "regions": [
+        {
+          "selector": ".info-content",
+          "index": 0,
+          "text": "8e13f0d7653d0f0c4decd9663e11448e5a6c6d8e13bfb4e5d204992b2c353b5e",
+          "links": "3160f98fcaf53d7d5aba778a39586719e450d4405b14a64510ecb92786e7ee64"
+        }
+      ]
+    },
+    {
+      "file": "infos/guide/index.html",
+      "seo": "0fb285cfc5307c529252b6b61405deccf4a1595e01e022e271a1054e7bf6c513",
+      "regions": [
+        {
+          "selector": ".modal-body",
+          "index": 0,
+          "text": "58d0a1d3fe0870f16c24d4ed9a5c125abd04177571a817cd68f5e0975220ee82",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 1,
+          "text": "a7f6872d803149b406777849c39932db614eee2d5453329c96b43d37b59fd0d3",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "infos/map/index.html",
+      "seo": "661c8ff73dbf5bf2bb799d4321d4cabd5fef771332ca96436293134653278a5c",
+      "regions": [
+        {
+          "selector": ".info-content",
+          "index": 0,
+          "text": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "infos/menu/index.html",
+      "seo": "3d1a58ae16dd51fafde4bc3be940b2f1dfbdd3c5dfc54e414cb7b309614a6260",
+      "regions": [
+        {
+          "selector": ".info-content",
+          "index": 0,
+          "text": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "infos/roles/index.html",
+      "seo": "77ecbef971aaebbc05f4a548100d0876b17564bd1117c179fa1be35cb4721ab4",
+      "regions": [
+        {
+          "selector": ".info-content",
+          "index": 0,
+          "text": "5e539157fba53064301a10249272b5d40fbfe0bae855f59f7e8a1aabebfb11d1",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "infos/set-menu-info/index.html",
+      "seo": "0c76c9ddd71bb0343cc6c8a769aa85aa1dadd7a62222a2f5c3d638b69a5d3bb5",
+      "regions": [
+        {
+          "selector": ".modal-body",
+          "index": 0,
+          "text": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 1,
+          "text": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".modal-body",
+          "index": 2,
+          "text": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".info-section",
+          "index": 0,
+          "text": "ea74303b24596b862730c066fecf99fcf56bb3af0cb2ff7617e342302de6d21c",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "infos/video/index.html",
+      "seo": "2afc9804fb9fb1811da31f889f4e16f1b87056a441961a0bb625d5dc1280eed7",
+      "regions": [
+        {
+          "selector": ".info-content",
+          "index": 0,
+          "text": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/campsite_1/index.html",
+      "seo": "ad0750bb1c314644d136c7683e28c992e007b15a93590b497bf1654f7f1cf685",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "ddef3e9df760a5878a7185b65a190597bea649149803147784377ac183821ed0",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/campsite_2/index.html",
+      "seo": "79377add07a008722b432e28fff7d3cd1b97e007a9e3fde93f10a60006a809d3",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "6921ff4954d76ebc2e9c2bdb24074274829bdf696098c1f5030eef248016627f",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/campsite_3/index.html",
+      "seo": "94e7b98faf8db2fc2fb43e3dd6ba74e885d94cc0c7f5183752bda96b06678882",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "11fdceedf47b706e08900f8c58210eb30dc25b1f7d79cdacd0e91b5c9feddf42",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_1/index.html",
+      "seo": "15d75991de91d98f4cf1332fb2be2cb9d423f5148a022bf647a0a8d55a012599",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "9f563ffaebe0153c1fa67b7b12b9070b172b1c4b823c8513573ca0e39b82c090",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_2/index.html",
+      "seo": "e30badef12cea06ba2f66962b34de66301cab16524266a7b76a9b4aa6c81a7a6",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "23ae4394cbb4c18299c9e12d85bb3cb7db14c2b6ea036e050db2bde4c43f434e",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_3/index.html",
+      "seo": "1276b77a77b9e1ecf6578dd7e23481b600e2a016fdb7f3588932ba7198a5df3a",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "06baebc015f0a767e223774088a40d1535564f6b9664d725f2035cae44eadd21",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_4/index.html",
+      "seo": "aeabdb992a0cbc7f08d0faea7532de972c2231ba4de7e0cfb0d68599d7bcab44",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "68d404393eb702b8ab376bedd25e3404f217638334c618e8d10106da95890abe",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/suite_1/index.html",
+      "seo": "e4d773c36934f15be982df30d7336cfed3b79b10cc40cc8abda0b95b9ea17716",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "f2fb18ec2e201c3beb0f29cdf56558bbfbe7a4cffbbbb74b22a246aa9903c84e",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/suite_2/index.html",
+      "seo": "e1817a3e084f5520c1f460189eaa412ed3d7591621feed4e784fe8e533572a48",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "58835151a6bf1680231ff806e424bf717af1de60f8c8925ed40d312776087f66",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "rooms/suite_3/index.html",
+      "seo": "572bf5ca0fa43669377de0a389e677aa62c977739a8f89f40d16d47bbafcaa36",
+      "regions": [
+        {
+          "selector": ".room-content",
+          "index": 0,
+          "text": "f26b0d23eec3b18cba901e6170e11e70bce528f32a64f281bef5c0bf289374d5",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".booking-notice",
+          "index": 0,
+          "text": "439f3e990a838d9d4458b64056984f50b6882b73ae850b91fba9846b15c51797",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "selector": ".day-definition",
+          "index": 0,
+          "text": "49e6f9788efb5ce2c162742adf68456e3e12f820a3756c06cfb91723cf532daa",
+          "links": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
+import '../../styles/guest-pages.css';
 
 const infos = await getCollection('infos');
 
@@ -13,7 +14,7 @@ const standalonePages = [
 
 // 合併 content collection 和獨立頁面
 const allInfos = [...infos.map(info => ({ id: info.id.replace('.md', ''), data: info.data })), ...standalonePages];
-const sortedInfos = allInfos.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+const sortedInfos = allInfos.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
 <BaseLayout
@@ -22,6 +23,7 @@ const sortedInfos = allInfos.sort((a, b) => (a.data.order || 99) - (b.data.order
   keywords="關於密式,密式旅行故事,苗栗露營區"
   preloadImage="/images/landing_banner.webp"
 >
+  <main id="main" class="about-page">
   <section id="banner" class="style2" style="background-image: url('/images/landing_banner.webp');">
     <div class="inner">
       <header class="major">
@@ -29,9 +31,11 @@ const sortedInfos = allInfos.sort((a, b) => (a.data.order || 99) - (b.data.order
       </header>
       <div class="info-nav-container">
         <div class="info-nav">
-          {sortedInfos.map((info) => (
+          {sortedInfos.map((info, index) => (
             <a href={`/infos/${info.id}/`} class="info-link">
-              {info.data.title}
+              <span class="directory-number" aria-hidden="true" data-number={String(index + 1).padStart(2,'0')}></span>
+              <span>{info.data.title}</span>
+              <span class="directory-arrow" aria-hidden="true"></span>
             </a>
           ))}
         </div>
@@ -39,7 +43,7 @@ const sortedInfos = allInfos.sort((a, b) => (a.data.order || 99) - (b.data.order
     </div>
   </section>
 
-  <main id="main">
+
     <div class="inner">
       <Breadcrumb items={[{ label: '關於密式' }]} />
     </div>
@@ -171,221 +175,30 @@ const sortedInfos = allInfos.sort((a, b) => (a.data.order || 99) - (b.data.order
 </BaseLayout>
 
 <style>
-  #banner.style2 {
-    display: flex;
-    align-items: center;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-bottom: 0;
-    cursor: default;
-    height: 60vh;
-    max-height: 32em;
-    min-height: 22em;
-    position: relative;
-    top: -3.25em;
-    margin-bottom: -3.25em;
-    padding: 4em 0 2em 0;
-  }
 
-  #banner.style2::after {
-    content: '';
-    display: block;
-    height: 100%;
-    left: 0;
-    opacity: 0.85;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    background-color: #8d82c4;
-  }
-
-  #banner.style2 > .inner {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 65em;
-    margin: 0 auto;
-    padding: 0 3em;
-  }
-
-  #banner.style2 > .inner > .image {
-    display: none;
-  }
-
-  #banner.style2 .major h1 {
-    font-size: 3.25em;
-    letter-spacing: 0.2em;
-    margin: 0;
-    margin-bottom: 1.5rem;
-  }
-
-  .info-nav-container {
-    margin-top: 0;
-    border-top: 2px solid #fff;
-    padding-top: 2rem;
-  }
-
-  .info-nav {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    justify-content: center;
-    gap: 1.5rem 3rem;
-  }
-
-  .info-link {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    transition: all 0.2s ease;
-    text-align: center;
-  }
-
-  .info-link:hover {
-    color: #fff;
-    border-bottom-color: #fff;
-  }
-
-  #main {
-    background: #242943;
-  }
-
-  #main > .inner {
-    max-width: 65em;
-    margin: 0 auto;
-    padding: 1rem 3em 0;
-  }
-
-  .spotlights {
-    display: flex;
-    flex-direction: column;
-    border-top: 0;
-  }
-
-  .spotlights > section {
-    display: flex;
-    flex-direction: row;
-    background-color: #2e3347;
-  }
-
-  .spotlights > section:nth-child(2n) {
-    flex-direction: row-reverse;
-    background-color: #323751;
-  }
-
-  .spotlights > section:nth-child(2n) > .content {
-    align-items: flex-end;
-  }
-
-  .spotlights > section > .image {
-    width: 30%;
-    background-position: center center;
-    background-size: cover;
-    border-radius: 0;
-    display: block;
-    position: relative;
-  }
-
-  .spotlights > section > .image img {
-    border-radius: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .spotlights > section > .content {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2em 3em;
-  }
-
-  .spotlights > section > .content > .inner {
-    margin: 0 auto;
-    max-width: 100%;
-    width: 65em;
-  }
-
-  .spotlights .major h2 {
-    font-size: 1.75rem;
-    letter-spacing: 0.15em;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #fff;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-  }
-
-  .spotlights p {
-    margin-bottom: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.8;
-  }
-
-  .spotlights .yellow {
-    color: #ffd306;
-  }
-
-  @media (max-width: 1680px) {
-    .spotlights > section > .image {
-      width: 40%;
-    }
-
-    .spotlights > section > .content {
-      width: 60%;
-    }
-  }
-
-  @media (max-width: 1280px) {
-    .spotlights > section > .image {
-      width: 45%;
-    }
-
-    .spotlights > section > .content {
-      width: 55%;
-    }
-  }
-
-  @media (max-width: 980px) {
-    #banner.style2 {
-      padding: 6rem 0 3rem;
-    }
-
-    .spotlights > section {
-      display: block;
-    }
-
-    .spotlights > section > .image {
-      width: 100%;
-    }
-
-    .spotlights > section > .content {
-      width: 100%;
-      padding: 4em 3em;
-    }
-  }
-
-  @media (max-width: 736px) {
-    .spotlights > section > .content {
-      padding: 3em 1.5em;
-    }
-  }
-
-  @media (max-width: 480px) {
-    #banner.style2 .major h1 {
-      font-size: 1.75rem;
-    }
-
-    .info-nav {
-      gap: 1rem 1.5rem;
-    }
-
-    .info-link {
-      font-size: 0.85rem;
-    }
-  }
+#main.about-page { background:var(--color-bg); padding-bottom:4rem; }
+#banner { position:relative; padding:8rem 0 3rem; background-size:cover; background-position:center; }
+#banner::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(36,41,67,.88),rgba(36,41,67,.42)); }
+#banner > .inner { position:relative; z-index:1; }
+.inner { width:min(100% - 3rem,72rem); margin-inline:auto; }
+#banner h1 { margin:0 0 2.5rem; font-size:clamp(2.2rem,5vw,3.8rem); }
+.info-nav { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.75rem; }
+.info-link { position:relative; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:.75rem; min-height:76px; padding:1rem; border:1px solid var(--color-border); border-radius:.6rem; background:var(--color-surface); color:var(--color-paper); font-size:1rem; }
+.info-link:hover,.info-link:focus-visible { border-color:var(--color-aqua); color:var(--color-aqua); }
+.directory-number { color:var(--color-champagne); font-size:.85rem; }
+.directory-arrow { color:var(--color-aqua); }
+.directory-number::before { content:attr(data-number); }
+.directory-arrow::before { content:'↗'; }
+.spotlights { width:min(100% - 3rem,72rem); margin:2.5rem auto 0; display:grid; gap:2rem; }
+.spotlights > section { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--color-border); border-radius:1rem; overflow:hidden; background:var(--color-surface); }
+.spotlights > section:nth-child(even) .image { order:2; }
+.spotlights .image { display:block; min-height:320px; }
+.spotlights .image img { width:100%; height:100%; object-fit:cover; display:block; }
+.spotlights .content { padding:clamp(1.5rem,3vw,2.75rem); align-self:center; }
+.spotlights .content .inner { width:100%; }
+.spotlights h2 { font-size:1.6rem; margin:0 0 1.2rem; }
+.spotlights p { line-height:1.9; color:var(--color-paper-muted); }
+.spotlights .yellow { color:var(--color-champagne); border-left:2px solid var(--color-champagne); padding-left:1rem; margin-bottom:0; }
+@media(max-width:1023px) { .info-nav { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:640px) { .inner,.spotlights { width:calc(100% - 2rem); } #banner { padding:6.5rem 0 2rem; } .info-link { grid-template-columns:1fr auto; min-height:70px; } .directory-number { display:none; } .spotlights > section { grid-template-columns:1fr; } .spotlights > section:nth-child(even) .image { order:0; } .spotlights .image { min-height:0; aspect-ratio:4/3; } .spotlights { gap:1.5rem; } }
 </style>

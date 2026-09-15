@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import { siteConfig } from '../lib/config';
+import GuestNavigation from '../components/GuestNavigation.astro';
 
 const saleItemProducts = [
   {
@@ -41,6 +41,16 @@ const saleItemProducts = [
     },
   },
 ];
+const serviceChoices = [
+  {id:'sale_item_1',name:saleItemProducts[0].name,detail:saleItemProducts[0].description,price:saleItemProducts[0].offers.price},
+  {id:'sale_item_2',name:saleItemProducts[1].name,detail:saleItemProducts[1].description,price:saleItemProducts[1].offers.price},
+  {id:'sale_item_3',name:saleItemProducts[2].name,detail:saleItemProducts[2].description,price:saleItemProducts[2].offers.price},
+  {id:'sale_item_4',name:'各式雜貨',detail:'各式雜貨',price:undefined},
+  {id:'sale_item_6',name:'代訂合菜',detail:'家庭合菜、經濟合菜、精緻合菜',price:undefined},
+  {id:'sale_item_7',name:'簡餐菜單',detail:'簡餐菜單',price:undefined},
+  {id:'sale_item_8',name:'代訂食材/紅瓦舍',detail:'密式僅提供代訂、代收、代冰服務',price:undefined},
+];
+
 ---
 
 <BaseLayout
@@ -49,45 +59,30 @@ const saleItemProducts = [
   keywords="密式柑仔店,露營用品,休閒食品,苗栗露營,泰安特產,露營裝備"
   extraSchemas={saleItemProducts}
 >
-  <main id="main" class="alt">
-    <div class="inner">
-      <Breadcrumb items={[{ label: '密式柑仔店' }]} />
-      <header class="major">
-        <h1>密式柑仔店</h1>
-      </header>
-      <div class="sale-items-grid">
-        <div class="sale-item">
-          <button type="button" class="sale-btn special" data-modal="sale_item_1">烹飪組合</button>
-        </div>
-        <div class="sale-item">
-          <button type="button" class="sale-btn" data-modal="sale_item_2">烤肉組合</button>
-        </div>
-        <div class="sale-item">
-          <button type="button" class="sale-btn special" data-modal="sale_item_3">寢具組合</button>
-        </div>
-        <div class="sale-item">
-          <button type="button" class="sale-btn" data-modal="sale_item_4">各式雜貨</button>
-        </div>
-        <div class="sale-item">
-          <button type="button" class="sale-btn special" data-modal="sale_item_6">代訂合菜</button>
-        </div>
-        <div class="sale-item">
-          <button type="button" class="sale-btn" data-modal="sale_item_7">簡餐菜單</button>
+  <main id="main" class="guest-page">
+    <div class="guest-wrap">
+      <Breadcrumb items={[{label:'密式柑仔店'}]} />
+      <header class="guest-header"><h1>密式柑仔店</h1></header>
+      <div class="guest-layout">
+        <aside class="guest-sidebar"><GuestNavigation /></aside>
+        <div class="sale-items-grid guest-choice-grid">
+          {serviceChoices.map((item,index) => <button type="button" class="sale-btn guest-choice" data-modal={item.id} aria-label={item.name}>
+            <span class="guest-choice-index" aria-hidden="true">{String(index+1).padStart(2,'0')}</span>
+            <span class="guest-choice-title">{item.name}</span>
+            {item.detail !== item.name && <span class="guest-choice-detail">{item.detail}</span>}
+            {item.price !== undefined && <span class="guest-choice-price">{item.price} 元／次</span>}
+            <span class="guest-choice-arrow" aria-hidden="true">↗</span>
+          </button>)}
         </div>
       </div>
-      <div class="sale-items-row">
-        <div class="sale-item-last">
-          <button type="button" class="sale-btn special" data-modal="sale_item_8">代訂食材/紅瓦舍</button>
-        </div>
     </div>
-  </div>
 
   <!-- Modal: 烹飪組合 -->
   <div class="modal" id="sale_item_1" role="dialog" aria-modal="true" aria-labelledby="sale_item_1-title">
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="sale_item_1-title">烹飪組合</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <h4>租用烹飪組合費用：<span class="yellow">200元/次</span></h4>
@@ -112,7 +107,7 @@ const saleItemProducts = [
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="sale_item_2-title">烤肉組合</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <h4>租用烤肉組合費用：<span class="yellow">300元/次</span></h4>
@@ -139,7 +134,7 @@ const saleItemProducts = [
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="sale_item_3-title">寢具組合</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <h4>雙人一組，日式記憶雙人床墊、兩顆枕頭、一條雙人被</h4>
@@ -182,7 +177,7 @@ const saleItemProducts = [
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="sale_item_4-title">各式雜貨</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <h4>密式桌遊咖啡廳同時販售簡單雜貨</h4>
@@ -204,7 +199,7 @@ const saleItemProducts = [
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="sale_item_6-title">代訂合菜</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <h4>密式提供晚餐代訂合菜服務</h4>
@@ -227,7 +222,7 @@ const saleItemProducts = [
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="sale_item_7-title">密式菜單</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <h4>密式咖啡廳提供簡餐及飲料</h4>
@@ -246,7 +241,7 @@ const saleItemProducts = [
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="sale_item_8-title">代訂食材/紅瓦舍</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <div class="carousel">
@@ -294,219 +289,6 @@ const saleItemProducts = [
 </BaseLayout>
 
 <style>
-  #main {
-    background: #242943;
-    padding: 6rem 0 3rem;
-  }
-
-  .inner {
-    max-width: 65em;
-    margin: 0 auto;
-    padding: 0 3em;
-  }
-
-  header.major {
-    margin-bottom: 2rem;
-  }
-
-  header.major h1 {
-    font-size: 3rem;
-    margin: 0;
-    padding-bottom: 0.5rem;
-    border-bottom: solid 2px #fff;
-    display: inline-block;
-  }
-
-  .sale-items-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    min-height: 500px;
-  }
-
-  .sale-item {
-    width: 33.333%;
-    text-align: center;
-    padding: 0.5rem;
-  }
-
-  .sale-items-row {
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    padding-left: calc(33.333% / 2 - 0.5rem);
-    margin-top: 0.5rem;
-  }
-
-  .sale-item-last {
-    text-align: center;
-    padding: 0.5rem;
-  }
-
-  .sale-btn {
-    padding: 0 1.75em;
-    height: 2.75em;
-    line-height: 2.75em;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 2px solid #fff;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .sale-btn:hover {
-    background: rgba(255, 255, 255, 0.075);
-    border-color: #fff;
-  }
-
-  .sale-btn.special {
-    background: #fff;
-    color: #242943;
-  }
-
-  .sale-btn.special:hover {
-    background: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Modal styles */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-
-  .modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background: #242943;
-    border-radius: 8px;
-    max-width: 960px;
-    max-height: 90vh;
-    overflow-y: auto;
-    width: 100%;
-  }
-
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .modal-header h2 {
-    margin: 0;
-    font-size: 1.75rem;
-    letter-spacing: 0.1em;
-  }
-
-  .modal-close {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
-  }
-
-  .modal-body {
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .modal-body h4 {
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-  }
-
-  .modal-body h5 {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .modal-body ul {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-  }
-
-  .modal-body li {
-    margin-bottom: 0.5rem;
-  }
-
-  .modal-body p {
-    margin-bottom: 1rem;
-  }
-
-  .modal-body .note {
-    margin-top: 1.5rem;
-    line-height: 1.8;
-  }
-
-  .yellow {
-    color: #ffd306;
-  }
-
-  .red {
-    color: #ff6b6b;
-  }
-
-  .image-row {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-  }
-
-  .image-col {
-    flex: 2;
-  }
-
-  .image-col img {
-    width: 100%;
-    border-radius: 4px;
-  }
-
-  .text-col {
-    flex: 1;
-    text-align: left;
-  }
-
-  .button-wrapper {
-    margin-top: 1.5rem;
-  }
-
-  .button {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    border: 2px solid #fff;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    transition: all 0.2s ease;
-  }
-
-  .button:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
   /* Carousel styles */
   .carousel {
     position: relative;
@@ -572,48 +354,7 @@ const saleItemProducts = [
     background: #fff;
   }
 
-  @media (max-width: 980px) {
-    .sale-item {
-      width: 50%;
-    }
 
-    .sale-items-row {
-      padding-left: calc(50% / 2 - 0.5rem);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .inner {
-      padding: 0 1.5em;
-    }
-
-    .image-row {
-      flex-direction: column;
-    }
-
-    .text-col {
-      text-align: center;
-    }
-  }
-
-  @media (max-width: 480px) {
-    header.major h1 {
-      font-size: 2rem;
-    }
-
-    .sale-item {
-      width: 100%;
-    }
-
-    .sale-items-row {
-      padding-left: 0;
-      justify-content: center;
-    }
-
-    .sale-item-last {
-      width: 100%;
-    }
-  }
 </style>
 
 <script>

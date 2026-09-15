@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import GuestNavigation from '../../components/GuestNavigation.astro';
 ---
 
 <BaseLayout
@@ -8,54 +9,59 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   description="前往密式旅行露營區的詳細交通指引，包含大湖路線和豆腐街路線兩種選擇"
   keywords="密式旅行交通, 苗栗露營交通, 泰安露營區路線, 大湖路線, 豆腐街路線"
 >
-  <main id="main" class="alt">
-    <section id="one">
-      <div class="inner">
-        <Breadcrumb items={[
-          { label: '關於密式', href: '/infos/' },
-          { label: '交通指引' }
-        ]} />
-        <header class="major">
-          <h1>交通指引</h1>
-        </header>
-
-        <div class="guide-buttons">
-          <button type="button" class="guide-btn special" data-modal="guide_1">經大湖市區</button>
-          <button type="button" class="guide-btn" data-modal="guide_2">經豆腐街</button>
+  <main id="main" class="guest-page">
+    <div class="guest-wrap">
+      <Breadcrumb items={[{label:'關於密式',href:'/infos/'},{label:'交通指引'}]} />
+      <header class="guest-header"><h1>交通指引</h1></header>
+      <div class="guest-layout">
+        <aside class="guest-sidebar"><GuestNavigation /></aside>
+        <div class="guide-buttons guest-choice-grid">
+          <button type="button" class="guide-btn guest-choice" data-modal="guide_1" aria-label="經大湖市區">
+            <span class="guest-choice-index" aria-hidden="true">ROUTE 01</span>
+            <span class="guest-choice-title">經大湖市區</span>
+            <span class="guest-choice-detail">出七十二快速道路後往右轉經大湖上山(較建議路段)</span>
+            <span class="guest-choice-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button type="button" class="guide-btn guest-choice" data-modal="guide_2" aria-label="經豆腐街">
+            <span class="guest-choice-index" aria-hidden="true">ROUTE 02</span>
+            <span class="guest-choice-title">經豆腐街</span>
+            <span class="guest-choice-detail">出七十二快速道路後直行經清安苗62-1上山</span>
+            <span class="guest-choice-arrow" aria-hidden="true">↗</span>
+          </button>
         </div>
       </div>
-    </section>
+    </div>
 
   <!-- Modal: 大湖路線 -->
   <div class="modal" id="guide_1" role="dialog" aria-modal="true" aria-labelledby="guide_1-title">
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="guide_1-title">大湖路線</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_1.webp" alt="大湖路線步驟1" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_1.webp" alt="大湖路線步驟1" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_1.webp" alt="大湖路線步驟1" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>出七十二快速道路後往右轉經大湖上山(較建議路段)</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_2.webp" alt="大湖路線步驟2" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_2.webp" alt="大湖路線步驟2" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_2.webp" alt="大湖路線步驟2" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>看到大湖國中右轉苗栗六十一號縣道 (細細邦道)</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_3.webp" alt="大湖路線步驟3" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_3.webp" alt="大湖路線步驟3" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_3.webp" alt="大湖路線步驟3" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿途經過此岔路請繼續直行</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_4.webp" alt="大湖路線步驟4" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_4.webp" alt="大湖路線步驟4" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_4.webp" alt="大湖路線步驟4" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿途經過此岔路請繼續直行，沿著主要幹道開</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_5.webp" alt="大湖路線步驟5" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_5.webp" alt="大湖路線步驟5" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_5.webp" alt="大湖路線步驟5" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿途經過小小的大安橋</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_6.webp" alt="大湖路線步驟6" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_6.webp" alt="大湖路線步驟6" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_6.webp" alt="大湖路線步驟6" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text">
             <p>經過下圖路口時，請注意不要錯過，左轉上坡後路就變大條了!!</p>
             <p class="red">請勿直走，直走導航會帶您走超小的路線!!</p>
@@ -63,27 +69,27 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_7.webp" alt="大湖路線步驟7" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_7.webp" alt="大湖路線步驟7" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_7.webp" alt="大湖路線步驟7" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿途經過此小岔路，右轉上坡 請繼續沿著主要幹道開</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_8.webp" alt="大湖路線步驟8" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_8.webp" alt="大湖路線步驟8" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_8.webp" alt="大湖路線步驟8" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>上坡後經泰安國中小</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_9.webp" alt="大湖路線步驟9" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_9.webp" alt="大湖路線步驟9" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_9.webp" alt="大湖路線步驟9" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>看到大興派出所路口右轉</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_10.webp" alt="大湖路線步驟10" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_10.webp" alt="大湖路線步驟10" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_10.webp" alt="大湖路線步驟10" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>經過派出所後，皆一直直行，走最大條的路(平緩沒有上下坡)</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_11.webp" alt="大湖路線步驟11" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_11.webp" alt="大湖路線步驟11" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_11.webp" alt="大湖路線步驟11" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿途經過此岔路請繼續直行，沿著主要幹道開</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_1_12.webp" alt="大湖路線步驟12" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_1_12.webp" alt="大湖路線步驟12" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_1_12.webp" alt="大湖路線步驟12" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text">
             <p class="yellow">🌟 抵達密式入口 🌟</p>
             <p>觀山之屋區/四人套房(閲陽、近雲)皆在此入口旁圍牆前臨停，通知營主等候帶位</p>
@@ -99,39 +105,39 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="guide_2-title">豆腐街路線</h2>
-        <button class="modal-close">&times;</button>
+        <button type="button" class="modal-close" aria-label="關閉對話框">&times;</button>
       </div>
       <div class="modal-body">
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_1.webp" alt="豆腐街路線步驟1" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_1.webp" alt="豆腐街路線步驟1" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_1.webp" alt="豆腐街路線步驟1" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>出七十二快速道路後直行經清安苗62-1上山</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_2.webp" alt="豆腐街路線步驟2" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_2.webp" alt="豆腐街路線步驟2" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_2.webp" alt="豆腐街路線步驟2" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>72快速道路走到底汶水端</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_3.webp" alt="豆腐街路線步驟3" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_3.webp" alt="豆腐街路線步驟3" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_3.webp" alt="豆腐街路線步驟3" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>直行走往清安方向</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_4.webp" alt="豆腐街路線步驟4" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_4.webp" alt="豆腐街路線步驟4" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_4.webp" alt="豆腐街路線步驟4" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>左轉往清安方向</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_5.webp" alt="豆腐街路線步驟5" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_5.webp" alt="豆腐街路線步驟5" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_5.webp" alt="豆腐街路線步驟5" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>岔路往左經萊爾富至豆腐街</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_6.webp" alt="豆腐街路線步驟6" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_6.webp" alt="豆腐街路線步驟6" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_6.webp" alt="豆腐街路線步驟6" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>至溫泉區路口右轉走苗62-1</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_7.webp" alt="豆腐街路線步驟7" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_7.webp" alt="豆腐街路線步驟7" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_7.webp" alt="豆腐街路線步驟7" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>右轉親善橋</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_8.webp" alt="豆腐街路線步驟8" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_8.webp" alt="豆腐街路線步驟8" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_8.webp" alt="豆腐街路線步驟8" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text">
             <p>經過下圖路口時，請注意不要錯過，請右轉上坡!!</p>
             <p class="red">請勿直走，直走導航會帶您走超小的路線!!一定迷路</p>
@@ -139,31 +145,31 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_9.webp" alt="豆腐街路線步驟9" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_9.webp" alt="豆腐街路線步驟9" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_9.webp" alt="豆腐街路線步驟9" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>行至三岔路口直走往大興南灣方向</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_10.webp" alt="豆腐街路線步驟10" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_10.webp" alt="豆腐街路線步驟10" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_10.webp" alt="豆腐街路線步驟10" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>此路口右轉往大興方向</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_11.webp" alt="豆腐街路線步驟11" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_11.webp" alt="豆腐街路線步驟11" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_11.webp" alt="豆腐街路線步驟11" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿著柏油路直行</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_12.webp" alt="豆腐街路線步驟12" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_12.webp" alt="豆腐街路線步驟12" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_12.webp" alt="豆腐街路線步驟12" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>直行經過大興派出所</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_13.webp" alt="豆腐街路線步驟13" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_13.webp" alt="豆腐街路線步驟13" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_13.webp" alt="豆腐街路線步驟13" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿著南清聯絡道路直行</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_14.webp" alt="豆腐街路線步驟14" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_14.webp" alt="豆腐街路線步驟14" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_14.webp" alt="豆腐街路線步驟14" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text"><p>沿著柏油路直行</p></div>
         </div>
         <div class="guide-step">
-          <div class="step-image"><img data-src="/images/guide/guide_2_15.webp" alt="豆腐街路線步驟15" loading="lazy" decoding="async" width="600" height="400" /></div>
+          <div class="step-image"><img data-src="/images/guide/guide_2_15.webp" alt="豆腐街路線步驟15" loading="lazy" decoding="async" width="600" height="400" /><noscript><img src="/images/guide/guide_2_15.webp" alt="豆腐街路線步驟15" loading="lazy" decoding="async" width="600" height="400" /></noscript></div>
           <div class="step-text">
             <p class="yellow">🌟 抵達密式入口 🌟</p>
             <p>觀山之屋區/四人套房(閲陽、近雲)皆在此入口旁圍牆前臨停，通知營主等候帶位</p>
@@ -176,222 +182,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   </main>
 </BaseLayout>
 
-<style>
-  #main.alt {
-    background: #242943;
-    padding-top: 5rem;
-  }
 
-  #one {
-    padding: 2rem 0 4rem;
-  }
-
-  .inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .major h1 {
-    font-size: 2rem;
-    letter-spacing: 0.15em;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #fff;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-  }
-
-  .guide-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    min-height: 400px;
-    align-items: center;
-    background: #2a2f4a;
-    border-radius: 8px;
-    padding: 2rem;
-  }
-
-  .guide-btn {
-    padding: 1rem 3rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    border: 2px solid #fff;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .guide-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .guide-btn.special {
-    background: #fff;
-    color: #242943;
-  }
-
-  .guide-btn.special:hover {
-    background: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Modal styles */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    visibility: hidden;
-    transition: background 0.3s ease, visibility 0.3s ease;
-  }
-
-  .modal.active {
-    visibility: visible;
-    background: rgba(0, 0, 0, 0.85);
-  }
-
-  .modal-content {
-    background: #242943;
-    border-radius: 12px;
-    max-width: 960px;
-    width: 100%;
-    max-height: calc(100vh - 4rem);
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transform: translateY(30px) scale(0.97);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-  }
-
-  .modal.active .modal-content {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    flex-shrink: 0;
-    background: #242943;
-    border-radius: 12px 12px 0 0;
-  }
-
-  .modal-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-  }
-
-  .modal-close {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    font-size: 1.25rem;
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-    line-height: 1;
-  }
-
-  .modal-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg);
-  }
-
-  .modal-body {
-    padding: 2rem;
-    overflow-y: auto;
-    flex: 1;
-  }
-
-  .guide-step {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .guide-step:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .step-image {
-    flex: 2;
-  }
-
-  .step-image img {
-    width: 100%;
-    border-radius: 4px;
-  }
-
-  .step-text {
-    flex: 1;
-  }
-
-  .step-text p {
-    margin-bottom: 0.5rem;
-  }
-
-  .step-text p:last-child {
-    margin-bottom: 0;
-  }
-
-  .yellow {
-    color: #ffd306;
-    font-weight: 600;
-  }
-
-  .red {
-    color: #ff6b6b;
-  }
-
-  @media (max-width: 768px) {
-    .guide-buttons {
-      flex-direction: column;
-      gap: 1rem;
-      min-height: 300px;
-    }
-
-    .guide-btn {
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .guide-step {
-      flex-direction: column;
-    }
-
-    .modal {
-      padding: 1rem;
-    }
-
-    .modal-body {
-      padding: 1rem;
-    }
-  }
-</style>
 
 <script>
   function openModal(modal: HTMLElement) {
