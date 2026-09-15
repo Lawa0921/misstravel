@@ -74,7 +74,7 @@ const isCurrent = (href: string, external = false) => !external && currentPath =
 </nav>
 
 <style>
-  #header { display: flex; align-items: center; position: absolute; z-index: 1000; top: 0; left: 0; width: 100%; height: 72px; padding: 0 max(1.25rem, 5vw); color: var(--color-paper); letter-spacing: 0.12em; }
+  #header { display: flex; align-items: center; position: absolute; z-index: 1000; top: 0; left: 0; width: 100%; height: 4.5rem; padding: 0 max(1.25rem, 5vw); color: var(--color-paper); letter-spacing: 0.12em; }
   #header:not(.alt) { position: fixed; background: var(--color-bg); box-shadow: 0 1px 0 rgba(245, 240, 230, 0.12); }
   #header.alt { background: linear-gradient(180deg, rgba(36, 41, 67, 0.74), transparent); }
   #header.alt.style2 .logo strong { color: var(--color-champagne); }
@@ -180,7 +180,7 @@ const isCurrent = (href: string, external = false) => !external && currentPath =
   }
 
   @media (max-width: 767px) {
-    #header { height: 64px; padding-inline: 1.25rem; }
+    #header { height: 4rem; padding-inline: 1.25rem; }
     #desktop-nav { display: none; }
     .menu-control { margin-left: auto; }
   }
@@ -251,11 +251,16 @@ const isCurrent = (href: string, external = false) => !external && currentPath =
     menu.style.removeProperty('visibility');
     menu.inert = false;
     savedOverflow = document.body.style.overflow;
-    document.querySelectorAll<HTMLElement>('main, footer').forEach((element) => {
-      if (element.contains(menu) || menu.contains(element)) return;
-      backgroundInert.set(element, element.inert);
-      element.inert = true;
-    });
+    let branch: HTMLElement = menu;
+    while (branch.parentElement && branch.parentElement !== document.documentElement) {
+      for (const sibling of branch.parentElement.children) {
+        if (sibling === branch || !(sibling instanceof HTMLElement) || /^(SCRIPT|STYLE|LINK)$/.test(sibling.tagName)) continue;
+        if (!backgroundInert.has(sibling)) backgroundInert.set(sibling, sibling.inert);
+        sibling.inert = true;
+      }
+      branch = branch.parentElement;
+    }
+
     selectPreview(menu.querySelector<HTMLAnchorElement>('a[aria-current="page"]') ?? menu.querySelector<HTMLAnchorElement>('a[data-preview]'));
     menu?.classList.add('is-visible');
     menu?.setAttribute('aria-hidden', 'false');

@@ -796,11 +796,17 @@ const relatedRooms = allRooms
       const targetIndex = normalizeIndex(index);
       const token = ++navigationToken;
       const targetImage = prepareImage(targetIndex);
-      const ready = targetImage && await waitForPhoto(targetImage);
+      const ready = targetImage ? await waitForPhoto(targetImage) : 'error';
       if (token !== navigationToken) return;
-      if (!ready) { const status=document.querySelector('[data-photo-error]');if(status)status.textContent='照片無法開啟，請選擇其他照片。';return; }
-      const status=document.querySelector('[data-photo-error]');if(status)status.textContent='';
-      if (token !== navigationToken) return;
+      track.classList.remove('is-dragging');
+      const status=document.querySelector('[data-photo-error]');
+      if (ready !== 'ready') {
+        updateCarousel();
+        if(status)status.textContent=ready==='timeout'?'照片準備較久，請再按一次。':'照片無法開啟，請選擇其他照片。';
+        return;
+      }
+      if(status)status.textContent='';
+
       currentIndex = targetIndex;
       updateCarousel();
       preloadNeighbors();
@@ -824,8 +830,8 @@ const relatedRooms = allRooms
 
     attachPhotoGestures(track, {
       onMove: (dx) => { track.classList.add('is-dragging');track.style.transform=`translateX(calc(-${currentIndex * 100}% + ${dx}px))`; },
-      onEnd: (direction) => { track.classList.remove('is-dragging');updateCarousel();if(direction)void navigateTo(currentIndex+direction); },
-      onStart: () => { prepareImage(currentIndex+1);prepareImage(currentIndex-1); }
+      onEnd: (direction) => { if(direction)void navigateTo(currentIndex+direction);else{track.classList.remove('is-dragging');updateCarousel();} },
+      onStart: () => { ++navigationToken;prepareImage(currentIndex+1);prepareImage(currentIndex-1); }
     });
 
     updateCarousel();

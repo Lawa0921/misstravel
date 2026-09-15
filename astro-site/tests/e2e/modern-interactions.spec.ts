@@ -29,8 +29,8 @@ for (const width of [390,1440]) {
     await expect(dialog.locator('[data-compare-room]:visible')).toHaveCount(3);
     const first=dialog.locator('[data-compare-room="campsite_1"]');
     await expect(first).toContainText('三帳包區 · 12 人以下');await expect(first).toContainText('四帳包區（標準方案） · 16 人以下');
-    await expect(first.locator('.compare-plan').first()).toContainText('NT$2,400');
-    await expect(first.locator('.compare-plan').nth(1)).toContainText('NT$3,200');
+    await expect(first.locator('.compare-plan').nth(1)).toContainText('NT$2,400');
+    await expect(first.locator('.compare-plan').first()).toContainText('NT$3,200');
     await expect(first.locator('a')).toHaveAttribute('href','/rooms/campsite_1/');
     await page.keyboard.press('Escape');await expect(page.locator('#compare-open')).toBeFocused();
     await page.reload();await expect(page.locator('#compare-count')).toHaveText('3');
@@ -111,4 +111,14 @@ test('real touch swipes change photos while vertical movement still scrolls the 
   await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before+20);
   await expect(page.locator('.carousel-slide.active')).toHaveAttribute('data-index','1');await context.close();
+});
+
+
+test('comparison traps Tab using visible rooms and does not cover footer actions',async({page})=>{
+  await page.setViewportSize({width:390,height:844});await page.goto('/rooms/');await page.locator('[data-compare-toggle]').nth(0).click();await page.locator('[data-compare-toggle]').nth(1).click();await page.locator('#compare-open').click();
+  const close=page.locator('#room-compare .modal-close');const last=page.locator('.compare-room:not([hidden]) .compare-detail').last();
+  await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');
+  await page.evaluate(()=>scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+  const safe=await page.evaluate(()=>document.querySelector('#footer')!.getBoundingClientRect().bottom<=document.querySelector('#compare-tray')!.getBoundingClientRect().top);
+  expect(safe).toBe(true);await expect(page.locator('.compare-chip:not([hidden]) span').first()).toBeVisible();
 });

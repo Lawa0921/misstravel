@@ -34,7 +34,7 @@
       if (!(element instanceof HTMLElement)) return false;
       if (element.hidden || element.getAttribute('aria-hidden') === 'true') return false;
       const style = window.getComputedStyle(element);
-      return style.display !== 'none' && style.visibility !== 'hidden';
+      return element.tabIndex >= 0 && element.getClientRects().length > 0 && !element.closest('[hidden], [inert]') && style.visibility !== 'hidden';
     });
   }
 
@@ -62,6 +62,7 @@
       pendingBodyOverflow = null;
     }
 
+    if (activeDialog && activeDialog !== dialog) restoreBackground();
     activeDialog = dialog;
     isolateDialog(dialog);
     dialog.setAttribute('aria-hidden', 'false');

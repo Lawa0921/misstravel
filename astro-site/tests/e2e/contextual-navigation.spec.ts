@@ -64,6 +64,9 @@ for(const width of [390,1440]) {
   for(const slug of slugs) {
     test(`${slug}: selected photo continuity and native back/fallback at ${width}px`,async({page})=>{
       await page.setViewportSize({width,height:900});await page.goto('/rooms/');
+      // Begin only after the source document's initial reveal has completed.
+      // Keep every existing target-transition assertion below unchanged.
+      await expect.poll(()=>page.evaluate(()=>window.__contextualAudit?.finished)).toBe(true);
       const card=page.locator(`a.room-card[href="/rooms/${slug}/"]`);
       await card.scrollIntoViewIfNeeded();await card.locator('img').evaluate(i=>(i as HTMLImageElement).decode());
       await expect(card).toHaveCSS('opacity','1');

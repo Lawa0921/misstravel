@@ -1,4 +1,5 @@
 ---
+import { safeInlineJson } from '../lib/safe-json';
 interface Props { id: string; label: string; mode: 'gallery' | 'room'; images: {src:string;alt:string}[]; }
 const {id,label,mode,images}=Astro.props;
 ---
@@ -16,9 +17,9 @@ const {id,label,mode,images}=Astro.props;
     </div>
     <button type="button" class="lightbox-nav lightbox-prev" aria-label="上一張"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
     <button type="button" class="lightbox-nav lightbox-next" aria-label="下一張"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
-    <footer class="viewer-footer"><p class="viewer-caption" aria-live="polite">{images[0]?.alt}</p><div class="viewer-filmstrip" role="group" aria-label="照片快速選擇">{images.map((image,index)=><button type="button" class="viewer-thumb" data-viewer-index={index} aria-label={`顯示第 ${index+1} 張圖片`} aria-current={index===0?'true':'false'}><img data-thumb-src={image.src} alt="" width="72" height="48" decoding="async" /></button>)}</div></footer>
+    <footer class="viewer-footer"><p class="viewer-caption" aria-live="polite">{images[0]?.alt}</p><div class="viewer-filmstrip" role="group" aria-label="照片快速選擇">{images.map((image,index)=><button type="button" class="viewer-thumb" data-viewer-index={index} aria-label={`顯示第 ${index+1} 張圖片`} aria-current={index===0?'true':'false'} tabindex={index===0?0:-1}><img data-thumb-src={image.src} alt="" width="72" height="48" decoding="async" /></button>)}</div></footer>
   </div>
-  <script is:inline type="application/json" data-viewer-data set:html={JSON.stringify(images).replace(/</g,'\u003c')} />
+  <script is:inline type="application/json" data-viewer-data set:html={safeInlineJson(images)} />
 </div>
 <script>
   import { attachPhotoGestures } from '../scripts/photo-gestures';
@@ -39,16 +40,16 @@ const {id,label,mode,images}=Astro.props;
     function resetZoom(){zoomed=false;if(viewer.classList.contains('is-zoomed'))viewer.classList.remove('is-zoomed');zoom.setAttribute('aria-pressed','false');zoom.setAttribute('aria-label','放大照片');zoom.querySelector('span')!.textContent='放大';stage.scrollTo({left:0,top:0,behavior:'instant'});image.style.removeProperty('transform');}
     function sync(){
       current.textContent=String(index+1);caption.textContent=images[index].alt;
-      thumbs.forEach((thumb,i)=>thumb.setAttribute('aria-current',String(i===index)));
+      thumbs.forEach((thumb,i)=>{thumb.setAttribute('aria-current',String(i===index));thumb.tabIndex=i===index?0:-1;});
       const active=thumbs[index];if(active){const left=active.offsetLeft;if(left<strip.scrollLeft)strip.scrollLeft=left;else if(left+active.offsetWidth>strip.scrollLeft+strip.clientWidth)strip.scrollLeft=left+active.offsetWidth-strip.clientWidth;}
     }
     async function select(next:number){
       requested=(next+images.length)%images.length;const target=requested,id=++token;
       const preload=new Image();preload.src=images[target].src;
-      loading.textContent='照片準備中';loading.hidden=true;const wait=setTimeout(()=>{if(id===token)loading.hidden=false;},180);
+      loading.textContent='照片準備中';loading.hidden=true;const wait=setTimeout(()=>{if(id===token){loading.hidden=false;loading.textContent='照片準備中';}},180);
       const ready=await waitForPhoto(preload);
       clearTimeout(wait);if(id!==token||!viewer.classList.contains('active'))return;
-      if(!ready){loading.textContent='照片無法開啟，請選擇其他照片。';loading.hidden=false;return;}
+      if(ready!=='ready'){loading.hidden=false;loading.textContent=ready==='timeout'?'照片準備較久，請再試一次。':'照片無法開啟，請選擇其他照片。';return;}
       loading.hidden=true;resetZoom();image.hidden=false;index=target;image.src=images[index].src;image.alt=images[index].alt;sync();
       if(!reduced.matches)image.animate([{opacity:.75},{opacity:1}],{duration:140,easing:'ease-out'});
     }
@@ -74,7 +75,7 @@ const {id,label,mode,images}=Astro.props;
     document.addEventListener('keydown',event=>{
       if(!viewer.classList.contains('active'))return;
       if(event.key==='Escape'){close();return;}
-      if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(zoomed){stage.scrollBy({left:event.key==='ArrowLeft'?-120:120,behavior:'instant'});}else void select(requested+(event.key==='ArrowLeft'?-1:1));}
+      if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(!zoomed&&(event.target as Element).closest('.viewer-filmstrip'))thumbs[(requested+(event.key==='ArrowLeft'?-1:1)+images.length)%images.length]?.focus({preventScroll:true});if(zoomed){stage.scrollBy({left:event.key==='ArrowLeft'?-120:120,behavior:'instant'});}else void select(requested+(event.key==='ArrowLeft'?-1:1));}
     });
     function toggleZoom(){zoomed=!zoomed;viewer.classList.toggle('is-zoomed',zoomed);zoom.setAttribute('aria-pressed',String(zoomed));zoom.setAttribute('aria-label',zoomed?'還原照片大小':'放大照片');zoom.querySelector('span')!.textContent=zoomed?'還原':'放大';if(zoomed){requestAnimationFrame(()=>{stage.scrollLeft=(stage.scrollWidth-stage.clientWidth)/2;stage.scrollTop=(stage.scrollHeight-stage.clientHeight)/2;});}else stage.scrollTo({left:0,top:0,behavior:'instant'});}
     zoom.addEventListener('click',toggleZoom);stage.addEventListener('dblclick',toggleZoom);
