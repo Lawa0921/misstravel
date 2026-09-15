@@ -1,0 +1,165 @@
+
+Running 14 tests using 1 worker
+
+  ✘   1 [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 2 real columns at 360px (444ms)
+  ✘   2 [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 2 real columns at 390px (484ms)
+  ✘   3 [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 3 real columns at 768px (447ms)
+  ✘   4 [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 4 real columns at 1440px (526ms)
+  ✓   5 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › campsite_1 shows its selected main image first without losing photos (354ms)
+  ✓   6 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › campsite_2 shows its selected main image first without losing photos (325ms)
+  ✓   7 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › campsite_3 shows its selected main image first without losing photos (251ms)
+  ✘   8 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › log_cabin_1 shows its selected main image first without losing photos (5.4s)
+  ✓   9 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › log_cabin_2 shows its selected main image first without losing photos (356ms)
+  ✓  10 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › log_cabin_3 shows its selected main image first without losing photos (280ms)
+  ✓  11 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › log_cabin_4 shows its selected main image first without losing photos (273ms)
+  ✓  12 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › suite_1 shows its selected main image first without losing photos (239ms)
+  ✓  13 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › suite_2 shows its selected main image first without losing photos (238ms)
+  ✓  14 [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › suite_3 shows its selected main image first without losing photos (261ms)
+
+
+  1) [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 2 real columns at 360px ──────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 6
+
+       9 |   const grid=page.locator('.row.photos');const items=grid.locator(':scope > .item');await expect(items).toHaveCount(36);
+      10 |   const dimensions=await grid.evaluate(e=>({cols:getComputedStyle(e).gridTemplateColumns.split(' ').length,width:e.getBoundingClientRect().width,children:[...e.children].map(n=>({x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y,width:n.getBoundingClientRect().width,span:getComputedStyle(n).gridColumnEnd}))}));
+    > 11 |   expect(dimensions.cols).toBe(columns);
+         |                           ^
+      12 |   expect(new Set(dimensions.children.slice(0,columns).map(n=>Math.round(n.y))).size).toBe(1);
+      13 |   expect(Math.max(...dimensions.children.map(n=>n.width))).toBeLessThan(dimensions.width/columns+1);
+      14 |  });
+        at /home/lawa0921/projects/misstravel-design-review-20260915/astro-site/tests/e2e/visual-signoff.spec.ts:11:27
+
+    Error Context: test-results/visual-signoff-gallery-uses-2-real-columns-at-360px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/visual-signoff-gallery-uses-2-real-columns-at-360px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/visual-signoff-gallery-uses-2-real-columns-at-360px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 2 real columns at 390px ──────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 6
+
+       9 |   const grid=page.locator('.row.photos');const items=grid.locator(':scope > .item');await expect(items).toHaveCount(36);
+      10 |   const dimensions=await grid.evaluate(e=>({cols:getComputedStyle(e).gridTemplateColumns.split(' ').length,width:e.getBoundingClientRect().width,children:[...e.children].map(n=>({x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y,width:n.getBoundingClientRect().width,span:getComputedStyle(n).gridColumnEnd}))}));
+    > 11 |   expect(dimensions.cols).toBe(columns);
+         |                           ^
+      12 |   expect(new Set(dimensions.children.slice(0,columns).map(n=>Math.round(n.y))).size).toBe(1);
+      13 |   expect(Math.max(...dimensions.children.map(n=>n.width))).toBeLessThan(dimensions.width/columns+1);
+      14 |  });
+        at /home/lawa0921/projects/misstravel-design-review-20260915/astro-site/tests/e2e/visual-signoff.spec.ts:11:27
+
+    Error Context: test-results/visual-signoff-gallery-uses-2-real-columns-at-390px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/visual-signoff-gallery-uses-2-real-columns-at-390px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/visual-signoff-gallery-uses-2-real-columns-at-390px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 3 real columns at 768px ──────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 6
+
+       9 |   const grid=page.locator('.row.photos');const items=grid.locator(':scope > .item');await expect(items).toHaveCount(36);
+      10 |   const dimensions=await grid.evaluate(e=>({cols:getComputedStyle(e).gridTemplateColumns.split(' ').length,width:e.getBoundingClientRect().width,children:[...e.children].map(n=>({x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y,width:n.getBoundingClientRect().width,span:getComputedStyle(n).gridColumnEnd}))}));
+    > 11 |   expect(dimensions.cols).toBe(columns);
+         |                           ^
+      12 |   expect(new Set(dimensions.children.slice(0,columns).map(n=>Math.round(n.y))).size).toBe(1);
+      13 |   expect(Math.max(...dimensions.children.map(n=>n.width))).toBeLessThan(dimensions.width/columns+1);
+      14 |  });
+        at /home/lawa0921/projects/misstravel-design-review-20260915/astro-site/tests/e2e/visual-signoff.spec.ts:11:27
+
+    Error Context: test-results/visual-signoff-gallery-uses-3-real-columns-at-768px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/visual-signoff-gallery-uses-3-real-columns-at-768px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/visual-signoff-gallery-uses-3-real-columns-at-768px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 4 real columns at 1440px ─────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 4
+    Received: 6
+
+       9 |   const grid=page.locator('.row.photos');const items=grid.locator(':scope > .item');await expect(items).toHaveCount(36);
+      10 |   const dimensions=await grid.evaluate(e=>({cols:getComputedStyle(e).gridTemplateColumns.split(' ').length,width:e.getBoundingClientRect().width,children:[...e.children].map(n=>({x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y,width:n.getBoundingClientRect().width,span:getComputedStyle(n).gridColumnEnd}))}));
+    > 11 |   expect(dimensions.cols).toBe(columns);
+         |                           ^
+      12 |   expect(new Set(dimensions.children.slice(0,columns).map(n=>Math.round(n.y))).size).toBe(1);
+      13 |   expect(Math.max(...dimensions.children.map(n=>n.width))).toBeLessThan(dimensions.width/columns+1);
+      14 |  });
+        at /home/lawa0921/projects/misstravel-design-review-20260915/astro-site/tests/e2e/visual-signoff.spec.ts:11:27
+
+    Error Context: test-results/visual-signoff-gallery-uses-4-real-columns-at-1440px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/visual-signoff-gallery-uses-4-real-columns-at-1440px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/visual-signoff-gallery-uses-4-real-columns-at-1440px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › log_cabin_1 shows its selected main image first without losing photos
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('.carousel-slide img').first()
+    Expected: "/images/log_cabin_1/log_cabin_1_10.webp"
+    Received: "/images/log_cabin_air_conditioner_2.webp"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" with timeout 5000ms
+      - waiting for locator('.carousel-slide img').first()
+        14 × locator resolved to <img width="900" height="675" loading="eager" decoding="async" fetchpriority="high" data-astro-cid-vrzhfprt="" alt="露營木屋冷暖氣與房價調整公告（含歷史日期）" src="/images/log_cabin_air_conditioner_2.webp"/>
+           - unexpected value "/images/log_cabin_air_conditioner_2.webp"
+
+
+      17 |  test(`${room.slug} shows its selected main image first without losing photos`,async({page})=>{
+      18 |   await page.goto(`/rooms/${room.slug}/`);
+    > 19 |   await expect(page.locator('.carousel-slide img').first()).toHaveAttribute('src',room.data.mainImage);
+         |                                                             ^
+      20 |   const actual=await page.locator('.carousel-slide img').evaluateAll(es=>es.map(e=>e.getAttribute('src')||e.getAttribute('data-src')));
+      21 |   expect([...actual].sort()).toEqual([...new Set([room.data.mainImage,...room.data.images])].sort());
+      22 |   await expect(page.locator('link[rel="preload"][as="image"]')).toHaveAttribute('href',room.data.mainImage);
+        at /home/lawa0921/projects/misstravel-design-review-20260915/astro-site/tests/e2e/visual-signoff.spec.ts:19:61
+
+    Error Context: test-results/visual-signoff-log-cabin-1-8ddca-first-without-losing-photos-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/visual-signoff-log-cabin-1-8ddca-first-without-losing-photos-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/visual-signoff-log-cabin-1-8ddca-first-without-losing-photos-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 2 real columns at 360px ───────
+    [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 2 real columns at 390px ───────
+    [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 3 real columns at 768px ───────
+    [chromium] › tests/e2e/visual-signoff.spec.ts:7:2 › gallery uses 4 real columns at 1440px ──────
+    [chromium] › tests/e2e/visual-signoff.spec.ts:17:2 › log_cabin_1 shows its selected main image first without losing photos
+  9 passed (14.0s)

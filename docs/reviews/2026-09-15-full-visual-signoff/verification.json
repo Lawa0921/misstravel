@@ -1,0 +1,26 @@
+{
+  "reviewedSource": "3655d6a72dafbc513606b37879b42db6761cf70f",
+  "runtimeSource": "111c6075ddddb7c36570032fa518923c43c583f2",
+  "visualPages": 26,
+  "fullPageScreenshots": 52,
+  "pageWidthCases": {
+    "cases": 104,
+    "passed": 104,
+    "failed": 0,
+    "scriptExceptions": 0
+  },
+  "browserPassed": 61,
+  "browserRetries": 0,
+  "verifyPassed": 328,
+  "npmAuditVulnerabilities": 0,
+  "visitorPassed": 419,
+  "dialogs": 12,
+  "accessibilityStates": 76,
+  "accessibilityViolations": 0,
+  "accessibilityStatesWithIncomplete": 38,
+  "protectedFiles": 251,
+  "changedProtectedFiles": [],
+  "humanReview": false,
+  "independentAIReview": "PASS",
+  "productionChanged": false
+}
