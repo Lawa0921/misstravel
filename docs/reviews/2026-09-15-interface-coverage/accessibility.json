@@ -1,0 +1,423 @@
+{
+  "results": [
+    {
+      "path": "/infos/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/account/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/roles/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/contact-method/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/guide/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/guide/",
+      "width": 1440,
+      "state": "guide_1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/guide/",
+      "width": 1440,
+      "state": "guide_2",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 1440,
+      "state": "set_menu_1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 1440,
+      "state": "set_menu_2",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 1440,
+      "state": "set_menu_3",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/map/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/menu/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/video/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "sale_item_1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "sale_item_2",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "sale_item_3",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "sale_item_4",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "sale_item_6",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "sale_item_7",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 1440,
+      "state": "sale_item_8",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/announcements/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/announcements/website/",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/404.html",
+      "width": 1440,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/account/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/roles/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/contact-method/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/guide/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/guide/",
+      "width": 390,
+      "state": "guide_1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/guide/",
+      "width": 390,
+      "state": "guide_2",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 390,
+      "state": "set_menu_1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 390,
+      "state": "set_menu_2",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/set-menu-info/",
+      "width": 390,
+      "state": "set_menu_3",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/map/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/menu/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/infos/video/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "sale_item_1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "sale_item_2",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "sale_item_3",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "sale_item_4",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "sale_item_6",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "sale_item_7",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/sale_items/",
+      "width": 390,
+      "state": "sale_item_8",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "path": "/announcements/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/announcements/website/",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "path": "/404.html",
+      "width": 390,
+      "state": "page",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "sourceCommit": "d2521f4e05210eb7cb2feb3be0667be87d260cc8"
+}
