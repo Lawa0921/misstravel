@@ -36,3 +36,7 @@ Before adding another SEO, performance, accessibility, or deployment mechanism, 
 ## Design Reference
 
 - 視覺方向、色彩、字型、首頁素材與 heading 語意規範請以 [docs/DESIGN_GUIDE.md](docs/DESIGN_GUIDE.md) 為單一設計指南。
+
+## SEO and Room Values
+
+- Room numeric values, reviewed image metadata and per-room entity rules are documented in [docs/SEO_CONTENT_MODEL.md](docs/SEO_CONTENT_MODEL.md). Keep rendered operating text intact unless the user explicitly authorizes a business change.

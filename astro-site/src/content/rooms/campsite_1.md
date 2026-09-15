@@ -2,8 +2,8 @@
 metaTitle: '密式旅行露營區，櫻花之盡木棧板露營區'
 title: '櫻花之盡木棧板營 (3 ~ 4 帳包區)'
 shortTitle: '櫻花之盡'
-description: '櫻花之盡是營區內最受歡迎的木棧板包區，擁有兩個木棧板和一個寬敞木平台，最多可容納4帳16人。四帳包區為標準方案，實際費用依帳數計算；三帳包區平日2400元、四帳包區平日3200元。'
-metaDescription: '密式旅行櫻花之盡木棧板營 - 苗栗泰安木棧板露營包區，四帳為標準方案，實際依帳數計價。三帳平日2400元、四帳平日3200元，最多16人。'
+description: '櫻花之盡木棧板營位於苗栗泰安密式旅行，提供兩個木棧板與一個木平台。三帳包區適用12人以下、四帳包區適用16人以下，實際依帳數計價；區域提供兩組流理台、兩組衛浴及一台冰箱。'
+metaDescription: '密式旅行櫻花之盡木棧板營：三帳12人以下平日{{priceOptions.1.weekdayPrice}}元，四帳16人以下平日{{weekdayPrice}}元。線上系統顯示四帳價，三帳依現場帳數收費；連續假期限接三天兩夜以上預訂。'
 standardPrice: 4800
 holidayPrice: 4000
 weekdayPrice: 3200
@@ -11,10 +11,6 @@ pricingNote: '四帳包區為標準方案，實際費用依帳數計算；三帳
 priceOptions:
   - label: '四帳包區（標準方案）'
     numberOfUnits: 4
-    numberOfPeople: 16
-    weekdayPrice: 3200
-    holidayPrice: 4000
-    standardPrice: 4800
     isStandard: true
   - label: '三帳包區'
     numberOfUnits: 3
@@ -26,7 +22,7 @@ numberOfRooms: 1
 numberOfPeople: 16
 order: 0
 category: 'campsite'
-keywords: '櫻花之盡, 木棧板露營, 包區露營, 苗栗露營, 泰安露營, 密式旅行, 16人露營, 3帳包區, 4帳包區, 依帳數計價, 2400-4800元, 木平台露營, 家族露營, 團體露營, 櫻花露營區'
+keywords: '櫻花之盡, 木棧板露營, 包區露營, 苗栗露營, 泰安露營, 密式旅行, 16人露營, 3帳包區, 4帳包區, 依帳數計價, 木平台露營, 家族露營, 團體露營, 櫻花露營區'
 mainImage: '/images/campsite_1_main.webp'
 images:
   - '/images/campsite_1/campsite_1_1.webp'
@@ -56,8 +52,8 @@ images:
 
 > 四帳包區為標準方案，實際費用依預訂帳數計算。線上訂位系統顯示四帳價格；如僅預訂三帳，現場將依三帳價格收費。
 
-  - 4 帳包區（標準方案，16 人以下）：平日 3200 元、假日 4000 元、連續假日 4800 元【連續假期限接三天兩夜或以上之預訂】
-  - 3 帳包區（12 人以下）：平日 2400 元、假日 3000 元、連續假日 3600 元【連續假期限接三天兩夜或以上之預訂】
+  - 4 帳包區（標準方案，16 人以下）：平日 {{priceOptions.0.weekdayPrice}} 元、假日 {{priceOptions.0.holidayPrice}} 元、連續假日 {{priceOptions.0.standardPrice}} 元【連續假期限接三天兩夜或以上之預訂】
+  - 3 帳包區（12 人以下）：平日 {{priceOptions.1.weekdayPrice}} 元、假日 {{priceOptions.1.holidayPrice}} 元、連續假日 {{priceOptions.1.standardPrice}} 元【連續假期限接三天兩夜或以上之預訂】
 
 #### 【營位說明】
 - 最多搭設帳篷 4 帳，人數不超過16人(加人 200 / 人清潔費用)，車輛不超過 4 台為限

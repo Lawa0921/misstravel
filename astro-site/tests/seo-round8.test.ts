@@ -1,3 +1,4 @@
+import { getRoomImageMetadata } from '../src/lib/image-metadata';
 import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { load } from 'cheerio';
@@ -140,7 +141,7 @@ describe('6. 相關房型 alt 文字', () => {
       const alt = $(el).attr('alt') || '';
       // alt 應不只是短標題，至少要有房型照片語意描述
       expect(alt.length).toBeGreaterThan(3);
-      expect(alt).toMatch(/住宿|外觀|營區|房型照片/);
+      expect(alt).toBe(getRoomImageMetadata($(el).attr('src')!).alt);
     });
   });
 });

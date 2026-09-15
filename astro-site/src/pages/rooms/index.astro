@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../../lib/config';
+import { getRoomImageMetadata } from '../../lib/image-metadata';
 
 const rooms = await getCollection('rooms');
 const sortedRooms = rooms.sort((a, b) => a.data.order - b.data.order);
@@ -82,7 +83,7 @@ const itemListSchema = {
                     <div class="room-image">
                       <img
                         src={room.data.mainImage}
-                        alt={`${room.data.shortTitle}房型照片`}
+                        alt={getRoomImageMetadata(room.data.mainImage).alt}
                         loading="lazy"
                         decoding="async"
                         width="600"

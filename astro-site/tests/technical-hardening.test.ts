@@ -69,13 +69,14 @@ describe('全站技術強化', () => {
     expect(script).toContain("dialog.querySelectorAll('img[data-src]')");
   });
 
-  it('room carousel 應提供只含延遲圖片的無 JavaScript 備援', () => {
+  it('room carousel 無 JavaScript 備援應涵蓋第一張以外的所有圖片', () => {
     const $ = readDistPage('rooms/suite_1/index.html');
     const fallback = $('noscript.carousel-noscript');
     expect(fallback.length).toBe(1);
     const fallback$ = load(fallback.text());
     const fallbackImages = fallback$('img');
-    expect(fallbackImages).toHaveLength($('.carousel-slide img[data-src]').length);
+    const expected = $('.carousel-slide img').slice(1).map((_, el) => $(el).attr('src') || $(el).attr('data-src')).get();
+    expect(fallbackImages.map((_, el) => fallback$(el).attr('src')).get()).toEqual(expected);
     expect(fallbackImages.length).toBeGreaterThan(0);
     fallbackImages.each((_, element) => {
       expect(fallback$(element).attr('src')).toBeDefined();

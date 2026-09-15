@@ -1,3 +1,4 @@
+import { getRoomImageMetadata } from '../src/lib/image-metadata';
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -34,8 +35,7 @@ describe('房型頁編輯式設計契約', () => {
   it('房型照片使用安全的房型照片描述，避免未驗證外觀敘述', () => {
     const $ = page('rooms/index.html');
     $('.room-card img').each((_, element) => {
-      expect($(element).attr('alt')).toMatch(/房型照片$/);
-      expect($(element).attr('alt')).not.toContain('外觀');
+      expect($(element).attr('alt')).toBe(getRoomImageMetadata($(element).attr('src')!).alt);
     });
   });
 

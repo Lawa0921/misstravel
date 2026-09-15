@@ -1,0 +1,782 @@
+{
+  "/images/campsite_1_main.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡木棧板營的草地、木平台與山景",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_1.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡草地與木平台尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/campsite_1/campsite_1_2.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡兩座木棧板間的草地空間",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_3.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "園區配置圖中標示的櫻花之盡營位",
+    "kind": "diagram"
+  },
+  "/images/campsite_1/campsite_1_4.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡大型木平台與尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/campsite_1/campsite_1_5.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡草地旁的木棧板",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_6.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡木平台階梯旁的流理台",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_7.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡草地、平台與後方山林",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_8.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡木平台下方的衛浴區外觀",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_9.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡晴天下的草地與平台",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_10.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡木平台欄杆與周圍樹林",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_11.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡樹蔭間的木棧板與桌子",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_12.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡營位遠景與山林",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_13.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡欄杆旁的流理台",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_14.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡平台欄杆與下方道路",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_15.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡平台下方的衛浴設施",
+    "kind": "photo"
+  },
+  "/images/campsite_1/campsite_1_16.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "櫻花之盡營位搭設帳篷的空間示例",
+    "kind": "photo"
+  },
+  "/images/map.webp": {
+    "width": 2000,
+    "height": 1500,
+    "alt": "密式旅行園區配置地圖",
+    "kind": "diagram"
+  },
+  "/images/booking_announcement.webp": {
+    "width": 567,
+    "height": 425,
+    "alt": "預訂前確認營位尺寸與詳閱介紹的公告",
+    "kind": "notice"
+  },
+  "/images/campsite_2_main.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺草地營的營地與山林",
+    "kind": "photo"
+  },
+  "/images/campsite_2/campsite_2_1.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺草地營的尺寸與車輛停放區標示",
+    "kind": "diagram"
+  },
+  "/images/campsite_2/campsite_2_2.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺草地與後方衛浴建物",
+    "kind": "photo"
+  },
+  "/images/campsite_2/campsite_2_3.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺草地往流理台方向的景色",
+    "kind": "photo"
+  },
+  "/images/campsite_2/campsite_2_4.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺草地與山坡邊的地面",
+    "kind": "photo"
+  },
+  "/images/campsite_2/campsite_2_5.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺營地外側的山景",
+    "kind": "photo"
+  },
+  "/images/campsite_2/campsite_2_6.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺草地營的開闊空間",
+    "kind": "photo"
+  },
+  "/images/campsite_2/campsite_2_7.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "沒日之嶺營地與後方樹林山坡",
+    "kind": "photo"
+  },
+  "/images/campsite_3_main.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區、上方木屋與外側草地尺寸示意",
+    "kind": "photo"
+  },
+  "/images/campsite_3/campsite_3_1.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區旁的衛浴入口與有棚空間",
+    "kind": "photo"
+  },
+  "/images/campsite_3/campsite_3_2.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區的地面、支柱與草地",
+    "kind": "photo"
+  },
+  "/images/campsite_3/campsite_3_3.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區的馬桶、洗手台與淋浴設備",
+    "kind": "photo"
+  },
+  "/images/campsite_3/campsite_3_4.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區前方的車輛停放區標示",
+    "kind": "diagram"
+  },
+  "/images/campsite_3/campsite_3_5.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區側邊草地與木屋外觀",
+    "kind": "photo"
+  },
+  "/images/campsite_3/campsite_3_6.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區棚下支柱間的尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/campsite_3/campsite_3_7.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區外側草地與山景",
+    "kind": "photo"
+  },
+  "/images/campsite_3/campsite_3_8.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "密式雨棚區與上方木屋的區域關係標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_1/log_cabin_1_10.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋木屋外的木平台、桌椅與欄杆",
+    "kind": "photo"
+  },
+  "/images/log_cabin_air_conditioner_2.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "露營木屋冷暖氣與房價調整公告（含歷史日期）",
+    "kind": "notice"
+  },
+  "/images/log_cabin_1/log_cabin_1_1.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋室內床板與尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_1/log_cabin_1_2.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋木造天花板與吊扇",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_3.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋公用流理台與熱水設備",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_4.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋室內插座與窗邊床板",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_5.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋木牆旁的公用冰箱",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_6.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋公用衛浴入口與外側平台",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_7.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋屋簷下的平台、窗簾與山景",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_8.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋木屋外觀與相鄰平台",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_9.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋房門前的平台與桌椅",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_11.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋室內床板與窗戶",
+    "kind": "photo"
+  },
+  "/images/log_cabin_1/log_cabin_1_12.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "觀山之屋窗外可見的平台與山景",
+    "kind": "photo"
+  },
+  "/images/log_cabin_2_main.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋靜房外觀、陽傘與木平台",
+    "kind": "photo"
+  },
+  "/images/log_cabin_air_conditioner_1.webp": {
+    "width": 1440,
+    "height": 1080,
+    "alt": "露營木屋冷暖氣與房價調整公告（含歷史日期）",
+    "kind": "notice"
+  },
+  "/images/log_cabin_2/log_cabin_2_1.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋共用平台與尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_2/log_cabin_2_2.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋靜房室內床板與尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_2/log_cabin_2_3.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋靜房門外的陽傘、桌椅與山景",
+    "kind": "photo"
+  },
+  "/images/log_cabin_2/log_cabin_2_4.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋靜房室內窗景與吊扇",
+    "kind": "photo"
+  },
+  "/images/log_cabin_2/log_cabin_2_5.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋靜房床板、窗戶與平台出入口",
+    "kind": "photo"
+  },
+  "/images/log_cabin_2/log_cabin_2_6.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋靜房木牆旁的平台與陽傘",
+    "kind": "photo"
+  },
+  "/images/log_cabin_2/log_cabin_2_7.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋靜房周圍步道與樹木",
+    "kind": "photo"
+  },
+  "/images/log_cabin_2/log_cabin_2_8.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋靜房附近花木與山景",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3_main.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋默房的平台、陽傘與木屋外觀",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_1.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋默房室內床板與尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_3/log_cabin_3_2.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋默房室內吊扇、床板與窗景",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_3.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋共用平台、桌椅與尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_3/log_cabin_3_4.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋默房的角落窗景與吊扇",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_5.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋默房室內採光與床板",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_6.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋默房外的綠籬、陽傘與木屋",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_7.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋默房外觀與周圍花木",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_8.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋默房外的步道與山景",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_9.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋默房門前的木平台與桌椅",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_10.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋默房周圍樹木與日照",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_11.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋默房正面與平台座位",
+    "kind": "photo"
+  },
+  "/images/log_cabin_3/log_cabin_3_12.webp": {
+    "width": 1008,
+    "height": 756,
+    "alt": "依山之屋默房室內床板與冷氣",
+    "kind": "photo"
+  },
+  "/images/log_cabin_4_main.webp": {
+    "width": 1365,
+    "height": 1024,
+    "alt": "依山之屋沉房外觀與旁邊石階",
+    "kind": "photo"
+  },
+  "/images/log_cabin_4/log_cabin_4_1.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋沉房室內床板與尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_4/log_cabin_4_2.webp": {
+    "width": 4032,
+    "height": 3024,
+    "alt": "依山之屋沉房使用的戶外涼亭",
+    "kind": "photo"
+  },
+  "/images/log_cabin_4/log_cabin_4_3.webp": {
+    "width": 4032,
+    "height": 3024,
+    "alt": "依山之屋沉房涼亭內的木桌與座椅",
+    "kind": "photo"
+  },
+  "/images/log_cabin_4/log_cabin_4_4.webp": {
+    "width": 4032,
+    "height": 3024,
+    "alt": "依山之屋沉房室內床板、窗戶與吊扇",
+    "kind": "photo"
+  },
+  "/images/log_cabin_4/log_cabin_4_5.webp": {
+    "width": 4032,
+    "height": 3024,
+    "alt": "依山之屋沉房、前方空間與涼亭",
+    "kind": "photo"
+  },
+  "/images/log_cabin_4/log_cabin_4_6.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "依山之屋沉房與專屬涼亭位置標示",
+    "kind": "diagram"
+  },
+  "/images/log_cabin_4/log_cabin_4_7.webp": {
+    "width": 4032,
+    "height": 3024,
+    "alt": "依山之屋沉房木造天花板與窗景",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_4.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓室內桌椅、電視與冷暖氣",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_1.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓平台旁的衛浴入口",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_2.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓戶外流理台與入住規則牌",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_3.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓戶外平台與階梯",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_5.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓衛浴內的馬桶、洗手台與淋浴設備",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_6.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓木屋外牆與有棚平台",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_7.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓平台上的桌椅與山景",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_8.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓室內沙發、床鋪與吊椅",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_9.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓窗邊沙發、桌椅與電視",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_10.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓的床鋪、木造天花板與窗戶",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_11.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓室內吊椅與休息空間",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_12.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之眼近雲樓室內冷暖氣、吊扇與窗景",
+    "kind": "photo"
+  },
+  "/images/suite_1/suite_1_13.webp": {
+    "width": 1080,
+    "height": 809,
+    "alt": "密式之眼近雲樓房間、平台與衛浴位置標示",
+    "kind": "diagram"
+  },
+  "/images/suite_1/suite_1_14.webp": {
+    "width": 1080,
+    "height": 809,
+    "alt": "密式之眼近雲樓平台尺寸與有棚範圍標示",
+    "kind": "diagram"
+  },
+  "/images/suite_2/suite_2_6.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓室內床鋪、沙發與木造天花板",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_1.webp": {
+    "width": 1080,
+    "height": 809,
+    "alt": "密式之頂閲陽樓床鋪與加床空間示例",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_2.webp": {
+    "width": 1080,
+    "height": 809,
+    "alt": "密式之頂閲陽樓加床位置與室內動線示例",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_3.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓有屋簷的平台與山景",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_4.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓平台上的流理台",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_5.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓衛浴內的馬桶、洗手台與淋浴設備",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_8.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓床鋪、沙發與電視",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_9.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓室內桌椅與床鋪",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_10.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓兩張床與窗邊空間",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_11.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓室內沙發與吊椅",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_12.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓木造屋頂下的床鋪與沙發",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_13.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓床鋪與衛浴出入口",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_14.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓入口標示與入住規則牌",
+    "kind": "diagram"
+  },
+  "/images/suite_2/suite_2_15.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓窗邊兩張床的配置",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_16.webp": {
+    "width": 1477,
+    "height": 1108,
+    "alt": "密式之頂閲陽樓外側走道、桌椅與山景",
+    "kind": "photo"
+  },
+  "/images/suite_2/suite_2_7.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "密式之頂閲陽樓平台旁的熱水設備與流理台",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_01.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋套房外的共用平台與房門",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_02.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋平台上的流理台",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_03.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋屋簷下的桌椅與山景",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_04.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋月房、星房與共用平台位置標示",
+    "kind": "diagram"
+  },
+  "/images/suite_3/new_05.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋有遮蔭的平台與桌椅",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_06.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋套房室內床鋪、沙發與窗景",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_07.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋套房室內床鋪與座椅",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_08.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋套房內的電視、冷暖氣與沙發",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_09.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋套房木造天花板與室內動線",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_10.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋房內衛浴的馬桶、洗手台與淋浴設備",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_11.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋套房內的床鋪與窗邊空間",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_12.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋平台桌面與山景",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_13.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋平台的座椅與遮蔭範圍",
+    "kind": "photo"
+  },
+  "/images/suite_3/new_14.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋套房加床配置示例",
+    "kind": "photo"
+  },
+  "/images/suite_3/suite_3_1.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋共用平台尺寸標示",
+    "kind": "diagram"
+  },
+  "/images/suite_3/suite_3_16.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋室內吹風機與衣架",
+    "kind": "photo"
+  },
+  "/images/suite_3/suite_3_17.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "映月之屋衛浴內的沐浴乳與洗髮乳",
+    "kind": "photo"
+  },
+  "/images/rooms.webp": {
+    "width": 945,
+    "height": 709,
+    "alt": "密式旅行園區建物與周圍山林",
+    "kind": "photo"
+  },
+  "/images/banner.webp": {
+    "width": 1478,
+    "height": 1108,
+    "alt": "密式旅行園區眺望的山景、雲海與夕陽",
+    "kind": "photo"
+  },
+  "/images/menu.webp": {
+    "width": 1077,
+    "height": 1522,
+    "alt": "Miss cafe 飲品、厚片與炸物菜單",
+    "kind": "diagram"
+  }
+}

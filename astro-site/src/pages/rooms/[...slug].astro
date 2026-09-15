@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection, render } from 'astro:content';
 import { siteConfig } from '../../lib/config';
+import { getRoomImageMetadata } from '../../lib/image-metadata';
+import { createRoomSchemas } from '../../lib/room-schema';
 
 export async function getStaticPaths() {
   const rooms = await getCollection('rooms');
@@ -59,6 +61,7 @@ const relatedRooms = allRooms
   image={room.data.mainImage}
   preloadImage={carouselImages[0]}
   schemaType="LocalBusiness"
+  extraSchemas={createRoomSchemas(room.id.replace(/\.md$/, ''), room.data)}
 >
   <main id="main" class="alt">
     <div class="inner">
@@ -123,7 +126,7 @@ const relatedRooms = allRooms
                 <img
                   src={index < 2 ? image : undefined}
                   data-src={index < 2 ? undefined : image}
-                  alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
+                  alt={getRoomImageMetadata(image).alt}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                   fetchpriority={index === 0 ? 'high' : undefined}
@@ -157,10 +160,10 @@ const relatedRooms = allRooms
         </div>
       </div>
       <noscript class="carousel-noscript">
-        {carouselImages.slice(2).map((image, index) => (
+        {carouselImages.slice(1).map((image) => (
           <img
             src={image}
-            alt={`${room.data.shortTitle} 圖片 ${index + 3}`}
+            alt={getRoomImageMetadata(image).alt}
             loading="lazy"
             decoding="async"
             width="900"
@@ -214,7 +217,7 @@ const relatedRooms = allRooms
             <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
               <img
                 src={related.data.mainImage}
-                alt={`${related.data.shortTitle}房型照片`}
+                alt={getRoomImageMetadata(related.data.mainImage).alt}
                 loading="lazy"
                 decoding="async"
                 width="400"
@@ -222,7 +225,7 @@ const relatedRooms = allRooms
               />
               <div class="related-info">
                 <h4>{related.data.shortTitle}</h4>
-                <span class="related-price">平日 ${related.data.weekdayPrice} 起</span>
+                <span class="related-price">{related.data.priceOptions ? `${related.data.priceOptions.find(option => option.isStandard)?.numberOfUnits} 帳平日` : '平日'} ${related.data.weekdayPrice} 起</span>
               </div>
             </a>
           ))}

@@ -40,6 +40,7 @@ if (slug === 'video') {
 <BaseLayout
   title={info.data.metaTitle || info.data.title}
   description={info.data.metaDescription || info.data.description}
+  image={info.data.image || undefined}
   keywords={info.data.keywords}
   extraSchemas={extraSchemas.length > 0 ? extraSchemas : undefined}
 >

@@ -1,6 +1,7 @@
 ---
 import { cloudflareWebAnalyticsToken, siteConfig } from '../../lib/config';
 import SchemaOrg from './SchemaOrg.astro';
+import { getImageMetadata } from '../../lib/image-metadata';
 import sharp, { type Metadata } from 'sharp';
 import { resolve } from 'node:path';
 
@@ -14,6 +15,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   keywords?: string;
   canonical?: string;
   type?: 'website' | 'article';
@@ -29,6 +31,7 @@ const {
   title,
   description = siteConfig.metaDescription,
   image = siteConfig.ogImage,
+  imageAlt,
   keywords,
   canonical = Astro.url.href,
   type = 'website',
@@ -47,6 +50,7 @@ const fullTitle = title
     ? title
     : `${title} | ${siteConfig.seoTitleSuffix}`
   : siteConfig.metaTitle;
+const sharingImageAlt = imageAlt || getImageMetadata(image)?.alt || `${siteConfig.author}網站分享圖片`;
 const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
 
 let imageMetadata: Metadata | undefined;
@@ -110,7 +114,7 @@ const imageMimeType = imageMetadata?.format
   {imageMetadata?.width && <meta property="og:image:width" content={String(imageMetadata.width)} />}
   {imageMetadata?.height && <meta property="og:image:height" content={String(imageMetadata.height)} />}
   {imageMimeType && <meta property="og:image:type" content={imageMimeType} />}
-  <meta property="og:image:alt" content={description} />
+  <meta property="og:image:alt" content={sharingImageAlt} />
   <meta property="og:site_name" content={siteConfig.title} />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -118,6 +122,7 @@ const imageMimeType = imageMetadata?.format
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
+  <meta name="twitter:image:alt" content={sharingImageAlt} />
 
   <meta name="msapplication-TileColor" content="#da532c" />
   <meta name="theme-color" content="#242943" />
