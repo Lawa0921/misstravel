@@ -135,9 +135,16 @@ html[data-motion='ready'] [data-reveal].is-revealed {
 }
 
 /* Do not replay the 750ms scroll reveal on top of a page navigation.
-   Only the destination's above-fold cards get this marker; later scrolling keeps
-   the existing interaction. Marking does not move or replace any content. */
-[data-route-ready] { opacity: 1 !important; filter: none !important; }
+   All destination cards get this marker, including a late history-restored
+   viewport. Hover feedback remains; navigation never replays scroll reveals. */
+html [data-route-ready][data-reveal] {
+  opacity: 1 !important;
+  filter: none !important;
+  transition-property: transform, box-shadow;
+  transition-duration: 220ms, 350ms;
+  transition-delay: 0s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease;
+}
 
 @keyframes photo-handoff { from { opacity: 0; } to { opacity: 1; } }
 

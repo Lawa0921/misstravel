@@ -29,11 +29,18 @@
     catch { return null; }
   };
   const clear = () => { try { sessionStorage.removeItem(key); } catch {} };
+  const captures = new WeakMap();
   const namePhoto = (image, transition) => {
+    const capture = {};
+    captures.set(image, capture);
     image.style.viewTransitionName = 'room-photo';
     // Both success and skipped transitions must leave BFCache documents clean.
-    transition.finished.then(() => { image.style.removeProperty('view-transition-name'); },
-      () => { image.style.removeProperty('view-transition-name'); });
+    const cleanup = () => {
+      if (captures.get(image) !== capture) return;
+      image.style.removeProperty('view-transition-name');
+      captures.delete(image);
+    };
+    transition.finished.then(cleanup, cleanup);
   };
   // On a native back navigation the selected list image can still be marked
   // lazy when scroll restoration runs. Promote only that already-viewed image
@@ -75,13 +82,11 @@
     const transition = event.viewTransition;
     const pending = read();
     if (!transition || motion.matches) return;
-    // Make first-screen content immediately readable, not another staggered fade.
+    // No scroll-reveal replay on navigation, including native history that
+    // restores scroll AFTER pagereveal. Keep hover feedback, not opacity/blur.
     document.querySelectorAll('[data-reveal]').forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top < innerHeight + 80 && rect.bottom > 0) {
-        item.setAttribute('data-route-ready', '');
-        item.classList.add('is-revealed');
-      }
+      item.setAttribute('data-route-ready', '');
+      item.classList.add('is-revealed');
     });
     if (!pending || pending.to !== location.pathname || Date.now() - pending.at > 5000) return;
     const from = canonicalPath(window.navigation?.activation?.from?.url);
