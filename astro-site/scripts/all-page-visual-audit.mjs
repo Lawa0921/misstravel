@@ -21,6 +21,18 @@ for(const width of [1440,390,360,768]){
    await p.evaluate(()=>document.fonts.ready);
    await p.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=800){scrollTo({top:y,behavior:'instant'});await new Promise(r=>setTimeout(r,25));}scrollTo({top:0,behavior:'instant'});});
    await p.evaluate(async()=>{await Promise.all([...document.images].filter(i=>i.getAttribute('src')&&i.getClientRects().length).map(i=>Promise.race([i.decode().catch(()=>{}),new Promise(r=>setTimeout(r,1800))])));});
+   // Full-page screenshots need actual rasterization, not only a successful decode.
+   // Visit each visible image as a guest would; never change loading/CSS for the capture.
+   if ([390,1440].includes(width)) {
+     for (const image of await p.locator('main img[src]').all()) {
+       if (!(await image.isVisible())) continue;
+       await image.scrollIntoViewIfNeeded();
+       await image.evaluate(e=>e.decode().catch(()=>{}));
+       await p.waitForTimeout(85);
+     }
+     await p.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+     await p.waitForTimeout(300);
+   }
    const metrics=await p.evaluate(()=>({h1:document.querySelector('h1')?.textContent?.trim(),h1Count:document.querySelectorAll('h1').length,mainCount:document.querySelectorAll('main').length,width:innerWidth,scrollWidth:document.documentElement.scrollWidth,background:getComputedStyle(document.body).backgroundColor,broken:[...document.images].filter(i=>i.getAttribute('src')&&i.getClientRects().length&&(!i.complete||!i.naturalWidth)).map(i=>i.getAttribute('src'))}));
    const status=response?.status();const ok=(route==='/404.html'?[200,404].includes(status):status===200)&&metrics.h1Count===1&&metrics.mainCount===1&&metrics.scrollWidth<=width+1&&metrics.broken.length===0;
    let screenshots=[];

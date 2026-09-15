@@ -16,6 +16,7 @@ export async function getStaticPaths() {
 
 const { room } = Astro.props;
 const { Content } = await render(room);
+const headingParts = room.data.title.match(/^(.*?)(\s*\([^)]*\))$/);
 
 // Lead with the selected main photo; retain every original gallery image once.
 const carouselImages = [...new Set([room.data.mainImage, ...room.data.images])];
@@ -69,7 +70,7 @@ const relatedRooms = allRooms
         { label: room.data.shortTitle }
       ]} />
       <header class="major">
-        <h1>{room.data.title}</h1>
+        <h1>{headingParts ? <><span class="room-heading-name">{headingParts[1]}</span><span class="room-heading-plan">{headingParts[2]}</span></> : room.data.title}</h1>
       </header>
       <div class="room-summary" role="region" aria-label="房型摘要">
         <span class="summary-kicker">STAY / 密式旅行</span>
@@ -262,6 +263,9 @@ const relatedRooms = allRooms
     letter-spacing: 0.08em;
   }
 
+  .room-heading-name { display: inline-block; max-width: 100%; }
+  .room-heading-plan { display: inline-block; font-size: 0.68em; white-space: pre; letter-spacing: 0.04em; vertical-align: middle; }
+
   .room-summary {
     position: relative;
     display: grid;
@@ -417,7 +421,7 @@ const relatedRooms = allRooms
 
   .carousel-btn {
     position: absolute;
-    top: 50%;
+    top: calc((100% - 50px) / 2);
     display: grid;
     width: 48px;
     height: 48px;
@@ -441,6 +445,8 @@ const relatedRooms = allRooms
   .carousel-btn.next { right: 1rem; }
 
   .carousel-dots {
+    position: relative;
+    width: 100%;
     display: flex;
     max-width: 100%;
     gap: 0;
@@ -658,10 +664,7 @@ const relatedRooms = allRooms
     .carousel-btn.prev { left: 0.6rem; }
     .carousel-btn.next { right: 0.6rem; }
 
-    .carousel-dots {
-      bottom: 0.6rem;
-      max-width: calc(100% - 6rem);
-    }
+
 
     .carousel-noscript,
     .related-grid {

@@ -52,3 +52,32 @@ for (const width of [390, 1440]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
   });
 }
+
+for (const width of [360,390,768,1440]) {
+  test(`next-button navigation keeps the full-width control strip usable at ${width}px`, async ({page})=>{
+    await page.setViewportSize({width,height:900});
+    await page.goto('/rooms/campsite_1/');
+    const carousel=page.locator('#room-carousel'),strip=page.locator('.carousel-dots');
+    const outer=await carousel.boundingBox(),inner=await strip.boundingBox();
+    expect(Math.abs(outer!.width-inner!.width)).toBeLessThan(3);
+    const next=page.locator('.carousel-btn.next');
+    const count=await strip.locator('.dot').count();
+    for(let i=1;i<count;i++) {
+      await next.click();
+      const dot=strip.locator('.dot').nth(i);
+      await expect(dot).toHaveAttribute('aria-current','true');
+      const visible=await dot.evaluate(e=>{const a=e.getBoundingClientRect(),b=e.parentElement!.getBoundingClientRect();return a.left>=b.left-1&&a.right<=b.right+1;});
+      expect(visible,`selected photo ${i+1}`).toBe(true);
+    }
+  });
+  test(`campsite headings keep original text and do not strand the final name character at ${width}px`,async({page})=>{
+    await page.setViewportSize({width,height:900});
+    for(const room of rooms.filter(r=>r.slug.startsWith('campsite_'))) {
+      await page.goto(`/rooms/${room.slug}/`);
+      await expect(page.locator('h1')).toHaveText(room.data.title);
+      const name=page.locator('.room-heading-name');
+      const dims=await name.evaluate(e=>({height:e.getBoundingClientRect().height,line:parseFloat(getComputedStyle(e).lineHeight)}));
+      expect(dims.height).toBeLessThan(dims.line+2);
+    }
+  });
+}
