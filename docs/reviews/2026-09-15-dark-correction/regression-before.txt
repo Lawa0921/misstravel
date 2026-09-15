@@ -1,0 +1,80 @@
+
+Running 2 tests using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 390px › /rooms/suite_1/ keeps every reading surface dark in both OS themes (6.1s)
+  ✘  2 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 1440px › /rooms/suite_1/ keeps every reading surface dark in both OS themes (5.5s)
+
+
+  1) [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 390px › /rooms/suite_1/ keeps every reading surface dark in both OS themes
+
+    Error: expect(locator).toHaveCSS(expected) failed
+
+    Locator: locator('#main-content').first()
+    Expected pattern: /rgb\(36, 41, 67\)|rgb\(42, 47, 74\)/
+    Received string:  "rgb(248, 244, 236)"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveCSS" with timeout 5000ms
+      - waiting for locator('#main-content').first()
+        14 × locator resolved to <div id="main-content" class="room-detail" data-astro-cid-vrzhfprt="">…</div>
+           - unexpected value "rgb(248, 244, 236)"
+
+
+      15 |           for (const selector of entry.selectors) {
+      16 |             for (const surface of await page.locator(selector).all()) {
+    > 17 |               await expect(surface).toHaveCSS('background-color', /rgb\(36, 41, 67\)|rgb\(42, 47, 74\)/);
+         |                                     ^
+      18 |             }
+      19 |           }
+      20 |           await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(36, 41, 67)');
+        at <isolated-worktree>/astro-site/tests/e2e/dark-theme.spec.ts:17:37
+
+    Error Context: test-results/dark-theme-Consistent-dark-12e2f-face-dark-in-both-OS-themes-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/dark-theme-Consistent-dark-12e2f-face-dark-in-both-OS-themes-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/dark-theme-Consistent-dark-12e2f-face-dark-in-both-OS-themes-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 1440px › /rooms/suite_1/ keeps every reading surface dark in both OS themes
+
+    Error: expect(locator).toHaveCSS(expected) failed
+
+    Locator: locator('#main-content').first()
+    Expected pattern: /rgb\(36, 41, 67\)|rgb\(42, 47, 74\)/
+    Received string:  "rgb(248, 244, 236)"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveCSS" with timeout 5000ms
+      - waiting for locator('#main-content').first()
+        14 × locator resolved to <div id="main-content" class="room-detail" data-astro-cid-vrzhfprt="">…</div>
+           - unexpected value "rgb(248, 244, 236)"
+
+
+      15 |           for (const selector of entry.selectors) {
+      16 |             for (const surface of await page.locator(selector).all()) {
+    > 17 |               await expect(surface).toHaveCSS('background-color', /rgb\(36, 41, 67\)|rgb\(42, 47, 74\)/);
+         |                                     ^
+      18 |             }
+      19 |           }
+      20 |           await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(36, 41, 67)');
+        at <isolated-worktree>/astro-site/tests/e2e/dark-theme.spec.ts:17:37
+
+    Error Context: test-results/dark-theme-Consistent-dark-3975a-face-dark-in-both-OS-themes-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/dark-theme-Consistent-dark-3975a-face-dark-in-both-OS-themes-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/dark-theme-Consistent-dark-3975a-face-dark-in-both-OS-themes-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 390px › /rooms/suite_1/ keeps every reading surface dark in both OS themes
+    [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 1440px › /rooms/suite_1/ keeps every reading surface dark in both OS themes
