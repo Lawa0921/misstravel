@@ -17,9 +17,8 @@ export async function getStaticPaths() {
 const { room } = Astro.props;
 const { Content } = await render(room);
 
-const carouselImages = room.data.images.includes(room.data.mainImage)
-  ? room.data.images
-  : [room.data.mainImage, ...room.data.images];
+// Lead with the selected main photo; retain every original gallery image once.
+const carouselImages = [...new Set([room.data.mainImage, ...room.data.images])];
 
 const roomCategoryLabels = {
   campsite: '露營營位',
@@ -413,7 +412,7 @@ const relatedRooms = allRooms
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .carousel-btn {
@@ -442,35 +441,40 @@ const relatedRooms = allRooms
   .carousel-btn.next { right: 1rem; }
 
   .carousel-dots {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
     display: flex;
-    max-width: calc(100% - 8rem);
-    gap: 0.4rem;
-    overflow: auto;
-    padding: 0.35rem 0.55rem;
-    border-radius: 999px;
-    background: rgba(23, 27, 50, 0.58);
-    transform: translateX(-50%);
+    max-width: 100%;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0.15rem 0.5rem;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    scrollbar-width: thin;
   }
-
   .dot {
-    width: 12px;
-    height: 12px;
-    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
     padding: 0;
-    border: 1px solid rgba(248, 244, 236, 0.75);
-    border-radius: 50%;
+    border: 0;
+    border-radius: 6px;
     background: transparent;
     cursor: pointer;
   }
-
-  .dot.active,
-  .dot[aria-current='true'] {
+  .dot::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--color-paper-muted);
+    border-radius: 50%;
+  }
+  .dot.active::before,
+  .dot[aria-current='true']::before {
     border-color: var(--color-champagne);
     background: var(--color-champagne);
   }
+  .dot:focus-visible { outline-offset: -3px; }
 
   .carousel-noscript {
     display: grid;
@@ -747,6 +751,17 @@ const relatedRooms = allRooms
         dot.classList.toggle('active', i === currentIndex);
         dot.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
       });
+      // Reveal the active touch control without scrolling the page.
+      const activeDot = dots[currentIndex] as HTMLElement;
+      const strip = activeDot?.parentElement;
+      if (strip && activeDot) {
+        const left = activeDot.offsetLeft;
+        if (left < strip.scrollLeft) strip.scrollLeft = left;
+        else if (left + activeDot.offsetWidth > strip.scrollLeft + strip.clientWidth) {
+          strip.scrollLeft = left + activeDot.offsetWidth - strip.clientWidth;
+        }
+      }
+
     }
 
     function preloadNeighbors() {
