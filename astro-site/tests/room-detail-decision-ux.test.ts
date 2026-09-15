@@ -38,9 +38,19 @@ describe('房型詳情決策資訊', () => {
     expect(cta.attr('rel')).toContain('noreferrer');
   });
 
-  it('三至四帳包區摘要應使用 priceOptions 的最低平日價作為起價', () => {
+  it.each(['log_cabin_4', 'suite_3', 'campsite_3'])('%s 不應捏造標準方案名稱', (slug) => {
+    const $ = readRoomPage(slug);
+    expect($('.room-summary').text()).not.toContain('標準方案');
+  });
+
+  it('三至四帳包區摘要應把四帳標準價與三帳替代價分開標示', () => {
     const $ = readRoomPage('campsite_1');
-    expect($('.room-summary').text()).toContain('NT$2,400 起');
-    expect($('.room-summary').text()).not.toContain('NT$3,200 起');
+    expect($('.summary-standard').text()).toContain('16 人以下');
+    expect($('.summary-standard').text()).toContain('平日 NT$3,200 起');
+    expect($('.summary-alternative').text()).toContain('三帳包區・12 人以下');
+    expect($('.summary-alternative').text()).toContain('平日 NT$2,400 起');
+    expect($('.summary-fact').first().hasClass('summary-alternative')).toBe(true);
+    expect($('.summary-standard').text()).not.toContain('NT$2,400 起');
+    expect($('.summary-alternative').text()).not.toContain('16 人');
   });
 });

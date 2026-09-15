@@ -3,24 +3,60 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import { siteConfig } from '../lib/config';
 
-// Gallery images - 36 images matching Jekyll
+// 已逐張檢視 36 張原圖，描述只記錄可辨識內容。
+const inspectedDescriptions: Record<number, string> = {
+  1: "仙人掌盆栽與後方山景",
+  2: "步道旁的紅色樹葉",
+  3: "粉色花樹與園區步道",
+  4: "綠葉上的小昆蟲",
+  5: "木屋外觀、木製平台與山景",
+  6: "玻璃瓶中的水生植物與小飾品",
+  7: "桌面上的多肉植物盆栽",
+  8: "橘貓近照",
+  9: "旅客圍桌遊玩的室內空間",
+  10: "密式旅行園區服務木製招牌",
+  11: "玻璃缸旁的橘貓",
+  12: "山稜上方的橘紅色晚霞",
+  13: "吐司、炒蛋與沙拉餐點",
+  14: "栽種中的綠葉蔬菜",
+  15: "亮燈的木屋外觀",
+  16: "橘貓背影、木屋與遠方雲霧",
+  17: "園區的雙筒望遠鏡",
+  18: "手繪木製指示牌",
+  19: "手持多肉植物盆栽與小飾品",
+  20: "路旁的手繪指示牌",
+  21: "木屋屋頂旁的夕陽",
+  22: "木製平台欄杆與夕陽山景",
+  23: "木屋外牆、平台與山間夕陽",
+  24: "藍天、山稜與山間雲霧",
+  25: "木屋旁的山景與雲霧",
+  26: "屋簷旁的陽光與山景",
+  27: "種植箱中的綠葉蔬菜",
+  28: "園內盛開的橘色花朵",
+  29: "枝葉間的綠色果實",
+  30: "平台旁的粉紫色晚霞",
+  31: "層架上的多肉植物盆栽",
+  32: "暮色天空下的樹枝與山稜",
+  33: "夕陽照映山間雲海",
+  34: "有屋簷的戶外桌椅與山景",
+  35: "旅客在開放式空間圍桌休息",
+  36: "旅客手持切開的水果與前方果籃",
+};
 const galleryImages = Array.from({ length: 36 }, (_, i) => {
   const index = i + 1;
-  let alt = '密式旅行露營區實景 - ';
-  if (index <= 6) alt += '營區全景與雲海美景';
-  else if (index <= 12) alt += '露營區與住宿設施';
-  else if (index <= 18) alt += '兒童遊樂設施與休閒空間';
-  else if (index <= 24) alt += '套房與小木屋內部';
-  else if (index <= 30) alt += '戶外活動區域與景觀';
-  else alt += '夜景與特色設施';
-  return { src: `/images/galleries/gallery_${index}.webp`, alt };
+  const description = inspectedDescriptions[index] || '圖集照片';
+  return {
+    src: `/images/galleries/gallery_${index}.webp`,
+    alt: `密式旅行${description}`,
+  };
 });
 
 const imageGallerySchema = {
   '@context': 'https://schema.org',
   '@type': 'ImageGallery',
-  name: '密式圖集',
-  description: '探索密式旅行露營區的美麗風景',
+  '@id': `${siteConfig.url}/galleries/#imagegallery`,
+  name: '密式旅行圖集',
+  description: '密式旅行露營區原圖集，記錄園區旅途中所見的景色與日常。',
   url: `${siteConfig.url}/galleries/`,
   image: galleryImages.map((img) => ({
     '@type': 'ImageObject',
@@ -31,7 +67,7 @@ const imageGallerySchema = {
 ---
 
 <BaseLayout
-  title="密式圖集"
+  title="密式旅行圖集"
   description="探索密式旅行露營區的美麗風景：雲海繚繞的清晨、絢麗夕陽、舒適住宿空間、兒童遊樂設施、桌遊咖啡廳等。"
   keywords="密式旅行照片,露營區實景,苗栗露營照片,泰安風景,雲海照片,夕陽美景"
   extraSchemas={[imageGallerySchema]}
@@ -41,7 +77,9 @@ const imageGallerySchema = {
       <div class="inner">
         <Breadcrumb items={[{ label: '密式圖集' }]} />
         <header class="major">
+          <p class="eyebrow">THE PHOTO JOURNAL</p>
           <h1>密式圖集</h1>
+          <p class="intro">山林、日常與旅途中的小片段，在這裡慢慢看。</p>
         </header>
 
         <div class="lightbox-gallery">
@@ -53,8 +91,8 @@ const imageGallerySchema = {
                 data-reveal=""
                 style={`--motion-order: ${index % 4}`}
               >
-                <a href={image.src} data-lightbox="photos">
-                  <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" decoding="async" width="400" height="300" />
+                <a href={image.src} data-lightbox="photos" data-alt={image.alt} aria-label={`開啟${image.alt}`}>
+                  <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" decoding="async" width="945" height="709" />
                 </a>
               </div>
             ))}
@@ -66,10 +104,10 @@ const imageGallerySchema = {
   <!-- Lightbox Overlay -->
   <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="圖片瀏覽">
     <div class="lightbox-content">
-      <button class="lightbox-close" aria-label="關閉">&times;</button>
-      <button class="lightbox-nav lightbox-prev" aria-label="上一張">&lt;</button>
-      <img src="" alt="密式旅行露營區實景" id="lightbox-image" decoding="async" width="1200" height="800" />
-      <button class="lightbox-nav lightbox-next" aria-label="下一張">&gt;</button>
+      <button type="button" class="lightbox-close" aria-label="關閉">&times;</button>
+      <button type="button" class="lightbox-nav lightbox-prev" aria-label="上一張">&lt;</button>
+      <img src="" alt={galleryImages[0].alt} id="lightbox-image" decoding="async" width="945" height="709" />
+      <button type="button" class="lightbox-nav lightbox-next" aria-label="下一張">&gt;</button>
       <div class="lightbox-counter">
         <span id="lightbox-current">1</span> / <span id="lightbox-total">36</span>
       </div>
@@ -88,7 +126,10 @@ const imageGallerySchema = {
   const nextBtn = lightbox?.querySelector('.lightbox-next');
 
   const galleryLinks = document.querySelectorAll('[data-lightbox="photos"]');
-  const images = Array.from(galleryLinks).map(link => (link as HTMLAnchorElement).href);
+  const images = Array.from(galleryLinks).map((link) => ({
+    src: (link as HTMLAnchorElement).href,
+    alt: link.getAttribute('data-alt') || '密式旅行圖集照片',
+  }));
   let currentIndex = 0;
 
   if (lightboxTotal) {
@@ -109,8 +150,8 @@ const imageGallerySchema = {
 
   function updateLightbox() {
     if (lightboxImage) {
-      lightboxImage.src = images[currentIndex];
-      lightboxImage.alt = `密式旅行露營區實景 ${currentIndex + 1}`;
+      lightboxImage.src = images[currentIndex].src;
+      lightboxImage.alt = images[currentIndex].alt;
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         lightboxImage.animate(
           [
@@ -167,92 +208,115 @@ const imageGallerySchema = {
 
 <style>
   #main.alt {
-    background: #242943;
-    padding: 4rem 0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(202, 170, 113, 0.12), transparent 28rem),
+      linear-gradient(180deg, #242943 0%, #1b1f34 100%);
+    padding: 5.5rem 0 6rem;
   }
 
   .inner {
-    max-width: 65em;
+    max-width: 75rem;
     margin: 0 auto;
-    padding: 0 3em;
+    padding: 0 2.5rem;
   }
 
   .major {
     text-align: left;
+    max-width: 42rem;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    color: #d7ba7d;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
   }
 
   .major h1 {
-    font-size: 2.5rem;
-    letter-spacing: 0.2em;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #fff;
-    display: inline-block;
-    padding-bottom: 0.5rem;
+    color: #fffaf0;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+
+  .intro {
+    color: rgba(255, 250, 240, 0.72);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin: 0;
   }
 
   .lightbox-gallery {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   .row.photos {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -0.5rem;
-  }
-
-  .col-6 {
-    width: 50%;
-    padding: 0.5rem;
-  }
-
-  .col-md-4 {
-    width: 33.333%;
-  }
-
-  .col-lg-3 {
-    width: 25%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
   }
 
   .item a {
     display: block;
     border-bottom: none;
     overflow: hidden;
-    border-radius: 4px;
+    border: 1px solid rgba(255, 250, 240, 0.14);
+    border-radius: 0.35rem;
+    background: rgba(255, 250, 240, 0.05);
+    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
   }
 
   .item img {
+    aspect-ratio: 945 / 709;
+    display: block;
     width: 100%;
-    height: auto;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    object-fit: cover;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   }
 
-  .item a:hover img {
-    transform: scale(1.05);
+  .item a:hover,
+  .item a:focus-visible {
+    border-color: #d7ba7d;
+    background: rgba(215, 186, 125, 0.12);
+    transform: translateY(-0.2rem);
+  }
+
+  .item a:hover img,
+  .item a:focus-visible img {
+    transform: scale(1.04);
     opacity: 0.9;
   }
 
-  @media (max-width: 980px) {
-    .col-lg-3 {
-      width: 33.333%;
-    }
+  .item a:focus-visible {
+    outline: 3px solid #d7ba7d;
+    outline-offset: 3px;
   }
 
-  @media (max-width: 736px) {
-    .col-md-4,
-    .col-lg-3 {
-      width: 50%;
+  @media (max-width: 980px) {
+    .row.photos {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .inner {
-      padding: 0 1.5em;
+      padding: 0 2rem;
     }
   }
 
-  @media (max-width: 480px) {
-    .col-6,
-    .col-md-4,
-    .col-lg-3 {
-      width: 100%;
+  @media (max-width: 640px) {
+    #main.alt {
+      padding-top: 4.5rem;
+    }
+
+    .inner {
+      padding: 0 1.25rem;
+    }
+
+    .row.photos {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
     }
   }
 
@@ -264,7 +328,7 @@ const imageGallerySchema = {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(15, 18, 31, 0.96);
     z-index: 10000;
     justify-content: center;
     align-items: center;
@@ -305,6 +369,7 @@ const imageGallerySchema = {
     max-width: 100%;
     max-height: 85vh;
     display: block;
+    border: 1px solid rgba(255, 250, 240, 0.18);
     border-radius: 3px;
   }
 
@@ -314,15 +379,23 @@ const imageGallerySchema = {
     right: 0;
     background: none;
     border: none;
-    color: #fff;
+    color: #fffaf0;
     font-size: 2rem;
     cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
     padding: 0.5rem;
     line-height: 1;
   }
 
   .lightbox-close:hover {
-    color: #ccc;
+    color: #d7ba7d;
+  }
+
+  .lightbox-close:focus-visible,
+  .lightbox-nav:focus-visible {
+    outline: 3px solid #d7ba7d;
+    outline-offset: 3px;
   }
 
   .lightbox-nav {
@@ -331,15 +404,17 @@ const imageGallerySchema = {
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.5);
     border: none;
-    color: #fff;
+    color: #fffaf0;
     font-size: 2rem;
     cursor: pointer;
-    padding: 1rem 1.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.75rem 1rem;
     transition: background 0.2s ease;
   }
 
   .lightbox-nav:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(215, 186, 125, 0.24);
   }
 
   .lightbox-prev {
@@ -355,11 +430,17 @@ const imageGallerySchema = {
     bottom: -35px;
     left: 50%;
     transform: translateX(-50%);
-    color: #fff;
+    color: rgba(255, 250, 240, 0.78);
     font-size: 0.9rem;
   }
 
   @media (max-width: 768px) {
+    .lightbox-close {
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(15, 18, 31, 0.72);
+    }
+
     .lightbox-prev {
       left: 10px;
     }

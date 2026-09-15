@@ -222,6 +222,12 @@ if (slug === 'video') {
     font-style: italic;
   }
 
+  /* Preserve the original inline warning text while meeting contrast on dark panels. */
+  .info-content :global([style*="color: red"]),
+  .info-content :global([style*="color:red"]) {
+    color: #ff9b92 !important;
+  }
+
   .info-content :global(strong) {
     color: #ffd306;
   }

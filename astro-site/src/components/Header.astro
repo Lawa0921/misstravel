@@ -7,6 +7,7 @@ interface Props {
 
 const { variant = 'default' } = Astro.props;
 const headerClass = variant === 'alt' ? 'alt' : variant === 'alt-style2' ? 'alt style2' : '';
+const currentPath = Astro.url.pathname;
 
 const navItems = [
   { href: '/', label: '首頁' },
@@ -17,13 +18,21 @@ const navItems = [
   { href: '/galleries/', label: '密式圖集' },
   { href: siteConfig.booking.url, label: '空房查詢', external: true },
 ];
+
+const desktopItems = navItems.filter((item) => ['/', '/rooms/', '/infos/guide/', '/galleries/'].includes(item.href));
+const isCurrent = (href: string, external = false) => !external && (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
 ---
 
 <header id="header" class={headerClass}>
-  <a href="/" class="logo"><strong>MISSTRAVEL</strong></a>
-  <nav aria-label="主要導覽">
-    <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+  <a href="/" class="logo" aria-label="回到密式旅行首頁"><strong>MISSTRAVEL</strong></a>
+  <nav id="desktop-nav" aria-label="主要導覽">
+    {desktopItems.map((item) => (
+      <a href={item.href} aria-current={isCurrent(item.href, item.external) ? 'page' : undefined}>{item.label}</a>
+    ))}
   </nav>
+  <div class="menu-control">
+    <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu 開啟選單">Menu</button>
+  </div>
 </header>
 
 <nav id="menu" aria-label="選單" aria-hidden="true" tabindex="-1">
@@ -33,199 +42,65 @@ const navItems = [
       <li>
         <a
           href={item.href}
+          aria-current={isCurrent(item.href, item.external) ? 'page' : undefined}
           target={item.external ? '_blank' : undefined}
           rel={item.external ? 'noopener noreferrer' : undefined}
-        >
-          {item.label}
-        </a>
+        >{item.label}</a>
       </li>
     ))}
   </ul>
 </nav>
 
 <style>
-  #header {
-    display: flex;
-    background-color: #2a2f4a;
-    box-shadow: 0 0 0.25em 0 rgba(0,0,0,0.15);
-    cursor: default;
-    font-weight: 600;
-    height: 3.25em;
-    left: 0;
-    letter-spacing: 0.25em;
-    line-height: 3.25em;
-    margin: 0;
-    position: fixed;
-    text-transform: uppercase;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
+  #header { display: flex; align-items: center; position: absolute; z-index: 1000; top: 0; left: 0; width: 100%; height: 4.5rem; padding: 0 max(1.25rem, 5vw); color: var(--color-paper); letter-spacing: 0.12em; }
+  #header:not(.alt) { position: fixed; background: var(--color-bg); box-shadow: 0 1px 0 rgba(245, 240, 230, 0.12); }
+  #header.alt { background: linear-gradient(180deg, rgba(36, 41, 67, 0.74), transparent); }
+  #header.alt.style2 .logo strong { color: var(--color-champagne); }
 
-  #header.alt {
-    transition: opacity 2.5s ease;
-    transition-delay: 0.75s;
-    background-color: transparent;
-    box-shadow: none;
-    position: absolute;
-  }
+  .logo { flex: 0 0 auto; min-height: 2.75rem; display: inline-flex; align-items: center; border: 0; font-size: 0.78rem; letter-spacing: 0.2em; }
+  .logo strong { padding: 0.35rem 0.5rem 0.35rem 0.65rem; background: var(--color-paper); color: var(--color-bg); font-weight: 600; transition: background-color var(--transition-fast), color var(--transition-fast); }
+  .logo:hover strong, .logo:focus-visible strong { background: var(--color-aqua); color: var(--color-bg); }
 
-  #header.alt.style2 .logo strong { color: #8d82c4; }
+  #desktop-nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(0.7rem, 2vw, 1.8rem); flex: 1; margin-left: 2rem; }
+  #desktop-nav a { min-height: 2.75rem; display: inline-flex; align-items: center; border: 0; color: var(--color-paper-muted); font-size: 0.875rem; letter-spacing: 0.1em; white-space: nowrap; transition: color var(--transition-fast); }
+  #desktop-nav a:hover, #desktop-nav a:focus-visible, #desktop-nav a[aria-current='page'] { color: var(--color-aqua); }
+  #desktop-nav a[aria-current='page']::after { content: ''; align-self: flex-end; width: 1.4rem; height: 2px; margin-left: -1.4rem; margin-bottom: 0.55rem; background: var(--color-champagne); transform: translateX(0.1rem); }
 
-  .logo {
-    border: 0;
-    display: inline-block;
-    font-size: 0.8em;
-    height: inherit;
-    line-height: inherit;
-    padding: 0 1.5em;
-  }
+  .menu-control { display: flex; align-items: center; margin-left: 1.2rem; }
+  #menu-toggle { position: relative; min-width: 5.5rem; min-height: 2.75rem; padding: 0 2.6rem 0 0.75rem; border: 1px solid rgba(245, 240, 230, 0.35); background: transparent; color: var(--color-paper); cursor: pointer; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+  #menu-toggle::before, #menu-toggle::after { content: ''; position: absolute; right: 0.7rem; width: 1.25rem; height: 1px; background: var(--color-paper); transition: background-color var(--transition-fast), transform var(--transition-fast); }
+  #menu-toggle::before { top: calc(50% - 0.25rem); }
+  #menu-toggle::after { top: calc(50% + 0.25rem); }
+  #menu-toggle:hover, #menu-toggle:focus-visible { border-color: var(--color-aqua); color: var(--color-aqua); }
+  #menu-toggle:hover::before, #menu-toggle:hover::after, #menu-toggle:focus-visible::before, #menu-toggle:focus-visible::after { background: var(--color-aqua); }
 
-  .logo strong {
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    background-color: #fff;
-    color: #242943;
-    display: inline-block;
-    line-height: 1.65em;
-    margin-right: 0.325em;
-    padding: 0 0.125em 0 calc(0.25em + 0.125em);
-  }
-
-  .logo:hover strong { background-color: #9bf1ff; }
-
-  #header nav {
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 1;
-    height: inherit;
-    line-height: inherit;
-  }
-
-  #menu-toggle {
-    border: 0;
-    background: none;
-    color: inherit;
-    cursor: pointer;
-    display: block;
-    font-size: 0.8em;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    height: inherit;
-    line-height: inherit;
-    padding: 0 3.875em 0 0.75em;
-    position: relative;
-    vertical-align: middle;
-  }
-
-  #menu-toggle::before,
-  #menu-toggle::after {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32'%3E%3Cstyle%3Eline %7B stroke-width: 2px; stroke: %23ffffff; %7D%3C/style%3E%3Cline x1='0' y1='11' x2='24' y2='11' /%3E%3Cline x1='0' y1='21' x2='24' y2='21' /%3E%3Cline x1='0' y1='16' x2='24' y2='16' /%3E%3C/svg%3E");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 24px 32px;
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    right: 2em;
-    top: 0;
-    width: 24px;
-  }
-
-  #menu-toggle::after {
-    transition: opacity 0.2s ease-in-out;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32'%3E%3Cstyle%3Eline %7B stroke-width: 2px; stroke: %239bf1ff; %7D%3C/style%3E%3Cline x1='0' y1='11' x2='24' y2='11' /%3E%3Cline x1='0' y1='21' x2='24' y2='21' /%3E%3Cline x1='0' y1='16' x2='24' y2='16' /%3E%3C/svg%3E");
-    opacity: 0;
-    z-index: 1;
-  }
-
-  #menu-toggle:hover::after,
-  #menu-toggle:active::after { opacity: 1; }
-
-  #menu {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(36, 41, 67, 0.98);
-    padding: 6rem 2rem 2rem;
-    z-index: 10001;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
-  }
-
-  #menu.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s;
-  }
-
-  #menu .links { list-style: none; padding: 0; margin: 0; text-align: center; }
-  #menu .links li { margin-bottom: 0; }
-
-  #menu .links a {
-    display: block;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    letter-spacing: 0.25em;
-    text-transform: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    transition: color 0.2s ease, background-color 0.2s ease;
-  }
-
-  #menu .links a:hover,
-  #menu .links a:focus-visible {
-    color: #9bf1ff;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  #menu .close {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    padding: 0;
-  }
-
-  #menu .close::before,
-  #menu .close::after {
-    content: '';
-    position: absolute;
-    width: 2rem;
-    height: 2px;
-    background: #fff;
-    transition: background 0.2s ease;
-  }
-
+  #menu { position: fixed; inset: 0; z-index: 10001; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100vh; padding: 6rem 2rem 2rem; background: rgba(36, 41, 67, 0.98); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+  #menu.is-visible { opacity: 1; visibility: visible; transition-delay: 0s; }
+  #menu .links { width: min(28rem, 100%); margin: 0; padding: 0; list-style: none; text-align: center; }
+  #menu .links li { margin: 0; }
+  #menu .links a { display: block; min-height: 2.75rem; padding: 0.8rem 1rem; border-bottom: 1px solid rgba(245, 240, 230, 0.15); color: var(--color-paper); font-size: 1rem; letter-spacing: 0.16em; }
+  #menu .links a:hover, #menu .links a:focus-visible, #menu .links a[aria-current='page'] { background: rgba(157, 216, 208, 0.1); color: var(--color-aqua); }
+  #menu .close { position: absolute; top: 1.5rem; right: max(1.25rem, 5vw); width: 2.75rem; height: 2.75rem; border: 1px solid rgba(245, 240, 230, 0.35); background: transparent; cursor: pointer; }
+  #menu .close::before, #menu .close::after { content: ''; position: absolute; top: 50%; left: 0.45rem; width: 1.8rem; height: 1px; background: var(--color-paper); }
   #menu .close::before { transform: rotate(45deg); }
   #menu .close::after { transform: rotate(-45deg); }
-  #menu .close:hover::before,
-  #menu .close:hover::after { background: #9bf1ff; }
+  #menu .close:hover, #menu .close:focus-visible { border-color: var(--color-aqua); }
+  #menu .close:hover::before, #menu .close:hover::after, #menu .close:focus-visible::before, #menu .close:focus-visible::after { background: var(--color-aqua); }
 
-  @media (max-width: 736px) {
-    #header { height: 2.75em; line-height: 2.75em; }
-    .logo { padding: 0 1em; }
-    #menu-toggle { padding: 0 3.25em 0 0.5em; }
-    #menu-toggle::before,
-    #menu-toggle::after { right: 0.75em; }
+  @media (max-width: 1020px) {
+    #header { padding-inline: 1.25rem; }
+    #desktop-nav { gap: 0.75rem; margin-left: 1rem; }
+    #desktop-nav a { font-size: 0.8125rem; letter-spacing: 0.05em; }
+  }
+
+  @media (max-width: 767px) {
+    #header { height: 4rem; padding-inline: 1.25rem; }
+    #desktop-nav { display: none; }
+    .menu-control { margin-left: auto; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #header.alt,
-    #menu { transition: none; }
+    #menu, #desktop-nav a, .logo strong, #menu-toggle, #menu-toggle::before, #menu-toggle::after { transition: none; }
   }
 </style>
 
@@ -260,10 +135,17 @@ const navItems = [
   }
 
   function focusMenuCloseWhenVisible() {
-    requestAnimationFrame(() => {
+    let attempts = 0;
+    const focusWhenReady = () => {
       if (!menu?.classList.contains('is-visible')) return;
       menuClose?.focus({ preventScroll: true });
-    });
+      // Reduced-motion CSS can defer visibility for a frame. Do not leave focus
+      // outside the open menu, and never steal it back after the menu closes.
+      if (document.activeElement !== menuClose && attempts++ < 30) {
+        requestAnimationFrame(focusWhenReady);
+      }
+    };
+    requestAnimationFrame(focusWhenReady);
   }
 
   function openMenu() {

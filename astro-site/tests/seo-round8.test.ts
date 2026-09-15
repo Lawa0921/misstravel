@@ -138,9 +138,9 @@ describe('6. 相關房型 alt 文字', () => {
     expect(imgs.length).toBeGreaterThan(0);
     imgs.each((_, el) => {
       const alt = $(el).attr('alt') || '';
-      // alt 應不只是短標題，至少要有 "住宿" 相關描述
+      // alt 應不只是短標題，至少要有房型照片語意描述
       expect(alt.length).toBeGreaterThan(3);
-      expect(alt).toMatch(/住宿|外觀|營區/);
+      expect(alt).toMatch(/住宿|外觀|營區|房型照片/);
     });
   });
 });

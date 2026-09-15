@@ -244,3 +244,27 @@ test('房型輪播應延後非相鄰圖片請求並維持 ARIA 與鍵盤操作',
   await page.keyboard.press('ArrowLeft');
   await expect(dots.first()).toHaveAttribute('aria-current', 'true');
 });
+
+
+test.describe('減少動畫的真實鍵盤流程', () => {
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
+  test('選單可在 visibility 轉換後取得焦點並以 Escape 關閉', async ({ page }) => {
+    await page.goto('/');
+    const toggle = page.locator('#menu-toggle');
+    await toggle.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#menu-close')).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toBeFocused();
+  });
+  test('相簿關閉應完成轉場且回到原照片', async ({ page }) => {
+    await page.goto('/galleries/');
+    const photo = page.locator('[data-lightbox="photos"]').nth(12);
+    await photo.click();
+    await expect(page.locator('#lightbox')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#lightbox')).toBeHidden();
+    await expect(photo).toBeFocused();
+  });
+});

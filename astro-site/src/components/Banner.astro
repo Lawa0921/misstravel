@@ -9,196 +9,123 @@ interface Props {
 const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Astro.props;
 ---
 
-<section id="banner" class="major" data-motion-scene="">
-  <div class="inner">
-    <header class="major">
-      <h1>{title} / MissTravel</h1>
-    </header>
-    <div class="content">
-      <p>{subtitle}</p>
-      <ul class="actions">
+<section id="banner" class="hero" aria-labelledby="hero-title" data-motion-scene="">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="hero-location">苗栗・泰安 <span aria-hidden="true">/</span> MissTravel</p>
+      <h1 id="hero-title">
+        {title}
+        <span class="hero-title-en">MissTravel</span>
+      </h1>
+      <p class="hero-tagline">{subtitle}</p>
+      <p class="hero-description">{siteConfig.description.replace('泰安鄉', '泰安')}</p>
+      <ul class="hero-actions" aria-label="首頁行動">
+        <li><a href="/rooms/" class="button button-primary">查看房型</a></li>
         <li>
-          <a href="/rooms/" class="button special">查看房型</a>
-        </li>
-        <li>
-          <a
-            href={siteConfig.booking.url}
-            class="button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            查詢空房
-          </a>
+          <a href={siteConfig.booking.url} class="button button-secondary" target="_blank" rel="noopener noreferrer">查詢空房</a>
         </li>
       </ul>
     </div>
+
+    <figure class="hero-media">
+      <img
+        class="hero-image"
+        src="/images/banner.webp"
+        alt="密式旅行園區眺望的山景、雲海與夕陽"
+        width="1478"
+        height="1108"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <figcaption>留一晚，靜看山景</figcaption>
+    </figure>
   </div>
 </section>
 
 <style>
   #banner {
     position: relative;
-    display: flex;
+    display: grid;
     align-items: center;
-    height: 75vh;
-    min-height: 30em;
-    max-height: 50em;
-    padding: 4em 0 2em;
-    margin-bottom: -3.25em;
-    top: -3.25em;
+    min-height: min(52rem, 100svh);
     overflow: hidden;
+    padding: 7rem max(1.5rem, 5vw) 5rem;
+    background: var(--color-bg);
+    isolation: isolate;
   }
 
   #banner::before {
     content: '';
     position: absolute;
-    inset: -3%;
-    background-image: url('/images/banner.webp');
-    background-size: cover;
-    background-position: center;
-    transform: translate3d(var(--scene-x), var(--scene-y), 0) scale(1.06);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(circle at 12% 80%, rgba(157, 216, 208, 0.14), transparent 34%), linear-gradient(112deg, var(--color-bg) 0%, rgba(36, 41, 67, 0.93) 48%, rgba(36, 41, 67, 0.36) 100%);
   }
 
   #banner::after {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(
-        circle at var(--scene-pointer-x) var(--scene-pointer-y),
-        rgba(111, 195, 223, 0.22),
-        transparent 32%
-      ),
-      linear-gradient(115deg, rgba(18, 26, 45, 0.76), rgba(36, 41, 67, 0.9) 55%, rgba(35, 57, 51, 0.78));
-    z-index: 1;
-    transition: background 0.25s ease;
+    z-index: -1;
+    background-image: linear-gradient(90deg, rgba(36, 41, 67, 0.4), transparent 65%);
+    pointer-events: none;
   }
 
-  .inner {
-    position: relative;
-    z-index: 2;
-    padding: 0 3em;
-    max-width: 65em;
-    width: 100%;
-    animation: banner-arrive 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+    align-items: center;
+    gap: clamp(2rem, 7vw, 7rem);
+    width: min(78rem, 100%);
+    margin: 0 auto;
+    animation: hero-arrive 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  @keyframes banner-arrive {
-    from { opacity: 0; transform: translateY(24px); }
+  @keyframes hero-arrive {
+    from { opacity: 0; transform: translateY(1.25rem); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  header.major h1 {
-    font-size: 3.25em;
-    margin: 0;
-    padding-bottom: 0.35em;
-    border-bottom: none;
-  }
+  .hero-copy { max-width: 35rem; }
+  .hero-location { margin: 0 0 1.5rem; color: var(--color-aqua); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+  .hero-location span { color: var(--color-champagne); margin: 0 0.35em; }
 
-  header.major::after {
-    content: '';
-    display: block;
-    border-bottom: solid 2px #fff;
-    margin-top: 0.5em;
-    width: 100%;
-  }
+  h1 { display: flex; flex-direction: column; gap: 0.4rem; margin: 0; color: var(--color-paper); font-size: clamp(2.65rem, 5.2vw, 5.3rem); font-weight: 500; line-height: 1.05; letter-spacing: 0.12em; }
+  .hero-title-en { color: var(--color-champagne); font-size: 0.27em; font-weight: 600; letter-spacing: 0.44em; line-height: 1; text-transform: uppercase; }
+  .hero-tagline { margin: 2rem 0 0; color: var(--color-paper); font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: 0.17em; }
+  .hero-description { max-width: 31rem; margin: 1rem 0 0; color: var(--color-paper-muted); font-size: 0.96rem; line-height: 1.9; letter-spacing: 0.045em; }
 
-  .content {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem 1.5rem;
-    margin-top: 2em;
-  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; list-style: none; margin: 2rem 0 0; padding: 0; }
+  .button { display: inline-flex; min-width: 7.5rem; min-height: 2.75rem; align-items: center; justify-content: center; padding: 0.7rem 1.25rem; border: 1px solid var(--color-aqua); color: var(--color-paper); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
+  .button-primary { background: var(--color-aqua); border-color: var(--color-aqua); color: var(--color-bg); }
+  .button:hover, .button:focus-visible { border-color: var(--color-champagne); }
+  .button-primary:hover, .button-primary:focus-visible { background: var(--color-paper); color: var(--color-bg); }
+  .button-secondary { background: rgba(36, 41, 67, 0.28); }
+  .button-secondary:hover, .button-secondary:focus-visible { background: rgba(157, 216, 208, 0.14); color: var(--color-paper); }
 
-  .content > p {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin: 0;
-  }
+  .hero-media { position: relative; margin: 0; overflow: hidden; border: 1px solid rgba(245, 240, 230, 0.28); background: var(--color-bg-alt); box-shadow: 1.2rem 1.2rem 0 rgba(217, 185, 140, 0.18); transform: translate3d(var(--scene-x), var(--scene-y), 0); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+  .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(36, 41, 67, 0.04), rgba(36, 41, 67, 0.5)); pointer-events: none; }
+  .hero-image { display: block; width: 100%; aspect-ratio: 1478 / 1108; object-fit: cover; object-position: center; }
+  figcaption { position: absolute; right: 1rem; bottom: 0.85rem; z-index: 1; color: var(--color-paper); font-size: 0.72rem; letter-spacing: 0.16em; }
+  .hero-index { position: absolute; right: max(1.5rem, 5vw); bottom: 1.5rem; color: var(--color-paper-muted); font-size: 0.72rem; letter-spacing: 0.22em; }
+  .hero-index span { color: var(--color-champagne); }
 
-  .actions {
-    display: flex;
-    gap: 0.5em;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .button {
-    display: inline-block;
-    padding: 0.75em 2em;
-    font-size: 0.8em;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    border: solid 2px #fff;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .button:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .button.special {
-    background: #fff;
-    color: #242943;
-    border-color: #fff;
-  }
-
-  .button.special:hover {
-    background: #9bf1ff;
-    border-color: #9bf1ff;
-  }
-
-  @media (max-width: 736px) {
-    #banner {
-      height: auto;
-      min-height: 0;
-      max-height: none;
-      padding: 6em 0 2em;
-      margin-bottom: -2.75em;
-      top: -2.75em;
-    }
-
-    .inner {
-      padding: 0 1.5em;
-    }
-
-    header.major h1 {
-      font-size: 2em;
-    }
-
-    .content {
-      display: block;
-    }
-
-    .content > p {
-      margin-bottom: 1.5em;
-      font-size: 1.25rem;
-    }
-
-    .actions {
-      flex-direction: column;
-    }
-
-    .button {
-      width: 100%;
-      text-align: center;
-    }
+  @media (max-width: 767px) {
+    #banner { min-height: auto; padding: 7rem 1.25rem 4.5rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-copy { max-width: none; }
+    .hero-location { margin-bottom: 1.15rem; }
+    .hero-tagline { margin-top: 1.4rem; }
+    .hero-description { font-size: 0.9rem; line-height: 1.8; }
+    .hero-actions { margin-top: 1.5rem; }
+    .button { flex: 1 1 10rem; }
+    .hero-media { width: calc(100% - 0.75rem); margin-right: 0.75rem; box-shadow: 0.75rem 0.75rem 0 rgba(217, 185, 140, 0.18); }
+    .hero-index { right: 1.25rem; bottom: 1.1rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #banner::before,
-    .inner {
-      animation: none;
-      transform: none;
-    }
+    .hero-inner { animation: none; }
+    .hero-media { transform: none; transition: none; }
   }
 </style>

@@ -6,6 +6,9 @@ interface TileItem {
   title: string;
   description: string;
   image: string;
+  alt?: string;
+  width?: number;
+  height?: number;
   external?: boolean;
 }
 
@@ -14,233 +17,88 @@ interface Props {
 }
 
 const defaultTiles: TileItem[] = [
-  {
-    href: '/infos/',
-    title: '關於密式',
-    description: '認識園區環境與特色設施',
-    image: '/images/landing_banner.webp',
-  },
-  {
-    href: '/rooms/',
-    title: '房型展示',
-    description: '比較營位、木屋與套房選擇',
-    image: '/images/rooms.webp',
-  },
-  {
-    href: '/sale_items/',
-    title: '密式柑仔店',
-    description: '查看租借用品、餐飲與代訂服務',
-    image: '/images/sale_items.webp',
-  },
-  {
-    href: '/infos/guide/',
-    title: '交通指南',
-    description: '出發前先確認路線與抵達方式',
-    image: '/images/announcements.webp',
-  },
-  {
-    href: '/galleries/',
-    title: '密式圖集',
-    description: '瀏覽園區、住宿與周邊實景',
-    image: '/images/galleries.webp',
-  },
-  {
-    href: siteConfig.booking.url,
-    title: '空房查詢',
-    description: '前往官方訂房系統確認日期與房況',
-    image: '/images/booking.webp',
-    external: true,
-  },
+  { href: '/infos/', title: '關於密式', description: '認識園區環境與特色設施', image: '/images/landing_banner.webp', alt: '園內盛開的黃色花朵', width: 945, height: 709 },
+  { href: '/rooms/', title: '房型展示', description: '比較營位、木屋與套房選擇', image: '/images/rooms.webp', alt: '密式旅行住宿房型', width: 945, height: 709 },
+  { href: '/sale_items/', title: '密式柑仔店', description: '查看租借用品、餐飲與代訂服務', image: '/images/sale_items.webp', alt: '戶外平台桌上的冰飲與山景', width: 945, height: 709 },
+  { href: '/infos/guide/', title: '交通指南', description: '出發前先確認路線與抵達方式', image: '/images/map.webp', alt: '密式旅行園區配置地圖', width: 2000, height: 1500 },
+  { href: '/galleries/', title: '密式圖集', description: '瀏覽園區、住宿與周邊實景', image: '/images/galleries.webp', alt: '密式旅行園區實景圖集', width: 945, height: 709 },
+  { href: siteConfig.booking.url, title: '空房查詢', description: '前往官方訂房系統確認日期與房況', image: '/images/booking.webp', alt: '密式旅行訂房資訊', width: 960, height: 720, external: true },
 ];
 
-const { items = defaultTiles } = Astro.props;
+const { items = defaultTiles }: Props = Astro.props;
 const displayItems = items.slice(0, siteConfig.tilesCount);
 ---
 
-<section id="tiles" class="tiles">
+<section id="tiles" class="tiles" aria-labelledby="tiles-title">
+  <div class="tiles-heading">
+    <p class="section-kicker">A stay, in six directions</p>
+    <h2 id="tiles-title">慢慢走進密式</h2>
+  </div>
   {displayItems.map((tile, index) => (
-    <article
-      class="tile"
-      data-motion-card=""
-      data-reveal=""
-      style={`background-image: url('${tile.image}'); --motion-order: ${index}`}
-    >
-      <header class="major">
+    <article class="tile" data-motion-card="" data-reveal="" style={`--motion-order: ${index}`}>
+      <img class="tile-image" src={tile.image} alt={tile.alt || tile.title} loading="lazy" decoding="async" width={tile.width} height={tile.height} />
+      <div class="tile-wash" aria-hidden="true"></div>
+      <span class="tile-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <div class="tile-content">
+        <p class="tile-kicker">密式旅行 <span aria-hidden="true">/</span> {String(index + 1).padStart(2, '0')}</p>
         <h2>
-          <a
-            href={tile.href}
-            class="link primary"
-            target={tile.external ? '_blank' : undefined}
-            rel={tile.external ? 'noopener noreferrer' : undefined}
-          >
-            {tile.title}
-          </a>
+          <a href={tile.href} class="tile-link" target={tile.external ? '_blank' : undefined} rel={tile.external ? 'noopener noreferrer' : undefined}>{tile.title}</a>
         </h2>
-        <p>{tile.description}</p>
-      </header>
+        <p class="tile-description">{tile.description}</p>
+      </div>
     </article>
   ))}
 </section>
 
 <style>
-  .tiles {
-    display: flex;
-    flex-wrap: wrap;
-    border-top: 0;
+  #tiles { display: grid; grid-template-columns: repeat(12, 1fr); background: var(--color-bg); }
+  .tiles-heading { grid-column: 1 / -1; padding: clamp(3rem, 7vw, 6rem) max(1.25rem, 5vw) clamp(2rem, 4vw, 3.5rem); }
+  .section-kicker { margin: 0 0 0.8rem; color: var(--color-aqua); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  .tiles-heading h2 { margin: 0; color: var(--color-paper); font-size: clamp(1.75rem, 3.2vw, 3rem); font-weight: 500; letter-spacing: 0.14em; }
+
+  .tile { position: relative; grid-column: span 4; min-height: clamp(24rem, 34vw, 34rem); display: flex; align-items: flex-end; overflow: hidden; padding: clamp(1.5rem, 3.5vw, 3.25rem); isolation: isolate; }
+  .tile:nth-of-type(2), .tile:nth-of-type(3) { grid-column: span 4; }
+  .tile:nth-of-type(4), .tile:nth-of-type(5), .tile:nth-of-type(6) { grid-column: span 4; }
+  .tile-image { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .tile-wash { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgba(36, 41, 67, 0.06) 15%, rgba(36, 41, 67, 0.88) 100%); transition: background-color 0.35s ease, opacity 0.35s ease; }
+  .tile:nth-of-type(2) .tile-wash { background: linear-gradient(180deg, rgba(82, 141, 145, 0.12), rgba(36, 41, 67, 0.9)); }
+  .tile:nth-of-type(3) .tile-wash { background: linear-gradient(180deg, rgba(217, 185, 140, 0.12), rgba(36, 41, 67, 0.9)); }
+  .tile:nth-of-type(4) .tile-wash { background: linear-gradient(180deg, rgba(103, 158, 158, 0.12), rgba(36, 41, 67, 0.9)); }
+  .tile:nth-of-type(5) .tile-wash { background: linear-gradient(180deg, rgba(217, 185, 140, 0.1), rgba(36, 41, 67, 0.9)); }
+  .tile:nth-of-type(6) .tile-wash { background: linear-gradient(180deg, rgba(157, 216, 208, 0.12), rgba(36, 41, 67, 0.9)); }
+  .tile:hover .tile-image, .tile:focus-within .tile-image { transform: scale(1.04); }
+  .tile:hover .tile-wash, .tile:focus-within .tile-wash { background-color: rgba(36, 41, 67, 0.1); }
+
+  .tile-number { position: absolute; top: 1.25rem; right: 1.35rem; color: var(--color-paper); font-size: 0.7rem; letter-spacing: 0.17em; }
+  .tile-number::after { content: ''; display: inline-block; width: 2.25rem; height: 1px; margin: 0 0 0.2rem 0.5rem; background: var(--color-champagne); }
+  .tile-content { width: 100%; }
+  .tile-kicker { margin: 0 0 0.55rem; color: var(--color-aqua); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  .tile-kicker span { color: var(--color-champagne); }
+  .tile h2 { margin: 0; color: var(--color-paper); font-size: clamp(1.35rem, 2.2vw, 2rem); font-weight: 500; letter-spacing: 0.13em; line-height: 1.25; }
+  .tile-link { display: inline-flex; min-height: 2.75rem; align-items: center; border: 0; color: inherit; }
+  .tile-link::after { content: ''; position: absolute; inset: 0; z-index: 3; }
+  .tile-link:focus-visible::after { outline: 2px solid var(--color-aqua); outline-offset: -4px; }
+  .tile-link:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: 0.3rem; }
+  .tile-description { margin: 0.8rem 0 0; color: var(--color-paper); font-size: 0.9rem; line-height: 1.65; letter-spacing: 0.06em; }
+
+  @media (max-width: 1020px) {
+    .tile { grid-column: span 6; min-height: 22rem; }
+    .tile:nth-of-type(n) { grid-column: span 6; }
   }
 
-  .tile {
-    position: relative;
-    overflow: hidden;
-    min-height: 23em;
-    height: 40vh;
-    max-height: 40em;
-    width: 40%;
-    display: flex;
-    align-items: center;
-    padding: 4em;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  @media (max-width: 767px) {
+    #tiles { display: block; }
+    .tiles-heading { padding-block: 3.5rem 2rem; }
+    .tile, .tile:nth-of-type(n) { min-height: 19rem; padding: 1.5rem 1.25rem 1.75rem; }
   }
 
-  .tile:nth-child(4n - 1),
-  .tile:nth-child(4n - 2) {
-    flex: 1 auto;
-  }
-
-  .tile::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.85;
-    z-index: 2;
-    transition: opacity 0.5s ease;
-  }
-
-  .tile:hover::before,
-  .tile:focus-within::before {
-    opacity: 0.2;
-  }
-
-  .tile:nth-child(6n - 5)::before { background-color: #6fc3df; }
-  .tile:nth-child(6n - 4)::before { background-color: #8d82c4; }
-  .tile:nth-child(6n - 3)::before { background-color: #ec8d81; }
-  .tile:nth-child(6n - 2)::before { background-color: #e7b788; }
-  .tile:nth-child(6n - 1)::before { background-color: #8ea9e8; }
-  .tile:nth-child(6n)::before { background-color: #87c5a4; }
-
-  .tile::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(
-        circle 260px at var(--motion-x) var(--motion-y),
-        rgba(133, 205, 225, 0.24),
-        transparent 64%
-      ),
-      radial-gradient(
-        circle 180px at calc(100% - var(--motion-x)) calc(100% - var(--motion-y)),
-        rgba(231, 168, 104, 0.14),
-        transparent 70%
-      ),
-      linear-gradient(rgba(36, 41, 67, 0.25), rgba(36, 41, 67, 0.25));
-    background-position: center, center, center;
-    background-size: auto, auto, auto;
-    z-index: 2;
-    opacity: 0.42;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
-
-  .tile:hover::after,
-  .tile:focus-within::after { opacity: 0.88; }
-
-  .tile .major {
-    position: relative;
-    z-index: 3;
-    padding: 0;
-    pointer-events: none;
-  }
-
-  .tile h2 {
-    margin: 0 0 1rem;
-    font-size: 2.5rem;
-    letter-spacing: 0.15em;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-  }
-
-  .tile h2 a {
-    color: #fff;
-    border-bottom: none;
-    pointer-events: auto;
-  }
-
-  .tile h2 a::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-  }
-
-  .tile h2 a:focus-visible {
-    outline: 3px solid #fff;
-    outline-offset: 0.35rem;
-  }
-
-  .tile p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 1.25rem;
-  }
-
-  @media (max-width: 1200px) {
-    .tile {
-      padding: 4em 3em;
-      height: 30vh;
-      max-height: 30em;
-      min-height: 20em;
-    }
-  }
-
-  @media (max-width: 980px) {
-    .tile {
-      width: 50%;
-    }
-  }
-
-  @media (max-width: 736px) {
-    .tiles {
-      display: block;
-    }
-
-    .tile {
-      width: 100%;
-      height: 16em;
-      max-height: none;
-      min-height: 0;
-      padding: 3em 1.5em;
-    }
-
-    .tile h2 {
-      font-size: 1.5em;
-    }
-
-    .tile p {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .tile {
-      height: 20em;
-    }
+  @media (max-width: 390px) {
+    .tile, .tile:nth-of-type(n) { min-height: 17rem; }
+    .tile-description { font-size: 0.84rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .tile {
-      opacity: 1;
-    }
+    .tile-image, .tile-wash { transition: none; }
+    .tile:hover .tile-image, .tile:focus-within .tile-image { transform: none; }
   }
 </style>
