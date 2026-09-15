@@ -43,13 +43,15 @@ describe('首頁 Dusk Mountain editorial contract', () => {
     expect($('#tiles a[href*="roomcloud.cc"]')).toHaveLength(1);
   });
 
-  it('desktop 導覽應提供房型、指南、圖集連結，並標示目前頁面', () => {
+  it('desktop 導覽應提供房型、關於密式、圖集連結，並標示目前頁面', () => {
     const $ = readPage('index.html');
     const desktopNav = $('#desktop-nav');
 
     expect(desktopNav.attr('aria-label')).toBeDefined();
     expect(desktopNav.find('a[href="/rooms/"]')).toHaveLength(1);
-    expect(desktopNav.find('a[href="/infos/guide/"]')).toHaveLength(1);
+    expect(desktopNav.find('a[href="/infos/"]').text()).toBe('關於密式');
+    expect(desktopNav.find('a[href="/infos/guide/"]')).toHaveLength(0);
+    expect($('#menu a[href="/infos/guide/"]')).toHaveLength(1);
     expect(desktopNav.find('a[href="/galleries/"]')).toHaveLength(1);
     expect(desktopNav.find('[aria-current="page"]')).toHaveLength(1);
     expect($('#menu-toggle').attr('aria-controls')).toBe('menu');

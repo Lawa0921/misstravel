@@ -19,7 +19,8 @@ const navItems = [
   { href: siteConfig.booking.url, label: '空房查詢', external: true },
 ];
 
-const desktopItems = navItems.filter((item) => ['/', '/rooms/', '/infos/guide/', '/galleries/'].includes(item.href));
+const desktopItems = ['/', '/rooms/', '/infos/', '/galleries/']
+  .map((href) => navItems.find((item) => item.href === href)!);
 const isCurrent = (href: string, external = false) => !external && currentPath === href;
 ---
 
@@ -67,12 +68,43 @@ const isCurrent = (href: string, external = false) => !external && currentPath =
   #desktop-nav a[aria-current='page']::after { content: ''; align-self: flex-end; width: 1.4rem; height: 2px; margin-left: -1.4rem; margin-bottom: 0.55rem; background: var(--color-champagne); transform: translateX(0.1rem); }
 
   .menu-control { display: flex; align-items: center; margin-left: 1.2rem; }
-  #menu-toggle { position: relative; min-width: 5.5rem; min-height: 2.75rem; padding: 0 2.6rem 0 0.75rem; border: 1px solid rgba(245, 240, 230, 0.35); background: transparent; color: var(--color-paper); cursor: pointer; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
-  #menu-toggle::before, #menu-toggle::after { content: ''; position: absolute; right: 0.7rem; width: 1.25rem; height: 1px; background: var(--color-paper); transition: background-color var(--transition-fast), transform var(--transition-fast); }
+  #menu-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 5.5rem;
+    min-height: 2.75rem;
+    padding: 0 2.25rem 0 0.5rem;
+    border: 0;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    background: transparent;
+    color: var(--color-paper);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: color var(--transition-fast);
+  }
+  #menu-toggle::before, #menu-toggle::after {
+    content: '';
+    position: absolute;
+    right: 0.35rem;
+    width: 1.4rem;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right center;
+    transition: transform var(--transition-fast);
+  }
   #menu-toggle::before { top: calc(50% - 0.25rem); }
-  #menu-toggle::after { top: calc(50% + 0.25rem); }
-  #menu-toggle:hover, #menu-toggle:focus-visible { border-color: var(--color-aqua); color: var(--color-aqua); }
-  #menu-toggle:hover::before, #menu-toggle:hover::after, #menu-toggle:focus-visible::before, #menu-toggle:focus-visible::after { background: var(--color-aqua); }
+  #menu-toggle::after { top: calc(50% + 0.25rem); transform: scaleX(0.72); }
+  #menu-toggle:hover, #menu-toggle:focus-visible { color: var(--color-aqua); }
+  #menu-toggle:hover::after, #menu-toggle:focus-visible::after { transform: scaleX(1); }
+  /* No decorative border; keyboard focus must still be visible. */
+  #menu-toggle:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: 4px; }
 
   #menu { position: fixed; inset: 0; z-index: 10001; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100vh; padding: 6rem 2rem 2rem; background: rgba(36, 41, 67, 0.98); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
   #menu.is-visible { opacity: 1; visibility: visible; transition-delay: 0s; }
@@ -80,11 +112,12 @@ const isCurrent = (href: string, external = false) => !external && currentPath =
   #menu .links li { margin: 0; }
   #menu .links a { display: block; min-height: 2.75rem; padding: 0.8rem 1rem; border-bottom: 1px solid rgba(245, 240, 230, 0.15); color: var(--color-paper); font-size: 1rem; letter-spacing: 0.16em; }
   #menu .links a:hover, #menu .links a:focus-visible, #menu .links a[aria-current='page'] { background: rgba(157, 216, 208, 0.1); color: var(--color-aqua); }
-  #menu .close { position: absolute; top: 1.5rem; right: max(1.25rem, 5vw); width: 2.75rem; height: 2.75rem; border: 1px solid rgba(245, 240, 230, 0.35); background: transparent; cursor: pointer; }
+  #menu .close { position: absolute; top: 1.5rem; right: max(1.25rem, 5vw); width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
   #menu .close::before, #menu .close::after { content: ''; position: absolute; top: 50%; left: 0.45rem; width: 1.8rem; height: 1px; background: var(--color-paper); }
   #menu .close::before { transform: rotate(45deg); }
   #menu .close::after { transform: rotate(-45deg); }
-  #menu .close:hover, #menu .close:focus-visible { border-color: var(--color-aqua); }
+  #menu .close:hover { background: rgba(157, 216, 208, 0.1); }
+  #menu .close:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: 4px; }
   #menu .close:hover::before, #menu .close:hover::after, #menu .close:focus-visible::before, #menu .close:focus-visible::after { background: var(--color-aqua); }
 
   @media (max-width: 1020px) {
@@ -162,6 +195,13 @@ const isCurrent = (href: string, external = false) => !external && currentPath =
   });
 
   menuClose?.addEventListener('click', closeMenu);
+
+  // Capture a clean page on native document transitions, not a fading menu.
+  // Also leaves a closed, unlocked document for the browser's back/forward cache.
+  window.addEventListener('pageswap', () => {
+    closeMenu();
+    menu?.getAnimations().forEach((animation) => animation.finish());
+  });
 
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {

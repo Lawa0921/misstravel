@@ -94,3 +94,42 @@ html[data-motion='ready'] [data-reveal].is-revealed {
     display: none;
   }
 }
+
+/* Native document-to-document transition: keep real URLs and full page loads.
+   No client router, click interception, artificial delay, or hidden content fallback. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  #header { view-transition-name: site-header; }
+
+  ::view-transition { background: var(--color-bg); }
+  ::view-transition-group(root) { animation-duration: 280ms; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { mix-blend-mode: normal; }
+  ::view-transition-old(root) { animation: mist-page-out 160ms ease-out both; }
+  ::view-transition-new(root) { animation: mist-page-in 280ms cubic-bezier(0.2, 0.7, 0.25, 1) both; }
+
+  /* The header stays in place while the page beneath it changes. */
+  ::view-transition-group(site-header) { animation: none; z-index: 2; }
+  ::view-transition-old(site-header) { display: none; }
+  ::view-transition-new(site-header) { animation: none; }
+}
+
+@keyframes mist-page-out {
+  to { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes mist-page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  #header { view-transition-name: none; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
