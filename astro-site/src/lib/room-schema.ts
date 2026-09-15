@@ -51,7 +51,7 @@ export function createRoomSchemas(slug: string, room: RoomSchemaInput): Record<s
       url,
       description: room.metaDescription,
       inLanguage: 'zh-TW',
-      isPartOf: { '@id': `${siteConfig.url}/#website` },
+      isPartOf: { '@type': 'WebSite', '@id': `${siteConfig.url}/#website`, name: siteConfig.author, url: siteConfig.url },
       mainEntity: { '@id': accommodationId },
       about: { '@id': `${siteConfig.url}/#lodgingbusiness` },
     },

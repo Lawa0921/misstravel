@@ -26,7 +26,7 @@ export function resolveRoomValueTokens(text, data) {
     }
     return String(integer(value, key));
   });
-  if (/\{\{|\}\}/.test(result)) throw new Error('Malformed or unresolved room value reference');
+  if (/[{}]/.test(result)) throw new Error('Malformed or unresolved room value reference');
   return result;
 }
 
@@ -42,6 +42,8 @@ export function normalizeRoomData(input) {
   integer(data.numberOfRooms, 'numberOfRooms', 1);
   if (data.priceOptions !== undefined) {
     if (!Array.isArray(data.priceOptions) || data.priceOptions.length < 2) throw new Error('Room priceOptions require at least two plans');
+    if (data.priceOptions.some(option => !option || typeof option !== 'object' || Array.isArray(option))) throw new Error('Invalid room price option');
+    if (data.priceOptions[0]?.isStandard !== true) throw new Error('Standard plan must stay at index zero');
     if (data.priceOptions.filter(option => option.isStandard === true).length !== 1) throw new Error('Room requires exactly one standard plan');
     data.priceOptions = data.priceOptions.map((option, index) => {
       if (!option || typeof option !== 'object' || Array.isArray(option)) throw new Error('Invalid room price option');
@@ -61,6 +63,12 @@ export function normalizeRoomData(input) {
   for (const field of ['description', 'metaDescription']) {
     if (typeof data[field] !== 'string' || !data[field].trim()) throw new Error(`Missing ${field}`);
     data[field] = resolveRoomValueTokens(data[field], data);
+  }
+  for (const [key, value] of Object.entries(data)) {
+    if (typeof value === 'string' && /[{}]/.test(value)) throw new Error(`Unresolved reference in ${key}`);
+  }
+  for (const option of data.priceOptions || []) {
+    if (typeof option.label === 'string' && /[{}]/.test(option.label)) throw new Error('Unresolved reference in plan label');
   }
   return data;
 }

@@ -2,54 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import { siteConfig } from '../lib/config';
-
-// 已逐張檢視 36 張原圖，描述只記錄可辨識內容。
-const inspectedDescriptions: Record<number, string> = {
-  1: "仙人掌盆栽與後方山景",
-  2: "步道旁的紅色樹葉",
-  3: "粉色花樹與園區步道",
-  4: "綠葉上的小昆蟲",
-  5: "木屋外觀、木製平台與山景",
-  6: "玻璃瓶中的水生植物與小飾品",
-  7: "桌面上的多肉植物盆栽",
-  8: "橘貓近照",
-  9: "旅客圍桌遊玩的室內空間",
-  10: "密式旅行園區服務木製招牌",
-  11: "玻璃缸旁的橘貓",
-  12: "山稜上方的橘紅色晚霞",
-  13: "吐司、炒蛋與沙拉餐點",
-  14: "栽種中的綠葉蔬菜",
-  15: "亮燈的木屋外觀",
-  16: "橘貓背影、木屋與遠方雲霧",
-  17: "園區的雙筒望遠鏡",
-  18: "手繪木製指示牌",
-  19: "手持多肉植物盆栽與小飾品",
-  20: "路旁的手繪指示牌",
-  21: "木屋屋頂旁的夕陽",
-  22: "木製平台欄杆與夕陽山景",
-  23: "木屋外牆、平台與山間夕陽",
-  24: "藍天、山稜與山間雲霧",
-  25: "木屋旁的山景與雲霧",
-  26: "屋簷旁的陽光與山景",
-  27: "種植箱中的綠葉蔬菜",
-  28: "園內盛開的橘色花朵",
-  29: "枝葉間的綠色果實",
-  30: "平台旁的粉紫色晚霞",
-  31: "層架上的多肉植物盆栽",
-  32: "暮色天空下的樹枝與山稜",
-  33: "夕陽照映山間雲海",
-  34: "有屋簷的戶外桌椅與山景",
-  35: "旅客在開放式空間圍桌休息",
-  36: "旅客手持切開的水果與前方果籃",
-};
-const galleryImages = Array.from({ length: 36 }, (_, i) => {
-  const index = i + 1;
-  const description = inspectedDescriptions[index] || '圖集照片';
-  return {
-    src: `/images/galleries/gallery_${index}.webp`,
-    alt: `密式旅行${description}`,
-  };
-});
+import { galleryImages } from '../lib/gallery';
 
 const imageGallerySchema = {
   '@context': 'https://schema.org',
@@ -109,7 +62,7 @@ const imageGallerySchema = {
       <img src="" alt={galleryImages[0].alt} id="lightbox-image" decoding="async" width="945" height="709" />
       <button type="button" class="lightbox-nav lightbox-next" aria-label="下一張">&gt;</button>
       <div class="lightbox-counter">
-        <span id="lightbox-current">1</span> / <span id="lightbox-total">36</span>
+        <span id="lightbox-current">1</span> / <span id="lightbox-total">{galleryImages.length}</span>
       </div>
     </div>
   </div>

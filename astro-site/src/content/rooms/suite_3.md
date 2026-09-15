@@ -2,8 +2,8 @@
 metaTitle: '密式旅行露營區，映月之屋雙人住宿套房'
 title: '映月之屋雙人套房'
 shortTitle: '映月之屋'
-description: '映月之屋是苗栗泰安密式旅行的雙人套房，提供房內衛浴、電視、吹風機與冷暖氣，房外使用共用平台。平日不附早餐，假日及連續假期附早餐；炊煮限室外平台，室內禁止炊煮。'
-metaDescription: '密式旅行映月之屋雙人套房，附房內衛浴、電視與冷暖氣，房外使用共用平台。平日{{weekdayPrice}}元不附早餐；假日{{holidayPrice}}元、連假{{standardPrice}}元附早餐。連續假期限接三天兩夜以上預訂。'
+description: '映月之屋是苗栗泰安密式旅行的雙人套房，提供房內衛浴、電視、吹風機與冷暖氣。平日不附早餐，假日及連續假期附早餐；炊煮限室外平台，室內禁止炊煮。'
+metaDescription: '密式旅行映月之屋雙人套房，附房內衛浴、電視與冷暖氣。平日{{weekdayPrice}}元不附早餐；假日{{holidayPrice}}元、連假{{standardPrice}}元附早餐。連續假期限接三天兩夜以上預訂。'
 standardPrice: 2800
 holidayPrice: 2500
 weekdayPrice: 1600

@@ -225,7 +225,7 @@ const relatedRooms = allRooms
               />
               <div class="related-info">
                 <h4>{related.data.shortTitle}</h4>
-                <span class="related-price">{related.data.priceOptions ? `${related.data.priceOptions.find(option => option.isStandard)?.numberOfUnits} 帳平日` : '平日'} ${related.data.weekdayPrice} 起</span>
+                <span class="related-price">{related.data.priceOptions ? `${related.data.priceOptions.find(option => option.isStandard)?.numberOfUnits} 帳平日` : '平日'} NT${related.data.weekdayPrice.toLocaleString('zh-TW')} 起</span>
               </div>
             </a>
           ))}

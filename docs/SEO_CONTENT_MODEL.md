@@ -16,7 +16,7 @@
 
 `room-values.mjs` 同時供內容 schema 與 Markdown renderer 使用。建置會先驗證非負整數、唯一標準方案及資料一致性，再產生完整 HTML，不靠瀏覽器 JavaScript 或請求補文字。未定義、非數值、運算式或不在白名單中的參照會令建置失敗。Markdown 仍使用專案原有的 Satteri 引擎，沒有換另一套渲染規則。
 
-這一輪沒有改任何實際價格、額外費用、早餐／寵物／訪客／退費／入住條件。既有正文以渲染後的完整文字與遷移前基準逐房核對。相關營位卡片唯一新增的可見說明，是將原來四帳價格前標明「4 帳平日」，避免把四帳標準價誤認為三帳起價。
+這一輪沒有改任何實際價格、額外費用、早餐／寵物／訪客／退費／入住條件。既有正文以渲染後的完整文字與遷移前基準逐房核對。相關營位卡片唯一新增的可見說明，是將原來四帳價格前標明「4 帳平日」，並統一以 NT$ 與千分位顯示相同金額，避免把四帳標準價誤認為三帳起價。
 
 `tests/fixtures/room-operating-copy.json` 是這次遷移的測試基準，不是第二套輸出資料來源。之後若有經營者核准的價格／條款變更，須同步更新相關驗收基準，不能把測試放寬或刪除。
 
@@ -59,3 +59,8 @@ PR 預覽有 Vercel 登入保護；正式站需經使用者核准合併才會套
 - https://developers.google.com/search/docs/crawling-indexing/javascript/lazy-loading
 - https://schema.org/Accommodation
 - https://docs.astro.build/en/guides/markdown-content/
+
+
+## 補充防護
+
+標準方案固定放在 priceOptions 第一項，避免索引式費用參照因重排而錯配；重排或矛盾資料會中止建置。除 description／metaDescription 及正文外，其餘輸出文字欄位不允許插入參照；不完整或多餘的大括號也會被拒絕。圖集頁與圖片 sitemap 共用 `src/lib/gallery.ts` 的清單，不另外維護張數。圖片描述僅陳述畫面，不構成免費備品、加床或其他服務承諾；營運條件仍以房型正文為準。

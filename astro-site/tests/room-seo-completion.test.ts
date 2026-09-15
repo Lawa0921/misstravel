@@ -98,7 +98,7 @@ describe('single-source room price model', () => {
     expect(data.metaDescription).toContain('2700');
     expect(resolveRoomValueTokens('平日：{{weekdayPrice}} 元',data)).toBe('平日：2700 元');
   });
-  it.each(['{{missing}}','{{constructor}}','{{priceOptions.9.weekdayPrice}}','{{weekdayPrice + 1}}','{{weekdayPrice','{{__proto__.x}}'])('rejects invalid reference %s', value => {
+  it.each(['{{missing}}','{{constructor}}','{{priceOptions.9.weekdayPrice}}','{{weekdayPrice + 1}}','{{weekdayPrice','{{__proto__.x}}','{{{weekdayPrice}}}','{{weekdayPrice}}}'])('rejects invalid reference %s', value => {
     expect(() => resolveRoomValueTokens(value, normalizeRoomData(raw('suite_1')))).toThrow();
   });
   it('rejects contradictory standard data, nonnumeric values and multiple standard plans', () => {
@@ -107,6 +107,14 @@ describe('single-source room price model', () => {
     expect(() => normalizeRoomData({...input,weekdayPrice:-1})).toThrow();
     expect(() => normalizeRoomData({...input,priceOptions:input.priceOptions.map((p: object)=>({...p,isStandard:true}))})).toThrow();
     expect(() => normalizeRoomData({...input,priceOptions:[{...input.priceOptions[0],weekdayPrice:1},input.priceOptions[1]]})).toThrow();
+  });
+  it('rejects misplaced text references and reordered standard plans', () => {
+    for (const field of ['title','metaTitle','shortTitle','keywords','pricingNote']) {
+      expect(() => normalizeRoomData({ ...raw('suite_1'), [field]: '{{weekdayPrice}}' })).toThrow();
+    }
+    const input = raw('campsite_1');
+    expect(() => normalizeRoomData({ ...input, priceOptions: [...input.priceOptions].reverse() })).toThrow();
+    expect(() => normalizeRoomData({ ...input, priceOptions: [{ ...input.priceOptions[0], label: '{{weekdayPrice}}' }, input.priceOptions[1]] })).toThrow();
   });
   it('keeps all ten descriptions distinct', () => {
     expect(new Set(slugs.map(s => normalizeRoomData(raw(s)).metaDescription)).size).toBe(10);
