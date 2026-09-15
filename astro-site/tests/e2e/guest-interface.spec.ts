@@ -47,3 +47,22 @@ test('without JavaScript the guide, rental and meal information is still availab
   expect(await page.locator('.guide-step img[src]').count()).toBe(await page.locator('.guide-step').count());
   await context.close();
 });
+
+for (const width of [390,1440]) {
+  test(`booking reading structures are preserved at ${width}px`,async({page})=>{
+    await page.setViewportSize({width,height:900});
+    await page.goto('/infos/account/');
+    await expect(page.locator('.info-content blockquote').first()).toHaveCSS('border-left-width','3px');
+    await expect(page.locator('.info-content pre').first()).toHaveCSS('padding-top','20px');
+    await expect(page.locator('.info-content table th').first()).toHaveCSS('background-color','rgb(36, 41, 67)');
+    await expect(page.locator('.info-content table td').first()).toHaveCSS('border-left-style','solid');
+    await expect(page.locator('.info-content strong').first()).toHaveCSS('color','rgb(217, 185, 140)');
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  });
+}
+test('new card details are available to assistive technology',async({page})=>{
+  await page.goto('/infos/guide/');
+  await expect(page.getByRole('button',{name:'經大湖市區',exact:true})).toHaveAccessibleDescription(/較建議路段/);
+  await page.goto('/sale_items/');
+  await expect(page.getByRole('button',{name:'烹飪組合',exact:true})).toHaveAccessibleDescription(/200 元／次/);
+});

@@ -16,17 +16,17 @@ import GuestNavigation from '../../components/GuestNavigation.astro';
       <div class="guest-layout">
         <aside class="guest-sidebar"><GuestNavigation /></aside>
         <div class="guide-buttons guest-choice-grid">
-          <button type="button" class="guide-btn guest-choice" data-modal="guide_1" aria-label="經大湖市區">
+          <button type="button" class="guide-btn guest-choice" data-modal="guide_1" aria-label="經大湖市區" aria-describedby="guide_1-summary">
             <span class="guest-choice-index" aria-hidden="true">ROUTE 01</span>
             <span class="guest-choice-title">經大湖市區</span>
-            <span class="guest-choice-detail">出七十二快速道路後往右轉經大湖上山(較建議路段)</span>
-            <span class="guest-choice-arrow" aria-hidden="true">↗</span>
+            <span class="guest-choice-detail" id="guide_1-summary">出七十二快速道路後往右轉經大湖上山(較建議路段)</span>
+            <span class="guest-choice-arrow" aria-hidden="true">→</span>
           </button>
-          <button type="button" class="guide-btn guest-choice" data-modal="guide_2" aria-label="經豆腐街">
+          <button type="button" class="guide-btn guest-choice" data-modal="guide_2" aria-label="經豆腐街" aria-describedby="guide_2-summary">
             <span class="guest-choice-index" aria-hidden="true">ROUTE 02</span>
             <span class="guest-choice-title">經豆腐街</span>
-            <span class="guest-choice-detail">出七十二快速道路後直行經清安苗62-1上山</span>
-            <span class="guest-choice-arrow" aria-hidden="true">↗</span>
+            <span class="guest-choice-detail" id="guide_2-summary">出七十二快速道路後直行經清安苗62-1上山</span>
+            <span class="guest-choice-arrow" aria-hidden="true">→</span>
           </button>
         </div>
       </div>

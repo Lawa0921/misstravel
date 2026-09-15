@@ -66,12 +66,12 @@ const serviceChoices = [
       <div class="guest-layout">
         <aside class="guest-sidebar"><GuestNavigation /></aside>
         <div class="sale-items-grid guest-choice-grid">
-          {serviceChoices.map((item,index) => <button type="button" class="sale-btn guest-choice" data-modal={item.id} aria-label={item.name}>
+          {serviceChoices.map((item,index) => <button type="button" class="sale-btn guest-choice" data-modal={item.id} aria-label={item.name} aria-describedby={[item.detail !== item.name ? `${item.id}-summary` : '', item.price !== undefined ? `${item.id}-price` : ''].filter(Boolean).join(' ') || undefined}>
             <span class="guest-choice-index" aria-hidden="true">{String(index+1).padStart(2,'0')}</span>
             <span class="guest-choice-title">{item.name}</span>
-            {item.detail !== item.name && <span class="guest-choice-detail">{item.detail}</span>}
-            {item.price !== undefined && <span class="guest-choice-price">{item.price} 元／次</span>}
-            <span class="guest-choice-arrow" aria-hidden="true">↗</span>
+            {item.detail !== item.name && <span class="guest-choice-detail" id={`${item.id}-summary`}>{item.detail}</span>}
+            {item.price !== undefined && <span class="guest-choice-price" id={`${item.id}-price`}>{item.price} 元／次</span>}
+            <span class="guest-choice-arrow" aria-hidden="true">→</span>
           </button>)}
         </div>
       </div>

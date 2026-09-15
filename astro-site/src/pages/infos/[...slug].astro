@@ -53,7 +53,7 @@ if (slug === 'video') {
         <aside class="guest-sidebar"><GuestNavigation /></aside>
         <div>
           <div class="info-content guest-content" data-info={slug}><Content /></div>
-          {['map','menu'].includes(slug) && info.data.image && <a class="media-action" href={info.data.image} target="_blank" rel="noopener noreferrer">查看原圖 <span aria-hidden="true">↗</span></a>}
+          {['map','menu'].includes(slug) && info.data.image && <a class="media-action" aria-label="查看原圖（另開視窗）" href={info.data.image} target="_blank" rel="noopener noreferrer">查看原圖 <span aria-hidden="true">↗</span></a>}
         </div>
       </div>
     </div>
