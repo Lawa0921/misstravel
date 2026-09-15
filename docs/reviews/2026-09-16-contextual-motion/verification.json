@@ -1,0 +1,44 @@
+{
+  "sourceCommit": "3971d3521796b382f796336bb3413695a5efce83",
+  "baseCommit": "b7d78b6e275a541dfee76fdff96dc146d7072cd1",
+  "verify": {
+    "files": 26,
+    "passed": 328,
+    "failed": 0,
+    "auditVulnerabilities": 0
+  },
+  "browser": {
+    "passed": 96,
+    "failed": 0,
+    "retries": 0,
+    "newContextualTests": 28,
+    "realBFCachePersistedVerified": true,
+    "mandatoryBackAnimationVerified": true,
+    "differentCarouselFallbackVerified": true
+  },
+  "preservation": {
+    "pages": 26,
+    "contentMetadataLinksOriginalImageAttributesUnchanged": true,
+    "protectedFiles": 251,
+    "changedProtectedFiles": []
+  },
+  "motion": {
+    "ordinaryMilliseconds": 140,
+    "ordinaryOldTextSnapshot": "not rendered",
+    "ordinaryTranslation": false,
+    "roomPhotoMilliseconds": 300,
+    "photoHandoffMilliseconds": 120,
+    "nativeScrollRestoration": true,
+    "artificialNavigationWait": false,
+    "noRouterOrClickInterception": true
+  },
+  "humanApproval": false,
+  "productionChanged": false,
+  "localPreview": "http://localhost:4336/rooms/",
+  "sourceCI": "https://github.com/Lawa0921/misstravel/actions/runs/34997486024",
+  "independentAIReview": {
+    "verdict": "PASS",
+    "sourceCommit": "3971d3521796b382f796336bb3413695a5efce83",
+    "humanDesignApproval": false
+  }
+}

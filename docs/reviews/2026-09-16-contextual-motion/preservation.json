@@ -1,0 +1,135 @@
+{
+  "pages": 26,
+  "unchanged": true,
+  "allowedDifference": "data-room-photo is the only added image attribute; scripts and CSS are the intended motion change",
+  "rows": [
+    {
+      "file": "404.html",
+      "unchanged": true
+    },
+    {
+      "file": "index.html",
+      "unchanged": true
+    },
+    {
+      "file": "announcements/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "galleries/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "sale_items/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "announcements/website/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/account/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/contact-method/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/guide/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/map/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/menu/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/roles/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/set-menu-info/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "infos/video/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/campsite_1/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/campsite_2/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/campsite_3/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_1/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_2/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_3/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_4/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/suite_1/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/suite_2/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "rooms/suite_3/index.html",
+      "unchanged": true
+    },
+    {
+      "file": "robots.txt",
+      "unchanged": true
+    },
+    {
+      "file": "sitemap-index.xml",
+      "unchanged": true
+    },
+    {
+      "file": "sitemap-0.xml",
+      "unchanged": true
+    },
+    {
+      "file": "image-sitemap.xml",
+      "unchanged": true
+    },
+    {
+      "file": "feed.xml",
+      "unchanged": true
+    },
+    {
+      "file": "feed.json",
+      "unchanged": true
+    }
+  ]
+}
