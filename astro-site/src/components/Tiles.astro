@@ -1,4 +1,5 @@
 ---
+import { responsiveImage } from '../lib/responsive-images';
 import { siteConfig } from '../lib/config';
 
 interface TileItem {
@@ -36,7 +37,7 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
   </div>
   {displayItems.map((tile, index) => (
     <article class="tile" data-motion-card="" data-reveal="" style={`--motion-order: ${index}`}>
-      <img class="tile-image" src={tile.image} alt={tile.alt || tile.title} loading="lazy" decoding="async" width={tile.width} height={tile.height} />
+      <img class="tile-image" {...responsiveImage(tile.image, "(max-width: 390px) max(100vw, 363px), (max-width: 767px) max(100vw, 406px), (max-width: 1020px) max(50vw, 470px), max(33.34vw, 46vw)", true)} alt={tile.alt || tile.title} loading="lazy" decoding="async" />
       <div class="tile-wash" aria-hidden="true"></div>
       <span class="tile-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
       <div class="tile-content">

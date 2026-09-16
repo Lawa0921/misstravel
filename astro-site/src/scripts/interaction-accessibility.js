@@ -52,6 +52,9 @@
     prepareDialog(dialog);
     dialog.querySelectorAll('img[data-src]').forEach((image) => {
       if (!(image instanceof HTMLImageElement)) return;
+      if (image.closest('[hidden]')) return;
+      if (image.dataset.sizes) image.sizes = image.dataset.sizes;
+      if (image.dataset.srcset) image.srcset = image.dataset.srcset;
       image.src = image.dataset.src;
       delete image.dataset.src;
     });

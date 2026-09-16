@@ -27,6 +27,7 @@ interface Props {
   schemaData?: Record<string, unknown>;
   extraSchemas?: Record<string, unknown>[];
   preloadImage?: string;
+  preloadSizes?: string;
   articleMeta?: ArticleMeta;
 }
 
@@ -43,6 +44,7 @@ const {
   schemaData,
   extraSchemas,
   preloadImage,
+  preloadSizes,
   articleMeta,
 } = Astro.props;
 ---
@@ -61,6 +63,7 @@ const {
     schemaData={schemaData}
     extraSchemas={extraSchemas}
     preloadImage={preloadImage}
+    preloadSizes={preloadSizes}
     articleMeta={articleMeta}
   />
   <body>

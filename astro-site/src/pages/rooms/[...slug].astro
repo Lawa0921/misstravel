@@ -1,4 +1,5 @@
 ---
+import { responsiveImage, deferredImage, imageSizes } from '../../lib/responsive-images';
 import SectionRail from '../../components/SectionRail.astro';
 import PhotoViewer from '../../components/PhotoViewer.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -64,6 +65,7 @@ const relatedRooms = allRooms
   keywords={room.data.keywords}
   image={room.data.mainImage}
   preloadImage={carouselImages[0]}
+  preloadSizes={imageSizes.room}
   schemaType="LocalBusiness"
   extraSchemas={createRoomSchemas(room.id.replace(/\.md$/, ''), room.data)}
 >
@@ -131,14 +133,11 @@ const relatedRooms = allRooms
                 >
                 <img
                   data-room-photo={index === 0 ? `/rooms/${room.id.replace('.md', '')}/` : undefined}
-                  src={index < 2 ? image : undefined}
-                  data-src={index < 2 ? undefined : image}
+                  {...(index === 0 ? responsiveImage(image, imageSizes.room) : deferredImage(image, imageSizes.room))}
                   alt={getRoomImageMetadata(image).alt}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                   fetchpriority={index === 0 ? 'high' : undefined}
-                  width="900"
-                  height="675"
                 />
               </div>
             ))}
@@ -225,12 +224,10 @@ const relatedRooms = allRooms
           {relatedRooms.map((related) => (
             <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
               <img
-                src={related.data.mainImage}
+                {...responsiveImage(related.data.mainImage, imageSizes.related)}
                 alt={getRoomImageMetadata(related.data.mainImage).alt}
                 loading="lazy"
                 decoding="async"
-                width="400"
-                height="150"
               />
               <div class="related-info">
                 <h4>{related.data.shortTitle}</h4>
@@ -738,6 +735,7 @@ const relatedRooms = allRooms
 </style>
 
 <script>
+  import { activatePhoto } from '../../scripts/responsive-photo';
   import { attachPhotoGestures } from '../../scripts/photo-gestures';
   import { waitForPhoto } from '../../scripts/photo-ready';
   const carousel = document.getElementById('room-carousel');
@@ -760,8 +758,7 @@ const relatedRooms = allRooms
       const deferredSrc = image?.dataset.src;
       if (image && deferredSrc) {
         image.loading = 'eager';
-        image.src = deferredSrc;
-        delete image.dataset.src;
+        activatePhoto(image);
       }
       return image;
     }

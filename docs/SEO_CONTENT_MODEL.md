@@ -64,3 +64,20 @@ PR 預覽有 Vercel 登入保護；正式站需經使用者核准合併才會套
 ## 補充防護
 
 標準方案固定放在 priceOptions 第一項，避免索引式費用參照因重排而錯配；重排或矛盾資料會中止建置。除 description／metaDescription 及正文外，其餘輸出文字欄位不允許插入參照；不完整或多餘的大括號也會被拒絕。圖集頁與圖片 sitemap 共用 `src/lib/gallery.ts` 的清單，不另外維護張數。圖片描述僅陳述畫面，不構成免費備品、加床或其他服務承諾；營運條件仍以房型正文為準。
+
+## 建置時響應式照片
+
+`astro:config:setup` 由 `scripts/responsive-images.mjs` 使用既有 sharp 產生 WebP；build、dev、check、sync 都會先準備同一份 `.generated/responsive-images.json`。原始 bytes 加上管線設定／sharp 版本決定內容 hash，96／192／384／640／960／1280 寬度只縮小、不裁切，僅保留小於原檔的輸出。快取以輸出 SHA-256 驗證，缺失或損毀會重建；清理只限 `public/generated-images/ri-<hash>-<width>.webp` 自有命名。兩個生成目錄都不進版控，沒有網路下載或原圖改寫。
+
+`src/lib/responsive-images.ts` 統一提供 intrinsic 尺寸、srcset、sizes 與含原始 query 的 `data-original-src`。src 與最大候選保留原圖；preload 與可見照片共用候選與 sizes。延後載入先設定 sizes、srcset，再設定 src；比較面板與縮圖只在需要時啟用。圖解／公告主要閱讀圖不降階；全螢幕先以已載入照片銜接，原圖就緒後替換。動畫依完整原圖身分配對，不能將不同版本或照片配成同一張。schema、OG、圖片 sitemap、下載連結仍引用原圖。
+
+合成檔管線測試：`node scripts/test-responsive-images.mjs`；HTML 契約包含於 `npm run verify`。瀏覽器測試：`PLAYWRIGHT_BASE_URL=http://127.0.0.1:4336 npx playwright test responsive-images.spec.ts`（先建置）。
+
+
+### 本輪搜尋摘要與量測界線
+
+首頁、關於密式、交通、菜單、園區地圖的搜尋摘要改為原頁可支持的內容及用途；404 另設自己的 noindex 恢復導覽摘要，不再繼承首頁廣告文字。沒有修改十個房型價格、正文或營運規則。`guest-interface-baseline.json` 只更新這六頁的 SEO 雜湊，正文、圖片及連結契約保持原值；`seo-preservation-audit.mjs` 再對照修改前的建置，限制允許變動的 metadata。
+
+衍生圖有完整原圖身分（含版本查詢字串），不以 currentSrc 相等判斷是不是同張照片。全螢幕先顯示已載入的同圖，再升級原始解析度；顯示尺寸預先使用原圖尺寸，升級不得重設使用者的縮放、平移或照片位置。原圖升級與裝飾動畫各自取消，不能因使用者按鍵而永遠停在小圖。縮圖列僅提供最大 384px 的候選，照片原圖連結、分享圖片與 image-sitemap 仍使用原 URL。
+
+`scripts/seo-performance-audit.mjs` 比較新鮮瀏覽環境、停用快取下的實際同源圖片回應 bytes，另保留實驗室 LCP/CLS。這不是全站所有檔案總傳輸量，也不是真實訪客 Core Web Vitals；高 DPR 會選更大候選，不能只報低解析度的最大節省百分比。未查閱私人 Search Console／商家後台，不宣稱點擊率、收錄或排名已提升。

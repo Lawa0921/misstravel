@@ -51,6 +51,9 @@ describe('房型頁編輯式設計契約', () => {
     expect(readiness).toContain('naturalWidth > 0');
     expect(readiness).toContain('setTimeout');
     expect(source).toContain('<noscript class="carousel-noscript">');
-    expect(source).toContain('data-src');
+    // Deferred attributes now come from the shared helper; assert the built contract.
+    const $ = page('rooms/suite_1/index.html');
+    expect($('.carousel-slide img[data-src]').length).toBeGreaterThan(0);
+    expect($('.carousel-slide img[data-srcset]').length).toBeGreaterThan(0);
   });
 });

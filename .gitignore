@@ -23,3 +23,7 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Owned deterministic responsive image build outputs
+astro-site/public/generated-images/
+astro-site/.generated/

@@ -1,3 +1,4 @@
+import { originalPhoto } from './responsive-photo';
 /** Decoration only: never delay selection, load another image, or move the viewport. */
 export function createCompareMotion() {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -28,11 +29,12 @@ export function createCompareMotion() {
       animations.push(animation);
     });
     const target = chip.querySelector('img');
-    if (!source || !target || !source.complete || !source.naturalWidth || source.currentSrc !== target.src || !visible(source) || !visible(chip)) return;
+    if (!source || !target || !source.complete || !source.naturalWidth || !originalPhoto(source) || originalPhoto(source) !== originalPhoto(target) || !visible(source) || !visible(chip)) return;
     const from = source.getBoundingClientRect();
     const to = target.getBoundingClientRect();
     const clone = new Image();
     clone.src = source.currentSrc;
+    clone.dataset.originalSrc = source.dataset.originalSrc;
     clone.alt = '';
     clone.setAttribute('aria-hidden', 'true');
     clone.inert = true;

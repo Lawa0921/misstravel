@@ -1,4 +1,5 @@
 ---
+import { responsiveImage, imageSizes } from '../../lib/responsive-images';
 import CompareAction from '../../components/CompareAction.astro';
 import RoomCompare from '../../components/RoomCompare.astro';
 import SectionRail from '../../components/SectionRail.astro';
@@ -89,12 +90,10 @@ const itemListSchema = {
                     <div class="room-image">
                       <img
                         data-room-photo={`/rooms/${room.id.replace('.md', '')}/`}
-                        src={room.data.mainImage}
+                        {...responsiveImage(room.data.mainImage, imageSizes.card)}
                         alt={getRoomImageMetadata(room.data.mainImage).alt}
                         loading="lazy"
                         decoding="async"
-                        width="600"
-                        height="400"
                       />
                     </div>
                     <div class="room-prices">

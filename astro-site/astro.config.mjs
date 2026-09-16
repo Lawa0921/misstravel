@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import responsiveImages from './scripts/responsive-images.mjs';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
@@ -11,7 +12,7 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
   }),
-  integrations: [sitemap()],
+  integrations: [responsiveImages(), sitemap()],
   markdown: { processor: roomMarkdownProcessor() },
   vite: {
     plugins: [tailwindcss()],

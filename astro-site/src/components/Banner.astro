@@ -1,4 +1,5 @@
 ---
+import { responsiveImage, imageSizes } from '../lib/responsive-images';
 import { siteConfig } from '../lib/config';
 
 interface Props {
@@ -30,10 +31,8 @@ const { title = '密式旅行', subtitle = '秘密景點，深度旅行' } = Ast
     <figure class="hero-media">
       <img
         class="hero-image"
-        src="/images/banner.webp"
+        {...responsiveImage("/images/banner.webp", imageSizes.hero)}
         alt="密式旅行園區眺望的山景、雲海與夕陽"
-        width="1478"
-        height="1108"
         loading="eager"
         fetchpriority="high"
         decoding="async"

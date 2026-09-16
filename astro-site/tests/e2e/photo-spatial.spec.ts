@@ -52,8 +52,11 @@ for (const path of [room, '/galleries/']) {
     const trigger = page.locator(path === room ? '.photo-expand' : '[data-lightbox="photos"]').first();
     await trigger.click();
     await assertFlight(page, 'open');
-    const src = await page.locator('[data-viewer-image]').getAttribute('src');
-    await expect(page.locator(`${flight} img`)).toHaveAttribute('src', new URL(src!,page.url()).href);
+    // Flight uses the already loaded derivative while the viewer upgrades to original.
+    const original = await page.locator('[data-viewer-image]').getAttribute('data-original-src');
+    await expect(page.locator(`${flight} img`)).toHaveAttribute('data-original-src', new URL(original!,page.url()).href);
+    const selected = await page.locator(path === room ? '.carousel-slide.active img' : '[data-lightbox="photos"] img').first().evaluate((img: HTMLImageElement) => img.currentSrc);
+    await expect(page.locator(`${flight} img`)).toHaveAttribute('src', selected);
     await page.locator('.lightbox-close').click();
     await expect(page.locator('[data-photo-viewer]')).toHaveAttribute('aria-hidden', 'true');
     await expect(trigger).toBeFocused();
@@ -152,7 +155,7 @@ test('reduced motion changes, zoom and offscreen destinations suppress flights',
 });
 test('unloaded source opens normally and resize removes decoration', async ({ page }) => {
   await setup(page);
-  await page.locator('.carousel-slide.active img').evaluate((img: HTMLImageElement) => img.removeAttribute('src'));
+  await page.locator('.carousel-slide.active img').evaluate((img: HTMLImageElement) => { img.removeAttribute('srcset'); img.removeAttribute('src'); });
   await page.locator('.photo-expand').click();
   await expect(page.locator('[data-photo-viewer]')).toHaveAttribute('aria-hidden', 'false');
   await expect(page.locator(flight)).toHaveCount(0);
@@ -199,6 +202,8 @@ test('a live image decode failure after preload restores the last successfully s
   await setup(page);
   await page.locator('.photo-expand').click();
   await expect(page.locator('[data-viewer-current]')).toHaveText('1');
+  // Wait for the intended progressive original upgrade before injecting a later failure.
+  await expect(page.locator('[data-viewer-image]')).toHaveAttribute('src', await page.locator('[data-viewer-image]').getAttribute('data-original-src') as string);
   const previous = await page.locator('[data-viewer-image]').getAttribute('src');
   const sources = await page.locator('[data-viewer-data]').evaluate(el => JSON.parse(el.textContent!) as {src: string}[]);
   // Fail only the live image assignment, not the detached preloader. This exercises

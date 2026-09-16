@@ -1,6 +1,7 @@
+import { originalPhoto } from './responsive-photo';
 /** Decorative only: dialog state and focus never depend on an animation. */
 type Rect = { x: number; y: number; width: number; height: number };
-export type PhotoGeometry = { src: string; frame: Rect; photo: Rect; element: HTMLImageElement };
+export type PhotoGeometry = { src: string; original: string | null; frame: Rect; photo: Rect; element: HTMLImageElement };
 let cancelCurrent: (() => void) | undefined;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 export function cancelPhotoFlight() { cancelCurrent?.(); }
@@ -37,42 +38,52 @@ export function photoGeometry(image: HTMLImageElement | null, justClosed = false
   left = Math.max(0, left); top = Math.max(0, top, headerBottom);
   right = Math.min(innerWidth, right); bottom = Math.min(innerHeight, bottom);
   if (right - left < 24 || bottom - top < 24) return null;
-  return { src: image.currentSrc, frame: { x: left, y: top, width: right - left, height: bottom - top }, photo, element: image };
+  return { src: image.currentSrc, original: originalPhoto(image), frame: { x: left, y: top, width: right - left, height: bottom - top }, photo, element: image };
 }
 
 export function flyPhoto(from: PhotoGeometry | null, to: PhotoGeometry | null, direction: 'open' | 'close') {
   cancelPhotoFlight();
-  if (reduced.matches || !from || !to || from.src !== to.src || !Element.prototype.animate) return;
+  if (reduced.matches || !from || !to || !from.original || from.original !== to.original || Math.abs(from.photo.width / from.photo.height - to.photo.width / to.photo.height) > .02 || !Element.prototype.animate) return;
   const frame = document.createElement('div');
   frame.dataset.photoFlight = direction;
   frame.setAttribute('aria-hidden', 'true'); frame.inert = true;
   frame.style.cssText = 'position:fixed;left:0;top:0;z-index:10001;overflow:hidden;pointer-events:none;contain:layout style;';
-  const photo = new Image(); photo.src = from.src; photo.alt = ''; photo.draggable = false;
+  const photo = new Image(); photo.src = from.src; photo.dataset.originalSrc = from.original; photo.alt = ''; photo.draggable = false;
   photo.style.cssText = 'position:absolute;max-width:none;max-height:none;pointer-events:none;';
-  // Only an already decoded resource may decorate the interaction.
-  if (!photo.complete || !photo.naturalWidth) return;
-  frame.append(photo); document.body.append(frame);
+  // Reuse the loaded source URL; a cached responsive bitmap may still need a
+  // decoder turn. No full-resolution source is requested just for decoration.
+  frame.append(photo);
   const frameKey = (g: PhotoGeometry) => ({ left: `${g.frame.x}px`, top: `${g.frame.y}px`, width: `${g.frame.width}px`, height: `${g.frame.height}px` });
   const photoKey = (g: PhotoGeometry) => ({ left: `${g.photo.x - g.frame.x}px`, top: `${g.photo.y - g.frame.y}px`, width: `${g.photo.width}px`, height: `${g.photo.height}px` });
   const options = { duration: 320, easing: 'cubic-bezier(.22,.72,.22,1)', fill: 'both' as FillMode };
   const previousOpacity = to.element.style.opacity;
   let animation: Animation | undefined, crop: Animation | undefined;
   let cleaned = false;
+  let decoderDeadline: ReturnType<typeof setTimeout> | undefined;
   const cleanup = () => {
     if (cleaned) return;
     cleaned = true;
+    clearTimeout(decoderDeadline);
     frame.remove();
     if (to.element.style.opacity === '0') to.element.style.opacity = previousOpacity;
     animation?.cancel(); crop?.cancel();
     if (cancelCurrent === cleanup) cancelCurrent = undefined;
   };
   cancelCurrent = cleanup;
-  try {
-    animation = frame.animate([frameKey(from), frameKey(to)], { ...options, id: `photo-spatial-${direction}` });
-    crop = photo.animate([photoKey(from), photoKey(to)], { ...options, id: `photo-spatial-${direction}-crop` });
-    // The real image stays in the accessibility tree. Hide only its paint while
-    // the matching clone occupies it, avoiding a duplicate large photograph.
-    to.element.style.opacity = '0';
-    animation.finished.then(cleanup, cleanup);
-  } catch { cleanup(); }
+  const start=()=>{
+    if(cleaned||reduced.matches||!photo.complete||!photo.naturalWidth)return cleanup();
+    clearTimeout(decoderDeadline);
+    document.body.append(frame);
+    try {
+      animation = frame.animate([frameKey(from), frameKey(to)], { ...options, id: `photo-spatial-${direction}` });
+      crop = photo.animate([photoKey(from), photoKey(to)], { ...options, id: `photo-spatial-${direction}-crop` });
+      to.element.style.opacity = '0';
+      animation.finished.then(cleanup, cleanup);
+    } catch { cleanup(); }
+  };
+  if(photo.complete&&photo.naturalWidth)start();
+  else {
+    decoderDeadline=setTimeout(cleanup,180);
+    photo.decode().then(start,cleanup);
+  }
 }
