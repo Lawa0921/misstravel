@@ -280,50 +280,50 @@ describe('9. ImageGallery schema', () => {
   });
 });
 
-// 10. 柑仔店 Product schema
-describe('10. 柑仔店 Product schema', () => {
-  it('柑仔店頁面應包含 Product schema', () => {
+// 10. 柑仔店 Service schema
+describe('10. 柑仔店 Service schema', () => {
+  it('柑仔店頁面應包含 Service schema', () => {
     const $ = readPage('sale_items/index.html');
     const schemas = getJsonLd($);
-    const products = schemas.filter((s) => s['@type'] === 'Product');
-    expect(products.length).toBeGreaterThanOrEqual(3);
+    const services = schemas.filter((s) => s['@type'] === 'Service');
+    expect(services.length).toBeGreaterThanOrEqual(3);
   });
 
-  it('Product schema 應包含烹飪組合', () => {
+  it('Service schema 應包含烹飪組合', () => {
     const $ = readPage('sale_items/index.html');
     const schemas = getJsonLd($);
-    const products = schemas.filter((s) => s['@type'] === 'Product');
-    const cooking = products.find((p) => p.name.includes('烹飪'));
+    const services = schemas.filter((s) => s['@type'] === 'Service');
+    const cooking = services.find((p) => p.name.includes('烹飪'));
     expect(cooking).toBeDefined();
     expect(cooking.offers).toBeDefined();
     expect(cooking.offers.price).toBeDefined();
   });
 
-  it('Product schema 應包含烤肉組合', () => {
+  it('Service schema 應包含烤肉組合', () => {
     const $ = readPage('sale_items/index.html');
     const schemas = getJsonLd($);
-    const products = schemas.filter((s) => s['@type'] === 'Product');
-    const bbq = products.find((p) => p.name.includes('烤肉'));
+    const services = schemas.filter((s) => s['@type'] === 'Service');
+    const bbq = services.find((p) => p.name.includes('烤肉'));
     expect(bbq).toBeDefined();
     expect(bbq.offers).toBeDefined();
   });
 
-  it('Product schema 應包含寢具組合', () => {
+  it('Service schema 應包含寢具組合', () => {
     const $ = readPage('sale_items/index.html');
     const schemas = getJsonLd($);
-    const products = schemas.filter((s) => s['@type'] === 'Product');
-    const bedding = products.find((p) => p.name.includes('寢具'));
+    const services = schemas.filter((s) => s['@type'] === 'Service');
+    const bedding = services.find((p) => p.name.includes('寢具'));
     expect(bedding).toBeDefined();
     expect(bedding.offers).toBeDefined();
   });
 
-  it('柑仔店商品不應宣告無法由本站證實的即時庫存', () => {
+  it('柑仔店租借服務不應宣告無法由本站證實的即時庫存', () => {
     const $ = readPage('sale_items/index.html');
     const schemas = getJsonLd($);
-    const products = schemas.filter((s) => s['@type'] === 'Product');
-    expect(products.length).toBeGreaterThan(0);
-    products.forEach((product) => {
-      expect(product.offers.availability).toBeUndefined();
+    const services = schemas.filter((s) => s['@type'] === 'Service');
+    expect(services.length).toBeGreaterThan(0);
+    services.forEach((service) => {
+      expect(service.offers.availability).toBeUndefined();
     });
   });
 });

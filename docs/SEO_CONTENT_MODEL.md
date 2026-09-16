@@ -81,3 +81,33 @@ PR 預覽有 Vercel 登入保護；正式站需經使用者核准合併才會套
 衍生圖有完整原圖身分（含版本查詢字串），不以 currentSrc 相等判斷是不是同張照片。全螢幕先顯示已載入的同圖，再升級原始解析度；顯示尺寸預先使用原圖尺寸，升級不得重設使用者的縮放、平移或照片位置。原圖升級與裝飾動畫各自取消，不能因使用者按鍵而永遠停在小圖。縮圖列僅提供最大 384px 的候選，照片原圖連結、分享圖片與 image-sitemap 仍使用原 URL。
 
 `scripts/seo-performance-audit.mjs` 比較新鮮瀏覽環境、停用快取下的實際同源圖片回應 bytes，另保留實驗室 LCP/CLS。這不是全站所有檔案總傳輸量，也不是真實訪客 Core Web Vitals；高 DPR 會選更大候選，不能只報低解析度的最大節省百分比。未查閱私人 Search Console／商家後台，不宣稱點擊率、收錄或排名已提升。
+
+
+## Search Console 回報修正（2026-09-16）
+
+- 舊日期網址以 Git 歷史 `1041513^` 的 19 份 Jekyll 內容為依據，`vercel.json` 明確對應 `.html` 及過去錯轉出的帶日期 `/` 路徑到同一個現行頁。精確規則先於通用 `:slug.html`；未知／截斷網址不猜測指向首頁，維持正常 404。測試基準在 `tests/fixtures/legacy-dated-routes.json`，正式站 smoke 會讀取實際規則並檢查查詢參數保留。
+- 柑仔店的烹飪、烤肉、寢具是有歸還條件的租借服務，不是可直接購買的零售商品。以 `Service`、原供應者及 `Offer.businessFunction=LeaseOut` 表達，價格及每次計價沿用原值。Schema.org 的 Product 可以廣義描述租借，但 Google Merchant 購買體驗不是此頁目標；不為了追逐該報表添加虛構照片、配送、退貨、庫存或評論。Service 沒有本頁可保證取得的 Google 商品複合式搜尋結果。
+- sitemap-index.xml 使用既有 @astrojs/sitemap 的 customSitemaps 納入 image-sitemap.xml；維持原 25 個 canonical 網址及所有原圖 URL，不更名、不虛造 lastmod、不增加重複 sitemap 產生器。
+- Google 後台提交／接受 Sitemap 與實際重新擷取、更新歷史 404 或 Merchant 報表是不同狀態。網站修正需先合併部署，才可要求 Google 驗證公開版的修正；未部署前不按「驗證修正後的項目」。私人 Search Console 全量截圖／帳號／查詢資料不可提交公開儲存庫。
+
+本輪官方規範：
+https://developers.google.com/search/docs/crawling-indexing/301-redirects
+https://developers.google.com/search/docs/appearance/structured-data/merchant-listing
+https://schema.org/Service
+https://schema.org/Offer
+https://support.google.com/webmasters/answer/7451001?hl=zh-Hant
+
+
+## 完整 Sitemap 交付（取代本次前一版分開的兩份索引）
+
+一般頁面與圖片現在在發布時組成同一份 XML。已存在的 `image-sitemap.xml` 不再只列 11 個相簿／房型頁，而是包含全部 25 個正式 canonical 頁面；其中原有 11 頁的 139 個圖片參照全部保留。檔名沿用是相容性決策，不代表它只能列圖片。Google 的圖片 sitemap 是標準 urlset 的擴充，沒有圖片的網頁可以共存。
+
+- `scripts/complete-sitemap.mjs` 包裝既有 `@astrojs/sitemap` 的 build-done hook：先完成官方路由探索，再與原有圖片 endpoint 的結果合併，最後在 Vercel 複製產物前寫入。
+- `sitemap-index.xml` 只指向這份完整清單，避免一般頁面的探索依賴另一個尚未處理成功的子檔。
+- `sitemap-0.xml` 維持 HTTP200，輸出相同的完整 XML 作相容入口，不移除、不導向首頁、不另寫一份頁面清單。
+- 原本 25 個 canonical 頁面與圖片對應不變。沒有新增假日期或 lastmod，也沒有更動 robots、WAF、安全標頭、原圖、字型、價格或畫面。
+- 新增頁面由 Astro 的實際建置探索自動帶入，不需維護另一份手工 URL 陣列。空清單、重複／外站 URL、孤立圖片及容量超限會中止建置。
+
+此修正提供一條完整而可驗證的發現途徑，不把它宣稱為已證明 Google 舊擷取錯誤的內部根因。發布後必須看 Search Console 的實際「成功／25 個網頁」，不能以本機 HTTP200 代替；舊提交紀錄的結果與主要完整清單的結果分開記錄。
+
+依據：https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps

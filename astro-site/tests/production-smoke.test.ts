@@ -90,7 +90,7 @@ describe('正式環境 smoke 檢查器', () => {
     )).not.toThrow();
 
     expect(() => assertSitemapIndex(
-      '<sitemapindex><sitemap><loc>https://www.misstravel.me/sitemap-0.xml</loc></sitemap></sitemapindex>',
+      '<sitemapindex><sitemap><loc>https://www.misstravel.me/image-sitemap.xml</loc></sitemap></sitemapindex>',
     )).not.toThrow();
 
     const urls = EXPECTED_SITEMAP_PATHS.map(

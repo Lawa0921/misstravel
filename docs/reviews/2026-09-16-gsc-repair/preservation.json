@@ -1,0 +1,157 @@
+{
+  "pages": [
+    {
+      "file": "404.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "announcements/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "galleries/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "sale_items/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "announcements/website/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/account/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/contact-method/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/guide/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/map/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/menu/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/roles/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/set-menu-info/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "infos/video/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/campsite_1/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/campsite_2/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/campsite_3/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/log_cabin_1/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/log_cabin_2/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/log_cabin_3/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/log_cabin_4/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/suite_1/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/suite_2/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    },
+    {
+      "file": "rooms/suite_3/index.html",
+      "visibleContentAndMetadataIdentical": true,
+      "otherSchemasIdentical": true
+    }
+  ],
+  "unchanged": [
+    {
+      "file": "sitemap-0.xml",
+      "identical": true
+    },
+    {
+      "file": "image-sitemap.xml",
+      "identical": true
+    },
+    {
+      "file": "robots.txt",
+      "identical": true
+    },
+    {
+      "file": "feed.xml",
+      "identical": true
+    },
+    {
+      "file": "feed.json",
+      "identical": true
+    }
+  ],
+  "ok": true
+}
