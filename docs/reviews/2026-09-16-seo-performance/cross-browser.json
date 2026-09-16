@@ -1,0 +1,109 @@
+{
+  "head": "df48ca94cc9a234989251629d6cf970c79a72b57",
+  "timestamp": "2026-09-16T07:02:17.273Z",
+  "physicalDeviceTesting": false,
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "dpr": 2,
+      "ok": true,
+      "source": {
+        "original": "/images/suite_1/suite_1_4.webp?v=20260702",
+        "current": "http://127.0.0.1:4336/generated-images/ri-6a5107bab0a7e08f7fa4f40294696b5e82fcb113921935403357bdbc02fc09f1-960.webp"
+      },
+      "photoReturned": "/images/suite_1/suite_1_2.webp?v=20260702",
+      "comparisonScroll": {
+        "client": 372,
+        "scroll": 593,
+        "left": 221
+      },
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "dpr": 1,
+      "ok": true,
+      "source": {
+        "original": "/images/suite_1/suite_1_4.webp?v=20260702",
+        "current": "http://127.0.0.1:4336/generated-images/ri-6a5107bab0a7e08f7fa4f40294696b5e82fcb113921935403357bdbc02fc09f1-1280.webp"
+      },
+      "photoReturned": "/images/suite_1/suite_1_2.webp?v=20260702",
+      "comparisonScroll": {
+        "client": 1118,
+        "scroll": 1118,
+        "left": 0
+      },
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "dpr": 2,
+      "ok": true,
+      "source": {
+        "original": "/images/suite_1/suite_1_4.webp?v=20260702",
+        "current": "http://127.0.0.1:4336/generated-images/ri-6a5107bab0a7e08f7fa4f40294696b5e82fcb113921935403357bdbc02fc09f1-960.webp"
+      },
+      "photoReturned": "/images/suite_1/suite_1_2.webp?v=20260702",
+      "comparisonScroll": {
+        "client": 372,
+        "scroll": 593,
+        "left": 221
+      },
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "dpr": 1,
+      "ok": true,
+      "source": {
+        "original": "/images/suite_1/suite_1_4.webp?v=20260702",
+        "current": "http://127.0.0.1:4336/generated-images/ri-6a5107bab0a7e08f7fa4f40294696b5e82fcb113921935403357bdbc02fc09f1-1280.webp"
+      },
+      "photoReturned": "/images/suite_1/suite_1_2.webp?v=20260702",
+      "comparisonScroll": {
+        "client": 1118,
+        "scroll": 1118,
+        "left": 0
+      },
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "dpr": 2,
+      "ok": true,
+      "source": {
+        "original": "/images/suite_1/suite_1_4.webp?v=20260702",
+        "current": "http://127.0.0.1:4336/generated-images/ri-6a5107bab0a7e08f7fa4f40294696b5e82fcb113921935403357bdbc02fc09f1-960.webp"
+      },
+      "photoReturned": "/images/suite_1/suite_1_2.webp?v=20260702",
+      "comparisonScroll": {
+        "client": 372,
+        "scroll": 593,
+        "left": 221
+      },
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "dpr": 1,
+      "ok": true,
+      "source": {
+        "original": "/images/suite_1/suite_1_4.webp?v=20260702",
+        "current": "http://127.0.0.1:4336/generated-images/ri-6a5107bab0a7e08f7fa4f40294696b5e82fcb113921935403357bdbc02fc09f1-1280.webp"
+      },
+      "photoReturned": "/images/suite_1/suite_1_2.webp?v=20260702",
+      "comparisonScroll": {
+        "client": 1118,
+        "scroll": 1118,
+        "left": 0
+      },
+      "errors": []
+    }
+  ]
+}

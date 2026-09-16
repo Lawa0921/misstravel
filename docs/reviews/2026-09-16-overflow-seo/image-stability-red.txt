@@ -1,0 +1,66 @@
+SOURCE_CONTEXT: before correction
+Running 2 tests using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/guest-image-stability.spec.ts:3:2 › menu reserves the real image aspect ratio before loading at 390px (426ms)
+  ✘  2 [chromium] › tests/e2e/guest-image-stability.spec.ts:3:2 › map reserves the real image aspect ratio before loading at 390px (471ms)
+
+
+  1) [chromium] › tests/e2e/guest-image-stability.spec.ts:3:2 › menu reserves the real image aspect ratio before loading at 390px
+
+    Error: {"before":{"x":29,"y":487.390625,"width":332,"height":221.328125},"after":{"x":29,"y":487.390625,"width":332,"height":469.171875}}
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 1
+    Received:    247.84375
+
+      19 |    await image.evaluate((e:HTMLImageElement)=>e.decode());
+      20 |    const after=await image.boundingBox();
+    > 21 |    expect(Math.abs(after!.height-before!.height),JSON.stringify({before,after})).toBeLessThanOrEqual(1);
+         |                                                                                  ^
+      22 |    const actual=await image.evaluate((e:HTMLImageElement)=>({width:e.naturalWidth,height:e.naturalHeight,declaredWidth:e.getAttribute('width'),declaredHeight:e.getAttribute('height')}));
+      23 |    expect(actual.declaredWidth).toBe(String(actual.width));
+      24 |    expect(actual.declaredHeight).toBe(String(actual.height));
+        at <isolated-worktree>/astro-site/tests/e2e/guest-image-stability.spec.ts:21:82
+
+    Error Context: test-results/guest-image-stability-menu-b42e1-tio-before-loading-at-390px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/guest-image-stability-menu-b42e1-tio-before-loading-at-390px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/guest-image-stability-menu-b42e1-tio-before-loading-at-390px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/guest-image-stability.spec.ts:3:2 › map reserves the real image aspect ratio before loading at 390px
+
+    Error: {"before":{"x":29,"y":487.390625,"width":332,"height":221.328125},"after":{"x":29,"y":487.390625,"width":332,"height":249}}
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 1
+    Received:    27.671875
+
+      19 |    await image.evaluate((e:HTMLImageElement)=>e.decode());
+      20 |    const after=await image.boundingBox();
+    > 21 |    expect(Math.abs(after!.height-before!.height),JSON.stringify({before,after})).toBeLessThanOrEqual(1);
+         |                                                                                  ^
+      22 |    const actual=await image.evaluate((e:HTMLImageElement)=>({width:e.naturalWidth,height:e.naturalHeight,declaredWidth:e.getAttribute('width'),declaredHeight:e.getAttribute('height')}));
+      23 |    expect(actual.declaredWidth).toBe(String(actual.width));
+      24 |    expect(actual.declaredHeight).toBe(String(actual.height));
+        at <isolated-worktree>/astro-site/tests/e2e/guest-image-stability.spec.ts:21:82
+
+    Error Context: test-results/guest-image-stability-map--48a26-tio-before-loading-at-390px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/guest-image-stability-map--48a26-tio-before-loading-at-390px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/guest-image-stability-map--48a26-tio-before-loading-at-390px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/e2e/guest-image-stability.spec.ts:3:2 › menu reserves the real image aspect ratio before loading at 390px
+    [chromium] › tests/e2e/guest-image-stability.spec.ts:3:2 › map reserves the real image aspect ratio before loading at 390px

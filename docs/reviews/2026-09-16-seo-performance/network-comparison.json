@@ -1,0 +1,114 @@
+{
+  "source": "df48ca94cc9a234989251629d6cf970c79a72b57",
+  "baseline": "2ebfa2ab3d50bde7d28196d77be2b1b975b572eb",
+  "comparisons": [
+    {
+      "route": "/",
+      "width": 390,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 607972.0,
+      "afterImageBodyBytes": 262426.0,
+      "reductionPercent": 56.8
+    },
+    {
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 1027670.0,
+      "afterImageBodyBytes": 364156.0,
+      "reductionPercent": 64.6
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 1087320.0,
+      "afterImageBodyBytes": 145006.0,
+      "reductionPercent": 86.7
+    },
+    {
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 2130610.0,
+      "afterImageBodyBytes": 215286.0,
+      "reductionPercent": 89.9
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "dpr": 2,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 607972.0,
+      "afterImageBodyBytes": 457292.0,
+      "reductionPercent": 24.8
+    },
+    {
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 2,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 1027670.0,
+      "afterImageBodyBytes": 884858.0,
+      "reductionPercent": 13.9
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 2,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 1087320.0,
+      "afterImageBodyBytes": 532408.0,
+      "reductionPercent": 51.0
+    },
+    {
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 2,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 2130610.0,
+      "afterImageBodyBytes": 626490.0,
+      "reductionPercent": 70.6
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 607972.0,
+      "afterImageBodyBytes": 421686.0,
+      "reductionPercent": 30.6
+    },
+    {
+      "route": "/rooms/",
+      "width": 1440,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 1596324.0,
+      "afterImageBodyBytes": 714898.0,
+      "reductionPercent": 55.2
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 1440,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 1087320.0,
+      "afterImageBodyBytes": 440480.0,
+      "reductionPercent": 59.5
+    },
+    {
+      "route": "/galleries/",
+      "width": 1440,
+      "dpr": 1,
+      "samplesPerVersion": 2,
+      "beforeImageBodyBytes": 2130610.0,
+      "afterImageBodyBytes": 626490.0,
+      "reductionPercent": 70.6
+    }
+  ]
+}

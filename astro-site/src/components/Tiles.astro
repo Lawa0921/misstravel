@@ -1,4 +1,5 @@
 ---
+import { responsiveImage } from '../lib/responsive-images';
 import { siteConfig } from '../lib/config';
 
 interface TileItem {
@@ -36,7 +37,7 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
   </div>
   {displayItems.map((tile, index) => (
     <article class="tile" data-motion-card="" data-reveal="" style={`--motion-order: ${index}`}>
-      <img class="tile-image" src={tile.image} alt={tile.alt || tile.title} loading="lazy" decoding="async" width={tile.width} height={tile.height} />
+      <img class="tile-image" {...responsiveImage(tile.image, "(max-width: 390px) max(100vw, 363px), (max-width: 767px) max(100vw, 406px), (max-width: 1020px) max(50vw, 470px), max(33.34vw, 46vw)", true)} alt={tile.alt || tile.title} loading="lazy" decoding="async" />
       <div class="tile-wash" aria-hidden="true"></div>
       <span class="tile-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
       <div class="tile-content">
@@ -56,6 +57,9 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
   .section-kicker { margin: 0 0 0.8rem; color: var(--color-aqua); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; }
   .tiles-heading h2 { margin: 0; color: var(--color-paper); font-size: clamp(1.75rem, 3.2vw, 3rem); font-weight: 500; letter-spacing: 0.14em; }
 
+  /* Full-bleed cards are stable hit targets. Tilt only the image inside their
+     existing clipping box, never the edge-to-edge card/document bounds. */
+  .tile[data-motion-card] { transform: none; transform-style: flat; }
   .tile { position: relative; grid-column: span 4; min-height: clamp(24rem, 34vw, 34rem); display: flex; align-items: flex-end; overflow: hidden; padding: clamp(1.5rem, 3.5vw, 3.25rem); isolation: isolate; }
   .tile:nth-of-type(2), .tile:nth-of-type(3) { grid-column: span 4; }
   .tile:nth-of-type(4), .tile:nth-of-type(5), .tile:nth-of-type(6) { grid-column: span 4; }
@@ -80,6 +84,13 @@ const displayItems = items.slice(0, siteConfig.tilesCount);
   .tile-link:focus-visible::after { outline: 2px solid var(--color-aqua); outline-offset: -4px; }
   .tile-link:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: 0.3rem; }
   .tile-description { margin: 0.8rem 0 0; color: var(--color-paper); font-size: 0.9rem; line-height: 1.65; letter-spacing: 0.06em; }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .tile:hover .tile-image, .tile:focus-within .tile-image {
+      transform: perspective(1100px) scale(1.06)
+        rotateX(var(--motion-rotate-x, 0deg)) rotateY(var(--motion-rotate-y, 0deg));
+    }
+  }
 
   @media (max-width: 1020px) {
     .tile { grid-column: span 6; min-height: 22rem; }

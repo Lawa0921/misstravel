@@ -2,13 +2,13 @@ import { chromium, expect, test, type Page } from '@playwright/test';
 
 type FrameAudit = { ready: boolean; finished: boolean; skipped: boolean; reason?: string; names: string[];
   oldRoot: string; rootTransform: string; rootFrames: Record<string, unknown>[][];
-  photoSources: string[]; photoDuration: string; readyCards: boolean; headerAnimations: string[]; incomingPhotoReady: boolean; restored: boolean };
+  photoSources: string[]; photoOriginals: string[]; photoDuration: string; readyCards: boolean; headerAnimations: string[]; incomingPhotoReady: boolean; restored: boolean };
 declare global { interface Window { __contextualAudit: FrameAudit; __bfcacheRestored: boolean } }
 async function observe(page: Page) {
   await page.addInitScript(() => {
     window.addEventListener('pageshow', event => { window.__bfcacheRestored=event.persisted; });
     window.addEventListener('pagereveal', (event) => {
-      const state: FrameAudit = {ready:false,finished:false,skipped:false,names:[],oldRoot:'',rootTransform:'',rootFrames:[],photoSources:[],photoDuration:'',readyCards:true,headerAnimations:[],incomingPhotoReady:false,restored:Boolean(window.__bfcacheRestored)};
+      const state: FrameAudit = {ready:false,finished:false,skipped:false,names:[],oldRoot:'',rootTransform:'',rootFrames:[],photoSources:[],photoOriginals:[],photoDuration:'',readyCards:true,headerAnimations:[],incomingPhotoReady:false,restored:Boolean(window.__bfcacheRestored)};
       const pending=JSON.parse(sessionStorage.getItem('misstravel:room-transition:v1')||'null');
       const image=[...document.querySelectorAll<HTMLImageElement>('[data-room-photo]')].find(i=>i.dataset.roomPhoto===(location.pathname==='/rooms/'?pending?.from:location.pathname)&&!i.closest('[aria-hidden="true"]'));
       if(image){const b=image.getBoundingClientRect();const top=document.getElementById('header')?.getBoundingClientRect().bottom||0;state.incomingPhotoReady=image.complete&&image.naturalWidth>0&&b.width>0&&b.height>0&&Math.min(b.bottom,innerHeight)-Math.max(b.top,top)>=Math.min(b.height*0.5,120)&&b.right>0&&b.left<innerWidth;}
@@ -24,6 +24,7 @@ async function observe(page: Page) {
         state.rootTransform=getComputedStyle(document.documentElement,'::view-transition-new(root)').transform;
         state.rootFrames=animations.filter(a=>a.animationName==='content-settle').map(a=>(a.effect as KeyframeEffect).getKeyframes());
         state.photoSources=[...document.querySelectorAll<HTMLImageElement>('img[data-room-photo]')].filter(i=>i.style.viewTransitionName==='room-photo').map(i=>i.currentSrc||i.src);
+        state.photoOriginals=[...document.querySelectorAll<HTMLImageElement>('img[data-room-photo]')].filter(i=>i.style.viewTransitionName==='room-photo').map(i=>new URL(i.dataset.originalSrc!,location.href).href);
         state.photoDuration=getComputedStyle(document.documentElement,'::view-transition-group(room-photo)').animationDuration;
         state.readyCards=[...document.querySelectorAll<HTMLElement>('[data-route-ready]')].every(e=>getComputedStyle(e).opacity==='1'&&getComputedStyle(e).filter==='none');
       }).catch((error)=>{state.skipped=true;state.reason=String(error);});
@@ -73,16 +74,23 @@ for(const width of [390,1440]) {
       await expect(card).toHaveCSS('opacity','1');
       const imageURL=await card.locator('img').evaluate(i=>(i as HTMLImageElement).src);
       const listScroll=await page.evaluate(()=>scrollY);
+      // pagereveal precedes first paint. Allow the browser to commit the source
+      // frame before asking it for a native cross-document snapshot.
+      await page.evaluate(() => new Promise<void>(resolve =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
       await card.locator('img').click();await page.waitForURL(`**/rooms/${slug}/`);
       const enter=await finished(page);
       expect(enter.ready,JSON.stringify(enter)).toBe(true);expect(enter.skipped).toBe(false);
-      expect(enter.photoSources).toEqual([imageURL]);expect(enter.photoDuration).toBe('0.3s');
+      // The two views may select different resolutions of the same original.
+      expect(enter.photoOriginals).toEqual([imageURL]);
+      expect(enter.photoSources).toEqual([await page.locator('.carousel-slide.active img').evaluate((i:HTMLImageElement)=>i.currentSrc)]);expect(enter.photoDuration).toBe('0.3s');
       expect(enter.oldRoot).toBe('none');expect(enter.headerAnimations).toEqual([]);
       expect(enter.names).toContain('-ua-view-transition-group-anim-room-photo');
       expect(await page.locator('[style*="view-transition-name"]').count()).toBe(0);
       await page.goBack();await page.waitForURL('**/rooms/');const back=await finished(page);
       if(back.incomingPhotoReady){
-        expect(back.ready,JSON.stringify(back)).toBe(true);expect(back.photoSources).toEqual([imageURL]);
+        expect(back.ready,JSON.stringify(back)).toBe(true);expect(back.photoOriginals).toEqual([imageURL]);
+        expect(back.photoSources).toEqual([await card.locator('img').evaluate((i:HTMLImageElement)=>i.currentSrc)]);
       }else{
         // Some native history restores happen after pagereveal. Never scroll the
         // user just to manufacture a transition: explicitly assert safe fallback.

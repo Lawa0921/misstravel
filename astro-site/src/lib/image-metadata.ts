@@ -7,7 +7,7 @@ export interface ImageMetadata {
 }
 const images = catalog as Record<string, ImageMetadata>;
 export function imageKey(src: string): string {
-  return src.split(/[?#]/, 1)[0];
+  return decodeURIComponent(src.split(/[?#]/, 1)[0]);
 }
 export function getImageMetadata(src: string): ImageMetadata | undefined {
   const key = imageKey(src);

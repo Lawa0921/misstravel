@@ -99,7 +99,6 @@ html[data-motion='ready'] [data-reveal].is-revealed {
    Ordinary links: a short, single-layer settle; never overlap two pages of text.
    Selected accommodation: only the same photograph changes geometry. */
 @media (prefers-reduced-motion: no-preference) {
-  @view-transition { navigation: auto; }
   #header { view-transition-name: site-header; }
   ::view-transition { background: var(--color-bg); }
   ::view-transition-group(root) { animation: none; }
@@ -154,7 +153,6 @@ html [data-route-ready][data-reveal] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  @view-transition { navigation: none; }
   #header { view-transition-name: none; }
   ::view-transition-group(*),
   ::view-transition-old(*),

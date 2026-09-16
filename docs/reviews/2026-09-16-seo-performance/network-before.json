@@ -1,0 +1,6308 @@
+{
+  "timestamp": "2026-09-16T06:18:42.783Z",
+  "source": "2ebfa2ab3d50bde7d28196d77be2b1b975b572eb",
+  "label": "before",
+  "base": "http://127.0.0.1:4338",
+  "method": {
+    "engine": "Chromium",
+    "freshContextPerSample": true,
+    "cacheDisabled": true,
+    "networkThrottling": false,
+    "runs": 2,
+    "analytics": "Cloudflare beacon blocked for synthetic traffic",
+    "limits": "Local laboratory only; LCP timing depends on machine/load; CLS is the observed laboratory sum, not field CWV. Image body bytes from completed same-origin requests, hidden/lazy content only counted if requested. Original images cached in another browsing session are not represented."
+  },
+  "errors": [],
+  "summary": [
+    {
+      "route": "/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 607972,
+      "imageRequests": 7,
+      "lcpMs": 176,
+      "cls": 0
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 607972,
+      "imageRequests": 7,
+      "lcpMs": 104,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1027670,
+      "imageRequests": 6,
+      "lcpMs": 184,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1027670,
+      "imageRequests": 6,
+      "lcpMs": 192,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1087320,
+      "imageRequests": 6,
+      "lcpMs": 152,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1087320,
+      "imageRequests": 6,
+      "lcpMs": 140,
+      "cls": 0
+    },
+    {
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 2130610,
+      "imageRequests": 36,
+      "lcpMs": 204,
+      "cls": 0
+    },
+    {
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 2130610,
+      "imageRequests": 36,
+      "lcpMs": 144,
+      "cls": 0
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 607972,
+      "imageRequests": 7,
+      "lcpMs": 104,
+      "cls": 0
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 607972,
+      "imageRequests": 7,
+      "lcpMs": 108,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 1027670,
+      "imageRequests": 6,
+      "lcpMs": 152,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 1027670,
+      "imageRequests": 6,
+      "lcpMs": 172,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 1087320,
+      "imageRequests": 6,
+      "lcpMs": 152,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 1087320,
+      "imageRequests": 6,
+      "lcpMs": 148,
+      "cls": 0
+    },
+    {
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 2130610,
+      "imageRequests": 36,
+      "lcpMs": 152,
+      "cls": 0
+    },
+    {
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 2130610,
+      "imageRequests": 36,
+      "lcpMs": 132,
+      "cls": 0
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 607972,
+      "imageRequests": 7,
+      "lcpMs": 108,
+      "cls": 0
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 607972,
+      "imageRequests": 7,
+      "lcpMs": 108,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1596324,
+      "imageRequests": 9,
+      "lcpMs": 164,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1596324,
+      "imageRequests": 9,
+      "lcpMs": 176,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1087320,
+      "imageRequests": 6,
+      "lcpMs": 168,
+      "cls": 0
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1087320,
+      "imageRequests": 6,
+      "lcpMs": 164,
+      "cls": 0
+    },
+    {
+      "route": "/galleries/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 2130610,
+      "imageRequests": 36,
+      "lcpMs": 176,
+      "cls": 0
+    },
+    {
+      "route": "/galleries/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 2130610,
+      "imageRequests": 36,
+      "lcpMs": 196,
+      "cls": 0
+    }
+  ],
+  "cases": [
+    {
+      "kind": "landing",
+      "route": "/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 607972,
+      "imageTransferBytes": 609298,
+      "imageRequests": 7,
+      "resources": [
+        {
+          "url": "/images/banner.webp",
+          "status": 200,
+          "bodyBytes": 131226,
+          "transferredBytes": 131416
+        },
+        {
+          "url": "/images/sale_items.webp",
+          "status": 200,
+          "bodyBytes": 33386,
+          "transferredBytes": 33575
+        },
+        {
+          "url": "/images/landing_banner.webp",
+          "status": 200,
+          "bodyBytes": 53402,
+          "transferredBytes": 53591
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        },
+        {
+          "url": "/images/rooms.webp",
+          "status": 200,
+          "bodyBytes": 123138,
+          "transferredBytes": 123328
+        },
+        {
+          "url": "/images/galleries.webp",
+          "status": 200,
+          "bodyBytes": 65948,
+          "transferredBytes": 66137
+        },
+        {
+          "url": "/images/booking.webp",
+          "status": 200,
+          "bodyBytes": 20748,
+          "transferredBytes": 20937
+        }
+      ],
+      "page": {
+        "title": "密式旅行｜苗栗泰安露營區、小木屋與套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 176,
+          "lcpElement": "P",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1478,
+            "cssWidth": 336,
+            "loaded": true
+          },
+          {
+            "src": "/images/landing_banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/landing_banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/rooms.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/rooms.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/sale_items.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/sale_items.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/map.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 2000,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 960,
+            "cssWidth": 390,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 607972,
+      "imageTransferBytes": 609298,
+      "imageRequests": 7,
+      "resources": [
+        {
+          "url": "/images/banner.webp",
+          "status": 200,
+          "bodyBytes": 131226,
+          "transferredBytes": 131416
+        },
+        {
+          "url": "/images/landing_banner.webp",
+          "status": 200,
+          "bodyBytes": 53402,
+          "transferredBytes": 53591
+        },
+        {
+          "url": "/images/sale_items.webp",
+          "status": 200,
+          "bodyBytes": 33386,
+          "transferredBytes": 33575
+        },
+        {
+          "url": "/images/rooms.webp",
+          "status": 200,
+          "bodyBytes": 123138,
+          "transferredBytes": 123328
+        },
+        {
+          "url": "/images/galleries.webp",
+          "status": 200,
+          "bodyBytes": 65948,
+          "transferredBytes": 66137
+        },
+        {
+          "url": "/images/booking.webp",
+          "status": 200,
+          "bodyBytes": 20748,
+          "transferredBytes": 20937
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        }
+      ],
+      "page": {
+        "title": "密式旅行｜苗栗泰安露營區、小木屋與套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 104,
+          "lcpElement": "P",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1478,
+            "cssWidth": 336,
+            "loaded": true
+          },
+          {
+            "src": "/images/landing_banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/landing_banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/rooms.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/rooms.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/sale_items.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/sale_items.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/map.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 2000,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 960,
+            "cssWidth": 390,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1027670,
+      "imageTransferBytes": 1028810,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/campsite_2_main.webp",
+          "status": 200,
+          "bodyBytes": 142660,
+          "transferredBytes": 142850
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/log_cabin_3_main.webp",
+          "status": 200,
+          "bodyBytes": 113786,
+          "transferredBytes": 113976
+        },
+        {
+          "url": "/images/campsite_3_main.webp",
+          "status": 200,
+          "bodyBytes": 231446,
+          "transferredBytes": 231636
+        },
+        {
+          "url": "/images/campsite_1_main.webp",
+          "status": 200,
+          "bodyBytes": 156272,
+          "transferredBytes": 156462
+        },
+        {
+          "url": "/images/log_cabin_4_main.webp",
+          "status": 200,
+          "bodyBytes": 262644,
+          "transferredBytes": 262834
+        }
+      ],
+      "page": {
+        "title": "苗栗泰安房型｜露營營位、小木屋與套房 | 密式旅行露營區",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 184,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/campsite_1_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_4_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_4_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1365,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1027670,
+      "imageTransferBytes": 1028810,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/campsite_2_main.webp",
+          "status": 200,
+          "bodyBytes": 142660,
+          "transferredBytes": 142850
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/campsite_1_main.webp",
+          "status": 200,
+          "bodyBytes": 156272,
+          "transferredBytes": 156462
+        },
+        {
+          "url": "/images/log_cabin_3_main.webp",
+          "status": 200,
+          "bodyBytes": 113786,
+          "transferredBytes": 113976
+        },
+        {
+          "url": "/images/campsite_3_main.webp",
+          "status": 200,
+          "bodyBytes": 231446,
+          "transferredBytes": 231636
+        },
+        {
+          "url": "/images/log_cabin_4_main.webp",
+          "status": 200,
+          "bodyBytes": 262644,
+          "transferredBytes": 262834
+        }
+      ],
+      "page": {
+        "title": "苗栗泰安房型｜露營營位、小木屋與套房 | 密式旅行露營區",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 192,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/campsite_1_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_4_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_4_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1365,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1087320,
+      "imageTransferBytes": 1088458,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        },
+        {
+          "url": "/images/suite_3/new_01.webp",
+          "status": 200,
+          "bodyBytes": 81808,
+          "transferredBytes": 81997
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        }
+      ],
+      "page": {
+        "title": "密式旅行露營區，近雲樓四人住宿套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 152,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking_announcement.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 567,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_3/new_01.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_3/new_01.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1087320,
+      "imageTransferBytes": 1088458,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/suite_3/new_01.webp",
+          "status": 200,
+          "bodyBytes": 81808,
+          "transferredBytes": 81997
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        }
+      ],
+      "page": {
+        "title": "密式旅行露營區，近雲樓四人住宿套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 140,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking_announcement.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 567,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_3/new_01.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_3/new_01.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 2130610,
+      "imageTransferBytes": 2137420,
+      "imageRequests": 36,
+      "resources": [
+        {
+          "url": "/images/galleries/gallery_4.webp",
+          "status": 200,
+          "bodyBytes": 16370,
+          "transferredBytes": 16559
+        },
+        {
+          "url": "/images/galleries/gallery_1.webp",
+          "status": 200,
+          "bodyBytes": 53714,
+          "transferredBytes": 53903
+        },
+        {
+          "url": "/images/galleries/gallery_2.webp",
+          "status": 200,
+          "bodyBytes": 120914,
+          "transferredBytes": 121104
+        },
+        {
+          "url": "/images/galleries/gallery_3.webp",
+          "status": 200,
+          "bodyBytes": 133814,
+          "transferredBytes": 134004
+        },
+        {
+          "url": "/images/galleries/gallery_5.webp",
+          "status": 200,
+          "bodyBytes": 35740,
+          "transferredBytes": 35929
+        },
+        {
+          "url": "/images/galleries/gallery_6.webp",
+          "status": 200,
+          "bodyBytes": 57072,
+          "transferredBytes": 57261
+        },
+        {
+          "url": "/images/galleries/gallery_7.webp",
+          "status": 200,
+          "bodyBytes": 111106,
+          "transferredBytes": 111296
+        },
+        {
+          "url": "/images/galleries/gallery_8.webp",
+          "status": 200,
+          "bodyBytes": 36260,
+          "transferredBytes": 36449
+        },
+        {
+          "url": "/images/galleries/gallery_9.webp",
+          "status": 200,
+          "bodyBytes": 82690,
+          "transferredBytes": 82879
+        },
+        {
+          "url": "/images/galleries/gallery_13.webp",
+          "status": 200,
+          "bodyBytes": 33782,
+          "transferredBytes": 33971
+        },
+        {
+          "url": "/images/galleries/gallery_10.webp",
+          "status": 200,
+          "bodyBytes": 110468,
+          "transferredBytes": 110658
+        },
+        {
+          "url": "/images/galleries/gallery_12.webp",
+          "status": 200,
+          "bodyBytes": 21446,
+          "transferredBytes": 21635
+        },
+        {
+          "url": "/images/galleries/gallery_11.webp",
+          "status": 200,
+          "bodyBytes": 28808,
+          "transferredBytes": 28997
+        },
+        {
+          "url": "/images/galleries/gallery_15.webp",
+          "status": 200,
+          "bodyBytes": 43266,
+          "transferredBytes": 43455
+        },
+        {
+          "url": "/images/galleries/gallery_16.webp",
+          "status": 200,
+          "bodyBytes": 50742,
+          "transferredBytes": 50931
+        },
+        {
+          "url": "/images/galleries/gallery_17.webp",
+          "status": 200,
+          "bodyBytes": 28488,
+          "transferredBytes": 28677
+        },
+        {
+          "url": "/images/galleries/gallery_14.webp",
+          "status": 200,
+          "bodyBytes": 39812,
+          "transferredBytes": 40001
+        },
+        {
+          "url": "/images/galleries/gallery_18.webp",
+          "status": 200,
+          "bodyBytes": 53052,
+          "transferredBytes": 53241
+        },
+        {
+          "url": "/images/galleries/gallery_19.webp",
+          "status": 200,
+          "bodyBytes": 47490,
+          "transferredBytes": 47679
+        },
+        {
+          "url": "/images/galleries/gallery_20.webp",
+          "status": 200,
+          "bodyBytes": 21100,
+          "transferredBytes": 21289
+        },
+        {
+          "url": "/images/galleries/gallery_22.webp",
+          "status": 200,
+          "bodyBytes": 41042,
+          "transferredBytes": 41231
+        },
+        {
+          "url": "/images/galleries/gallery_21.webp",
+          "status": 200,
+          "bodyBytes": 31436,
+          "transferredBytes": 31625
+        },
+        {
+          "url": "/images/galleries/gallery_23.webp",
+          "status": 200,
+          "bodyBytes": 34196,
+          "transferredBytes": 34385
+        },
+        {
+          "url": "/images/galleries/gallery_24.webp",
+          "status": 200,
+          "bodyBytes": 29880,
+          "transferredBytes": 30069
+        },
+        {
+          "url": "/images/galleries/gallery_25.webp",
+          "status": 200,
+          "bodyBytes": 103128,
+          "transferredBytes": 103318
+        },
+        {
+          "url": "/images/galleries/gallery_30.webp",
+          "status": 200,
+          "bodyBytes": 28508,
+          "transferredBytes": 28697
+        },
+        {
+          "url": "/images/galleries/gallery_31.webp",
+          "status": 200,
+          "bodyBytes": 77960,
+          "transferredBytes": 78149
+        },
+        {
+          "url": "/images/galleries/gallery_29.webp",
+          "status": 200,
+          "bodyBytes": 36520,
+          "transferredBytes": 36709
+        },
+        {
+          "url": "/images/galleries/gallery_27.webp",
+          "status": 200,
+          "bodyBytes": 43374,
+          "transferredBytes": 43563
+        },
+        {
+          "url": "/images/galleries/gallery_28.webp",
+          "status": 200,
+          "bodyBytes": 48394,
+          "transferredBytes": 48583
+        },
+        {
+          "url": "/images/galleries/gallery_26.webp",
+          "status": 200,
+          "bodyBytes": 52536,
+          "transferredBytes": 52725
+        },
+        {
+          "url": "/images/galleries/gallery_33.webp",
+          "status": 200,
+          "bodyBytes": 69280,
+          "transferredBytes": 69469
+        },
+        {
+          "url": "/images/galleries/gallery_34.webp",
+          "status": 200,
+          "bodyBytes": 91120,
+          "transferredBytes": 91309
+        },
+        {
+          "url": "/images/galleries/gallery_32.webp",
+          "status": 200,
+          "bodyBytes": 92784,
+          "transferredBytes": 92973
+        },
+        {
+          "url": "/images/galleries/gallery_35.webp",
+          "status": 200,
+          "bodyBytes": 89004,
+          "transferredBytes": 89193
+        },
+        {
+          "url": "/images/galleries/gallery_36.webp",
+          "status": 200,
+          "bodyBytes": 135314,
+          "transferredBytes": 135504
+        }
+      ],
+      "page": {
+        "title": "密式旅行圖集",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 204,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/galleries/gallery_7.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/galleries/gallery_1.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_2.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_2.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_3.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_3.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_4.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_4.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_5.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_5.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_6.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_6.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_7.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_7.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_8.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_8.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_9.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_9.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_11.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_11.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_12.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_12.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_13.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_13.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_14.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_14.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_15.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_15.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_16.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_16.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_17.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_17.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_18.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_18.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_19.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_19.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_20.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_20.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_21.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_21.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_22.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_22.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_23.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_23.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_24.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_24.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_25.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_25.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_26.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_26.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_27.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_27.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_28.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_28.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_29.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_29.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_30.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_30.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_31.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_31.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_32.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_32.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_33.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_33.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_34.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_34.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_35.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_35.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_36.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_36.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 2130610,
+      "imageTransferBytes": 2137420,
+      "imageRequests": 36,
+      "resources": [
+        {
+          "url": "/images/galleries/gallery_1.webp",
+          "status": 200,
+          "bodyBytes": 53714,
+          "transferredBytes": 53903
+        },
+        {
+          "url": "/images/galleries/gallery_2.webp",
+          "status": 200,
+          "bodyBytes": 120914,
+          "transferredBytes": 121104
+        },
+        {
+          "url": "/images/galleries/gallery_4.webp",
+          "status": 200,
+          "bodyBytes": 16370,
+          "transferredBytes": 16559
+        },
+        {
+          "url": "/images/galleries/gallery_5.webp",
+          "status": 200,
+          "bodyBytes": 35740,
+          "transferredBytes": 35929
+        },
+        {
+          "url": "/images/galleries/gallery_6.webp",
+          "status": 200,
+          "bodyBytes": 57072,
+          "transferredBytes": 57261
+        },
+        {
+          "url": "/images/galleries/gallery_3.webp",
+          "status": 200,
+          "bodyBytes": 133814,
+          "transferredBytes": 134004
+        },
+        {
+          "url": "/images/galleries/gallery_7.webp",
+          "status": 200,
+          "bodyBytes": 111106,
+          "transferredBytes": 111296
+        },
+        {
+          "url": "/images/galleries/gallery_8.webp",
+          "status": 200,
+          "bodyBytes": 36260,
+          "transferredBytes": 36449
+        },
+        {
+          "url": "/images/galleries/gallery_11.webp",
+          "status": 200,
+          "bodyBytes": 28808,
+          "transferredBytes": 28997
+        },
+        {
+          "url": "/images/galleries/gallery_12.webp",
+          "status": 200,
+          "bodyBytes": 21446,
+          "transferredBytes": 21635
+        },
+        {
+          "url": "/images/galleries/gallery_10.webp",
+          "status": 200,
+          "bodyBytes": 110468,
+          "transferredBytes": 110658
+        },
+        {
+          "url": "/images/galleries/gallery_9.webp",
+          "status": 200,
+          "bodyBytes": 82690,
+          "transferredBytes": 82879
+        },
+        {
+          "url": "/images/galleries/gallery_17.webp",
+          "status": 200,
+          "bodyBytes": 28488,
+          "transferredBytes": 28677
+        },
+        {
+          "url": "/images/galleries/gallery_16.webp",
+          "status": 200,
+          "bodyBytes": 50742,
+          "transferredBytes": 50931
+        },
+        {
+          "url": "/images/galleries/gallery_14.webp",
+          "status": 200,
+          "bodyBytes": 39812,
+          "transferredBytes": 40001
+        },
+        {
+          "url": "/images/galleries/gallery_15.webp",
+          "status": 200,
+          "bodyBytes": 43266,
+          "transferredBytes": 43455
+        },
+        {
+          "url": "/images/galleries/gallery_13.webp",
+          "status": 200,
+          "bodyBytes": 33782,
+          "transferredBytes": 33971
+        },
+        {
+          "url": "/images/galleries/gallery_18.webp",
+          "status": 200,
+          "bodyBytes": 53052,
+          "transferredBytes": 53241
+        },
+        {
+          "url": "/images/galleries/gallery_19.webp",
+          "status": 200,
+          "bodyBytes": 47490,
+          "transferredBytes": 47679
+        },
+        {
+          "url": "/images/galleries/gallery_22.webp",
+          "status": 200,
+          "bodyBytes": 41042,
+          "transferredBytes": 41231
+        },
+        {
+          "url": "/images/galleries/gallery_23.webp",
+          "status": 200,
+          "bodyBytes": 34196,
+          "transferredBytes": 34385
+        },
+        {
+          "url": "/images/galleries/gallery_20.webp",
+          "status": 200,
+          "bodyBytes": 21100,
+          "transferredBytes": 21289
+        },
+        {
+          "url": "/images/galleries/gallery_21.webp",
+          "status": 200,
+          "bodyBytes": 31436,
+          "transferredBytes": 31625
+        },
+        {
+          "url": "/images/galleries/gallery_24.webp",
+          "status": 200,
+          "bodyBytes": 29880,
+          "transferredBytes": 30069
+        },
+        {
+          "url": "/images/galleries/gallery_25.webp",
+          "status": 200,
+          "bodyBytes": 103128,
+          "transferredBytes": 103318
+        },
+        {
+          "url": "/images/galleries/gallery_26.webp",
+          "status": 200,
+          "bodyBytes": 52536,
+          "transferredBytes": 52725
+        },
+        {
+          "url": "/images/galleries/gallery_27.webp",
+          "status": 200,
+          "bodyBytes": 43374,
+          "transferredBytes": 43563
+        },
+        {
+          "url": "/images/galleries/gallery_30.webp",
+          "status": 200,
+          "bodyBytes": 28508,
+          "transferredBytes": 28697
+        },
+        {
+          "url": "/images/galleries/gallery_29.webp",
+          "status": 200,
+          "bodyBytes": 36520,
+          "transferredBytes": 36709
+        },
+        {
+          "url": "/images/galleries/gallery_28.webp",
+          "status": 200,
+          "bodyBytes": 48394,
+          "transferredBytes": 48583
+        },
+        {
+          "url": "/images/galleries/gallery_31.webp",
+          "status": 200,
+          "bodyBytes": 77960,
+          "transferredBytes": 78149
+        },
+        {
+          "url": "/images/galleries/gallery_32.webp",
+          "status": 200,
+          "bodyBytes": 92784,
+          "transferredBytes": 92973
+        },
+        {
+          "url": "/images/galleries/gallery_33.webp",
+          "status": 200,
+          "bodyBytes": 69280,
+          "transferredBytes": 69469
+        },
+        {
+          "url": "/images/galleries/gallery_34.webp",
+          "status": 200,
+          "bodyBytes": 91120,
+          "transferredBytes": 91309
+        },
+        {
+          "url": "/images/galleries/gallery_36.webp",
+          "status": 200,
+          "bodyBytes": 135314,
+          "transferredBytes": 135504
+        },
+        {
+          "url": "/images/galleries/gallery_35.webp",
+          "status": 200,
+          "bodyBytes": 89004,
+          "transferredBytes": 89193
+        }
+      ],
+      "page": {
+        "title": "密式旅行圖集",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 144,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/galleries/gallery_1.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_2.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_2.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_3.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_3.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_4.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_4.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_5.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_5.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_6.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_6.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_7.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_7.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_8.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_8.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_9.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_9.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_11.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_11.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_12.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_12.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_13.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_13.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_14.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_14.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_15.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_15.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_16.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_16.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_17.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_17.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_18.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_18.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_19.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_19.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_20.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_20.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_21.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_21.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_22.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_22.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_23.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_23.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_24.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_24.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_25.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_25.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_26.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_26.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_27.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_27.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_28.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_28.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_29.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_29.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_30.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_30.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_31.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_31.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_32.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_32.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_33.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_33.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_34.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_34.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_35.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_35.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_36.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_36.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 607972,
+      "imageTransferBytes": 609298,
+      "imageRequests": 7,
+      "resources": [
+        {
+          "url": "/images/banner.webp",
+          "status": 200,
+          "bodyBytes": 131226,
+          "transferredBytes": 131416
+        },
+        {
+          "url": "/images/landing_banner.webp",
+          "status": 200,
+          "bodyBytes": 53402,
+          "transferredBytes": 53591
+        },
+        {
+          "url": "/images/booking.webp",
+          "status": 200,
+          "bodyBytes": 20748,
+          "transferredBytes": 20937
+        },
+        {
+          "url": "/images/rooms.webp",
+          "status": 200,
+          "bodyBytes": 123138,
+          "transferredBytes": 123328
+        },
+        {
+          "url": "/images/galleries.webp",
+          "status": 200,
+          "bodyBytes": 65948,
+          "transferredBytes": 66137
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        },
+        {
+          "url": "/images/sale_items.webp",
+          "status": 200,
+          "bodyBytes": 33386,
+          "transferredBytes": 33575
+        }
+      ],
+      "page": {
+        "title": "密式旅行｜苗栗泰安露營區、小木屋與套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 104,
+          "lcpElement": "P",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1478,
+            "cssWidth": 336,
+            "loaded": true
+          },
+          {
+            "src": "/images/landing_banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/landing_banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/rooms.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/rooms.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/sale_items.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/sale_items.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/map.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 2000,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 960,
+            "cssWidth": 390,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 607972,
+      "imageTransferBytes": 609298,
+      "imageRequests": 7,
+      "resources": [
+        {
+          "url": "/images/banner.webp",
+          "status": 200,
+          "bodyBytes": 131226,
+          "transferredBytes": 131416
+        },
+        {
+          "url": "/images/landing_banner.webp",
+          "status": 200,
+          "bodyBytes": 53402,
+          "transferredBytes": 53591
+        },
+        {
+          "url": "/images/galleries.webp",
+          "status": 200,
+          "bodyBytes": 65948,
+          "transferredBytes": 66137
+        },
+        {
+          "url": "/images/booking.webp",
+          "status": 200,
+          "bodyBytes": 20748,
+          "transferredBytes": 20937
+        },
+        {
+          "url": "/images/rooms.webp",
+          "status": 200,
+          "bodyBytes": 123138,
+          "transferredBytes": 123328
+        },
+        {
+          "url": "/images/sale_items.webp",
+          "status": 200,
+          "bodyBytes": 33386,
+          "transferredBytes": 33575
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        }
+      ],
+      "page": {
+        "title": "密式旅行｜苗栗泰安露營區、小木屋與套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 108,
+          "lcpElement": "P",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1478,
+            "cssWidth": 336,
+            "loaded": true
+          },
+          {
+            "src": "/images/landing_banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/landing_banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/rooms.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/rooms.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/sale_items.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/sale_items.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/map.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 2000,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 390,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 960,
+            "cssWidth": 390,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 1027670,
+      "imageTransferBytes": 1028810,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/campsite_1_main.webp",
+          "status": 200,
+          "bodyBytes": 156272,
+          "transferredBytes": 156462
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/campsite_3_main.webp",
+          "status": 200,
+          "bodyBytes": 231446,
+          "transferredBytes": 231636
+        },
+        {
+          "url": "/images/campsite_2_main.webp",
+          "status": 200,
+          "bodyBytes": 142660,
+          "transferredBytes": 142850
+        },
+        {
+          "url": "/images/log_cabin_3_main.webp",
+          "status": 200,
+          "bodyBytes": 113786,
+          "transferredBytes": 113976
+        },
+        {
+          "url": "/images/log_cabin_4_main.webp",
+          "status": 200,
+          "bodyBytes": 262644,
+          "transferredBytes": 262834
+        }
+      ],
+      "page": {
+        "title": "苗栗泰安房型｜露營營位、小木屋與套房 | 密式旅行露營區",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 152,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/campsite_1_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_4_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_4_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1365,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 1027670,
+      "imageTransferBytes": 1028810,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/campsite_2_main.webp",
+          "status": 200,
+          "bodyBytes": 142660,
+          "transferredBytes": 142850
+        },
+        {
+          "url": "/images/log_cabin_3_main.webp",
+          "status": 200,
+          "bodyBytes": 113786,
+          "transferredBytes": 113976
+        },
+        {
+          "url": "/images/campsite_1_main.webp",
+          "status": 200,
+          "bodyBytes": 156272,
+          "transferredBytes": 156462
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/log_cabin_4_main.webp",
+          "status": 200,
+          "bodyBytes": 262644,
+          "transferredBytes": 262834
+        },
+        {
+          "url": "/images/campsite_3_main.webp",
+          "status": 200,
+          "bodyBytes": 231446,
+          "transferredBytes": 231636
+        }
+      ],
+      "page": {
+        "title": "苗栗泰安房型｜露營營位、小木屋與套房 | 密式旅行露營區",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 172,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/campsite_1_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_4_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_4_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1365,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 1087320,
+      "imageTransferBytes": 1088458,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        },
+        {
+          "url": "/images/suite_3/new_01.webp",
+          "status": 200,
+          "bodyBytes": 81808,
+          "transferredBytes": 81997
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        }
+      ],
+      "page": {
+        "title": "密式旅行露營區，近雲樓四人住宿套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 152,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking_announcement.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 567,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_3/new_01.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_3/new_01.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 1087320,
+      "imageTransferBytes": 1088458,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/suite_3/new_01.webp",
+          "status": 200,
+          "bodyBytes": 81808,
+          "transferredBytes": 81997
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        }
+      ],
+      "page": {
+        "title": "密式旅行露營區，近雲樓四人住宿套房",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 148,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking_announcement.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 567,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_3/new_01.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_3/new_01.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 364,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 364,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 2,
+      "run": 1,
+      "imageBodyBytes": 2130610,
+      "imageTransferBytes": 2137420,
+      "imageRequests": 36,
+      "resources": [
+        {
+          "url": "/images/galleries/gallery_1.webp",
+          "status": 200,
+          "bodyBytes": 53714,
+          "transferredBytes": 53903
+        },
+        {
+          "url": "/images/galleries/gallery_4.webp",
+          "status": 200,
+          "bodyBytes": 16370,
+          "transferredBytes": 16559
+        },
+        {
+          "url": "/images/galleries/gallery_3.webp",
+          "status": 200,
+          "bodyBytes": 133814,
+          "transferredBytes": 134004
+        },
+        {
+          "url": "/images/galleries/gallery_5.webp",
+          "status": 200,
+          "bodyBytes": 35740,
+          "transferredBytes": 35929
+        },
+        {
+          "url": "/images/galleries/gallery_6.webp",
+          "status": 200,
+          "bodyBytes": 57072,
+          "transferredBytes": 57261
+        },
+        {
+          "url": "/images/galleries/gallery_2.webp",
+          "status": 200,
+          "bodyBytes": 120914,
+          "transferredBytes": 121104
+        },
+        {
+          "url": "/images/galleries/gallery_7.webp",
+          "status": 200,
+          "bodyBytes": 111106,
+          "transferredBytes": 111296
+        },
+        {
+          "url": "/images/galleries/gallery_8.webp",
+          "status": 200,
+          "bodyBytes": 36260,
+          "transferredBytes": 36449
+        },
+        {
+          "url": "/images/galleries/gallery_9.webp",
+          "status": 200,
+          "bodyBytes": 82690,
+          "transferredBytes": 82879
+        },
+        {
+          "url": "/images/galleries/gallery_12.webp",
+          "status": 200,
+          "bodyBytes": 21446,
+          "transferredBytes": 21635
+        },
+        {
+          "url": "/images/galleries/gallery_14.webp",
+          "status": 200,
+          "bodyBytes": 39812,
+          "transferredBytes": 40001
+        },
+        {
+          "url": "/images/galleries/gallery_11.webp",
+          "status": 200,
+          "bodyBytes": 28808,
+          "transferredBytes": 28997
+        },
+        {
+          "url": "/images/galleries/gallery_13.webp",
+          "status": 200,
+          "bodyBytes": 33782,
+          "transferredBytes": 33971
+        },
+        {
+          "url": "/images/galleries/gallery_10.webp",
+          "status": 200,
+          "bodyBytes": 110468,
+          "transferredBytes": 110658
+        },
+        {
+          "url": "/images/galleries/gallery_15.webp",
+          "status": 200,
+          "bodyBytes": 43266,
+          "transferredBytes": 43455
+        },
+        {
+          "url": "/images/galleries/gallery_16.webp",
+          "status": 200,
+          "bodyBytes": 50742,
+          "transferredBytes": 50931
+        },
+        {
+          "url": "/images/galleries/gallery_21.webp",
+          "status": 200,
+          "bodyBytes": 31436,
+          "transferredBytes": 31625
+        },
+        {
+          "url": "/images/galleries/gallery_19.webp",
+          "status": 200,
+          "bodyBytes": 47490,
+          "transferredBytes": 47679
+        },
+        {
+          "url": "/images/galleries/gallery_18.webp",
+          "status": 200,
+          "bodyBytes": 53052,
+          "transferredBytes": 53241
+        },
+        {
+          "url": "/images/galleries/gallery_17.webp",
+          "status": 200,
+          "bodyBytes": 28488,
+          "transferredBytes": 28677
+        },
+        {
+          "url": "/images/galleries/gallery_20.webp",
+          "status": 200,
+          "bodyBytes": 21100,
+          "transferredBytes": 21289
+        },
+        {
+          "url": "/images/galleries/gallery_22.webp",
+          "status": 200,
+          "bodyBytes": 41042,
+          "transferredBytes": 41231
+        },
+        {
+          "url": "/images/galleries/gallery_27.webp",
+          "status": 200,
+          "bodyBytes": 43374,
+          "transferredBytes": 43563
+        },
+        {
+          "url": "/images/galleries/gallery_24.webp",
+          "status": 200,
+          "bodyBytes": 29880,
+          "transferredBytes": 30069
+        },
+        {
+          "url": "/images/galleries/gallery_23.webp",
+          "status": 200,
+          "bodyBytes": 34196,
+          "transferredBytes": 34385
+        },
+        {
+          "url": "/images/galleries/gallery_26.webp",
+          "status": 200,
+          "bodyBytes": 52536,
+          "transferredBytes": 52725
+        },
+        {
+          "url": "/images/galleries/gallery_25.webp",
+          "status": 200,
+          "bodyBytes": 103128,
+          "transferredBytes": 103318
+        },
+        {
+          "url": "/images/galleries/gallery_28.webp",
+          "status": 200,
+          "bodyBytes": 48394,
+          "transferredBytes": 48583
+        },
+        {
+          "url": "/images/galleries/gallery_29.webp",
+          "status": 200,
+          "bodyBytes": 36520,
+          "transferredBytes": 36709
+        },
+        {
+          "url": "/images/galleries/gallery_30.webp",
+          "status": 200,
+          "bodyBytes": 28508,
+          "transferredBytes": 28697
+        },
+        {
+          "url": "/images/galleries/gallery_32.webp",
+          "status": 200,
+          "bodyBytes": 92784,
+          "transferredBytes": 92973
+        },
+        {
+          "url": "/images/galleries/gallery_33.webp",
+          "status": 200,
+          "bodyBytes": 69280,
+          "transferredBytes": 69469
+        },
+        {
+          "url": "/images/galleries/gallery_34.webp",
+          "status": 200,
+          "bodyBytes": 91120,
+          "transferredBytes": 91309
+        },
+        {
+          "url": "/images/galleries/gallery_31.webp",
+          "status": 200,
+          "bodyBytes": 77960,
+          "transferredBytes": 78149
+        },
+        {
+          "url": "/images/galleries/gallery_35.webp",
+          "status": 200,
+          "bodyBytes": 89004,
+          "transferredBytes": 89193
+        },
+        {
+          "url": "/images/galleries/gallery_36.webp",
+          "status": 200,
+          "bodyBytes": 135314,
+          "transferredBytes": 135504
+        }
+      ],
+      "page": {
+        "title": "密式旅行圖集",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 152,
+          "lcpElement": "P",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/galleries/gallery_1.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_2.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_2.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_3.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_3.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_4.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_4.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_5.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_5.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_6.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_6.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_7.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_7.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_8.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_8.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_9.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_9.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_11.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_11.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_12.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_12.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_13.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_13.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_14.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_14.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_15.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_15.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_16.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_16.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_17.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_17.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_18.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_18.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_19.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_19.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_20.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_20.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_21.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_21.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_22.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_22.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_23.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_23.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_24.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_24.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_25.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_25.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_26.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_26.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_27.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_27.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_28.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_28.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_29.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_29.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_30.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_30.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_31.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_31.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_32.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_32.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_33.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_33.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_34.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_34.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_35.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_35.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_36.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_36.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/galleries/",
+      "width": 390,
+      "dpr": 2,
+      "run": 2,
+      "imageBodyBytes": 2130610,
+      "imageTransferBytes": 2137420,
+      "imageRequests": 36,
+      "resources": [
+        {
+          "url": "/images/galleries/gallery_1.webp",
+          "status": 200,
+          "bodyBytes": 53714,
+          "transferredBytes": 53903
+        },
+        {
+          "url": "/images/galleries/gallery_3.webp",
+          "status": 200,
+          "bodyBytes": 133814,
+          "transferredBytes": 134004
+        },
+        {
+          "url": "/images/galleries/gallery_4.webp",
+          "status": 200,
+          "bodyBytes": 16370,
+          "transferredBytes": 16559
+        },
+        {
+          "url": "/images/galleries/gallery_2.webp",
+          "status": 200,
+          "bodyBytes": 120914,
+          "transferredBytes": 121104
+        },
+        {
+          "url": "/images/galleries/gallery_5.webp",
+          "status": 200,
+          "bodyBytes": 35740,
+          "transferredBytes": 35929
+        },
+        {
+          "url": "/images/galleries/gallery_6.webp",
+          "status": 200,
+          "bodyBytes": 57072,
+          "transferredBytes": 57261
+        },
+        {
+          "url": "/images/galleries/gallery_7.webp",
+          "status": 200,
+          "bodyBytes": 111106,
+          "transferredBytes": 111296
+        },
+        {
+          "url": "/images/galleries/gallery_8.webp",
+          "status": 200,
+          "bodyBytes": 36260,
+          "transferredBytes": 36449
+        },
+        {
+          "url": "/images/galleries/gallery_10.webp",
+          "status": 200,
+          "bodyBytes": 110468,
+          "transferredBytes": 110658
+        },
+        {
+          "url": "/images/galleries/gallery_9.webp",
+          "status": 200,
+          "bodyBytes": 82690,
+          "transferredBytes": 82879
+        },
+        {
+          "url": "/images/galleries/gallery_13.webp",
+          "status": 200,
+          "bodyBytes": 33782,
+          "transferredBytes": 33971
+        },
+        {
+          "url": "/images/galleries/gallery_14.webp",
+          "status": 200,
+          "bodyBytes": 39812,
+          "transferredBytes": 40001
+        },
+        {
+          "url": "/images/galleries/gallery_11.webp",
+          "status": 200,
+          "bodyBytes": 28808,
+          "transferredBytes": 28997
+        },
+        {
+          "url": "/images/galleries/gallery_12.webp",
+          "status": 200,
+          "bodyBytes": 21446,
+          "transferredBytes": 21635
+        },
+        {
+          "url": "/images/galleries/gallery_15.webp",
+          "status": 200,
+          "bodyBytes": 43266,
+          "transferredBytes": 43455
+        },
+        {
+          "url": "/images/galleries/gallery_17.webp",
+          "status": 200,
+          "bodyBytes": 28488,
+          "transferredBytes": 28677
+        },
+        {
+          "url": "/images/galleries/gallery_16.webp",
+          "status": 200,
+          "bodyBytes": 50742,
+          "transferredBytes": 50931
+        },
+        {
+          "url": "/images/galleries/gallery_19.webp",
+          "status": 200,
+          "bodyBytes": 47490,
+          "transferredBytes": 47679
+        },
+        {
+          "url": "/images/galleries/gallery_18.webp",
+          "status": 200,
+          "bodyBytes": 53052,
+          "transferredBytes": 53241
+        },
+        {
+          "url": "/images/galleries/gallery_20.webp",
+          "status": 200,
+          "bodyBytes": 21100,
+          "transferredBytes": 21289
+        },
+        {
+          "url": "/images/galleries/gallery_22.webp",
+          "status": 200,
+          "bodyBytes": 41042,
+          "transferredBytes": 41231
+        },
+        {
+          "url": "/images/galleries/gallery_21.webp",
+          "status": 200,
+          "bodyBytes": 31436,
+          "transferredBytes": 31625
+        },
+        {
+          "url": "/images/galleries/gallery_24.webp",
+          "status": 200,
+          "bodyBytes": 29880,
+          "transferredBytes": 30069
+        },
+        {
+          "url": "/images/galleries/gallery_26.webp",
+          "status": 200,
+          "bodyBytes": 52536,
+          "transferredBytes": 52725
+        },
+        {
+          "url": "/images/galleries/gallery_23.webp",
+          "status": 200,
+          "bodyBytes": 34196,
+          "transferredBytes": 34385
+        },
+        {
+          "url": "/images/galleries/gallery_25.webp",
+          "status": 200,
+          "bodyBytes": 103128,
+          "transferredBytes": 103318
+        },
+        {
+          "url": "/images/galleries/gallery_27.webp",
+          "status": 200,
+          "bodyBytes": 43374,
+          "transferredBytes": 43563
+        },
+        {
+          "url": "/images/galleries/gallery_29.webp",
+          "status": 200,
+          "bodyBytes": 36520,
+          "transferredBytes": 36709
+        },
+        {
+          "url": "/images/galleries/gallery_30.webp",
+          "status": 200,
+          "bodyBytes": 28508,
+          "transferredBytes": 28697
+        },
+        {
+          "url": "/images/galleries/gallery_32.webp",
+          "status": 200,
+          "bodyBytes": 92784,
+          "transferredBytes": 92973
+        },
+        {
+          "url": "/images/galleries/gallery_28.webp",
+          "status": 200,
+          "bodyBytes": 48394,
+          "transferredBytes": 48583
+        },
+        {
+          "url": "/images/galleries/gallery_31.webp",
+          "status": 200,
+          "bodyBytes": 77960,
+          "transferredBytes": 78149
+        },
+        {
+          "url": "/images/galleries/gallery_33.webp",
+          "status": 200,
+          "bodyBytes": 69280,
+          "transferredBytes": 69469
+        },
+        {
+          "url": "/images/galleries/gallery_34.webp",
+          "status": 200,
+          "bodyBytes": 91120,
+          "transferredBytes": 91309
+        },
+        {
+          "url": "/images/galleries/gallery_35.webp",
+          "status": 200,
+          "bodyBytes": 89004,
+          "transferredBytes": 89193
+        },
+        {
+          "url": "/images/galleries/gallery_36.webp",
+          "status": 200,
+          "bodyBytes": 135314,
+          "transferredBytes": 135504
+        }
+      ],
+      "page": {
+        "title": "密式旅行圖集",
+        "viewport": 390,
+        "scrollWidth": 390,
+        "lab": {
+          "lcpMs": 132,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/galleries/gallery_1.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_2.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_2.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_3.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_3.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_4.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_4.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_5.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_5.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_6.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_6.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_7.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_7.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_8.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_8.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_9.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_9.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_11.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_11.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_12.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_12.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_13.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_13.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_14.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_14.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_15.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_15.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_16.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_16.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_17.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_17.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_18.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_18.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_19.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_19.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_20.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_20.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_21.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_21.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_22.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_22.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_23.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_23.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_24.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_24.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_25.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_25.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_26.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_26.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_27.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_27.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_28.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_28.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_29.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_29.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_30.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_30.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_31.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_31.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_32.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_32.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_33.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_33.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_34.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_34.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_35.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_35.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.796875,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_36.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_36.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 167.8125,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 607972,
+      "imageTransferBytes": 609298,
+      "imageRequests": 7,
+      "resources": [
+        {
+          "url": "/images/banner.webp",
+          "status": 200,
+          "bodyBytes": 131226,
+          "transferredBytes": 131416
+        },
+        {
+          "url": "/images/sale_items.webp",
+          "status": 200,
+          "bodyBytes": 33386,
+          "transferredBytes": 33575
+        },
+        {
+          "url": "/images/landing_banner.webp",
+          "status": 200,
+          "bodyBytes": 53402,
+          "transferredBytes": 53591
+        },
+        {
+          "url": "/images/rooms.webp",
+          "status": 200,
+          "bodyBytes": 123138,
+          "transferredBytes": 123328
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        },
+        {
+          "url": "/images/booking.webp",
+          "status": 200,
+          "bodyBytes": 20748,
+          "transferredBytes": 20937
+        },
+        {
+          "url": "/images/galleries.webp",
+          "status": 200,
+          "bodyBytes": 65948,
+          "transferredBytes": 66137
+        }
+      ],
+      "page": {
+        "title": "密式旅行｜苗栗泰安露營區、小木屋與套房",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 108,
+          "lcpElement": "STRONG",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1478,
+            "cssWidth": 640.4375,
+            "loaded": true
+          },
+          {
+            "src": "/images/landing_banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/landing_banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/rooms.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/rooms.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/sale_items.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/sale_items.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/map.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 2000,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 960,
+            "cssWidth": 480,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 607972,
+      "imageTransferBytes": 609298,
+      "imageRequests": 7,
+      "resources": [
+        {
+          "url": "/images/banner.webp",
+          "status": 200,
+          "bodyBytes": 131226,
+          "transferredBytes": 131416
+        },
+        {
+          "url": "/images/landing_banner.webp",
+          "status": 200,
+          "bodyBytes": 53402,
+          "transferredBytes": 53591
+        },
+        {
+          "url": "/images/rooms.webp",
+          "status": 200,
+          "bodyBytes": 123138,
+          "transferredBytes": 123328
+        },
+        {
+          "url": "/images/sale_items.webp",
+          "status": 200,
+          "bodyBytes": 33386,
+          "transferredBytes": 33575
+        },
+        {
+          "url": "/images/galleries.webp",
+          "status": 200,
+          "bodyBytes": 65948,
+          "transferredBytes": 66137
+        },
+        {
+          "url": "/images/booking.webp",
+          "status": 200,
+          "bodyBytes": 20748,
+          "transferredBytes": 20937
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        }
+      ],
+      "page": {
+        "title": "密式旅行｜苗栗泰安露營區、小木屋與套房",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 108,
+          "lcpElement": "STRONG",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1478,
+            "cssWidth": 640.4375,
+            "loaded": true
+          },
+          {
+            "src": "/images/landing_banner.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/landing_banner.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/rooms.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/rooms.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/sale_items.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/sale_items.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/map.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 2000,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 480,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 960,
+            "cssWidth": 480,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1596324,
+      "imageTransferBytes": 1598033,
+      "imageRequests": 9,
+      "resources": [
+        {
+          "url": "/images/campsite_1_main.webp",
+          "status": 200,
+          "bodyBytes": 156272,
+          "transferredBytes": 156462
+        },
+        {
+          "url": "/images/campsite_2_main.webp",
+          "status": 200,
+          "bodyBytes": 142660,
+          "transferredBytes": 142850
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/log_cabin_3_main.webp",
+          "status": 200,
+          "bodyBytes": 113786,
+          "transferredBytes": 113976
+        },
+        {
+          "url": "/images/log_cabin_1/log_cabin_1_10.webp",
+          "status": 200,
+          "bodyBytes": 75678,
+          "transferredBytes": 75867
+        },
+        {
+          "url": "/images/campsite_3_main.webp",
+          "status": 200,
+          "bodyBytes": 231446,
+          "transferredBytes": 231636
+        },
+        {
+          "url": "/images/log_cabin_4_main.webp",
+          "status": 200,
+          "bodyBytes": 262644,
+          "transferredBytes": 262834
+        },
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        }
+      ],
+      "page": {
+        "title": "苗栗泰安房型｜露營營位、小木屋與套房 | 密式旅行露營區",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 164,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/campsite_1_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_4_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_4_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1365,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_1/log_cabin_1_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_1/log_cabin_1_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 564,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1596324,
+      "imageTransferBytes": 1598033,
+      "imageRequests": 9,
+      "resources": [
+        {
+          "url": "/images/campsite_2_main.webp",
+          "status": 200,
+          "bodyBytes": 142660,
+          "transferredBytes": 142850
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/log_cabin_3_main.webp",
+          "status": 200,
+          "bodyBytes": 113786,
+          "transferredBytes": 113976
+        },
+        {
+          "url": "/images/campsite_1_main.webp",
+          "status": 200,
+          "bodyBytes": 156272,
+          "transferredBytes": 156462
+        },
+        {
+          "url": "/images/log_cabin_4_main.webp",
+          "status": 200,
+          "bodyBytes": 262644,
+          "transferredBytes": 262834
+        },
+        {
+          "url": "/images/log_cabin_1/log_cabin_1_10.webp",
+          "status": 200,
+          "bodyBytes": 75678,
+          "transferredBytes": 75867
+        },
+        {
+          "url": "/images/campsite_3_main.webp",
+          "status": 200,
+          "bodyBytes": 231446,
+          "transferredBytes": 231636
+        },
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        }
+      ],
+      "page": {
+        "title": "苗栗泰安房型｜露營營位、小木屋與套房 | 密式旅行露營區",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 176,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/campsite_2_main.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/campsite_1_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_1_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/campsite_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/campsite_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_3_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_3_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_4_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_4_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1365,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_1/log_cabin_1_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_1/log_cabin_1_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 564,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 564,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/suite_1/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 1087320,
+      "imageTransferBytes": 1088458,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/suite_3/new_01.webp",
+          "status": 200,
+          "bodyBytes": 81808,
+          "transferredBytes": 81997
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        }
+      ],
+      "page": {
+        "title": "密式旅行露營區，近雲樓四人住宿套房",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 168,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 990,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 990,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking_announcement.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 567,
+            "cssWidth": 990,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 318,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_3/new_01.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_3/new_01.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 318,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 318,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/rooms/suite_1/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 1087320,
+      "imageTransferBytes": 1088458,
+      "imageRequests": 6,
+      "resources": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/suite_3/new_01.webp",
+          "status": 200,
+          "bodyBytes": 81808,
+          "transferredBytes": 81997
+        },
+        {
+          "url": "/images/log_cabin_2_main.webp",
+          "status": 200,
+          "bodyBytes": 120862,
+          "transferredBytes": 121052
+        },
+        {
+          "url": "/images/suite_2/suite_2_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243640,
+          "transferredBytes": 243830
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        }
+      ],
+      "page": {
+        "title": "密式旅行露營區，近雲樓四人住宿套房",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 164,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 990,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 990,
+            "loaded": true
+          },
+          {
+            "src": "/images/booking_announcement.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 567,
+            "cssWidth": 990,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_2/suite_2_6.webp?v=20260702",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_2/suite_2_6.webp?v=20260702",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1477,
+            "cssWidth": 318,
+            "loaded": true
+          },
+          {
+            "src": "/images/suite_3/new_01.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/suite_3/new_01.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 318,
+            "loaded": true
+          },
+          {
+            "src": "/images/log_cabin_2_main.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/log_cabin_2_main.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 1008,
+            "cssWidth": 318,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/galleries/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 1,
+      "imageBodyBytes": 2130610,
+      "imageTransferBytes": 2137420,
+      "imageRequests": 36,
+      "resources": [
+        {
+          "url": "/images/galleries/gallery_2.webp",
+          "status": 200,
+          "bodyBytes": 120914,
+          "transferredBytes": 121104
+        },
+        {
+          "url": "/images/galleries/gallery_3.webp",
+          "status": 200,
+          "bodyBytes": 133814,
+          "transferredBytes": 134004
+        },
+        {
+          "url": "/images/galleries/gallery_1.webp",
+          "status": 200,
+          "bodyBytes": 53714,
+          "transferredBytes": 53903
+        },
+        {
+          "url": "/images/galleries/gallery_5.webp",
+          "status": 200,
+          "bodyBytes": 35740,
+          "transferredBytes": 35929
+        },
+        {
+          "url": "/images/galleries/gallery_4.webp",
+          "status": 200,
+          "bodyBytes": 16370,
+          "transferredBytes": 16559
+        },
+        {
+          "url": "/images/galleries/gallery_6.webp",
+          "status": 200,
+          "bodyBytes": 57072,
+          "transferredBytes": 57261
+        },
+        {
+          "url": "/images/galleries/gallery_8.webp",
+          "status": 200,
+          "bodyBytes": 36260,
+          "transferredBytes": 36449
+        },
+        {
+          "url": "/images/galleries/gallery_7.webp",
+          "status": 200,
+          "bodyBytes": 111106,
+          "transferredBytes": 111296
+        },
+        {
+          "url": "/images/galleries/gallery_10.webp",
+          "status": 200,
+          "bodyBytes": 110468,
+          "transferredBytes": 110658
+        },
+        {
+          "url": "/images/galleries/gallery_9.webp",
+          "status": 200,
+          "bodyBytes": 82690,
+          "transferredBytes": 82879
+        },
+        {
+          "url": "/images/galleries/gallery_12.webp",
+          "status": 200,
+          "bodyBytes": 21446,
+          "transferredBytes": 21635
+        },
+        {
+          "url": "/images/galleries/gallery_11.webp",
+          "status": 200,
+          "bodyBytes": 28808,
+          "transferredBytes": 28997
+        },
+        {
+          "url": "/images/galleries/gallery_13.webp",
+          "status": 200,
+          "bodyBytes": 33782,
+          "transferredBytes": 33971
+        },
+        {
+          "url": "/images/galleries/gallery_14.webp",
+          "status": 200,
+          "bodyBytes": 39812,
+          "transferredBytes": 40001
+        },
+        {
+          "url": "/images/galleries/gallery_15.webp",
+          "status": 200,
+          "bodyBytes": 43266,
+          "transferredBytes": 43455
+        },
+        {
+          "url": "/images/galleries/gallery_18.webp",
+          "status": 200,
+          "bodyBytes": 53052,
+          "transferredBytes": 53241
+        },
+        {
+          "url": "/images/galleries/gallery_16.webp",
+          "status": 200,
+          "bodyBytes": 50742,
+          "transferredBytes": 50931
+        },
+        {
+          "url": "/images/galleries/gallery_17.webp",
+          "status": 200,
+          "bodyBytes": 28488,
+          "transferredBytes": 28677
+        },
+        {
+          "url": "/images/galleries/gallery_20.webp",
+          "status": 200,
+          "bodyBytes": 21100,
+          "transferredBytes": 21289
+        },
+        {
+          "url": "/images/galleries/gallery_19.webp",
+          "status": 200,
+          "bodyBytes": 47490,
+          "transferredBytes": 47679
+        },
+        {
+          "url": "/images/galleries/gallery_21.webp",
+          "status": 200,
+          "bodyBytes": 31436,
+          "transferredBytes": 31625
+        },
+        {
+          "url": "/images/galleries/gallery_22.webp",
+          "status": 200,
+          "bodyBytes": 41042,
+          "transferredBytes": 41231
+        },
+        {
+          "url": "/images/galleries/gallery_23.webp",
+          "status": 200,
+          "bodyBytes": 34196,
+          "transferredBytes": 34385
+        },
+        {
+          "url": "/images/galleries/gallery_24.webp",
+          "status": 200,
+          "bodyBytes": 29880,
+          "transferredBytes": 30069
+        },
+        {
+          "url": "/images/galleries/gallery_26.webp",
+          "status": 200,
+          "bodyBytes": 52536,
+          "transferredBytes": 52725
+        },
+        {
+          "url": "/images/galleries/gallery_27.webp",
+          "status": 200,
+          "bodyBytes": 43374,
+          "transferredBytes": 43563
+        },
+        {
+          "url": "/images/galleries/gallery_25.webp",
+          "status": 200,
+          "bodyBytes": 103128,
+          "transferredBytes": 103318
+        },
+        {
+          "url": "/images/galleries/gallery_28.webp",
+          "status": 200,
+          "bodyBytes": 48394,
+          "transferredBytes": 48583
+        },
+        {
+          "url": "/images/galleries/gallery_32.webp",
+          "status": 200,
+          "bodyBytes": 92784,
+          "transferredBytes": 92973
+        },
+        {
+          "url": "/images/galleries/gallery_31.webp",
+          "status": 200,
+          "bodyBytes": 77960,
+          "transferredBytes": 78149
+        },
+        {
+          "url": "/images/galleries/gallery_29.webp",
+          "status": 200,
+          "bodyBytes": 36520,
+          "transferredBytes": 36709
+        },
+        {
+          "url": "/images/galleries/gallery_30.webp",
+          "status": 200,
+          "bodyBytes": 28508,
+          "transferredBytes": 28697
+        },
+        {
+          "url": "/images/galleries/gallery_34.webp",
+          "status": 200,
+          "bodyBytes": 91120,
+          "transferredBytes": 91309
+        },
+        {
+          "url": "/images/galleries/gallery_33.webp",
+          "status": 200,
+          "bodyBytes": 69280,
+          "transferredBytes": 69469
+        },
+        {
+          "url": "/images/galleries/gallery_35.webp",
+          "status": 200,
+          "bodyBytes": 89004,
+          "transferredBytes": 89193
+        },
+        {
+          "url": "/images/galleries/gallery_36.webp",
+          "status": 200,
+          "bodyBytes": 135314,
+          "transferredBytes": 135504
+        }
+      ],
+      "page": {
+        "title": "密式旅行圖集",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 176,
+          "lcpElement": "H1",
+          "lcpUrl": null,
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/galleries/gallery_1.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_2.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_2.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_3.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_3.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_4.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_4.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_5.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_5.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_6.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_6.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_7.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_7.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_8.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_8.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_9.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_9.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_11.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_11.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_12.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_12.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_13.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_13.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_14.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_14.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_15.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_15.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_16.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_16.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_17.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_17.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_18.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_18.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_19.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_19.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_20.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_20.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_21.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_21.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_22.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_22.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_23.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_23.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_24.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_24.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_25.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_25.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_26.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_26.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_27.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_27.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_28.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_28.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_29.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_29.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_30.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_30.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_31.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_31.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_32.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_32.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_33.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_33.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_34.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_34.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_35.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_35.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_36.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_36.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "landing",
+      "route": "/galleries/",
+      "width": 1440,
+      "dpr": 1,
+      "run": 2,
+      "imageBodyBytes": 2130610,
+      "imageTransferBytes": 2137420,
+      "imageRequests": 36,
+      "resources": [
+        {
+          "url": "/images/galleries/gallery_6.webp",
+          "status": 200,
+          "bodyBytes": 57072,
+          "transferredBytes": 57261
+        },
+        {
+          "url": "/images/galleries/gallery_3.webp",
+          "status": 200,
+          "bodyBytes": 133814,
+          "transferredBytes": 134004
+        },
+        {
+          "url": "/images/galleries/gallery_5.webp",
+          "status": 200,
+          "bodyBytes": 35740,
+          "transferredBytes": 35929
+        },
+        {
+          "url": "/images/galleries/gallery_4.webp",
+          "status": 200,
+          "bodyBytes": 16370,
+          "transferredBytes": 16559
+        },
+        {
+          "url": "/images/galleries/gallery_2.webp",
+          "status": 200,
+          "bodyBytes": 120914,
+          "transferredBytes": 121104
+        },
+        {
+          "url": "/images/galleries/gallery_1.webp",
+          "status": 200,
+          "bodyBytes": 53714,
+          "transferredBytes": 53903
+        },
+        {
+          "url": "/images/galleries/gallery_7.webp",
+          "status": 200,
+          "bodyBytes": 111106,
+          "transferredBytes": 111296
+        },
+        {
+          "url": "/images/galleries/gallery_10.webp",
+          "status": 200,
+          "bodyBytes": 110468,
+          "transferredBytes": 110658
+        },
+        {
+          "url": "/images/galleries/gallery_8.webp",
+          "status": 200,
+          "bodyBytes": 36260,
+          "transferredBytes": 36449
+        },
+        {
+          "url": "/images/galleries/gallery_12.webp",
+          "status": 200,
+          "bodyBytes": 21446,
+          "transferredBytes": 21635
+        },
+        {
+          "url": "/images/galleries/gallery_11.webp",
+          "status": 200,
+          "bodyBytes": 28808,
+          "transferredBytes": 28997
+        },
+        {
+          "url": "/images/galleries/gallery_9.webp",
+          "status": 200,
+          "bodyBytes": 82690,
+          "transferredBytes": 82879
+        },
+        {
+          "url": "/images/galleries/gallery_14.webp",
+          "status": 200,
+          "bodyBytes": 39812,
+          "transferredBytes": 40001
+        },
+        {
+          "url": "/images/galleries/gallery_17.webp",
+          "status": 200,
+          "bodyBytes": 28488,
+          "transferredBytes": 28677
+        },
+        {
+          "url": "/images/galleries/gallery_13.webp",
+          "status": 200,
+          "bodyBytes": 33782,
+          "transferredBytes": 33971
+        },
+        {
+          "url": "/images/galleries/gallery_18.webp",
+          "status": 200,
+          "bodyBytes": 53052,
+          "transferredBytes": 53241
+        },
+        {
+          "url": "/images/galleries/gallery_15.webp",
+          "status": 200,
+          "bodyBytes": 43266,
+          "transferredBytes": 43455
+        },
+        {
+          "url": "/images/galleries/gallery_16.webp",
+          "status": 200,
+          "bodyBytes": 50742,
+          "transferredBytes": 50931
+        },
+        {
+          "url": "/images/galleries/gallery_19.webp",
+          "status": 200,
+          "bodyBytes": 47490,
+          "transferredBytes": 47679
+        },
+        {
+          "url": "/images/galleries/gallery_20.webp",
+          "status": 200,
+          "bodyBytes": 21100,
+          "transferredBytes": 21289
+        },
+        {
+          "url": "/images/galleries/gallery_22.webp",
+          "status": 200,
+          "bodyBytes": 41042,
+          "transferredBytes": 41231
+        },
+        {
+          "url": "/images/galleries/gallery_21.webp",
+          "status": 200,
+          "bodyBytes": 31436,
+          "transferredBytes": 31625
+        },
+        {
+          "url": "/images/galleries/gallery_23.webp",
+          "status": 200,
+          "bodyBytes": 34196,
+          "transferredBytes": 34385
+        },
+        {
+          "url": "/images/galleries/gallery_25.webp",
+          "status": 200,
+          "bodyBytes": 103128,
+          "transferredBytes": 103318
+        },
+        {
+          "url": "/images/galleries/gallery_24.webp",
+          "status": 200,
+          "bodyBytes": 29880,
+          "transferredBytes": 30069
+        },
+        {
+          "url": "/images/galleries/gallery_26.webp",
+          "status": 200,
+          "bodyBytes": 52536,
+          "transferredBytes": 52725
+        },
+        {
+          "url": "/images/galleries/gallery_27.webp",
+          "status": 200,
+          "bodyBytes": 43374,
+          "transferredBytes": 43563
+        },
+        {
+          "url": "/images/galleries/gallery_28.webp",
+          "status": 200,
+          "bodyBytes": 48394,
+          "transferredBytes": 48583
+        },
+        {
+          "url": "/images/galleries/gallery_30.webp",
+          "status": 200,
+          "bodyBytes": 28508,
+          "transferredBytes": 28697
+        },
+        {
+          "url": "/images/galleries/gallery_29.webp",
+          "status": 200,
+          "bodyBytes": 36520,
+          "transferredBytes": 36709
+        },
+        {
+          "url": "/images/galleries/gallery_31.webp",
+          "status": 200,
+          "bodyBytes": 77960,
+          "transferredBytes": 78149
+        },
+        {
+          "url": "/images/galleries/gallery_32.webp",
+          "status": 200,
+          "bodyBytes": 92784,
+          "transferredBytes": 92973
+        },
+        {
+          "url": "/images/galleries/gallery_33.webp",
+          "status": 200,
+          "bodyBytes": 69280,
+          "transferredBytes": 69469
+        },
+        {
+          "url": "/images/galleries/gallery_34.webp",
+          "status": 200,
+          "bodyBytes": 91120,
+          "transferredBytes": 91309
+        },
+        {
+          "url": "/images/galleries/gallery_36.webp",
+          "status": 200,
+          "bodyBytes": 135314,
+          "transferredBytes": 135504
+        },
+        {
+          "url": "/images/galleries/gallery_35.webp",
+          "status": 200,
+          "bodyBytes": 89004,
+          "transferredBytes": 89193
+        }
+      ],
+      "page": {
+        "title": "密式旅行圖集",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "lab": {
+          "lcpMs": 196,
+          "lcpElement": "IMG",
+          "lcpUrl": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+          "cls": 0
+        },
+        "images": [
+          {
+            "src": "/images/galleries/gallery_1.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_1.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_2.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_2.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_3.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_3.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_4.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_4.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_5.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_5.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_6.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_6.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_7.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_7.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_8.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_8.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_9.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_9.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_10.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_10.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_11.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_11.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_12.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_12.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_13.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_13.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_14.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_14.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_15.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_15.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_16.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_16.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_17.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_17.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_18.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_18.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_19.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_19.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_20.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_20.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_21.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_21.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_22.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_22.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_23.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_23.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_24.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_24.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_25.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_25.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_26.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_26.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_27.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_27.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_28.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_28.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_29.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_29.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_30.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_30.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_31.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_31.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_32.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_32.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_33.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_33.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_34.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_34.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_35.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_35.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          },
+          {
+            "src": "/images/galleries/gallery_36.webp",
+            "currentSrc": "http://127.0.0.1:4338/images/galleries/gallery_36.webp",
+            "srcset": null,
+            "sizes": null,
+            "naturalWidth": 945,
+            "cssWidth": 266,
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "viewer",
+      "width": 390,
+      "dpr": 2,
+      "initialImageBytes": 1087320,
+      "openingImageBytes": 1217172,
+      "thumbnailImageBytes": 3072368,
+      "thumbnailRequests": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        },
+        {
+          "url": "/images/suite_1/suite_1_3.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249758,
+          "transferredBytes": 249948
+        },
+        {
+          "url": "/images/suite_1/suite_1_5.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 157824,
+          "transferredBytes": 158014
+        },
+        {
+          "url": "/images/suite_1/suite_1_2.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 266360,
+          "transferredBytes": 266550
+        },
+        {
+          "url": "/images/suite_1/suite_1_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 230578,
+          "transferredBytes": 230768
+        },
+        {
+          "url": "/images/suite_1/suite_1_7.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 312652,
+          "transferredBytes": 312842
+        },
+        {
+          "url": "/images/suite_1/suite_1_11.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243252,
+          "transferredBytes": 243442
+        },
+        {
+          "url": "/images/suite_1/suite_1_14.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 159808,
+          "transferredBytes": 159998
+        },
+        {
+          "url": "/images/suite_1/suite_1_10.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 235178,
+          "transferredBytes": 235368
+        },
+        {
+          "url": "/images/suite_1/suite_1_13.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 187492,
+          "transferredBytes": 187682
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        },
+        {
+          "url": "/images/suite_1/suite_1_12.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 208332,
+          "transferredBytes": 208522
+        }
+      ],
+      "thumbs": [
+        {
+          "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_2.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_2.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_3.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_3.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_5.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_5.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_6.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_6.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_7.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_7.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": null,
+          "currentSrc": "",
+          "naturalWidth": 0,
+          "cssWidth": 56
+        },
+        {
+          "src": null,
+          "currentSrc": "",
+          "naturalWidth": 0,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_10.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_10.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_11.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_11.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_12.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_12.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_13.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_13.webp?v=20260702",
+          "naturalWidth": 1080,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/suite_1/suite_1_14.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_14.webp?v=20260702",
+          "naturalWidth": 1080,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/map.webp",
+          "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+          "naturalWidth": 2000,
+          "cssWidth": 56
+        },
+        {
+          "src": "/images/booking_announcement.webp",
+          "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+          "naturalWidth": 567,
+          "cssWidth": 56
+        }
+      ],
+      "full": {
+        "src": "/images/booking_announcement.webp",
+        "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+        "naturalWidth": 567,
+        "loaded": true
+      }
+    },
+    {
+      "kind": "viewer",
+      "width": 1440,
+      "dpr": 1,
+      "initialImageBytes": 1087320,
+      "openingImageBytes": 2857934,
+      "thumbnailImageBytes": 3498944,
+      "thumbnailRequests": [
+        {
+          "url": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249336,
+          "transferredBytes": 249526
+        },
+        {
+          "url": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 362350,
+          "transferredBytes": 362540
+        },
+        {
+          "url": "/images/booking_announcement.webp",
+          "status": 200,
+          "bodyBytes": 29324,
+          "transferredBytes": 29513
+        },
+        {
+          "url": "/images/suite_1/suite_1_2.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 266360,
+          "transferredBytes": 266550
+        },
+        {
+          "url": "/images/suite_1/suite_1_3.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 249758,
+          "transferredBytes": 249948
+        },
+        {
+          "url": "/images/suite_1/suite_1_5.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 157824,
+          "transferredBytes": 158014
+        },
+        {
+          "url": "/images/suite_1/suite_1_6.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 230578,
+          "transferredBytes": 230768
+        },
+        {
+          "url": "/images/suite_1/suite_1_8.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 226258,
+          "transferredBytes": 226448
+        },
+        {
+          "url": "/images/suite_1/suite_1_7.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 312652,
+          "transferredBytes": 312842
+        },
+        {
+          "url": "/images/suite_1/suite_1_12.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 208332,
+          "transferredBytes": 208522
+        },
+        {
+          "url": "/images/suite_1/suite_1_14.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 159808,
+          "transferredBytes": 159998
+        },
+        {
+          "url": "/images/suite_1/suite_1_11.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 243252,
+          "transferredBytes": 243442
+        },
+        {
+          "url": "/images/suite_1/suite_1_10.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 235178,
+          "transferredBytes": 235368
+        },
+        {
+          "url": "/images/map.webp",
+          "status": 200,
+          "bodyBytes": 180124,
+          "transferredBytes": 180314
+        },
+        {
+          "url": "/images/suite_1/suite_1_9.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 200318,
+          "transferredBytes": 200508
+        },
+        {
+          "url": "/images/suite_1/suite_1_13.webp?v=20260702",
+          "status": 200,
+          "bodyBytes": 187492,
+          "transferredBytes": 187682
+        }
+      ],
+      "thumbs": [
+        {
+          "src": "/images/suite_1/suite_1_4.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_4.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_1.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_1.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_2.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_2.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_3.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_3.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_5.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_5.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_6.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_6.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_7.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_7.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_8.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_8.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_9.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_9.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_10.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_10.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_11.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_11.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_12.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_12.webp?v=20260702",
+          "naturalWidth": 1477,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_13.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_13.webp?v=20260702",
+          "naturalWidth": 1080,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/suite_1/suite_1_14.webp?v=20260702",
+          "currentSrc": "http://127.0.0.1:4338/images/suite_1/suite_1_14.webp?v=20260702",
+          "naturalWidth": 1080,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/map.webp",
+          "currentSrc": "http://127.0.0.1:4338/images/map.webp",
+          "naturalWidth": 2000,
+          "cssWidth": 68
+        },
+        {
+          "src": "/images/booking_announcement.webp",
+          "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+          "naturalWidth": 567,
+          "cssWidth": 68
+        }
+      ],
+      "full": {
+        "src": "/images/booking_announcement.webp",
+        "currentSrc": "http://127.0.0.1:4338/images/booking_announcement.webp",
+        "naturalWidth": 567,
+        "loaded": true
+      }
+    }
+  ]
+}

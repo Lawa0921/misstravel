@@ -1,4 +1,5 @@
 ---
+import { imageSizes } from '../lib/responsive-images';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Banner from '../components/Banner.astro';
 import Tiles from '../components/Tiles.astro';
@@ -16,7 +17,7 @@ const webSiteSchema = {
 };
 ---
 
-<BaseLayout headerVariant="alt" schemaType="LocalBusiness" preloadImage="/images/banner.webp" extraSchemas={[webSiteSchema]}>
+<BaseLayout headerVariant="alt" schemaType="LocalBusiness" preloadImage="/images/banner.webp" preloadSizes={imageSizes.hero} extraSchemas={[webSiteSchema]}>
   <main id="main">
     <Banner title="密式旅行" subtitle="秘密景點，深度旅行" />
     <Tiles />

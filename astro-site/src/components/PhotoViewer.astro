@@ -1,7 +1,9 @@
 ---
+import { thumbnailImage, responsiveImage } from '../lib/responsive-images';
 import { safeInlineJson } from '../lib/safe-json';
 interface Props { id: string; label: string; mode: 'gallery' | 'room'; images: {src:string;alt:string}[]; }
 const {id,label,mode,images}=Astro.props;
+const viewerImages=images.map(image=>{const {width,height}=responsiveImage(image.src,'100vw');return {...image,width,height};});
 ---
 <div class="lightbox-overlay photo-viewer" id={id} role="dialog" aria-modal="true" aria-label={label} aria-hidden="true" data-photo-viewer={mode}>
   <div class="lightbox-content viewer-layout">
@@ -17,16 +19,18 @@ const {id,label,mode,images}=Astro.props;
     </div>
     <button type="button" class="lightbox-nav lightbox-prev" aria-label="上一張"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
     <button type="button" class="lightbox-nav lightbox-next" aria-label="下一張"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
-    <footer class="viewer-footer"><p class="viewer-caption" aria-live="polite">{images[0]?.alt}</p><div class="viewer-filmstrip" role="group" aria-label="照片快速選擇">{images.map((image,index)=><button type="button" class="viewer-thumb" data-viewer-index={index} aria-label={`顯示第 ${index+1} 張圖片`} aria-current={index===0?'true':'false'} tabindex={index===0?0:-1}><img data-thumb-src={image.src} alt="" width="72" height="48" decoding="async" /></button>)}</div></footer>
+    <footer class="viewer-footer"><p class="viewer-caption" aria-live="polite">{images[0]?.alt}</p><div class="viewer-filmstrip" role="group" aria-label="照片快速選擇">{images.map((image,index)=><button type="button" class="viewer-thumb" data-viewer-index={index} aria-label={`顯示第 ${index+1} 張圖片`} aria-current={index===0?'true':'false'} tabindex={index===0?0:-1}><img {...thumbnailImage(image.src)} alt="" decoding="async" /></button>)}</div></footer>
   </div>
-  <script is:inline type="application/json" data-viewer-data set:html={safeInlineJson(images)} />
+  <script is:inline type="application/json" data-viewer-data set:html={safeInlineJson(viewerImages)} />
 </div>
 <script>
+  import { activatePhoto, originalPhoto } from '../scripts/responsive-photo';
   import { attachPhotoGestures } from '../scripts/photo-gestures';
   import { waitForPhoto } from '../scripts/photo-ready';
+  import { cancelPhotoFlight, photoGeometry, flyPhoto } from '../scripts/photo-spatial';
   document.querySelectorAll<HTMLElement>('[data-photo-viewer]').forEach(viewer=>{
     const mode=viewer.dataset.photoViewer;
-    const images: {src:string;alt:string}[]=JSON.parse(viewer.querySelector('[data-viewer-data]')!.textContent!);
+    const images: {src:string;alt:string;width:number;height:number}[]=JSON.parse(viewer.querySelector('[data-viewer-data]')!.textContent!);
     const image=viewer.querySelector<HTMLImageElement>('[data-viewer-image]')!;
     const current=viewer.querySelector<HTMLElement>('[data-viewer-current]')!;
     const caption=viewer.querySelector<HTMLElement>('.viewer-caption')!;
@@ -35,49 +39,114 @@ const {id,label,mode,images}=Astro.props;
     const loading=viewer.querySelector<HTMLElement>('.viewer-loading')!;
     const strip=viewer.querySelector<HTMLElement>('.viewer-filmstrip')!;
     const thumbs=[...viewer.querySelectorAll<HTMLButtonElement>('[data-viewer-index]')];
-    let index=0,requested=0,token=0,zoomed=false;
-    const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+    let index=0,requested=0,token=0,zoomed=false,opened=false,decoration=0;
+    let shown: number | null = null;
+    let shownSrc = '';
+    let openPainted = false, openRevision = 0;
+    const carousel = mode==='room' ? document.getElementById('room-carousel') : null;
+    const triggers=mode==='gallery'?[...document.querySelectorAll<HTMLElement>('[data-lightbox="photos"]')]:[...document.querySelectorAll<HTMLElement>('[data-lightbox="room-photo"]')];
+    function sourcePhoto(at:number) {
+      return mode==='room' ? carousel?.querySelectorAll<HTMLImageElement>('.carousel-slide img')[at] || null : triggers[at]?.querySelector<HTMLImageElement>('img') || null;
+    }
+    function publish(name:'photo-viewer:shown'|'photo-viewer:return') {
+      if(shown!==null) viewer.dispatchEvent(new CustomEvent(name,{detail:{index:shown,src:images[shown].src}}));
+    }
+    function display(target:number, commit=true, src=images[target].src, keepView=false) {
+      loading.hidden=true;if(!keepView)resetZoom();
+      image.style.setProperty('--photo-width',`${images[target].width}px`);
+      image.style.setProperty('--photo-height',`${images[target].height}px`);
+      image.hidden=false;image.dataset.originalSrc=images[target].src;image.src=src;image.alt=images[target].alt;
+      if(commit){index=target;sync();}
+    }
     function resetZoom(){zoomed=false;if(viewer.classList.contains('is-zoomed'))viewer.classList.remove('is-zoomed');zoom.setAttribute('aria-pressed','false');zoom.setAttribute('aria-label','放大照片');zoom.querySelector('span')!.textContent='放大';stage.scrollTo({left:0,top:0,behavior:'instant'});image.style.removeProperty('transform');}
     function sync(){
       current.textContent=String(index+1);caption.textContent=images[index].alt;
       thumbs.forEach((thumb,i)=>{thumb.setAttribute('aria-current',String(i===index));thumb.tabIndex=i===index?0:-1;});
       const active=thumbs[index];if(active){const left=active.offsetLeft;if(left<strip.scrollLeft)strip.scrollLeft=left;else if(left+active.offsetWidth>strip.scrollLeft+strip.clientWidth)strip.scrollLeft=left+active.offsetWidth-strip.clientWidth;}
     }
-    async function select(next:number){
+    async function select(next:number, opening=false){
+      if(!opening)cancelPhotoFlight();
       requested=(next+images.length)%images.length;const target=requested,id=++token;
       const preload=new Image();preload.src=images[target].src;
       loading.textContent='照片準備中';loading.hidden=true;const wait=setTimeout(()=>{if(id===token){loading.hidden=false;loading.textContent='照片準備中';}},180);
       const ready=await waitForPhoto(preload);
       clearTimeout(wait);if(id!==token||!viewer.classList.contains('active'))return;
       if(ready!=='ready'){loading.hidden=false;loading.textContent=ready==='timeout'?'照片準備中，請再按一次。':'照片無法開啟，請選擇其他照片。';return;}
-      loading.hidden=true;resetZoom();image.hidden=false;index=target;image.src=images[index].src;image.alt=images[index].alt;sync();
-      if(!reduced.matches)image.animate([{opacity:.75},{opacity:1}],{duration:140,easing:'ease-out'});
+      display(target,false,images[target].src,opening);
+      // Let the browser select the newly assigned image request before inspecting
+      // complete/currentSrc (Gecko can still report the previous request in this task).
+      await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
+      if(id!==token||!opened||!viewer.classList.contains('active'))return;
+      const rendered=await waitForPhoto(image);
+      if(id!==token||!opened||!viewer.classList.contains('active'))return;
+      if(rendered!=='ready'){
+        // A decoded preload is not proof the live image accepted the same request.
+        // Keep caption/counter and the last successful photograph together on failure.
+        if(shown!==null)display(shown,true,shownSrc,opening);
+        else { image.hidden=true;image.removeAttribute('src'); }
+        loading.hidden=false;
+        loading.textContent=rendered==='timeout'?'照片準備中，請再按一次。':'照片無法開啟，請選擇其他照片。';
+        return;
+      }
+      index=target;shown=target;shownSrc=image.getAttribute('src')!;sync();publish('photo-viewer:shown');
     }
     function open(next:number){
-      viewer.classList.add('active');document.body.style.overflow='hidden';
-      // Only visible thumbnails request original images; don't download the whole set on page load.
-      if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const thumb=entry.target as HTMLImageElement;if(thumb.dataset.thumbSrc){thumb.src=thumb.dataset.thumbSrc;delete thumb.dataset.thumbSrc;}observer.unobserve(thumb);}),{root:strip,rootMargin:'80px'});viewer.querySelectorAll<HTMLImageElement>('[data-thumb-src]').forEach(thumb=>observer.observe(thumb));viewer.addEventListener('viewer:close',()=>observer.disconnect(),{once:true});}
-      else viewer.querySelectorAll<HTMLImageElement>('[data-thumb-src]').forEach(thumb=>{thumb.src=thumb.dataset.thumbSrc!;delete thumb.dataset.thumbSrc;});
+      cancelPhotoFlight();
+      if(!Number.isInteger(next)||!images[next])return;
+      if(opened)close(false);
+      const source=sourcePhoto(next),start=photoGeometry(source);
+      opened=true;shown=null;++token;openPainted=false;
+      const session=++openRevision;
+      const openingDeadline=performance.now()+400;
+      requestAnimationFrame(()=>{if(opened&&session===openRevision)openPainted=true;});
+      viewer.classList.add('active');
+      // Only visible thumbnails request responsive derivatives; don't download the whole set on page load.
+      if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const thumb=entry.target as HTMLImageElement;if(thumb.dataset.thumbSrc){activatePhoto(thumb,true);}observer.unobserve(thumb);}),{root:strip,rootMargin:'80px'});viewer.querySelectorAll<HTMLImageElement>('[data-thumb-src]').forEach(thumb=>observer.observe(thumb));viewer.addEventListener('viewer:close',()=>observer.disconnect(),{once:true});}
+      else viewer.querySelectorAll<HTMLImageElement>('[data-thumb-src]').forEach(thumb=>{activatePhoto(thumb,true);});
       // Give opening feedback immediately, but keep later selections on the loaded image until ready.
-      requested=next;index=next;image.hidden=true;image.removeAttribute('src');image.alt=images[index].alt;sync();resetZoom();void select(next);
+      requested=next;index=next;image.hidden=true;image.removeAttribute('src');image.alt=images[index].alt;sync();resetZoom();
+      if(source?.complete&&source.naturalWidth&&originalPhoto(source)===new URL(images[next].src,document.baseURI).href){
+        display(next,true,source.currentSrc);
+        if(image.complete&&image.naturalWidth){shown=next;shownSrc=source.currentSrc;publish('photo-viewer:shown');}
+        // Resolution loading is functional, independent of optional animation cancellation.
+        void select(next,true);
+        const generation=token,flightGeneration=++decoration;
+        // The viewer is already usable. A responsive source may finish its local
+        // image-selection task after the first frame; never wait for the full original
+        // to show content, and never revive a cancelled decorative opening.
+        void waitForPhoto(image).then(ready=>{
+          if(ready!=='ready'||generation!==token||!opened||!viewer.classList.contains('active'))return;
+          shown=next;shownSrc=image.getAttribute('src')!;publish('photo-viewer:shown');
+          if(flightGeneration===decoration && performance.now()<=openingDeadline)flyPhoto(start,photoGeometry(image),'open');
+        });
+      }else void select(next);
     }
-    function close(){viewer.classList.remove('active');viewer.dispatchEvent(new Event('viewer:close'));++token;loading.hidden=true;resetZoom();}
-    const triggers=mode==='gallery'?[...document.querySelectorAll<HTMLElement>('[data-lightbox="photos"]')]:[...document.querySelectorAll<HTMLElement>('[data-lightbox="room-photo"]')];
+    function close(decorate=true){
+      if(!opened)return;
+      opened=false;++token;cancelPhotoFlight();
+      const start=decorate&&openPainted&&!zoomed&&!image.style.transform&&shown!==null &&originalPhoto(image)===new URL(images[shown].src,document.baseURI).href ? photoGeometry(image,true) : null;
+      openPainted=false;
+      publish('photo-viewer:return');
+      const end=shown!==null?photoGeometry(sourcePhoto(shown)):null;
+      viewer.classList.remove('active');viewer.dispatchEvent(new Event('viewer:close'));
+      loading.hidden=true;resetZoom();
+      if(decorate)flyPhoto(start,end,'close');
+    }
     triggers.forEach((trigger,i)=>trigger.addEventListener('click',event=>{
       if(event instanceof MouseEvent&&(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey))return;
       event.preventDefault();const active=mode==='room'?Number(document.querySelector('.carousel-slide.active')?.getAttribute('data-index')||0):i;open(active);
     }));
-    viewer.querySelector('.lightbox-close')!.addEventListener('click',close);
+    viewer.querySelector('.lightbox-close')!.addEventListener('click',()=>close());
     viewer.querySelector('.lightbox-prev')!.addEventListener('click',()=>void select(requested-1));
     viewer.querySelector('.lightbox-next')!.addEventListener('click',()=>void select(requested+1));
     thumbs.forEach((thumb,i)=>thumb.addEventListener('click',()=>void select(i)));
     viewer.addEventListener('click',event=>{if(event.target===viewer)close();});
     document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&opened){close();return;}
       if(!viewer.classList.contains('active'))return;
-      if(event.key==='Escape'){close();return;}
       if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(!zoomed&&(event.target as Element).closest('.viewer-filmstrip'))thumbs[(requested+(event.key==='ArrowLeft'?-1:1)+images.length)%images.length]?.focus({preventScroll:true});if(zoomed){stage.scrollBy({left:event.key==='ArrowLeft'?-120:120,behavior:'instant'});}else void select(requested+(event.key==='ArrowLeft'?-1:1));}
     });
-    function toggleZoom(){zoomed=!zoomed;viewer.classList.toggle('is-zoomed',zoomed);zoom.setAttribute('aria-pressed',String(zoomed));zoom.setAttribute('aria-label',zoomed?'還原照片大小':'放大照片');zoom.querySelector('span')!.textContent=zoomed?'還原':'放大';if(zoomed){requestAnimationFrame(()=>{stage.scrollLeft=(stage.scrollWidth-stage.clientWidth)/2;stage.scrollTop=(stage.scrollHeight-stage.clientHeight)/2;});}else stage.scrollTo({left:0,top:0,behavior:'instant'});}
+    function toggleZoom(){++decoration;cancelPhotoFlight();zoomed=!zoomed;viewer.classList.toggle('is-zoomed',zoomed);zoom.setAttribute('aria-pressed',String(zoomed));zoom.setAttribute('aria-label',zoomed?'還原照片大小':'放大照片');zoom.querySelector('span')!.textContent=zoomed?'還原':'放大';if(zoomed){requestAnimationFrame(()=>{if(!opened||!zoomed)return;stage.scrollLeft=(stage.scrollWidth-stage.clientWidth)/2;stage.scrollTop=(stage.scrollHeight-stage.clientHeight)/2;});}else stage.scrollTo({left:0,top:0,behavior:'instant'});}
     zoom.addEventListener('click',toggleZoom);stage.addEventListener('dblclick',toggleZoom);
     let pan: {id:number;x:number;y:number;left:number;top:number}|null=null;
     stage.addEventListener('pointerdown',event=>{
@@ -89,14 +158,17 @@ const {id,label,mode,images}=Astro.props;
     const endPan=()=>{const id=pan?.id;pan=null;stage.classList.remove('is-panning');if(id!==undefined&&stage.hasPointerCapture(id))stage.releasePointerCapture(id);};
     stage.addEventListener('pointerup',endPan);stage.addEventListener('pointercancel',endPan);stage.addEventListener('lostpointercapture',event=>{if(event.target===stage)endPan();});
 
-    attachPhotoGestures(stage,{disabled:()=>zoomed,onMove:dx=>image.style.transform=`translateX(${dx*.5}px)`,onEnd:direction=>{image.style.removeProperty('transform');if(direction)void select(requested+direction);}});
+    attachPhotoGestures(stage,{disabled:()=>zoomed,onStart:()=>{++decoration;cancelPhotoFlight();},onMove:dx=>image.style.transform=`translateX(${dx*.5}px)`,onEnd:direction=>{image.style.removeProperty('transform');if(direction)void select(requested+direction);}});
     // Shared dialog accessibility owns focus, scroll lock and Escape restoration.
-    new MutationObserver(()=>{if(!viewer.classList.contains('active')){++token;resetZoom();loading.hidden=true;viewer.dispatchEvent(new Event('viewer:close'));}}).observe(viewer,{attributes:true,attributeFilter:['class']});
+    new MutationObserver(()=>{if(!viewer.classList.contains('active'))close();}).observe(viewer,{attributes:true,attributeFilter:['class']});
+    for(const event of ['resize','pagehide','pageswap','pointerdown','keydown'])window.addEventListener(event,()=>{++decoration;},{capture:true});
+    matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>{++decoration;});
+    for(const event of ['pagehide','pageswap'])window.addEventListener(event,()=>{close(false);cancelPhotoFlight();});
   });
   document.documentElement.dataset.viewerReady='true';
 </script>
 <style>
-  .photo-viewer {position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:var(--color-bg-alt);opacity:0;visibility:hidden;pointer-events:none;transition:opacity 180ms,visibility 0s linear 180ms;}
+  .photo-viewer {position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:var(--color-bg-alt);opacity:0;visibility:hidden;pointer-events:none;}
   .photo-viewer.active {opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s;}
   .viewer-layout {position:relative;width:100%;height:100dvh;display:grid;grid-template-rows:68px minmax(0,1fr) auto;max-height:none;}
   .viewer-toolbar {display:flex;align-items:center;gap:1rem;padding:.5rem max(1rem,4vw);border-bottom:1px solid var(--color-border);background:var(--color-bg);}
@@ -105,7 +177,7 @@ const {id,label,mode,images}=Astro.props;
   .lightbox-close{border:0;background:none;font-size:2rem;}.viewer-zoom{gap:.5rem;border-radius:999px;padding:.5rem .8rem;font:inherit;font-size:.85rem;}.lightbox-nav:hover,.viewer-zoom:hover{border-color:var(--color-aqua);color:var(--color-aqua);}
   .viewer-stage{min-height:0;position:relative;margin:1.5rem max(4rem,8vw) .75rem;display:flex;justify-content:center;align-items:center;overflow:hidden;touch-action:pan-y pinch-zoom;cursor:grab;}
   .viewer-stage img[hidden]{display:none;}
-  .viewer-stage img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;user-select:none;-webkit-user-drag:none;}
+  .viewer-stage img{display:block;max-width:100%;max-height:100%;width:var(--photo-width,auto);height:var(--photo-height,auto);object-fit:contain;user-select:none;-webkit-user-drag:none;}
   .lightbox-nav{position:absolute;top:46%;width:48px;height:48px;}.lightbox-prev{left:1.3rem;}.lightbox-next{right:1.3rem;}
   .viewer-footer{min-width:0;padding:.5rem max(1rem,4vw) max(.75rem,env(safe-area-inset-bottom));background:var(--color-bg);}
   .viewer-caption{margin:0 0 .6rem;font-size:.85rem;line-height:1.5;color:var(--color-paper-muted);text-align:center;}

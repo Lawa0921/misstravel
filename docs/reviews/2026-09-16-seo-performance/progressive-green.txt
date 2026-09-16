@@ -1,0 +1,25 @@
+
+Running 20 tests using 1 worker
+
+  ✓   1 [chromium] › tests/e2e/photo-spatial.spec.ts:50:3 › loaded same-photo opening and closing flights: /rooms/suite_1/ (850ms)
+  ✓   2 [chromium] › tests/e2e/photo-spatial.spec.ts:50:3 › loaded same-photo opening and closing flights: /galleries/ (750ms)
+  ✓   3 [chromium] › tests/e2e/photo-spatial.spec.ts:69:3 › room keeps successfully viewed photo and scroll/focus on click (857ms)
+  ✓   4 [chromium] › tests/e2e/photo-spatial.spec.ts:69:3 › room keeps successfully viewed photo and scroll/focus on Escape (756ms)
+  ✓   5 [chromium] › tests/e2e/photo-spatial.spec.ts:87:1 › rapid close/reopen and late loading never resurrect or replace the last photo (706ms)
+  ✓   6 [chromium] › tests/e2e/photo-spatial.spec.ts:111:1 › failed requested photo preserves the successful room selection (623ms)
+  ✓   7 [chromium] › tests/e2e/photo-spatial.spec.ts:123:1 › reduced motion changes, zoom and offscreen destinations suppress flights (1.5s)
+  ✓   8 [chromium] › tests/e2e/photo-spatial.spec.ts:156:1 › unloaded source opens normally and resize removes decoration (496ms)
+  ✓   9 [chromium] › tests/e2e/photo-spatial.spec.ts:167:1 › without JavaScript original room photos and gallery image links remain available (530ms)
+  ✓  10 [chromium] › tests/e2e/photo-spatial.spec.ts:180:1 › same-task open/Escape closes once, releases scroll and cancels the queued opening frame (524ms)
+  ✓  11 [chromium] › tests/e2e/photo-spatial.spec.ts:201:1 › a live image decode failure after preload restores the last successfully shown photo (570ms)
+  ✓  12 [chromium] › tests/e2e/progressive-photo-state.spec.ts:12:1 › progressive full image keeps its display geometry after high-resolution decoding (877ms)
+  ✓  13 [chromium] › tests/e2e/progressive-photo-state.spec.ts:19:1 › a delayed full-resolution upgrade never resets active zoom and pan (620ms)
+  ✓  14 [chromium] › tests/e2e/responsive-images.spec.ts:4:33 › responsive requests 390 DPR1 (2.3s)
+  ✓  15 [chromium] › tests/e2e/responsive-images.spec.ts:4:33 › responsive requests 390 DPR2 (2.4s)
+  ✓  16 [chromium] › tests/e2e/responsive-images.spec.ts:4:33 › responsive requests 390 DPR3 (2.8s)
+  ✓  17 [chromium] › tests/e2e/responsive-images.spec.ts:4:33 › responsive requests 1440 DPR1 (2.7s)
+  ✓  18 [chromium] › tests/e2e/responsive-images.spec.ts:42:1 › opening animates the loaded derivative before a delayed original resolves (458ms)
+  ✓  19 [chromium] › tests/e2e/responsive-images.spec.ts:63:1 › no JavaScript retains original fallback and direct full image navigation (561ms)
+  ✓  20 [chromium] › tests/e2e/responsive-images.spec.ts:73:1 › compare collects the loaded derivative and keeps selection, focus and history (867ms)
+
+  20 passed (22.8s)

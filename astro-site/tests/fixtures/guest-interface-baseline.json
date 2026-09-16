@@ -3,12 +3,12 @@
   "contracts": [
     {
       "file": "404.html",
-      "seo": "2f156cc378d6d567d2e8e821d8b44e3af9d635cc369236dfa684fe031651e74c",
+      "seo": "9a1a4f72158b5f98062f56c6b316527ac088f4be005ce3bcbe99f03ebf4dbad8",
       "regions": []
     },
     {
       "file": "index.html",
-      "seo": "6c5b451f1d83cef2260868274e77f8477c6644bd3e4d7ad66af64d77672a7c09",
+      "seo": "d6c79095f239dad033c8538194a9ae7e162dc518260c7f037e9ff37608661cbf",
       "regions": []
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "file": "infos/index.html",
-      "seo": "fd6f7df65ac3777a15dac4f51a698bcba4c24075333ea138b6d1e44646ec57b6",
+      "seo": "511cb5bd40ee61ed562226c490e9f088c1438d39b8f22b15a84f17520cdcfabe",
       "regions": [
         {
           "selector": ".spotlights .content",
@@ -184,7 +184,7 @@
     },
     {
       "file": "infos/guide/index.html",
-      "seo": "0fb285cfc5307c529252b6b61405deccf4a1595e01e022e271a1054e7bf6c513",
+      "seo": "282da64f96f4359e8f65dcb3af7fbae2bdc5353777c748f5a6ca7eb060e3ffa9",
       "regions": [
         {
           "selector": ".modal-body",
@@ -204,7 +204,7 @@
     },
     {
       "file": "infos/map/index.html",
-      "seo": "661c8ff73dbf5bf2bb799d4321d4cabd5fef771332ca96436293134653278a5c",
+      "seo": "e804fc9b939353de4d2de05a5c306371a1c978ecf27344dc4567393a068f34b0",
       "regions": [
         {
           "selector": ".info-content",
@@ -217,7 +217,7 @@
     },
     {
       "file": "infos/menu/index.html",
-      "seo": "3d1a58ae16dd51fafde4bc3be940b2f1dfbdd3c5dfc54e414cb7b309614a6260",
+      "seo": "42b0fd57d466c9666987d23fa35f4b147a12f8eed91ce318b9d05c3db9322253",
       "regions": [
         {
           "selector": ".info-content",

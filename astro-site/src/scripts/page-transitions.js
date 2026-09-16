@@ -9,6 +9,11 @@
     try { const value = new URL(url, location.href); return value.origin === location.origin ? value.pathname : null; }
     catch { return null; }
   };
+  const original = (image) => {
+    const src = image?.dataset.originalSrc;
+    if (!src?.startsWith('/images/')) return null;
+    try { const url = new URL(src, location.href); return url.origin === location.origin ? url.href : null; } catch { return null; }
+  };
   const roomPath = (path) => typeof path === 'string' && /^\/rooms\/[a-z0-9_]+\/$/.test(path);
   const pair = (from, to) => from === '/rooms/' && roomPath(to)
     ? { path: to, direction: 'open' }
@@ -52,7 +57,7 @@
       && Date.now() - pending.at < 5000) {
       const observer = new MutationObserver(() => {
         const image = [...document.querySelectorAll('img[data-room-photo]')]
-          .find((item) => item.dataset.roomPhoto === pending.from && item.src === pending.src);
+          .find((item) => item.dataset.roomPhoto === pending.from && original(item) === pending.src);
         if (!image) return;
         image.loading = 'eager';
         observer.disconnect();
@@ -74,7 +79,7 @@
       // A single-use same-tab handshake avoids animating an off-screen, stale,
       // different-carousel-slide or not-yet-loaded destination photograph.
       sessionStorage.setItem(key, JSON.stringify({from: location.pathname, to,
-        src: image.currentSrc || image.src, at: Date.now(), direction: selection.direction}));
+        src: original(image), at: Date.now(), direction: selection.direction}));
     } catch { return; }
     namePhoto(image, transition);
   });
@@ -95,7 +100,7 @@
     const image = selection && eligibleImage(selection.path);
     // Do not wait for an image or fly between different views. Native navigation
     // is always the fallback, even on a slow connection or a deep-scroll return.
-    if (!image || (image.currentSrc || image.src) !== pending.src) {
+    if (!image || !original(image) || original(image) !== pending.src) {
       transition.skipTransition();
       return;
     }

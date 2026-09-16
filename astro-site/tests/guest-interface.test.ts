@@ -3,6 +3,9 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { load } from 'cheerio';
+// Six SEO-only hashes were refreshed after the reviewed landing-summary changes.
+// Operational text/media/link hashes remain unchanged; seo-preservation-audit.mjs
+// separately enforces the precise metadata allowlist against the pre-change build.
 import baseline from './fixtures/guest-interface-baseline.json';
 import font from './fixtures/setofont-coverage.json';
 const root = join(__dirname, '..');

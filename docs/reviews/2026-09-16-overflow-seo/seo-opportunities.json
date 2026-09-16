@@ -1,0 +1,426 @@
+{
+  "base": "a2dac9ed61a8b9478dbd6ebca6119a333b9fbba8",
+  "pages": 26,
+  "allSeoUnchanged": true,
+  "imageElements": 803,
+  "responsiveElements": 0,
+  "rows": [
+    {
+      "file": "404.html",
+      "seoUnchanged": true,
+      "title": "頁面不存在 | 密式旅行露營區",
+      "description": "密式旅行露營區，位於苗栗泰安鄉，提供露營、小木屋、套房等多種住宿選擇，園內還提供桌遊咖啡廳、兒童遊戲室、兒童沙坑等空間，是個非常適合闔家前往的親子露營區。桌遊咖啡廳除了販售輕食、咖啡以外，也有提供免費的桌遊教學。雲海、夕陽等美景也經常造訪，竹林秘境車程十分鐘即可到達。",
+      "mainTextLength": 38,
+      "images": 4,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization"
+      ]
+    },
+    {
+      "file": "index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行｜苗栗泰安露營區、小木屋與套房",
+      "description": "密式旅行露營區，位於苗栗泰安鄉，提供露營、小木屋、套房等多種住宿選擇，園內還提供桌遊咖啡廳、兒童遊戲室、兒童沙坑等空間，是個非常適合闔家前往的親子露營區。桌遊咖啡廳除了販售輕食、咖啡以外，也有提供免費的桌遊教學。雲海、夕陽等美景也經常造訪，竹林秘境車程十分鐘即可到達。",
+      "mainTextLength": 315,
+      "images": 11,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "WebSite"
+      ]
+    },
+    {
+      "file": "announcements/index.html",
+      "seoUnchanged": true,
+      "title": "最新消息 | 密式旅行露營區",
+      "description": "密式旅行露營區最新公告與活動消息",
+      "mainTextLength": 59,
+      "images": 5,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "ItemList",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "galleries/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行圖集",
+      "description": "探索密式旅行露營區的美麗風景：雲海繚繞的清晨、絢麗夕陽、舒適住宿空間、兒童遊樂設施、桌遊咖啡廳等。",
+      "mainTextLength": 81,
+      "images": 77,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "ImageGallery",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/index.html",
+      "seoUnchanged": true,
+      "title": "關於密式 | 密式旅行露營區",
+      "description": "了解密式旅行露營區的故事與理念",
+      "mainTextLength": 688,
+      "images": 12,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/index.html",
+      "seoUnchanged": true,
+      "title": "苗栗泰安房型｜露營營位、小木屋與套房 | 密式旅行露營區",
+      "description": "密式旅行提供多樣化住宿選擇：露營營位享受大自然、溫馨露營木屋適合家庭、舒適套房提供完整住宿空間。",
+      "mainTextLength": 2749,
+      "images": 34,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "ItemList",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "sale_items/index.html",
+      "seoUnchanged": true,
+      "title": "密式柑仔店 | 密式旅行露營區",
+      "description": "密式柑仔店提供各種露營用品、休閒食品與特色商品，讓您的苗栗泰安露營之旅更加便利與豐富。",
+      "mainTextLength": 1822,
+      "images": 12,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "Product",
+        "Product",
+        "Product",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "announcements/website/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，新版官網正式上線",
+      "description": "由老板親自操刀設計、編寫的官方網站即將於近日上線！",
+      "mainTextLength": 202,
+      "images": 5,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/account/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，訂房流程與匯款資訊",
+      "description": "密式旅行露營區訂房流程：線上訂房系統提供空房查詢，確認日期後請透過官方 LINE @rys8178b 或 Facebook 聯絡預訂，再依通知完成匯款並由原聯絡管道回報。",
+      "mainTextLength": 1942,
+      "images": 5,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/contact-method/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，聯絡資訊",
+      "description": "密式旅行露營區聯絡資訊：LINE 官方帳號 @rys8178b、電話 0905-108-958，位於苗栗縣泰安鄉大興村，提供 Facebook、Instagram、Email 等聯繫方式。",
+      "mainTextLength": 775,
+      "images": 5,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/guide/index.html",
+      "seoUnchanged": true,
+      "title": "交通指引｜大湖與豆腐街路線 | 密式旅行露營區",
+      "description": "前往密式旅行露營區的詳細交通指引，包含大湖路線和豆腐街路線兩種選擇",
+      "mainTextLength": 4292,
+      "images": 31,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/map/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，園區地圖",
+      "description": "密式旅行露營區園區地圖，清楚標示木屋、營位、盥洗室、停車場等設施位置，幫助您更好地規劃苗栗泰安露營旅程",
+      "mainTextLength": 598,
+      "images": 5,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/menu/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，密式菜單",
+      "description": "密式旅行露營區菜單，提供多樣化餐點選擇，讓您在苗栗泰安露營時也能品嚐美味料理，了解詳細菜色與價格資訊",
+      "mainTextLength": 598,
+      "images": 5,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/roles/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，園內規約",
+      "description": "密式旅行露營區園內規約，包含寵物政策、禁煙規定、安全注意事項、住宿規則等，確保您的苗栗泰安露營體驗更加愉快安全",
+      "mainTextLength": 1278,
+      "images": 4,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/set-menu-info/index.html",
+      "seoUnchanged": true,
+      "title": "代訂合菜 | 密式旅行露營區",
+      "description": "密式旅行露營區提供代訂合菜服務，包含家庭、經濟、精緻三種合菜選擇",
+      "mainTextLength": 742,
+      "images": 10,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "infos/video/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，園區影片",
+      "description": "觀看密式旅行露營區的 YouTube 介紹影片，探索苗栗泰安美麗的山林環境、木屋與露營設施，為您的露營之旅做最好的準備",
+      "mainTextLength": 591,
+      "images": 4,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "Organization",
+        "VideoObject",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/campsite_1/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，櫻花之盡木棧板露營區",
+      "description": "密式旅行櫻花之盡木棧板營：三帳12人以下平日2400元，四帳16人以下平日3200元。線上系統顯示四帳價，三帳依現場帳數收費；連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 5749,
+      "images": 66,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/campsite_2/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，沒日之嶺草地露營區",
+      "description": "密式旅行沒日之嶺草地營：草地約19乘12公尺，三帳12人以下平日2400元，四帳16人以下平日3200元。實際依帳數計價；連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 4365,
+      "images": 48,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/campsite_3/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，雨棚露營區",
+      "description": "密式旅行雨棚區：兩帳包區適用8人以下，雨棚約11乘8公尺，提供流理台、衛浴與桌椅。平日1600元、假日2000元、連假2400元；連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 4437,
+      "images": 50,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_1/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，觀山之屋露營小木屋",
+      "description": "密式旅行觀山之屋四人露營木屋，附房外平台，使用公用流理台、衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 5081,
+      "images": 58,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_2/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，依山之屋 - 靜露營小木屋",
+      "description": "密式旅行依山之屋靜房：四人露營木屋，使用半個室外平台、公用流理台、衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 4609,
+      "images": 52,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_3/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，依山之屋 - 默露營小木屋",
+      "description": "密式旅行依山之屋默房：四人露營木屋，使用半個室外平台、公用流理台、衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 5220,
+      "images": 60,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/log_cabin_4/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，依山之屋 - 沉露營小木屋",
+      "description": "密式旅行依山之屋沉房：四人露營木屋，附涼亭與桌子，使用公用衛浴及冰箱，無提供早晚餐。平日1200元、假日1700元、連假2000元；連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 4429,
+      "images": 50,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/suite_1/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，近雲樓四人住宿套房",
+      "description": "密式旅行密式之眼近雲樓四人套房，附獨立衛浴、電視與冷暖氣。平日2400元不附早餐；假日4000元、連假4600元附早餐。連續假期限接三天兩夜以上預訂；加人及戶外搭帳條件見房型說明。",
+      "mainTextLength": 5286,
+      "images": 60,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/suite_2/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，閲陽樓四人住宿套房",
+      "description": "密式旅行密式之頂閲陽樓四人套房，附獨立衛浴、電視與冷暖氣，炊煮限室外平台。平日2400元不附早餐；假日4000元、連假4600元附早餐。連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 5555,
+      "images": 64,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "file": "rooms/suite_3/index.html",
+      "seoUnchanged": true,
+      "title": "密式旅行露營區，映月之屋雙人住宿套房",
+      "description": "密式旅行映月之屋雙人套房，附房內衛浴、電視與冷暖氣。平日1600元不附早餐；假日2500元、連假2800元附早餐。連續假期限接三天兩夜以上預訂。",
+      "mainTextLength": 5454,
+      "images": 66,
+      "responsive": 0,
+      "missingDimensions": 0,
+      "schemas": [
+        "LodgingBusiness",
+        "Accommodation",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "file": "/images/banner.webp",
+      "width": 1478,
+      "height": 1108,
+      "originalBytes": 131226,
+      "thumb192Bytes": 6356,
+      "mobile768Bytes": 65258
+    },
+    {
+      "file": "/images/suite_1/suite_1_4.webp",
+      "width": 1477,
+      "height": 1108,
+      "originalBytes": 249336,
+      "thumb192Bytes": 8576,
+      "mobile768Bytes": 73426
+    },
+    {
+      "file": "/images/campsite_1_main.webp",
+      "width": 945,
+      "height": 709,
+      "originalBytes": 156272,
+      "thumb192Bytes": 8456,
+      "mobile768Bytes": 116020
+    }
+  ],
+  "note": "Variants measured only in memory; not deployed or substituted for originals. Sizes are encoded file bytes, not measured network savings or Core Web Vitals."
+}

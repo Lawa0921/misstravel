@@ -1,4 +1,5 @@
 ---
+import { responsiveImage, imageSizes } from '../lib/responsive-images';
 import PhotoViewer from '../components/PhotoViewer.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
@@ -46,7 +47,7 @@ const imageGallerySchema = {
                 style={`--motion-order: ${index % 4}`}
               >
                 <a href={image.src} data-lightbox="photos" data-alt={image.alt} aria-label={`開啟${image.alt}`}>
-                  <img class="img-fluid" src={image.src} alt={image.alt} loading="lazy" decoding="async" width="945" height="709" />
+                  <img class="img-fluid" {...responsiveImage(image.src, imageSizes.gallery)} alt={image.alt} loading="lazy" decoding="async" />
                 </a>
               </div>
             ))}
