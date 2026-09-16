@@ -1,7 +1,15 @@
 import { pathToFileURL } from 'node:url';
+import { readFileSync } from 'node:fs';
 import { WWW_ORIGIN, sitemapLocations } from './production-smoke.mjs';
 
+const deployment = JSON.parse(readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8'));
+// Include exact legacy mappings so smoke coverage cannot stop at the old 15 samples.
+const historicalRedirects = Object.fromEntries(deployment.redirects
+  .filter(rule => /^\/(rooms|infos|announcements)\/2022-/.test(rule.source))
+  .map(rule => [rule.source, rule.destination]));
+
 export const LEGACY_REDIRECTS = {
+  ...historicalRedirects,
   '/rooms.html': '/rooms/',
   '/infos.html': '/infos/',
   '/galleries.html': '/galleries/',

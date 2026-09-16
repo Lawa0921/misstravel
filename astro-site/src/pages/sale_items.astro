@@ -1,50 +1,38 @@
 ---
+import { siteConfig } from '../lib/config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import GuestNavigation from '../components/GuestNavigation.astro';
 
-const saleItemProducts = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: '烹飪組合',
-    description: '卡式瓦斯爐、瓦斯罐、湯鍋組、湯勺、不鏽鋼餐具、切割用小刀及砧板',
-    brand: { '@type': 'Brand', name: '密式旅行' },
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'TWD',
-      price: 200,
-    },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: '烤肉組合',
-    description: '架高烤肉桌/架、煤炭、火種、烤肉網、烤肉夾、烤肉刷、不鏽鋼餐具、切割用小刀及砧板',
-    brand: { '@type': 'Brand', name: '密式旅行' },
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'TWD',
-      price: 300,
-    },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: '寢具組合',
-    description: '日式記憶雙人床墊、兩顆枕頭、一條雙人被',
-    brand: { '@type': 'Brand', name: '密式旅行' },
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'TWD',
-      price: 400,
-    },
-  },
+// Actual rental services, not retail purchases. Keep visible names/prices unchanged.
+const rentalServices = [
+  {id:'sale_item_1',name:'烹飪組合',description:'卡式瓦斯爐、瓦斯罐、湯鍋組、湯勺、不鏽鋼餐具、切割用小刀及砧板',price:200},
+  {id:'sale_item_2',name:'烤肉組合',description:'架高烤肉桌/架、煤炭、火種、烤肉網、烤肉夾、烤肉刷、不鏽鋼餐具、切割用小刀及砧板',price:300},
+  {id:'sale_item_3',name:'寢具組合',description:'日式記憶雙人床墊、兩顆枕頭、一條雙人被',price:400},
 ];
+const rentalSchemas = rentalServices.map(item => ({
+  '@context':'https://schema.org',
+  '@type':'Service',
+  '@id':`${siteConfig.url}/sale_items/#${item.id}-service`,
+  name:item.name,
+  description:item.description,
+  serviceType:'露營用品租借',
+  url:`${siteConfig.url}/sale_items/#${item.id}`,
+  provider:{'@id':`${siteConfig.url}/#organization`},
+  offers:{
+    '@type':'Offer',
+    '@id':`${siteConfig.url}/sale_items/#${item.id}-offer`,
+    businessFunction:'http://purl.org/goodrelations/v1#LeaseOut',
+    price:item.price,
+    priceCurrency:'TWD',
+    priceSpecification:{
+      '@type':'UnitPriceSpecification',price:item.price,priceCurrency:'TWD',
+      referenceQuantity:{'@type':'QuantitativeValue',value:1,unitText:'次'},
+    },
+  },
+}));
 const serviceChoices = [
-  {id:'sale_item_1',name:saleItemProducts[0].name,detail:saleItemProducts[0].description,price:saleItemProducts[0].offers.price},
-  {id:'sale_item_2',name:saleItemProducts[1].name,detail:saleItemProducts[1].description,price:saleItemProducts[1].offers.price},
-  {id:'sale_item_3',name:saleItemProducts[2].name,detail:saleItemProducts[2].description,price:saleItemProducts[2].offers.price},
+  ...rentalServices.map(item=>({id:item.id,name:item.name,detail:item.description,price:item.price})),
   {id:'sale_item_4',name:'各式雜貨',detail:'各式雜貨',price:undefined},
   {id:'sale_item_6',name:'代訂合菜',detail:'家庭合菜、經濟合菜、精緻合菜',price:undefined},
   {id:'sale_item_7',name:'簡餐菜單',detail:'簡餐菜單',price:undefined},
@@ -57,7 +45,7 @@ const serviceChoices = [
   title="密式柑仔店"
   description="密式柑仔店提供各種露營用品、休閒食品與特色商品，讓您的苗栗泰安露營之旅更加便利與豐富。"
   keywords="密式柑仔店,露營用品,休閒食品,苗栗露營,泰安特產,露營裝備"
-  extraSchemas={saleItemProducts}
+  extraSchemas={rentalSchemas}
 >
   <main id="main" class="guest-page">
     <div class="guest-wrap">

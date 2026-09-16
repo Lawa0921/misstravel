@@ -81,3 +81,18 @@ PR 預覽有 Vercel 登入保護；正式站需經使用者核准合併才會套
 衍生圖有完整原圖身分（含版本查詢字串），不以 currentSrc 相等判斷是不是同張照片。全螢幕先顯示已載入的同圖，再升級原始解析度；顯示尺寸預先使用原圖尺寸，升級不得重設使用者的縮放、平移或照片位置。原圖升級與裝飾動畫各自取消，不能因使用者按鍵而永遠停在小圖。縮圖列僅提供最大 384px 的候選，照片原圖連結、分享圖片與 image-sitemap 仍使用原 URL。
 
 `scripts/seo-performance-audit.mjs` 比較新鮮瀏覽環境、停用快取下的實際同源圖片回應 bytes，另保留實驗室 LCP/CLS。這不是全站所有檔案總傳輸量，也不是真實訪客 Core Web Vitals；高 DPR 會選更大候選，不能只報低解析度的最大節省百分比。未查閱私人 Search Console／商家後台，不宣稱點擊率、收錄或排名已提升。
+
+
+## Search Console 回報修正（2026-09-16）
+
+- 舊日期網址以 Git 歷史 `1041513^` 的 19 份 Jekyll 內容為依據，`vercel.json` 明確對應 `.html` 及過去錯轉出的帶日期 `/` 路徑到同一個現行頁。精確規則先於通用 `:slug.html`；未知／截斷網址不猜測指向首頁，維持正常 404。測試基準在 `tests/fixtures/legacy-dated-routes.json`，正式站 smoke 會讀取實際規則並檢查查詢參數保留。
+- 柑仔店的烹飪、烤肉、寢具是有歸還條件的租借服務，不是可直接購買的零售商品。以 `Service`、原供應者及 `Offer.businessFunction=LeaseOut` 表達，價格及每次計價沿用原值。Schema.org 的 Product 可以廣義描述租借，但 Google Merchant 購買體驗不是此頁目標；不為了追逐該報表添加虛構照片、配送、退貨、庫存或評論。Service 沒有本頁可保證取得的 Google 商品複合式搜尋結果。
+- sitemap-index.xml 使用既有 @astrojs/sitemap 的 customSitemaps 納入 image-sitemap.xml；維持原 25 個 canonical 網址及所有原圖 URL，不更名、不虛造 lastmod、不增加重複 sitemap 產生器。
+- Google 後台提交／接受 Sitemap 與實際重新擷取、更新歷史 404 或 Merchant 報表是不同狀態。網站修正需先合併部署，才可要求 Google 驗證公開版的修正；未部署前不按「驗證修正後的項目」。私人 Search Console 全量截圖／帳號／查詢資料不可提交公開儲存庫。
+
+本輪官方規範：
+https://developers.google.com/search/docs/crawling-indexing/301-redirects
+https://developers.google.com/search/docs/appearance/structured-data/merchant-listing
+https://schema.org/Service
+https://schema.org/Offer
+https://support.google.com/webmasters/answer/7451001?hl=zh-Hant

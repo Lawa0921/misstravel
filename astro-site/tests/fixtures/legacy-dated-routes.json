@@ -1,0 +1,28 @@
+{
+  "historyRef": "1041513^",
+  "routes": {
+    "/announcements/2022-10-09-website.html": "/announcements/website/",
+    "/infos/2022-10-06-account.html": "/infos/account/",
+    "/infos/2022-10-06-guide.html": "/infos/guide/",
+    "/infos/2022-10-06-map.html": "/infos/map/",
+    "/infos/2022-10-06-menu.html": "/infos/menu/",
+    "/infos/2022-10-06-roles.html": "/infos/roles/",
+    "/infos/2022-10-06-set-menu-info.html": "/infos/set-menu-info/",
+    "/infos/2022-10-07-video.html": "/infos/video/",
+    "/infos/2022-10-08-contact-method.html": "/infos/contact-method/",
+    "/rooms/2022-10-07-campsite_1.html": "/rooms/campsite_1/",
+    "/rooms/2022-10-07-campsite_2.html": "/rooms/campsite_2/",
+    "/rooms/2022-10-07-campsite_3.html": "/rooms/campsite_3/",
+    "/rooms/2022-10-07-log_cabin_1.html": "/rooms/log_cabin_1/",
+    "/rooms/2022-10-07-log_cabin_2.html": "/rooms/log_cabin_2/",
+    "/rooms/2022-10-07-log_cabin_3.html": "/rooms/log_cabin_3/",
+    "/rooms/2022-10-07-log_cabin_4.html": "/rooms/log_cabin_4/",
+    "/rooms/2022-10-07-suite_1.html": "/rooms/suite_1/",
+    "/rooms/2022-10-07-suite_2.html": "/rooms/suite_2/",
+    "/rooms/2022-10-07-suite_3.html": "/rooms/suite_3/"
+  },
+  "unmapped": [
+    "/rooms/2022-10-07-sui",
+    "/sale"
+  ]
+}

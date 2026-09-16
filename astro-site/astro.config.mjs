@@ -12,7 +12,7 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
   }),
-  integrations: [responsiveImages(), sitemap()],
+  integrations: [responsiveImages(), sitemap({ customSitemaps: ['https://www.misstravel.me/image-sitemap.xml'] })],
   markdown: { processor: roomMarkdownProcessor() },
   vite: {
     plugins: [tailwindcss()],
