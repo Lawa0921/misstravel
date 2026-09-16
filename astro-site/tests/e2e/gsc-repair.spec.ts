@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import history from '../fixtures/legacy-dated-routes.json';
+import history from '../fixtures/legacy-dated-routes.json' with {type:'json'};
 import {startEdgePreview} from '../helpers/edge-preview.mjs';
 let edge:Awaited<ReturnType<typeof startEdgePreview>>;
 test.beforeAll(async({baseURL})=>{edge=await startEdgePreview(baseURL);});
