@@ -177,7 +177,12 @@
 
     const first = focusables[0];
     const last = focusables[focusables.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
+    // A pending or failed thumbnail may hold focus with tabindex=-1.
+    // Explicitly contain Tab instead of relying on the browser's native wrap.
+    if (!focusables.includes(document.activeElement)) {
+      event.preventDefault();
+      (event.shiftKey ? last : first).focus();
+    } else if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
       last.focus();
     } else if (!event.shiftKey && document.activeElement === last) {
