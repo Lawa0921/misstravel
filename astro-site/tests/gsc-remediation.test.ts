@@ -56,10 +56,11 @@ describe('Rental services are not product purchases',()=>{
  });
 });
 describe('Sitemap entrypoint discovers page AND original-image sitemaps',()=>{
- it('contains two valid same-origin children without changing canonical page set',()=>{
+ it('contains a complete same-origin child without changing canonical page set',()=>{
   const xml=load(readFileSync(join(app,'dist/sitemap-index.xml'),'utf8'),{xml:true});
   const locs=xml('loc').map((_,e)=>xml(e).text()).get();
-  expect(locs).toEqual(expect.arrayContaining(['https://www.misstravel.me/sitemap-0.xml','https://www.misstravel.me/image-sitemap.xml']));expect(locs).toHaveLength(2);
+  expect(locs).toEqual(['https://www.misstravel.me/image-sitemap.xml']);
+  expect(readFileSync(join(app,'dist/image-sitemap.xml'),'utf8')).toBe(readFileSync(join(app,'dist/sitemap-0.xml'),'utf8'));
   const pages=load(readFileSync(join(app,'dist/sitemap-0.xml'),'utf8'),{xml:true});expect(pages('loc')).toHaveLength(25);
   for(const loc of pages('loc').map((_,e)=>pages(e).text()).get()){expect(loc).not.toMatch(/2022-|\.html$/);expect(loc).toMatch(/^https:\/\/www\.misstravel\.me\//);}
  });

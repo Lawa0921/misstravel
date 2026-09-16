@@ -133,7 +133,8 @@ describe('image inventory, sitemap and sharing', () => {
   });
   it('exposes every room photograph without listing notice images as room photos', () => {
     const $ = load(readFileSync(join(root,'dist/image-sitemap.xml'),'utf8'), {xml:true});
-    expect($('url')).toHaveLength(11);
+    expect($('url')).toHaveLength(25);
+    expect($('url').filter((_, entry) => $(entry).find('image\\:loc').length > 0)).toHaveLength(11);
     const locations = new Set($('image\\:loc').map((_,el)=>$(el).text()).get());
     for (const slug of slugs) {
       const data = raw(slug);

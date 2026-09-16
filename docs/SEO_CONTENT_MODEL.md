@@ -96,3 +96,18 @@ https://developers.google.com/search/docs/appearance/structured-data/merchant-li
 https://schema.org/Service
 https://schema.org/Offer
 https://support.google.com/webmasters/answer/7451001?hl=zh-Hant
+
+
+## 完整 Sitemap 交付（取代本次前一版分開的兩份索引）
+
+一般頁面與圖片現在在發布時組成同一份 XML。已存在的 `image-sitemap.xml` 不再只列 11 個相簿／房型頁，而是包含全部 25 個正式 canonical 頁面；其中原有 11 頁的 139 個圖片參照全部保留。檔名沿用是相容性決策，不代表它只能列圖片。Google 的圖片 sitemap 是標準 urlset 的擴充，沒有圖片的網頁可以共存。
+
+- `scripts/complete-sitemap.mjs` 包裝既有 `@astrojs/sitemap` 的 build-done hook：先完成官方路由探索，再與原有圖片 endpoint 的結果合併，最後在 Vercel 複製產物前寫入。
+- `sitemap-index.xml` 只指向這份完整清單，避免一般頁面的探索依賴另一個尚未處理成功的子檔。
+- `sitemap-0.xml` 維持 HTTP200，輸出相同的完整 XML 作相容入口，不移除、不導向首頁、不另寫一份頁面清單。
+- 原本 25 個 canonical 頁面與圖片對應不變。沒有新增假日期或 lastmod，也沒有更動 robots、WAF、安全標頭、原圖、字型、價格或畫面。
+- 新增頁面由 Astro 的實際建置探索自動帶入，不需維護另一份手工 URL 陣列。空清單、重複／外站 URL、孤立圖片及容量超限會中止建置。
+
+此修正提供一條完整而可驗證的發現途徑，不把它宣稱為已證明 Google 舊擷取錯誤的內部根因。發布後必須看 Search Console 的實際「成功／25 個網頁」，不能以本機 HTTP200 代替；舊提交紀錄的結果與主要完整清單的結果分開記錄。
+
+依據：https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps
