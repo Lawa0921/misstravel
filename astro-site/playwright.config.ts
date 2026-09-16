@@ -22,7 +22,8 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      // Use the full browser compositor for native document transitions, not headless-shell.
+      use: { ...devices['Desktop Chrome'], channel: 'chromium' },
     },
   ],
 });
