@@ -134,7 +134,18 @@ test('reduced motion changes, zoom and offscreen destinations suppress flights',
   await page.locator('[data-viewer-index]').last().click();
   const total = await page.locator('[data-viewer-index]').count();
   await expect(page.locator('[data-viewer-current]')).toHaveText(String(total));
-  const scroll = await page.evaluate(() => scrollY);
+  // Native automation may still be completing the thumbnail focus scroll.
+  // Measure settled reading position, not an intermediate smooth-scroll frame.
+  const scroll = await page.evaluate(async () => {
+    let previous = scrollY, stable = 0;
+    for (let frame = 0; frame < 90; frame++) {
+      await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      stable = scrollY === previous ? stable + 1 : 0;
+      previous = scrollY;
+      if (stable >= 4) return previous;
+    }
+    throw new Error('Page scroll did not settle before closing the viewer');
+  });
   await page.keyboard.press('Escape');
   await expect(page.locator(flight)).toHaveCount(0);
   expect(await page.evaluate(() => scrollY)).toBe(scroll);

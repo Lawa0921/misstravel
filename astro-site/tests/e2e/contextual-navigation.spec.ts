@@ -73,6 +73,10 @@ for(const width of [390,1440]) {
       await expect(card).toHaveCSS('opacity','1');
       const imageURL=await card.locator('img').evaluate(i=>(i as HTMLImageElement).src);
       const listScroll=await page.evaluate(()=>scrollY);
+      // pagereveal precedes first paint. Allow the browser to commit the source
+      // frame before asking it for a native cross-document snapshot.
+      await page.evaluate(() => new Promise<void>(resolve =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
       await card.locator('img').click();await page.waitForURL(`**/rooms/${slug}/`);
       const enter=await finished(page);
       expect(enter.ready,JSON.stringify(enter)).toBe(true);expect(enter.skipped).toBe(false);
