@@ -27,7 +27,7 @@ const money = (value: number) => `NT$${value.toLocaleString('zh-TW')}`;
     <div class="compare-columns" tabindex="0" role="region" aria-label="房型比較內容，可左右捲動">
       {rooms.map(room => {
         const options = room.data.priceOptions?.length ? room.data.priceOptions : [{label:room.data.shortTitle,numberOfPeople:room.data.numberOfPeople,weekdayPrice:room.data.weekdayPrice,holidayPrice:room.data.holidayPrice,standardPrice:room.data.standardPrice}];
-        return <article class="compare-room" data-compare-room={room.id} hidden>
+        return <article class="compare-room" data-compare-room={room.id} aria-label={room.data.title} hidden>
           <img class="compare-photo" src={room.data.mainImage} alt={getRoomImageMetadata(room.data.mainImage).alt} width="600" height="400" loading="lazy" decoding="async" />
           <span class="compare-type">{categories[room.data.category]}</span><p class="compare-room-title">{room.data.title}</p>
           {options.map(option => <section class="compare-plan"><p class="compare-plan-title">{option.label} · {option.numberOfPeople} 人以下</p><dl><div><dt>平日</dt><dd>{money(option.weekdayPrice)}</dd></div><div><dt>假日</dt><dd>{money(option.holidayPrice)}</dd></div><div><dt>連續假日</dt><dd>{money(option.standardPrice)}</dd></div></dl></section>)}

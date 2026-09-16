@@ -123,3 +123,13 @@ test('comparison traps Tab using visible rooms and does not cover footer actions
   const safe=await page.evaluate(()=>document.querySelector('#footer')!.getBoundingClientRect().bottom<=document.querySelector('#compare-tray')!.getBoundingClientRect().top);
   expect(safe).toBe(true);await expect(page.locator('.compare-chip:not([hidden]) span').first()).toBeVisible();
 });
+
+
+test('a failed thumbnail never leaves the fullscreen viewer Tab loop',async({page})=>{
+  await page.goto('/galleries/');await page.locator('[data-lightbox="photos"]').first().click();await expect(page.locator('#lightbox-image')).toHaveAttribute('src',/gallery_1.webp/);
+  await page.route('**/galleries/gallery_2.webp',route=>route.abort());const thumb=page.locator('#lightbox [data-viewer-index="1"]');await thumb.click();
+  await expect(page.locator('.viewer-loading')).toContainText('照片無法開啟');await expect(thumb).toBeFocused();
+  await page.keyboard.press('Tab');await expect(page.locator('#lightbox .lightbox-close')).toBeFocused();
+  await page.keyboard.press('Shift+Tab');await expect(page.locator('#lightbox [data-viewer-index="0"]')).toBeFocused();
+  await page.keyboard.press('Escape');await expect(page.locator('#header')).not.toHaveAttribute('inert','');
+});
