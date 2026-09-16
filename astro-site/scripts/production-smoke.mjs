@@ -200,10 +200,10 @@ export function sitemapLocations(body) {
 
 export function assertSitemapIndex(body) {
   const locations = sitemapLocations(body);
-  invariant(locations.length > 0, 'sitemap index did not contain any sitemap locations');
+  invariant(locations.length === 1, 'sitemap index must have one complete authoritative child');
   invariant(
-    locations.includes(`${WWW_ORIGIN}/sitemap-0.xml`),
-    'sitemap index did not include sitemap-0.xml',
+    locations.includes(`${WWW_ORIGIN}/image-sitemap.xml`),
+    'sitemap index did not include the complete page/image sitemap',
   );
   invariant(
     locations.every((location) => location.startsWith(`${WWW_ORIGIN}/`)),
@@ -313,8 +313,11 @@ export async function runProductionSmoke() {
   });
 
   await eventually('sitemap URLs', async () => {
-    const body = await expectOk(freshUrl('/sitemap-0.xml'), 'xml');
+    const body = await expectOk(freshUrl('/image-sitemap.xml'), 'xml');
+    const compatible = await expectOk(freshUrl('/sitemap-0.xml'), 'xml');
     assertSitemap(body);
+    assertSitemap(compatible);
+    invariant(body === compatible, 'primary and compatible sitemap contents differ');
   });
 
   await eventually('video page VideoObject schema', async () => {
