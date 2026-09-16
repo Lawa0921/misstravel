@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/modern-interactions.spec.ts:128:1 › a failed thumbnail never leaves the fullscreen viewer Tab loop (5.6s)
+
+
+  1) [chromium] › tests/e2e/modern-interactions.spec.ts:128:1 › a failed thumbnail never leaves the fullscreen viewer Tab loop
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('html')
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" with timeout 5000ms
+      - waiting for locator('html')
+        14 × locator resolved to <html lang="zh-TW" data-motion="ready" data-viewer-ready="true" data-test-tab-prevented="false">…</html>
+           - unexpected value "false"
+
+
+      131 |   await expect(page.locator('.viewer-loading')).toContainText('照片無法開啟');await expect(thumb).toBeFocused();
+      132 |   await page.evaluate(()=>document.addEventListener('keydown',event=>{if(event.key==='Tab')document.documentElement.dataset.testTabPrevented=String(event.defaultPrevented);}));
+    > 133 |   await page.keyboard.press('Tab');await expect(page.locator('html')).toHaveAttribute('data-test-tab-prevented','true');await expect(page.locator('#lightbox .lightbox-close')).toBeFocused();
+          |                                                                       ^
+      134 |   await page.keyboard.press('Shift+Tab');await expect(page.locator('#lightbox [data-viewer-index="0"]')).toBeFocused();
+      135 |   await page.keyboard.press('Escape');await expect(page.locator('#header')).not.toHaveAttribute('inert','');
+      136 | });
+        at <isolated-worktree>/astro-site/tests/e2e/modern-interactions.spec.ts:133:71
+
+    Error Context: test-results/modern-interactions-a-fail-f2949--fullscreen-viewer-Tab-loop-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/modern-interactions-a-fail-f2949--fullscreen-viewer-Tab-loop-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/modern-interactions-a-fail-f2949--fullscreen-viewer-Tab-loop-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/modern-interactions.spec.ts:128:1 › a failed thumbnail never leaves the fullscreen viewer Tab loop

@@ -1,0 +1,562 @@
+{
+  "pages": 26,
+  "unchanged": true,
+  "rows": [
+    {
+      "file": "404.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "announcements/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "galleries/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-card",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "sale_items/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".guest-choice-title",
+          "unchanged": true
+        },
+        {
+          "selector": ".modal-body",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "announcements/website/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/account/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".info-content",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/contact-method/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".info-content",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/guide/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".guest-choice-title",
+          "unchanged": true
+        },
+        {
+          "selector": ".modal-body",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/map/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".info-content",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/menu/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".info-content",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/roles/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".info-content",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/set-menu-info/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".guest-choice-title",
+          "unchanged": true
+        },
+        {
+          "selector": ".modal-body",
+          "unchanged": true
+        },
+        {
+          "selector": ".info-section",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "infos/video/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".info-content",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/campsite_1/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/campsite_2/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/campsite_3/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_1/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_2/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_3/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/log_cabin_4/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/suite_1/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/suite_2/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    },
+    {
+      "file": "rooms/suite_3/index.html",
+      "metadataUnchanged": true,
+      "h1Unchanged": true,
+      "protectedRegions": [
+        {
+          "selector": "h1",
+          "unchanged": true
+        },
+        {
+          "selector": ".room-content",
+          "unchanged": true
+        },
+        {
+          "selector": ".booking-notice",
+          "unchanged": true
+        },
+        {
+          "selector": ".day-definition",
+          "unchanged": true
+        },
+        {
+          "selector": ".related-info",
+          "unchanged": true
+        }
+      ],
+      "originalRoomGalleryImagesUnchanged": true
+    }
+  ],
+  "extras": [
+    {
+      "file": "robots.txt",
+      "unchanged": true
+    },
+    {
+      "file": "sitemap-index.xml",
+      "unchanged": true
+    },
+    {
+      "file": "sitemap-0.xml",
+      "unchanged": true
+    },
+    {
+      "file": "image-sitemap.xml",
+      "unchanged": true
+    },
+    {
+      "file": "feed.xml",
+      "unchanged": true
+    },
+    {
+      "file": "feed.json",
+      "unchanged": true
+    }
+  ],
+  "allowed": "New navigation, comparison, viewer and section controls are visible additions; original room/policy/price paragraphs are preserved.",
+  "sourceCommit": "1486e5cbb425459cf10bab5226f578728017a062"
+}

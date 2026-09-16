@@ -1,0 +1,56 @@
+{
+  "sourceCommit": "1486e5cbb425459cf10bab5226f578728017a062",
+  "runtimeCommit": "5d599e140848c6a168d99faea86e7ee73071bc34",
+  "baseCommit": "7b5c19d6258213e38858dc2a01324969a656d540",
+  "verify": {
+    "files": 27,
+    "passed": 336,
+    "failed": 0,
+    "vulnerabilities": 0
+  },
+  "browser": {
+    "engine": "full Chromium",
+    "passed": 111,
+    "failed": 0,
+    "retries": 0,
+    "newInteractionTests": 15,
+    "touch": "Chromium CDP touch events, not a physical-device study"
+  },
+  "allPages": {
+    "cases": 104,
+    "passed": 104,
+    "failed": 0,
+    "scriptExceptions": 0
+  },
+  "accessibility": {
+    "states": 16,
+    "violations": 0,
+    "incompleteStates": 9,
+    "certification": false
+  },
+  "preservation": {
+    "pages": 26,
+    "originalOperatingCopyAndSEOUnchanged": true,
+    "protectedFiles": 251,
+    "changedProtectedFiles": [],
+    "originalWorktreeUnchanged": true
+  },
+  "independentAIReview": {
+    "verdict": "PASS",
+    "commit": "1486e5cbb425459cf10bab5226f578728017a062",
+    "humanDesignApproval": false
+  },
+  "visualEvidence": {
+    "screenshotStates": 10,
+    "videos": 2,
+    "captureCommit": "887ea8c045b6d23783946653eb6829eafbb36765",
+    "laterChanges": "Only comparison accessible labels, focus containment and browser test configuration; ordinary visuals unchanged."
+  },
+  "preview": {
+    "local": "http://localhost:4336/rooms/",
+    "windowsHTTP": 200,
+    "cloudRequiresExistingSSO": true
+  },
+  "sourceCI": "https://github.com/Lawa0921/misstravel/actions/runs/35040170353",
+  "productionChanged": false
+}
