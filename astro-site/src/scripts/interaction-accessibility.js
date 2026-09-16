@@ -71,6 +71,8 @@
     requestAnimationFrame(() => {
       // A queued open callback must never steal restored focus after closing.
       if (activeDialog !== dialog || !dialog.classList.contains('active')) return;
+      // Do not override a deliberate focus move made while the opening frame queued.
+      if (dialog.contains(document.activeElement) && document.activeElement !== dialog) return;
       const focusables = visibleFocusableElements(dialog);
       (focusables[0] || dialog).focus({ preventScroll: true });
     });

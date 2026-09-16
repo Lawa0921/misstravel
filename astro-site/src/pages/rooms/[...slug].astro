@@ -802,7 +802,7 @@ const relatedRooms = allRooms
       const status=document.querySelector('[data-photo-error]');
       if (ready !== 'ready') {
         updateCarousel();
-        if(status)status.textContent=ready==='timeout'?'照片準備較久，請再按一次。':'照片無法開啟，請選擇其他照片。';
+        if(status)status.textContent=ready==='timeout'?'照片準備中，請再按一次。':'照片無法開啟，請選擇其他照片。';
         return;
       }
       if(status)status.textContent='';

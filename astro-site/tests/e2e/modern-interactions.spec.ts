@@ -117,6 +117,7 @@ test('real touch swipes change photos while vertical movement still scrolls the 
 test('comparison traps Tab using visible rooms and does not cover footer actions',async({page})=>{
   await page.setViewportSize({width:390,height:844});await page.goto('/rooms/');await page.locator('[data-compare-toggle]').nth(0).click();await page.locator('[data-compare-toggle]').nth(1).click();await page.locator('#compare-open').click();
   const close=page.locator('#room-compare .modal-close');const last=page.locator('.compare-room:not([hidden]) .compare-detail').last();
+  await expect(close).toBeFocused();
   await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');
   await page.evaluate(()=>scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
   const safe=await page.evaluate(()=>document.querySelector('#footer')!.getBoundingClientRect().bottom<=document.querySelector('#compare-tray')!.getBoundingClientRect().top);

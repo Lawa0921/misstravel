@@ -29,3 +29,11 @@ it('slow image readiness is not mislabeled as an image error',async()=>{
  const failed=waitForPhoto(image as unknown as HTMLImageElement,100);
  image.dispatchEvent(new Event('error'));await expect(failed).resolves.toBe('error');
 });
+
+
+it('photo status messages remain within the original font glyph coverage',()=>{
+ const supported=new Set([...coverage.supportedCodepoints,0x9109,0x95b1]);
+ for(const text of ['照片準備中，請再按一次。','照片無法開啟，請選擇其他照片。']){
+   expect([...text].filter(c=>/[\u4e00-\u9fff]/u.test(c)&&!supported.has(c.codePointAt(0)!))).toEqual([]);
+ }
+});

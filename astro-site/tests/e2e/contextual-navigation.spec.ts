@@ -68,11 +68,12 @@ for(const width of [390,1440]) {
       // Keep every existing target-transition assertion below unchanged.
       await expect.poll(()=>page.evaluate(()=>window.__contextualAudit?.finished)).toBe(true);
       const card=page.locator(`a.room-card[href="/rooms/${slug}/"]`);
-      await card.scrollIntoViewIfNeeded();await card.locator('img').evaluate(i=>(i as HTMLImageElement).decode());
+      await card.locator('img').scrollIntoViewIfNeeded();await card.locator('img').evaluate(i=>(i as HTMLImageElement).decode());
+      await expect(card.locator('img')).toBeInViewport({ratio:0.5});
       await expect(card).toHaveCSS('opacity','1');
       const imageURL=await card.locator('img').evaluate(i=>(i as HTMLImageElement).src);
       const listScroll=await page.evaluate(()=>scrollY);
-      await card.click();await page.waitForURL(`**/rooms/${slug}/`);
+      await card.locator('img').click();await page.waitForURL(`**/rooms/${slug}/`);
       const enter=await finished(page);
       expect(enter.ready,JSON.stringify(enter)).toBe(true);expect(enter.skipped).toBe(false);
       expect(enter.photoSources).toEqual([imageURL]);expect(enter.photoDuration).toBe('0.3s');

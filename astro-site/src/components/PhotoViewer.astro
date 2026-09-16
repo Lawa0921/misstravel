@@ -49,7 +49,7 @@ const {id,label,mode,images}=Astro.props;
       loading.textContent='照片準備中';loading.hidden=true;const wait=setTimeout(()=>{if(id===token){loading.hidden=false;loading.textContent='照片準備中';}},180);
       const ready=await waitForPhoto(preload);
       clearTimeout(wait);if(id!==token||!viewer.classList.contains('active'))return;
-      if(ready!=='ready'){loading.hidden=false;loading.textContent=ready==='timeout'?'照片準備較久，請再試一次。':'照片無法開啟，請選擇其他照片。';return;}
+      if(ready!=='ready'){loading.hidden=false;loading.textContent=ready==='timeout'?'照片準備中，請再按一次。':'照片無法開啟，請選擇其他照片。';return;}
       loading.hidden=true;resetZoom();image.hidden=false;index=target;image.src=images[index].src;image.alt=images[index].alt;sync();
       if(!reduced.matches)image.animate([{opacity:.75},{opacity:1}],{duration:140,easing:'ease-out'});
     }
