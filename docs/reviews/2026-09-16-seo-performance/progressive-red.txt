@@ -1,0 +1,73 @@
+
+Running 2 tests using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/progressive-photo-state.spec.ts:12:1 › progressive full image keeps its display geometry after high-resolution decoding (1.3s)
+  ✘  2 [chromium] › tests/e2e/progressive-photo-state.spec.ts:19:1 › a delayed full-resolution upgrade never resets active zoom and pan (6.0s)
+
+
+  1) [chromium] › tests/e2e/progressive-photo-state.spec.ts:12:1 › progressive full image keeps its display geometry after high-resolution decoding
+
+    Error: {"before":{"x":528,"y":340.8125,"width":384,"height":288},"after":{"x":247.5,"y":130.3125,"width":945,"height":709}}
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 1
+    Received:    280.5
+
+      15 |  await page.waitForTimeout(400);const before=(await photo.boundingBox())!;release();
+      16 |  await expect(photo).toHaveAttribute('src',original);await photo.evaluate((i:HTMLImageElement)=>i.decode());const after=(await photo.boundingBox())!;
+    > 17 |  for(const key of ['x','y','width','height'] as const)expect(Math.abs(before[key]-after[key]),JSON.stringify({before,after})).toBeLessThanOrEqual(1);
+         |                                                                                                                               ^
+      18 | });
+      19 | test('a delayed full-resolution upgrade never resets active zoom and pan',async({page})=>{
+      20 |  const release=await delayed(page);await page.locator('[data-lightbox="photos"]').first().click();
+        at <worktree>/astro-site/tests/e2e/progressive-photo-state.spec.ts:17:127
+
+    Error Context: test-results/progressive-photo-state-pr-bb30f-er-high-resolution-decoding-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/progressive-photo-state-pr-bb30f-er-high-resolution-decoding-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/progressive-photo-state-pr-bb30f-er-high-resolution-decoding-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/progressive-photo-state.spec.ts:19:1 › a delayed full-resolution upgrade never resets active zoom and pan
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('.viewer-zoom')
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" with timeout 5000ms
+      - waiting for locator('.viewer-zoom')
+        14 × locator resolved to <button type="button" aria-label="放大照片" class="viewer-zoom" aria-pressed="false" data-astro-cid-cbae5s4t="">…</button>
+           - unexpected value "false"
+
+
+      24 |  const before=await page.locator('.viewer-stage').evaluate(e=>({x:e.scrollLeft,y:e.scrollTop}));release();
+      25 |  await expect(photo).toHaveAttribute('src',original);await photo.evaluate((i:HTMLImageElement)=>i.decode());
+    > 26 |  await expect(page.locator('.viewer-zoom')).toHaveAttribute('aria-pressed','true');
+         |                                             ^
+      27 |  expect(await page.locator('.viewer-stage').evaluate(e=>({x:e.scrollLeft,y:e.scrollTop}))).toEqual(before);
+      28 | });
+      29 |
+        at <worktree>/astro-site/tests/e2e/progressive-photo-state.spec.ts:26:45
+
+    Error Context: test-results/progressive-photo-state-a--777a1--resets-active-zoom-and-pan-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/progressive-photo-state-a--777a1--resets-active-zoom-and-pan-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/progressive-photo-state-a--777a1--resets-active-zoom-and-pan-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/e2e/progressive-photo-state.spec.ts:12:1 › progressive full image keeps its display geometry after high-resolution decoding
+    [chromium] › tests/e2e/progressive-photo-state.spec.ts:19:1 › a delayed full-resolution upgrade never resets active zoom and pan

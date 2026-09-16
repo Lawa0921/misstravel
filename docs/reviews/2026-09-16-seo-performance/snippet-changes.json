@@ -1,0 +1,27 @@
+[
+  {
+    "file": "astro-site/src/lib/config.ts",
+    "before": "metaDescription: '密式旅行露營區，位於苗栗泰安鄉，提供露營、小木屋、套房等多種住宿選擇，園內還提供桌遊咖啡廳、兒童遊戲室、兒童沙坑等空間，是個非常適合闔家前往的親子露營區。桌遊咖啡廳除了販售輕食、咖啡以外，也有提供免費的桌遊教學。雲海、夕陽等美景也經常造訪，竹林秘境車程十分鐘即可到達。'",
+    "after": "metaDescription: '密式旅行位於苗栗泰安，提供露營營位、小木屋與套房。查看房型照片、費用、訂房及交通資訊；園內有桌遊咖啡廳、兒童遊戲室與沙坑，住宿條件請見各房型說明。'"
+  },
+  {
+    "file": "astro-site/src/pages/infos/index.astro",
+    "before": "description=\"了解密式旅行露營區的故事與理念\"",
+    "after": "description=\"認識苗栗泰安密式旅行的營區、小木屋、桌遊咖啡廳與兒童遊戲室，並查閱交通指引、訂房匯款、園內規約、菜單及園區地圖。\""
+  },
+  {
+    "file": "astro-site/src/pages/infos/guide.astro",
+    "before": "description=\"前往密式旅行露營區的詳細交通指引，包含大湖路線和豆腐街路線兩種選擇\"",
+    "after": "description=\"前往苗栗泰安密式旅行的兩條圖文路線：經大湖市區或清安豆腐街上山。查看七十二快速道路出口後的轉彎、沿途岔路及抵達園區的照片指引。\""
+  },
+  {
+    "file": "astro-site/src/content/infos/menu.md",
+    "before": "metaDescription: '密式旅行露營區菜單，提供多樣化餐點選擇，讓您在苗栗泰安露營時也能品嚐美味料理，了解詳細菜色與價格資訊'",
+    "after": "metaDescription: '查看密式旅行露營區菜單原圖中的餐點項目與標示價格，可另開原圖放大閱讀；訂房、交通與園內規約可由本頁導覽前往。'"
+  },
+  {
+    "file": "astro-site/src/content/infos/map.md",
+    "before": "metaDescription: '密式旅行露營區園區地圖，清楚標示木屋、營位、盥洗室、停車場等設施位置，幫助您更好地規劃苗栗泰安露營旅程'",
+    "after": "metaDescription: '查看苗栗泰安密式旅行的園區配置原圖，了解木屋、營位、盥洗室與停車場位置。可開啟原圖放大閱讀，前往園區的行車路線請見交通指引。'"
+  }
+]

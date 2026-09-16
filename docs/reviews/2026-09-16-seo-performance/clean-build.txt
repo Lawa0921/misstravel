@@ -1,0 +1,60 @@
+SOURCE_COMMIT=df48ca94cc9a234989251629d6cf970c79a72b57
+DERIVATIVE_CACHE_PRESENT=False
+
+> astro-site@0.0.1 build
+> astro build
+
+14:58:52 [build] Waiting for integration "local-responsive-images", hook "astro:config:setup"...
+14:59:28 [local-responsive-images] 231 originals; 988 derivatives; 29.17 MiB
+14:59:28 [vite] Re-optimizing dependencies because vite config has changed
+14:59:29 [content] Syncing content
+14:59:29 [content] Synced content
+14:59:29 [types] Generated 1.52s
+14:59:29 [build] output: "static"
+14:59:29 [build] mode: "static"
+14:59:29 [build] directory: /tmp/misstravel-seo-performance-20260916/clean-final/dist/
+14:59:29 [build] adapter: @astrojs/vercel
+14:59:29 [build] Collecting build info...
+14:59:29 [build] ✓ Completed in 38.04s.
+14:59:29 [build] Building static entrypoints...
+14:59:30 [vite] ✓ built in 692ms
+14:59:30 [vite] ✓ built in 408ms
+14:59:30 [build] Rearranging server assets...
+
+ generating static routes
+14:59:30   ├─ /404.html (+28ms)
+14:59:30   ├─ /announcements/index.html (+5ms)
+14:59:30   ├─ /announcements/website/index.html (+6ms)
+14:59:30   ├─ /feed.json (+4ms)
+14:59:30   ├─ /feed.xml (+29ms)
+14:59:30   ├─ /galleries/index.html (+13ms)
+14:59:30   ├─ /image-sitemap.xml (+7ms)
+14:59:30   ├─ /infos/guide/index.html (+5ms)
+14:59:30   ├─ /infos/set-menu-info/index.html (+4ms)
+14:59:30   ├─ /infos/index.html (+7ms)
+14:59:30   ├─ /infos/account/index.html (+7ms)
+14:59:30   ├─ /infos/contact-method/index.html (+5ms)
+14:59:30   ├─ /infos/map/index.html (+11ms)
+14:59:31   ├─ /infos/menu/index.html (+5ms)
+14:59:31   ├─ /infos/roles/index.html (+3ms)
+14:59:31   ├─ /infos/video/index.html (+3ms)
+14:59:31   ├─ /rooms/index.html (+13ms)
+14:59:31   ├─ /rooms/campsite_1/index.html (+6ms)
+14:59:31   ├─ /rooms/campsite_2/index.html (+6ms)
+14:59:31   ├─ /rooms/campsite_3/index.html (+7ms)
+14:59:31   ├─ /rooms/log_cabin_1/index.html (+5ms)
+14:59:31   ├─ /rooms/log_cabin_2/index.html (+4ms)
+14:59:31   ├─ /rooms/log_cabin_3/index.html (+7ms)
+14:59:31   ├─ /rooms/log_cabin_4/index.html (+6ms)
+14:59:31   ├─ /rooms/suite_1/index.html (+5ms)
+14:59:31   ├─ /rooms/suite_2/index.html (+11ms)
+14:59:31   ├─ /rooms/suite_3/index.html (+9ms)
+14:59:31   ├─ /sale_items/index.html (+11ms)
+14:59:31   ├─ /index.html (+5ms)
+14:59:31 ✓ Completed in 277ms.
+
+14:59:31 [build] ✓ Completed in 1.42s.
+14:59:31 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+14:59:31 [@astrojs/vercel] Copying static files to .vercel/output/static
+14:59:31 [build] 26 page(s) built in 39.78s
+14:59:31 [build] Complete!
