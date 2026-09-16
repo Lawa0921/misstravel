@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "609aa4f4a56fd94793700974ac70c081b5b47d00",
+  "baseCommit": "05899e7e6a0fd596c03535801f8ca27db2f3d753",
+  "verify": {
+    "files": 33,
+    "passed": 375,
+    "failed": 0,
+    "auditVulnerabilities": 0
+  },
+  "browser": {
+    "passed": 156,
+    "failed": 0,
+    "retries": 0
+  },
+  "historicalRoutes": {
+    "identities": 19,
+    "specificPaths": 38,
+    "newRules": 34,
+    "httpChecks": 38,
+    "apexAndWwwContractChecks": 76
+  },
+  "publicSourcePreservation": {
+    "files": 251,
+    "unchanged": true
+  },
+  "visibleContentPreservation": "26/26 identical body, metadata, links and original images; only sale_items rental schemas differ",
+  "independentReview": {
+    "runtimeVerdict": "PASS",
+    "reviewed": "runtime source and initial regression suite",
+    "followup": "Final supplementary test-harness review did not complete due reviewer service limit; coordinator inspected it and final full tests/CI validate it. No blanket final independent approval claimed."
+  },
+  "preview": {
+    "local": "http://localhost:4336/",
+    "cloud": "https://misstravel-git-fix-gsc-disc-a6e877-bag571ivy3470-1104s-projects.vercel.app",
+    "anonymousCloudAccess": "Vercel SSO protected",
+    "routingScope": "local official Vercel compiled rules + Astro HTTP, not a production CDN verification"
+  },
+  "ci": "https://github.com/Lawa0921/misstravel/actions/runs/35081714223",
+  "productionChanged": false,
+  "gscRawPublished": false
+}

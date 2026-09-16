@@ -1,0 +1,341 @@
+
+ RUN  v4.1.11 <worktree>/astro-site
+
+
+> astro-site@0.0.1 build
+> astro build
+
+17:30:57 [local-responsive-images] 231 originals; 988 derivatives; 29.17 MiB
+17:30:57 [content] Syncing content
+17:30:57 [content] Synced content
+17:30:57 [types] Generated 768ms
+17:30:57 [build] output: "static"
+17:30:57 [build] mode: "static"
+17:30:57 [build] directory: <worktree>/astro-site/dist/
+17:30:57 [build] adapter: @astrojs/vercel
+17:30:57 [build] Collecting build info...
+17:30:57 [build] ✓ Completed in 2.13s.
+17:30:57 [build] Building static entrypoints...
+17:30:58 [vite] ✓ built in 488ms
+17:30:58 [vite] ✓ built in 197ms
+17:30:58 [build] Rearranging server assets...
+
+ generating static routes
+17:30:58   ├─ /404.html (+19ms)
+17:30:58   ├─ /announcements/index.html (+7ms)
+17:30:58   ├─ /announcements/website/index.html (+6ms)
+17:30:58   ├─ /feed.json (+2ms)
+17:30:58   ├─ /feed.xml (+21ms)
+17:30:58   ├─ /galleries/index.html (+7ms)
+17:30:58   ├─ /image-sitemap.xml (+3ms)
+17:30:58   ├─ /infos/guide/index.html (+3ms)
+17:30:58   ├─ /infos/set-menu-info/index.html (+5ms)
+17:30:58   ├─ /infos/index.html (+5ms)
+17:30:58   ├─ /infos/account/index.html (+4ms)
+17:30:58   ├─ /infos/contact-method/index.html (+3ms)
+17:30:58   ├─ /infos/map/index.html (+8ms)
+17:30:58   ├─ /infos/menu/index.html (+9ms)
+17:30:58   ├─ /infos/roles/index.html (+2ms)
+17:30:58   ├─ /infos/video/index.html (+2ms)
+17:30:58   ├─ /rooms/index.html (+10ms)
+17:30:58   ├─ /rooms/campsite_1/index.html (+10ms)
+17:30:58   ├─ /rooms/campsite_2/index.html (+4ms)
+17:30:58   ├─ /rooms/campsite_3/index.html (+5ms)
+17:30:58   ├─ /rooms/log_cabin_1/index.html (+6ms)
+17:30:58   ├─ /rooms/log_cabin_2/index.html (+5ms)
+17:30:58   ├─ /rooms/log_cabin_3/index.html (+4ms)
+17:30:58   ├─ /rooms/log_cabin_4/index.html (+6ms)
+17:30:58   ├─ /rooms/suite_1/index.html (+11ms)
+17:30:58   ├─ /rooms/suite_2/index.html (+11ms)
+17:30:58   ├─ /rooms/suite_3/index.html (+5ms)
+17:30:58   ├─ /sale_items/index.html (+4ms)
+17:30:58   ├─ /index.html (+4ms)
+17:30:58 ✓ Completed in 225ms.
+
+17:30:58 [build] ✓ Completed in 944ms.
+17:30:58 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+17:30:58 [@astrojs/vercel] Copying static files to .vercel/output/static
+17:30:58 [build] 26 page(s) built in 3.20s
+17:30:58 [build] Complete!
+ ❯ tests/gsc-remediation.test.ts (23 tests | 21 failed) 26ms
+     × /announcements/2022-10-09-website.html has exact current destination 6ms
+     × /infos/2022-10-06-account.html has exact current destination 2ms
+     × /infos/2022-10-06-guide.html has exact current destination 1ms
+     × /infos/2022-10-06-map.html has exact current destination 0ms
+     × /infos/2022-10-06-menu.html has exact current destination 2ms
+     × /infos/2022-10-06-roles.html has exact current destination 1ms
+     × /infos/2022-10-06-set-menu-info.html has exact current destination 1ms
+     × /infos/2022-10-07-video.html has exact current destination 0ms
+     × /infos/2022-10-08-contact-method.html has exact current destination 1ms
+     × /rooms/2022-10-07-campsite_1.html has exact current destination 0ms
+     × /rooms/2022-10-07-campsite_2.html has exact current destination 0ms
+     × /rooms/2022-10-07-campsite_3.html has exact current destination 0ms
+     × /rooms/2022-10-07-log_cabin_1.html has exact current destination 0ms
+     × /rooms/2022-10-07-log_cabin_2.html has exact current destination 0ms
+     × /rooms/2022-10-07-log_cabin_3.html has exact current destination 0ms
+     × /rooms/2022-10-07-log_cabin_4.html has exact current destination 2ms
+     × /rooms/2022-10-07-suite_1.html has exact current destination 0ms
+     × /rooms/2022-10-07-suite_2.html has exact current destination 0ms
+     × /rooms/2022-10-07-suite_3.html has exact current destination 0ms
+     ✓ does not invent destinations for truncated or unknown slugs 1ms
+     ✓ has no duplicate exact redirect sources 0ms
+     × describes all three actual rental services, with no merchant Product claims 2ms
+     × contains two valid same-origin children without changing canonical page set 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 21 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /announcements/2022-10-09-website.html has exact current destination
+AssertionError: expected '/announcements/2022-10-09-website/' to be '/announcements/website/' // Object.is equality
+
+Expected: "/announcements/website/"
+Received: "/announcements/2022-10-09-website/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-06-account.html has exact current destination
+AssertionError: expected '/infos/2022-10-06-account/' to be '/infos/account/' // Object.is equality
+
+Expected: "/infos/account/"
+Received: "/infos/2022-10-06-account/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-06-guide.html has exact current destination
+AssertionError: expected '/infos/2022-10-06-guide/' to be '/infos/guide/' // Object.is equality
+
+Expected: "/infos/guide/"
+Received: "/infos/2022-10-06-guide/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-06-map.html has exact current destination
+AssertionError: expected '/infos/2022-10-06-map/' to be '/infos/map/' // Object.is equality
+
+Expected: "/infos/map/"
+Received: "/infos/2022-10-06-map/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-06-menu.html has exact current destination
+AssertionError: expected '/infos/2022-10-06-menu/' to be '/infos/menu/' // Object.is equality
+
+Expected: "/infos/menu/"
+Received: "/infos/2022-10-06-menu/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-06-roles.html has exact current destination
+AssertionError: expected '/infos/2022-10-06-roles/' to be '/infos/roles/' // Object.is equality
+
+Expected: "/infos/roles/"
+Received: "/infos/2022-10-06-roles/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-06-set-menu-info.html has exact current destination
+AssertionError: expected '/infos/2022-10-06-set-menu-info/' to be '/infos/set-menu-info/' // Object.is equality
+
+Expected: "/infos/set-menu-info/"
+Received: "/infos/2022-10-06-set-menu-info/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-07-video.html has exact current destination
+AssertionError: expected '/infos/2022-10-07-video/' to be '/infos/video/' // Object.is equality
+
+Expected: "/infos/video/"
+Received: "/infos/2022-10-07-video/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /infos/2022-10-08-contact-method.html has exact current destination
+AssertionError: expected '/infos/2022-10-08-contact-method/' to be '/infos/contact-method/' // Object.is equality
+
+Expected: "/infos/contact-method/"
+Received: "/infos/2022-10-08-contact-method/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-campsite_1.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-campsite_1/' to be '/rooms/campsite_1/' // Object.is equality
+
+Expected: "/rooms/campsite_1/"
+Received: "/rooms/2022-10-07-campsite_1/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-campsite_2.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-campsite_2/' to be '/rooms/campsite_2/' // Object.is equality
+
+Expected: "/rooms/campsite_2/"
+Received: "/rooms/2022-10-07-campsite_2/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-campsite_3.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-campsite_3/' to be '/rooms/campsite_3/' // Object.is equality
+
+Expected: "/rooms/campsite_3/"
+Received: "/rooms/2022-10-07-campsite_3/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-log_cabin_1.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-log_cabin_1/' to be '/rooms/log_cabin_1/' // Object.is equality
+
+Expected: "/rooms/log_cabin_1/"
+Received: "/rooms/2022-10-07-log_cabin_1/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-log_cabin_2.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-log_cabin_2/' to be '/rooms/log_cabin_2/' // Object.is equality
+
+Expected: "/rooms/log_cabin_2/"
+Received: "/rooms/2022-10-07-log_cabin_2/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-log_cabin_3.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-log_cabin_3/' to be '/rooms/log_cabin_3/' // Object.is equality
+
+Expected: "/rooms/log_cabin_3/"
+Received: "/rooms/2022-10-07-log_cabin_3/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-log_cabin_4.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-log_cabin_4/' to be '/rooms/log_cabin_4/' // Object.is equality
+
+Expected: "/rooms/log_cabin_4/"
+Received: "/rooms/2022-10-07-log_cabin_4/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-suite_1.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-suite_1/' to be '/rooms/suite_1/' // Object.is equality
+
+Expected: "/rooms/suite_1/"
+Received: "/rooms/2022-10-07-suite_1/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-suite_2.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-suite_2/' to be '/rooms/suite_2/' // Object.is equality
+
+Expected: "/rooms/suite_2/"
+Received: "/rooms/2022-10-07-suite_2/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Historical URLs resolve to their real successor, not a dated 404 > /rooms/2022-10-07-suite_3.html has exact current destination
+AssertionError: expected '/rooms/2022-10-07-suite_3/' to be '/rooms/suite_3/' // Object.is equality
+
+Expected: "/rooms/suite_3/"
+Received: "/rooms/2022-10-07-suite_3/"
+
+ ❯ tests/gsc-remediation.test.ts:25:79
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Rental services are not product purchases > describes all three actual rental services, with no merchant Product claims
+AssertionError: expected [ { …(6) }, { …(6) }, { …(6) } ] to have a length of +0 but got 3
+
+- Expected
++ Received
+
+- 0
++ 3
+
+ ❯ tests/gsc-remediation.test.ts:42:53
+     40|  const schemas=$('script[type="application/ld+json"]').map((_,e)=>JSON…
+     41|  it('describes all three actual rental services, with no merchant Prod…
+     42|   expect(schemas.filter(s=>s['@type']==='Product')).toHaveLength(0);
+       |                                                     ^
+     43|   const services=schemas.filter(s=>s['@type']==='Service');expect(serv…
+     44|   for(const [index,name,price] of [[1,'烹飪組合',200],[2,'烤肉組合',300],[3,'寢…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/21]⎯
+
+ FAIL  tests/gsc-remediation.test.ts > Sitemap entrypoint discovers page AND original-image sitemaps > contains two valid same-origin children without changing canonical page set
+AssertionError: expected [ Array(1) ] to deeply equal ArrayContaining{…}
+
+- Expected
++ Received
+
+- ArrayContaining [
++ [
+    "https://www.misstravel.me/sitemap-0.xml",
+-   "https://www.misstravel.me/image-sitemap.xml",
+  ]
+
+ ❯ tests/gsc-remediation.test.ts:61:16
+     59|   const xml=load(readFileSync(join(app,'dist/sitemap-index.xml'),'utf8…
+     60|   const locs=xml('loc').map((_,e)=>xml(e).text()).get();
+     61|   expect(locs).toEqual(expect.arrayContaining(['https://www.misstravel…
+       |                ^
+     62|   const pages=load(readFileSync(join(app,'dist/sitemap-0.xml'),'utf8')…
+     63|   for(const loc of pages('loc').map((_,e)=>pages(e).text()).get()){exp…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/21]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  21 failed | 2 passed (23)
+   Start at  17:30:52
+   Duration  4.67s (transform 24ms, setup 0ms, import 182ms, tests 26ms, environment 0ms)
