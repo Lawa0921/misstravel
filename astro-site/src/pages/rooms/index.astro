@@ -1,4 +1,5 @@
 ---
+import CompareAction from '../../components/CompareAction.astro';
 import RoomCompare from '../../components/RoomCompare.astro';
 import SectionRail from '../../components/SectionRail.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -125,7 +126,7 @@ const itemListSchema = {
                       </div>
                     </div>
                   </a>
-                  <button type="button" class="compare-toggle" data-compare-toggle={room.id} aria-pressed="false" aria-label={`比較${room.data.shortTitle}`}><span class="compare-toggle-icon" aria-hidden="true">+</span><span data-compare-label>加入比較</span></button>
+                  <CompareAction id={room.id} title={room.data.title} shortTitle={room.data.shortTitle} />
                   </article>
                 );
               })}
@@ -260,13 +261,6 @@ const itemListSchema = {
   }
 
   .room-option { position:relative;min-width:0;display:flex;flex-direction:column; }
-  .compare-toggle { display:none;align-items:center;justify-content:center;gap:.5rem;margin:.5rem .25rem 0;align-self:flex-end;min-height:44px;padding:.4rem .8rem;border:1px solid var(--color-border);border-radius:999px;background:transparent;color:var(--color-paper-muted);font:inherit;font-size:.8rem;cursor:pointer;transition:background 160ms,color 160ms,transform 160ms; }
-  :global(html[data-compare-ready]) .compare-toggle { display:inline-flex; }
-  .compare-toggle[aria-pressed="true"] { color:var(--color-aqua);border-color:var(--color-aqua);background:rgba(157,216,208,.1); }
-  .compare-toggle-icon { font-size:1.2rem;line-height:1;transition:transform 160ms; }
-  .compare-toggle[aria-pressed="true"] .compare-toggle-icon { transform:rotate(45deg); }
-  .compare-toggle:active { transform:scale(.97); }
-  :global(html[data-compare-active] body) { padding-bottom:11rem; }
   @media(max-width:767px){.category-nav{top:4rem;gap:.2rem;flex-wrap:nowrap;overflow-x:auto;}.category-link{flex:1;justify-content:center;padding:.6rem .5rem;font-size:.85rem;}.category-link small{display:none;}}
 
   .room-card {

@@ -2,6 +2,8 @@
 import SectionRail from '../../components/SectionRail.astro';
 import PhotoViewer from '../../components/PhotoViewer.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import RoomCompare from '../../components/RoomCompare.astro';
+import CompareAction from '../../components/CompareAction.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection, render } from 'astro:content';
 import { siteConfig } from '../../lib/config';
@@ -65,7 +67,7 @@ const relatedRooms = allRooms
   schemaType="LocalBusiness"
   extraSchemas={createRoomSchemas(room.id.replace(/\.md$/, ''), room.data)}
 >
-  <main id="main" class="alt">
+  <main id="main" class="alt" data-compare-source>
     <div class="inner">
       <Breadcrumb items={[
         { label: '房型展示', href: '/rooms/' },
@@ -182,6 +184,7 @@ const relatedRooms = allRooms
       <div class="action-buttons">
         <a href={siteConfig.urls.account} class="btn-action">訂房流程</a>
         <a href={siteConfig.urls.roles} class="btn-action special">園內規約</a>
+        <CompareAction id={room.id} title={room.data.title} shortTitle={room.data.shortTitle} />
       </div>
 
       <!-- Booking Notice -->
@@ -240,6 +243,7 @@ const relatedRooms = allRooms
     </div>
   </div>
     <PhotoViewer id="room-lightbox" label="房型照片" mode="room" images={carouselImages.map(src=>({src,alt:getRoomImageMetadata(src).alt}))} />
+    <RoomCompare />
   </main>
 </BaseLayout>
 
@@ -811,6 +815,35 @@ const relatedRooms = allRooms
       updateCarousel();
       preloadNeighbors();
     }
+
+    // Fullscreen returns only a successfully displayed, known photo; never navigate or move focus.
+    const viewer = document.getElementById('room-lightbox');
+    const photoSources = slideImages.map(image => image.dataset.src || image.getAttribute('src'));
+    function returnedPhoto(event: Event): number | null {
+      if (!(event instanceof CustomEvent) || event.target !== viewer) return null;
+      const detail = event.detail;
+      return detail && Number.isInteger(detail.index) && detail.index >= 0 &&
+        detail.index < photoSources.length && photoSources[detail.index] === detail.src ? detail.index : null;
+    }
+    viewer?.addEventListener('photo-viewer:shown', event => {
+      const index = returnedPhoto(event);
+      if (index !== null) { ++navigationToken; prepareImage(index); }
+    });
+    viewer?.addEventListener('photo-viewer:return', event => {
+      const index = returnedPhoto(event);
+      if (index === null) return;
+      ++navigationToken;
+      prepareImage(index);
+      currentIndex = index;
+      // Commit beneath the dialog immediately, without the carousel's slide transition.
+      const transition = track.style.transition;
+      track.style.transition = 'none';
+      track.classList.remove('is-dragging');
+      updateCarousel();
+      void track.offsetWidth;
+      track.style.transition = transition;
+      preloadNeighbors();
+    });
 
     prevBtn?.addEventListener('pointerenter', () => prepareImage(currentIndex - 1));
     prevBtn?.addEventListener('focus', () => prepareImage(currentIndex - 1));
