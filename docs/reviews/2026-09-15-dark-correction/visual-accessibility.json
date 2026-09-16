@@ -1,0 +1,1272 @@
+{
+  "timestamp": "2026-09-15T05:54:06.627Z",
+  "base": "http://127.0.0.1:4336",
+  "osPreference": "light",
+  "expectedTheme": "fixed dark",
+  "checks": 20,
+  "violations": 0,
+  "errors": [],
+  "results": [
+    {
+      "route": "/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#menu-toggle"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".hero-location"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "#hero-title"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".hero-title-en"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".hero-tagline"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".hero-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".button-primary"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".button-secondary"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "figcaption"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"infos/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(3) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(3) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"rooms/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(3) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(4) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(4) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"sale_items/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(4) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(5) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(5) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"guide/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(5) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(6) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(6) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"galleries/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(6) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(7) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(7) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(7) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/rooms/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": "#main-content",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".notice-panel",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".booking-notice",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/rooms/campsite_1/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": "#main-content",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".notice-panel",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".booking-notice",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/galleries/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".breadcrumb-bullet"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                "a[title=\"回到首頁\"] > span"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".active > span"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "h1"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".intro"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/infos/guide/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/infos/account/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "li:nth-child(2) > ul > li:nth-child(1) > a[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/infos/roles/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/infos/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "h1"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"account/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".info-link[href$=\"guide/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"map/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"menu/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"roles/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"set-menu-info/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"video/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"contact-method/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/sale_items/",
+      "width": 390,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#desktop-nav > a[aria-current=\"page\"][href=\"/\"][data-astro-cid-nen7h5rs=\"\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "#desktop-nav > a[href$=\"rooms/\"][data-astro-cid-nen7h5rs=\"\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "#desktop-nav > a[href$=\"guide/\"][data-astro-cid-nen7h5rs=\"\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "#desktop-nav > a[href$=\"galleries/\"][data-astro-cid-nen7h5rs=\"\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "#menu-toggle"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".hero-location"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "#hero-title"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".hero-title-en"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".hero-tagline"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".hero-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".button-primary"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".button-secondary"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "figcaption"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"infos/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(3) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(3) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"rooms/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(3) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(4) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(4) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"sale_items/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(4) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(5) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(5) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"guide/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(5) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(6) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(6) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[href$=\"galleries/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(6) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(7) > .tile-number"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "article:nth-child(7) > .tile-content > .tile-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                ".tile-link[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "target": [
+                "article:nth-child(7) > .tile-content > .tile-description"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/rooms/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".room-prices",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/rooms/suite_1/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": "#main-content",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".notice-panel",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".booking-notice",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/rooms/campsite_1/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": "#main-content",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".notice-panel",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".booking-notice",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        },
+        {
+          "selector": ".related-card",
+          "background": "rgb(42, 47, 74)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/galleries/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".breadcrumb-bullet"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                "a[title=\"回到首頁\"] > span"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".active > span"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                "h1"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".intro"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/infos/guide/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/infos/account/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "li:nth-child(2) > ul > li:nth-child(1) > a[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/infos/roles/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/infos/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "h1"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"account/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                ".info-link[href$=\"guide/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"map/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"menu/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"roles/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"set-menu-info/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"video/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            },
+            {
+              "target": [
+                "a[href$=\"contact-method/\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/sale_items/",
+      "width": 1440,
+      "surfaces": [
+        {
+          "selector": "body",
+          "background": "rgb(36, 41, 67)",
+          "color": "rgb(245, 240, 230)"
+        }
+      ],
+      "noOverflow": true,
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "sourceCommit": "5662328fd9892a58773938488de979471fbd5f06"
+}

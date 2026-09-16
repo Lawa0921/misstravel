@@ -1,0 +1,29 @@
+SOURCE_COMMIT=5662328fd9892a58773938488de979471fbd5f06
+
+Running 22 tests using 1 worker
+
+  ✓   1 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 390px › /rooms/ keeps every reading surface dark in both OS themes (1.2s)
+  ✓   2 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 390px › /rooms/suite_1/ keeps every reading surface dark in both OS themes (766ms)
+  ✓   3 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 390px › /rooms/campsite_1/ keeps every reading surface dark in both OS themes (597ms)
+  ✓   4 [chromium] › tests/e2e/dark-theme.spec.ts:27:5 › Consistent dark presentation at 390px › room card stays dark and legible on hover and keyboard focus (464ms)
+  ✓   5 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 1440px › /rooms/ keeps every reading surface dark in both OS themes (1.5s)
+  ✓   6 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 1440px › /rooms/suite_1/ keeps every reading surface dark in both OS themes (1.2s)
+  ✓   7 [chromium] › tests/e2e/dark-theme.spec.ts:11:7 › Consistent dark presentation at 1440px › /rooms/campsite_1/ keeps every reading surface dark in both OS themes (598ms)
+  ✓   8 [chromium] › tests/e2e/dark-theme.spec.ts:27:5 › Consistent dark presentation at 1440px › room card stays dark and legible on hover and keyboard focus (422ms)
+  ✓   9 [chromium] › tests/e2e/interaction.spec.ts:4:3 › 山霧景深互動 › 照片光影不得使用近似 @ 的等高線圖樣 (439ms)
+  ✓  10 [chromium] › tests/e2e/interaction.spec.ts:19:3 › 山霧景深互動 › 首頁卡片應在捲入後浮現並回應指標位置 (483ms)
+  ✓  11 [chromium] › tests/e2e/interaction.spec.ts:54:3 › 山霧景深互動 › 房型與圖集應共用同一套互動語言 (460ms)
+  ✓  12 [chromium] › tests/e2e/interaction.spec.ts:62:3 › 山霧景深互動 › 快速跳捲後圖集不得留下透明卡片 (3.5s)
+  ✓  13 [chromium] › tests/e2e/interaction.spec.ts:82:3 › 山霧景深互動 › 減少動畫偏好下應停用景深轉動 (336ms)
+  ✓  14 [chromium] › tests/e2e/interaction.spec.ts:93:3 › 主選單鍵盤操作 › Tab 焦點應鎖在選單內，Escape 後回到 Menu (580ms)
+  ✓  15 [chromium] › tests/e2e/interaction.spec.ts:123:3 › 主選單鍵盤操作 › 手機寬度下選單仍可正常開關並恢復焦點 (401ms)
+  ✓  16 [chromium] › tests/e2e/interaction.spec.ts:140:1 › 圖集 Lightbox 應支援方向鍵、Escape 與焦點返回 (422ms)
+  ✓  17 [chromium] › tests/e2e/interaction.spec.ts:162:1 › 柑仔店 Modal 關閉後應恢復焦點與頁面捲動 (415ms)
+  ✓  18 [chromium] › tests/e2e/interaction.spec.ts:182:1 › 交通指引只在開啟對應 modal 時載入圖片 (965ms)
+log_cabin_4 initial same-origin resources: 0.00 MB
+  ✓  19 [chromium] › tests/e2e/interaction.spec.ts:201:1 › 房型輪播應延後非相鄰圖片請求並維持 ARIA 與鍵盤操作 (1.1s)
+  ✓  20 [chromium] › tests/e2e/interaction.spec.ts:251:3 › 減少動畫的真實鍵盤流程 › 選單可在 visibility 轉換後取得焦點並以 Escape 關閉 (463ms)
+  ✓  21 [chromium] › tests/e2e/interaction.spec.ts:261:3 › 減少動畫的真實鍵盤流程 › 相簿關閉應完成轉場且回到原照片 (1.3s)
+  ✓  22 [chromium] › tests/e2e/interaction.spec.ts:273:1 › 圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點 (383ms)
+
+  22 passed (18.9s)

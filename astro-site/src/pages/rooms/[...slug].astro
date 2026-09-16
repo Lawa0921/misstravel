@@ -1,8 +1,12 @@
 ---
+import SectionRail from '../../components/SectionRail.astro';
+import PhotoViewer from '../../components/PhotoViewer.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection, render } from 'astro:content';
 import { siteConfig } from '../../lib/config';
+import { getRoomImageMetadata } from '../../lib/image-metadata';
+import { createRoomSchemas } from '../../lib/room-schema';
 
 export async function getStaticPaths() {
   const rooms = await getCollection('rooms');
@@ -14,10 +18,10 @@ export async function getStaticPaths() {
 
 const { room } = Astro.props;
 const { Content } = await render(room);
+const headingParts = room.data.title.match(/^(.*?)(\s*\([^)]*\))$/);
 
-const carouselImages = room.data.images.includes(room.data.mainImage)
-  ? room.data.images
-  : [room.data.mainImage, ...room.data.images];
+// Lead with the selected main photo; retain every original gallery image once.
+const carouselImages = [...new Set([room.data.mainImage, ...room.data.images])];
 
 const roomCategoryLabels = {
   campsite: '露營營位',
@@ -25,11 +29,9 @@ const roomCategoryLabels = {
   suite: '套房',
 } as const;
 const roomCategoryLabel = roomCategoryLabels[room.data.category];
-const weekdayPrices = [
-  room.data.weekdayPrice,
-  ...(room.data.priceOptions?.map((option) => option.weekdayPrice) ?? []),
-];
-const startingWeekdayPrice = Math.min(...weekdayPrices);
+const displayedPriceOptions = [...(room.data.priceOptions ?? [])]
+  .sort((a, b) => a.weekdayPrice - b.weekdayPrice);
+const startingWeekdayPrice = Math.min(room.data.weekdayPrice, ...displayedPriceOptions.map(option => option.weekdayPrice));
 
 // Prefer the same accommodation category, then the closest capacity and weekday price.
 const allRooms = await getCollection('rooms');
@@ -61,6 +63,7 @@ const relatedRooms = allRooms
   image={room.data.mainImage}
   preloadImage={carouselImages[0]}
   schemaType="LocalBusiness"
+  extraSchemas={createRoomSchemas(room.id.replace(/\.md$/, ''), room.data)}
 >
   <main id="main" class="alt">
     <div class="inner">
@@ -69,13 +72,23 @@ const relatedRooms = allRooms
         { label: room.data.shortTitle }
       ]} />
       <header class="major">
-        <h1>{room.data.title}</h1>
+        <h1>{headingParts ? <><span class="room-heading-name">{headingParts[1]}</span><span class="room-heading-plan">{headingParts[2]}</span></> : room.data.title}</h1>
       </header>
-      <div class="room-summary" aria-label="房型摘要">
+      <div class="room-summary" role="region" aria-label="房型摘要">
+        <span class="summary-kicker">STAY / 密式旅行</span>
         <div class="summary-facts">
           <span class="summary-category">{roomCategoryLabel}</span>
-          <span>👥 {room.data.numberOfPeople} 人</span>
-          <span>平日 NT${startingWeekdayPrice.toLocaleString('zh-TW')} 起</span>
+          {displayedPriceOptions.length > 0 ? displayedPriceOptions.map((option) => (
+            <span class={`summary-fact ${option.isStandard ? 'summary-standard' : 'summary-alternative'}`}>
+              <strong>{option.label}・{option.numberOfPeople} 人以下</strong>
+              <span>平日 NT${option.weekdayPrice.toLocaleString('zh-TW')} 起</span>
+            </span>
+          )) : (
+            <>
+              <span class="summary-fact"><strong>👥</strong> {room.data.numberOfPeople} 人</span>
+              <span class="summary-fact">平日 NT${startingWeekdayPrice.toLocaleString('zh-TW')} 起</span>
+            </>
+          )}
         </div>
         <a
           href={siteConfig.booking.url}
@@ -88,21 +101,37 @@ const relatedRooms = allRooms
       </div>
     </div>
 
+  <SectionRail links={[{href:"#room-carousel",label:"房型照片"},{href:"#room-booking",label:"訂位須知"},{href:"#room-info",label:"房型說明"},{href:"#room-related",label:"其他房型"}]} />
   <div id="main-content" class="room-detail">
     <div class="inner-content">
       <!-- Important Notice -->
-      <h2 class="notice-title">『預訂前請先詳閱以下介紹(含延期退費說明)並衡量房間大小是否合適』</h2>
+        <section class="notice-panel" aria-label="預訂前提醒">
+          <span class="notice-mark" aria-hidden="true">01</span>
+          <div>
+            <p class="eyebrow">Before you book</p>
+            <h2 class="notice-title">『預訂前請先詳閱以下介紹(含延期退費說明)並衡量房間大小是否合適』</h2>
+          </div>
+        </section>
 
       <!-- Image Carousel -->
       <div class="carousel-container">
-        <div class="carousel" id="room-carousel">
+        <div class="photo-toolbar"><span class="photo-position" aria-live="polite"><span data-photo-position>01</span> / {String(carouselImages.length).padStart(2,"0")}</span><span class="photo-drag-hint">DRAG TO EXPLORE</span><button class="photo-expand" type="button" data-lightbox="room-photo" aria-label="放大房型照片"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5" /></svg><span>放大照片</span></button></div>
+        <div class="carousel" id="room-carousel" tabindex="0" role="region" aria-roledescription="輪播" aria-label={`${room.data.shortTitle} 房型照片輪播`}>
           <div class="carousel-track">
             {carouselImages.map((image, index) => (
-              <div class="carousel-slide" data-index={index}>
+                <div
+                  class={`carousel-slide ${index === 0 ? 'active' : ''}`}
+                  data-index={index}
+                  role="group"
+                  aria-roledescription="投影片"
+                  aria-label={`第 ${index + 1} 張，共 ${carouselImages.length} 張`}
+                  aria-hidden={index === 0 ? 'false' : 'true'}
+                >
                 <img
+                  data-room-photo={index === 0 ? `/rooms/${room.id.replace('.md', '')}/` : undefined}
                   src={index < 2 ? image : undefined}
                   data-src={index < 2 ? undefined : image}
-                  alt={`${room.data.shortTitle} 圖片 ${index + 1}`}
+                  alt={getRoomImageMetadata(image).alt}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                   fetchpriority={index === 0 ? 'high' : undefined}
@@ -112,12 +141,12 @@ const relatedRooms = allRooms
               </div>
             ))}
           </div>
-          <button class="carousel-btn prev" aria-label="上一張">
+          <button class="carousel-btn prev" type="button" aria-label="上一張">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-          <button class="carousel-btn next" aria-label="下一張">
+          <button class="carousel-btn next" type="button" aria-label="下一張">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
@@ -127,17 +156,20 @@ const relatedRooms = allRooms
               <button
                 class={`dot ${index === 0 ? 'active' : ''}`}
                 data-index={index}
+                type="button"
                 aria-label={`跳至圖片 ${index + 1}`}
+                aria-current={index === 0 ? 'true' : 'false'}
               ></button>
             ))}
           </div>
         </div>
       </div>
+      <p data-photo-error class="photo-error" role="status"></p>
       <noscript class="carousel-noscript">
-        {carouselImages.slice(2).map((image, index) => (
+        {carouselImages.slice(1).map((image) => (
           <img
             src={image}
-            alt={`${room.data.shortTitle} 圖片 ${index + 3}`}
+            alt={getRoomImageMetadata(image).alt}
             loading="lazy"
             decoding="async"
             width="900"
@@ -153,7 +185,7 @@ const relatedRooms = allRooms
       </div>
 
       <!-- Booking Notice -->
-      <div class="booking-notice">
+      <div class="booking-notice" id="room-booking">
         <h3>【訂位須知】</h3>
         <ul>
           <li>訂假日提早一晚夜衝者，當日價格一律半價(限晚上 6 點後至 10 點以前進場)</li>
@@ -169,7 +201,7 @@ const relatedRooms = allRooms
       </div>
 
       <!-- Room Details -->
-      <div class="room-content">
+      <div class="room-content" id="room-info">
         <Content />
       </div>
 
@@ -184,14 +216,14 @@ const relatedRooms = allRooms
       </div>
 
       <!-- Related Rooms -->
-      <div class="related-section">
+      <div class="related-section" id="room-related">
         <h3>其他住宿選擇</h3>
         <div class="related-grid">
           {relatedRooms.map((related) => (
             <a href={`/rooms/${related.id.replace('.md', '')}/`} class="related-card">
               <img
                 src={related.data.mainImage}
-                alt={`${related.data.shortTitle}住宿外觀`}
+                alt={getRoomImageMetadata(related.data.mainImage).alt}
                 loading="lazy"
                 decoding="async"
                 width="400"
@@ -199,7 +231,7 @@ const relatedRooms = allRooms
               />
               <div class="related-info">
                 <h4>{related.data.shortTitle}</h4>
-                <span class="related-price">平日 ${related.data.weekdayPrice} 起</span>
+                <span class="related-price">{related.data.priceOptions ? `${related.data.priceOptions.find(option => option.isStandard)?.numberOfUnits} 帳平日` : '平日'} NT${related.data.weekdayPrice.toLocaleString('zh-TW')} 起</span>
               </div>
             </a>
           ))}
@@ -207,356 +239,503 @@ const relatedRooms = allRooms
       </div>
     </div>
   </div>
+    <PhotoViewer id="room-lightbox" label="房型照片" mode="room" images={carouselImages.map(src=>({src,alt:getRoomImageMetadata(src).alt}))} />
   </main>
 </BaseLayout>
 
 <style>
   #main.alt {
-    background: #242943;
-    padding-top: 5rem;
-    padding-bottom: 0;
+    background: var(--color-bg);
+    color: var(--color-paper);
+    padding: 6.5rem 0 0;
   }
 
   #main.alt > .inner {
-    max-width: 900px;
+    width: min(100% - 3rem, 62rem);
     margin: 0 auto;
-    padding: 0 1.5rem 1rem;
+    padding: 0 0 1rem;
+  }
+
+  .major {
+    margin-top: 1.75rem;
   }
 
   .major h1 {
-    font-size: 2rem;
-    letter-spacing: 0.15em;
-    border-bottom: 2px solid #fff;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    max-width: 100%;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--color-paper);
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    line-height: 1.18;
+    letter-spacing: 0.08em;
   }
 
+  .room-heading-name { display: inline-block; max-width: 100%; }
+  .room-heading-plan { display: inline-block; font-size: 0.68em; white-space: pre; letter-spacing: 0.04em; vertical-align: middle; }
+
   .room-summary {
-    display: flex;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem 1.5rem;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 1.25rem;
-    padding: 0.9rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
+    margin-top: 1.75rem;
+    padding: 1.15rem 1.25rem;
+    border: 1px solid rgba(232, 201, 130, 0.42);
+    border-radius: 0.9rem;
+    background: var(--color-surface);
+    box-shadow: 0 1rem 2.5rem rgba(8, 10, 24, 0.18);
+  }
+
+  .summary-kicker {
+    grid-column: 1 / -1;
+    color: var(--color-champagne);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
   }
 
   .summary-facts {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.6rem 1rem;
-    color: rgba(255, 255, 255, 0.92);
+    gap: 0.55rem 1.25rem;
+    color: rgba(248, 244, 236, 0.86);
     font-size: 0.9rem;
   }
 
   .summary-category {
-    padding: 0.2rem 0.55rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(155, 241, 255, 0.42);
     border-radius: 999px;
-    background: rgba(155, 241, 255, 0.12);
-    color: #9bf1ff;
+    color: var(--color-aqua);
     font-weight: 600;
   }
 
+  .summary-fact strong {
+    color: var(--color-champagne);
+    font-weight: 600;
+  }
+
+  .summary-alternative {
+    color: var(--color-aqua);
+  }
+
+  .summary-alternative strong {
+    color: var(--color-aqua);
+  }
+
   .availability-cta {
-    flex: 0 0 auto;
-    display: inline-block;
-    padding: 0.7rem 1.1rem;
-    border: 2px solid #9bf1ff;
-    border-radius: 6px;
-    background: #9bf1ff;
-    color: #242943;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.15rem;
+    border: 1px solid var(--color-aqua);
+    border-radius: 999px;
+    background: var(--color-aqua);
+    color: var(--color-bg);
     font-weight: 700;
-    letter-spacing: 0.08em;
-    transition: background 0.2s ease, color 0.2s ease;
+    letter-spacing: 0.1em;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
   }
 
   .availability-cta:hover,
   .availability-cta:focus-visible {
-    background: transparent;
-    color: #9bf1ff;
+    border-color: var(--color-paper);
+    background: var(--color-paper);
+    color: var(--color-bg);
   }
 
   #main-content {
-    background: #242943;
-    padding: 2rem 0 4rem;
+    background: var(--color-bg);
+    color: var(--color-paper);
+    padding: .75rem 0 5rem;
   }
 
   .inner-content {
-    max-width: 900px;
+    width: min(100% - 3rem, 62rem);
     margin: 0 auto;
-    padding: 0 1.5rem;
   }
 
-  /* Notice Title */
+  .notice-panel {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: .75rem;
+    padding: 1.25rem 1.35rem;
+    border-left: 3px solid var(--color-champagne);
+    background: var(--color-surface);
+  }
+
+  .notice-mark {
+    color: var(--color-champagne);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--color-champagne);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
   .notice-title {
-    color: #ffd306;
-    font-size: 1.35em;
-    text-align: center;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+    margin: 0;
+    color: var(--color-paper);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 1.65;
   }
 
-  /* Carousel */
+  .photo-error:empty{display:none;} .photo-error{color:var(--color-danger);font-size:.85rem;}
+  .photo-toolbar {display:flex;align-items:center;gap:1rem;min-height:52px;margin-bottom:.6rem;color:var(--color-paper-muted);}
+  .photo-position {font-size:.9rem;font-variant-numeric:tabular-nums;letter-spacing:.12em;color:var(--color-aqua);}
+  .photo-drag-hint{display:none;font-size:.65rem;letter-spacing:.15em;margin-left:auto;}
+  .photo-expand{display:none;align-items:center;gap:.5rem;min-height:44px;border:1px solid var(--color-border);border-radius:999px;background:var(--color-surface);padding:.5rem .9rem;color:var(--color-paper);font:inherit;font-size:.85rem;cursor:pointer;}
+  :global(html[data-viewer-ready]) .photo-expand{display:inline-flex;}
+  :global(html[data-viewer-ready]) .photo-drag-hint{display:inline;}
+  .carousel-track.is-dragging {cursor:grabbing;transition:none;}
+  @media(max-width:600px){:global(html[data-viewer-ready]) .photo-drag-hint{display:none;}.photo-expand{margin-left:auto;}}
   .carousel-container {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .carousel {
     position: relative;
-    border-radius: 8px;
     overflow: hidden;
-    border: 4px solid #ffd700;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: var(--color-bg);
+    box-shadow: 0 1.5rem 3.5rem rgba(36, 41, 67, 0.15);
+    outline: none;
+  }
+
+  .carousel:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-aqua), 0 1.5rem 3.5rem rgba(36, 41, 67, 0.15);
   }
 
   .carousel-track {
     display: flex;
-    transition: transform 0.3s ease;
+    transition: transform 420ms cubic-bezier(0.2, 0.75, 0.25, 1);
+    touch-action: pan-y pinch-zoom;
+    cursor: grab;
   }
 
   .carousel-slide {
     min-width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
   }
 
   .carousel-slide img {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    user-select:none;
+    -webkit-user-drag:none;
   }
 
   .carousel-btn {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
+    top: calc((100% - 50px) / 2);
+    display: grid;
     width: 48px;
     height: 48px;
+    place-items: center;
+    border: 1px solid rgba(248, 244, 236, 0.7);
     border-radius: 50%;
+    background: rgba(23, 27, 50, 0.7);
+    color: var(--color-paper);
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease;
+    transform: translateY(-50%);
+    transition: background 180ms ease, color 180ms ease;
   }
 
-  .carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
+  .carousel-btn:hover,
+  .carousel-btn:focus-visible {
+    background: var(--color-aqua);
+    color: var(--color-bg);
   }
 
-  .carousel-btn.prev {
-    left: 1rem;
-  }
-
-  .carousel-btn.next {
-    right: 1rem;
-  }
+  .carousel-btn.prev { left: 1rem; }
+  .carousel-btn.next { right: 1rem; }
 
   .carousel-dots {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    width: 100%;
     display: flex;
-    gap: 0.5rem;
+    max-width: 100%;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0.15rem 0.5rem;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    scrollbar-width: thin;
   }
-
   .dot {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .dot::before {
+    content: '';
     width: 10px;
     height: 10px;
+    border: 1px solid var(--color-paper-muted);
     border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: background 0.2s ease;
+  }
+  .dot.active::before,
+  .dot[aria-current='true']::before {
+    border-color: var(--color-champagne);
+    background: var(--color-champagne);
+  }
+  .dot:focus-visible { outline-offset: -3px; }
+
+  .carousel-noscript {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: -1.5rem 0 2.5rem;
   }
 
-  .dot.active {
-    background: #fff;
+  .carousel-noscript img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
 
-  /* Action Buttons */
   .action-buttons {
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
   }
 
   .btn-action {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    font-size: 0.9rem;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid var(--color-aqua);
+    border-radius: 999px;
+    color: var(--color-aqua);
+    font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border: 2px solid #fff;
-    background: transparent;
-    color: #fff;
-    transition: all 0.2s ease;
+    letter-spacing: 0.08em;
+    transition: background 180ms ease, color 180ms ease;
   }
 
-  .btn-action:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+  .btn-action:hover,
+  .btn-action:focus-visible {
+    background: var(--color-aqua);
+    color: var(--color-bg);
   }
 
   .btn-action.special {
-    background: #fff;
-    color: #242943;
+    border-color: var(--color-aqua);
+    background: var(--color-aqua);
+    color: var(--color-bg);
   }
 
-  .btn-action.special:hover {
-    background: rgba(255, 255, 255, 0.9);
+  .btn-action.special:hover,
+  .btn-action.special:focus-visible {
+    border-color: var(--color-paper);
+    background: var(--color-paper);
+    color: var(--color-bg);
   }
 
-  /* Booking Notice */
+  .booking-notice,
+  .room-content,
+  .day-definition,
+  .related-section {
+    margin-bottom: 3rem;
+  }
+
   .booking-notice {
-    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.8rem;
+    background: var(--color-surface);
   }
 
-  .booking-notice h3 {
-    color: #fff;
-    font-size: 1.1em;
-    margin-bottom: 1rem;
+  .booking-notice h3,
+  .day-definition h3,
+  .related-section h3 {
+    margin: 0 0 1.1rem;
+    color: var(--color-paper);
+    font-size: 1.15rem;
+    letter-spacing: 0.1em;
   }
 
-  .booking-notice ul {
-    padding-left: 1.5rem;
+  .booking-notice ul,
+  .day-definition ul,
+  .room-content :global(ul) {
+    margin: 0;
+    padding-left: 1.35rem;
   }
 
-  .booking-notice li {
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
+  .booking-notice li,
+  .day-definition li,
+  .room-content :global(li) {
+    margin-bottom: 0.65rem;
+    color: var(--color-paper);
+  }
+
+  .booking-notice li:last-child,
+  .day-definition li:last-child,
+  .room-content :global(li:last-child) {
+    margin-bottom: 0;
   }
 
   .booking-notice li.red {
-    color: #ff6b6b;
-  }
-
-  /* Room Content */
-  .room-content {
-    margin-bottom: 2rem;
+    color: var(--color-danger);
   }
 
   .room-content :global(h4) {
-    color: #ffd306;
-    font-size: 1.1em;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin: 2rem 0 1rem;
+    color: var(--color-champagne);
+    font-size: 1.15rem;
   }
 
-  .room-content :global(ul) {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .room-content :global(li) {
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Day Type Definition */
   .day-definition {
-    margin-bottom: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
   }
 
-  .day-definition h3 {
-    color: #fff;
-    font-size: 1.1em;
-    margin-bottom: 1rem;
-  }
-
-  .day-definition ul {
-    padding-left: 1.5rem;
-  }
-
-  .day-definition li {
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Related Rooms */
   .related-section h3 {
-    margin-bottom: 1.5rem;
-    text-align: center;
+    margin-bottom: 1.25rem;
   }
 
   .related-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
   }
 
   .related-card {
-    background: #2a2f4a;
-    border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s ease;
-    border-bottom: none;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+    color: var(--color-paper);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   }
 
-  .related-card:hover {
-    transform: translateY(-5px);
+  .related-card:hover,
+  .related-card:focus-visible {
+    border-color: var(--color-aqua);
+    box-shadow: 0 0.75rem 1.5rem rgba(36, 41, 67, 0.12);
+    color: var(--color-paper);
+    transform: translateY(-3px);
   }
 
   .related-card img {
+    display: block;
     width: 100%;
-    height: 150px;
+    aspect-ratio: 5 / 3;
     object-fit: cover;
   }
 
   .related-info {
-    padding: 1rem;
-    text-align: center;
+    padding: 0.9rem;
   }
 
   .related-info h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
   }
 
   .related-price {
+    color: var(--color-aqua);
     font-size: 0.9rem;
-    color: #9bf1ff;
   }
 
   @media (max-width: 768px) {
-    .page-header {
-      padding: 6rem 1.5rem 2rem;
+    #main.alt {
+      padding-top: 5.5rem;
     }
 
-    .page-header h1 {
-      font-size: 1.5rem;
+    #main.alt > .inner,
+    .inner-content {
+      width: min(100% - 2rem, 42rem);
     }
 
     .room-summary {
-      align-items: stretch;
-      flex-direction: column;
+      grid-template-columns: 1fr;
     }
 
     .availability-cta {
       width: 100%;
-      text-align: center;
     }
 
-    .price-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .carousel-btn.prev { left: 0.6rem; }
+    .carousel-btn.next { right: 0.6rem; }
 
+
+
+    .carousel-noscript,
     .related-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #main.alt { padding-top:5rem; }
+    #main.alt > .inner { padding-bottom:.5rem; }
+    .major { margin-top:1rem; }
+    .room-summary { margin-top:1rem; gap:.5rem; padding:.85rem 1rem; }
+    .notice-panel { padding:.75rem 1rem; }
+    .notice-title { font-size:.95rem;line-height:1.5; }
+  }
+
+  @media (max-width: 390px) {
+    #main.alt > .inner,
+    .inner-content {
+      width: min(100% - 1.5rem, 42rem);
+    }
+
+    .notice-panel,
+    .booking-notice {
+      padding: 1rem;
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track,
+    .carousel-btn,
+    .availability-cta,
+    .btn-action,
+    .related-card {
+      transition: none;
     }
   }
 </style>
 
 <script>
+  import { attachPhotoGestures } from '../../scripts/photo-gestures';
+  import { waitForPhoto } from '../../scripts/photo-ready';
   const carousel = document.getElementById('room-carousel');
   if (carousel) {
     const track = carousel.querySelector('.carousel-track') as HTMLElement;
@@ -583,23 +762,29 @@ const relatedRooms = allRooms
       return image;
     }
 
-    async function waitForImage(image?: HTMLImageElement) {
-      if (!image || image.complete) return;
-      try {
-        await image.decode();
-      } catch {
-        await new Promise<void>((resolve) => {
-          image.addEventListener('load', () => resolve(), { once: true });
-          image.addEventListener('error', () => resolve(), { once: true });
-        });
-      }
-    }
 
     function updateCarousel() {
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      const position=document.querySelector('[data-photo-position]');if(position)position.textContent=String(currentIndex+1).padStart(2,'0');
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentIndex);
+        slide.setAttribute('aria-hidden', i === currentIndex ? 'false' : 'true');
+      });
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
+        dot.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
       });
+      // Reveal the active touch control without scrolling the page.
+      const activeDot = dots[currentIndex] as HTMLElement;
+      const strip = activeDot?.parentElement;
+      if (strip && activeDot) {
+        const left = activeDot.offsetLeft;
+        if (left < strip.scrollLeft) strip.scrollLeft = left;
+        else if (left + activeDot.offsetWidth > strip.scrollLeft + strip.clientWidth) {
+          strip.scrollLeft = left + activeDot.offsetWidth - strip.clientWidth;
+        }
+      }
+
     }
 
     function preloadNeighbors() {
@@ -611,8 +796,17 @@ const relatedRooms = allRooms
       const targetIndex = normalizeIndex(index);
       const token = ++navigationToken;
       const targetImage = prepareImage(targetIndex);
-      await waitForImage(targetImage);
+      const ready = targetImage ? await waitForPhoto(targetImage) : 'error';
       if (token !== navigationToken) return;
+      track.classList.remove('is-dragging');
+      const status=document.querySelector('[data-photo-error]');
+      if (ready !== 'ready') {
+        updateCarousel();
+        if(status)status.textContent=ready==='timeout'?'照片準備中，請再按一次。':'照片無法開啟，請選擇其他照片。';
+        return;
+      }
+      if(status)status.textContent='';
+
       currentIndex = targetIndex;
       updateCarousel();
       preloadNeighbors();
@@ -632,18 +826,15 @@ const relatedRooms = allRooms
       dot.addEventListener('click', () => void navigateTo(i));
     });
 
-    let touchStartX = 0;
-    track.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-      prepareImage(currentIndex + 1);
-      prepareImage(currentIndex - 1);
+    // Keyboard navigation is owned by the shared accessibility enhancer.
+
+    attachPhotoGestures(track, {
+      onMove: (dx) => { track.classList.add('is-dragging');track.style.transform=`translateX(calc(-${currentIndex * 100}% + ${dx}px))`; },
+      onEnd: (direction) => { if(direction)void navigateTo(currentIndex+direction);else{track.classList.remove('is-dragging');updateCarousel();} },
+      onStart: () => { ++navigationToken;prepareImage(currentIndex+1);prepareImage(currentIndex-1); }
     });
 
-    track.addEventListener('touchend', (e) => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        void navigateTo(diff > 0 ? currentIndex + 1 : currentIndex - 1);
-      }
-    });
+    updateCarousel();
+    preloadNeighbors();
   }
 </script>

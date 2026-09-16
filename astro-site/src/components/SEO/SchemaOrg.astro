@@ -20,6 +20,7 @@ const sameAs = [
 const baseOrganization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${siteConfig.url}/#organization`,
   name: siteConfig.author,
   url: siteConfig.url,
   logo: `${siteConfig.url}${siteConfig.logo}`,
@@ -36,6 +37,7 @@ const baseOrganization = {
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
+  '@id': `${siteConfig.url}/#lodgingbusiness`,
   name: siteConfig.author,
   description: siteConfig.description,
   url: siteConfig.url,
@@ -70,7 +72,7 @@ const localBusiness = {
 const schemas: Record<string, object> = {
   Organization: baseOrganization,
   LocalBusiness: localBusiness,
-  Accommodation: { ...localBusiness, '@type': 'Accommodation', ...data },
+  Accommodation: { '@context': 'https://schema.org', '@type': 'Accommodation', ...data },
   BlogPosting: {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',

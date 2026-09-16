@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "eafc4458f9b31ecc484acd7918ff5491e3e7c048",
+  "baseCommit": "a779dcb99257c6d17c229802375ebf5bb457eee6",
+  "verify": {
+    "files": 26,
+    "passed": 328,
+    "failed": 0,
+    "auditVulnerabilities": 0
+  },
+  "browser": {
+    "passed": 68,
+    "failed": 0,
+    "retries": 0,
+    "newNavigationTests": 7
+  },
+  "preservation": {
+    "pages": 26,
+    "metadataMainFooterUnchanged": true,
+    "protectedFiles": 251,
+    "changedProtectedFiles": []
+  },
+  "independentAIReview": "PASS",
+  "humanApproval": false,
+  "productionChanged": false,
+  "localPreview": "http://localhost:4336/infos/",
+  "sourceCI": "https://github.com/Lawa0921/misstravel/actions/runs/34991358937"
+}

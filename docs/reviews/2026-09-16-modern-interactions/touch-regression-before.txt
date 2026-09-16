@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/modern-interactions.spec.ts:98:1 › real touch swipes change photos while vertical movement still scrolls the page (5.5s)
+
+
+  1) [chromium] › tests/e2e/modern-interactions.spec.ts:98:1 › real touch swipes change photos while vertical movement still scrolls the page
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('.carousel-slide.active')
+    Expected: "1"
+    Received: "0"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" with timeout 5000ms
+      - waiting for locator('.carousel-slide.active')
+        14 × locator resolved to <div role="group" data-index="0" aria-hidden="false" aria-label="第 1 張，共 16 張" aria-roledescription="投影片" data-astro-cid-vrzhfprt="" class="carousel-slide active">…</div>
+           - unexpected value "0"
+
+
+      105 |   for(let i=1;i<=8;i++)await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-i*20,y}]});
+      106 |   await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    > 107 |   await expect(page.locator('.carousel-slide.active')).toHaveAttribute('data-index','1');
+          |                                                        ^
+      108 |   const before=await page.evaluate(()=>scrollY);const current=await track.boundingBox();const verticalY=Math.min(current!.y+170,600);
+      109 |   await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:190,y:verticalY}]});
+      110 |   for(let i=1;i<=8;i++)await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:190,y:verticalY-i*15}]});
+        at <isolated-worktree>/astro-site/tests/e2e/modern-interactions.spec.ts:107:56
+
+    Error Context: test-results/modern-interactions-real-t-dc85b-ment-still-scrolls-the-page-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/modern-interactions-real-t-dc85b-ment-still-scrolls-the-page-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/modern-interactions-real-t-dc85b-ment-still-scrolls-the-page-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/modern-interactions.spec.ts:98:1 › real touch swipes change photos while vertical movement still scrolls the page

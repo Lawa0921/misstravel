@@ -1,0 +1,160 @@
+SOURCE_COMMIT=99799d9f758277ec82b43d86dd4dbea31d1c202b
+
+> astro-site@0.0.1 verify
+> npm audit --audit-level=high && npm run astro:check && npm run typecheck && vitest run
+
+found 0 vulnerabilities
+
+> astro-site@0.0.1 astro:check
+> astro check
+
+13:15:12 [vite] Re-optimizing dependencies because vite config has changed
+13:15:13 [content] Syncing content
+13:15:13 [content] Synced content
+13:15:13 [types] Generated 504ms
+13:15:13 [check] Getting diagnostics for Astro files in <isolated-worktree>/astro-site...
+src/components/Breadcrumb.astro:32:9 - warning astro(4000): This script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+32 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+           ~~~~
+
+src/components/SEO/Head.astro:139:5 - warning astro(4000): This script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+139     type="module"
+        ~~~~
+
+src/components/SEO/SchemaOrg.astro:89:11 - warning astro(4000): This script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+89   <script type="application/ld+json" set:html={JSON.stringify(extra)} />
+             ~~~~
+src/components/SEO/SchemaOrg.astro:87:9 - warning astro(4000): This script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+87 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+           ~~~~
+
+src/pages/sale_items.astro:4:1 - warning ts(6133): 'siteConfig' is declared but its value is never read.
+
+4 import { siteConfig } from '../lib/config';
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+tests/seo-round4.test.ts:89:11 - warning ts(6133): '$' is declared but its value is never read.
+
+89     const $ = readPage('infos/index.html');
+             ~
+
+Result (60 files):
+- 0 errors
+- 0 warnings
+- 6 hints
+
+
+> astro-site@0.0.1 typecheck
+> astro sync && tsc --noEmit
+
+13:15:18 [content] Syncing content
+13:15:18 [content] Synced content
+13:15:18 [types] Generated 469ms
+
+ RUN  v4.1.11 <isolated-worktree>/astro-site
+
+
+> astro-site@0.0.1 build
+> astro build
+
+13:15:20 [vite] Re-optimizing dependencies because vite config has changed
+13:15:21 [content] Syncing content
+13:15:21 [content] Synced content
+13:15:21 [types] Generated 554ms
+13:15:21 [build] output: "static"
+13:15:21 [build] mode: "static"
+13:15:21 [build] directory: <isolated-worktree>/astro-site/dist/
+13:15:21 [build] adapter: @astrojs/vercel
+13:15:21 [build] Collecting build info...
+13:15:21 [build] ✓ Completed in 590ms.
+13:15:21 [build] Building static entrypoints...
+13:15:21 [vite] ✓ built in 295ms
+13:15:21 [vite] ✓ built in 54ms
+13:15:21 [build] Rearranging server assets...
+
+ generating static routes
+13:15:21   ├─ /404.html (+11ms)
+13:15:21   ├─ /announcements/index.html (+4ms)
+13:15:21   ├─ /announcements/website/index.html (+3ms)
+13:15:21   ├─ /feed.json (+2ms)
+13:15:21   ├─ /feed.xml (+24ms)
+13:15:21   ├─ /galleries/index.html (+3ms)
+13:15:21   ├─ /infos/guide/index.html (+3ms)
+13:15:21   ├─ /infos/set-menu-info/index.html (+3ms)
+13:15:21   ├─ /infos/index.html (+5ms)
+13:15:21   ├─ /infos/account/index.html (+3ms)
+13:15:21   ├─ /infos/contact-method/index.html (+3ms)
+13:15:21   ├─ /infos/map/index.html (+2ms)
+13:15:21   ├─ /infos/menu/index.html (+2ms)
+13:15:21   ├─ /infos/roles/index.html (+2ms)
+13:15:21   ├─ /infos/video/index.html (+1ms)
+13:15:21   ├─ /rooms/index.html (+5ms)
+13:15:21   ├─ /rooms/campsite_1/index.html (+6ms)
+13:15:21   ├─ /rooms/campsite_2/index.html (+3ms)
+13:15:21   ├─ /rooms/campsite_3/index.html (+2ms)
+13:15:21   ├─ /rooms/log_cabin_1/index.html (+3ms)
+13:15:21   ├─ /rooms/log_cabin_2/index.html (+1ms)
+13:15:21   ├─ /rooms/log_cabin_3/index.html (+2ms)
+13:15:21   ├─ /rooms/log_cabin_4/index.html (+2ms)
+13:15:21   ├─ /rooms/suite_1/index.html (+2ms)
+13:15:21   ├─ /rooms/suite_2/index.html (+3ms)
+13:15:21   ├─ /rooms/suite_3/index.html (+4ms)
+13:15:21   ├─ /sale_items/index.html (+4ms)
+13:15:21   ├─ /index.html (+3ms)
+13:15:21 ✓ Completed in 195ms.
+
+13:15:21 [build] ✓ Completed in 569ms.
+13:15:21 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+13:15:21 [@astrojs/vercel] Copying static files to .vercel/output/static
+13:15:21 [build] 26 page(s) built in 1.19s
+13:15:21 [build] Complete!
+ ✓ tests/room-category-integrity.test.ts (3 tests) 20ms
+ ✓ tests/production-smoke.test.ts (8 tests) 15ms
+ ✓ tests/seo-round4.test.ts (10 tests) 166ms
+ ✓ tests/room-detail-decision-ux.test.ts (10 tests) 86ms
+ ✓ tests/homepage-editorial.test.ts (9 tests) 154ms
+ ✓ tests/seo-gallery.test.ts (3 tests) 129ms
+ ✓ tests/related-room-ranking.test.ts (3 tests) 62ms
+ ✓ tests/seo-round3.test.ts (23 tests) 267ms
+ ✓ tests/seo-round7.test.ts (12 tests) 95ms
+ ✓ tests/room-design-system.test.ts (4 tests) 42ms
+ ✓ tests/seo-round5.test.ts (12 tests) 85ms
+ ✓ tests/technical-hardening.test.ts (11 tests) 137ms
+ ✓ tests/homepage-stay-choices.test.ts (2 tests) 26ms
+ ✓ tests/campsite-pricing-integrity.test.ts (6 tests) 65ms
+ ✓ tests/seo-round8.test.ts (13 tests) 146ms
+ ✓ tests/booking-flow-integrity.test.ts (10 tests) 199ms
+ ✓ tests/search-info-consistency.test.ts (6 tests) 75ms
+ ✓ tests/seo-round2.test.ts (30 tests) 195ms
+ ✓ tests/seo-round6.test.ts (13 tests) 84ms
+ ✓ tests/editorial-font-coverage.test.ts (7 tests) 44ms
+ ✓ tests/room-list-category-ux.test.ts (4 tests) 43ms
+ ✓ tests/site-route-integrity.test.ts (4 tests) 414ms
+     ✓ 所有站內連結、canonical、Feed 與靜態資產都應存在  330ms
+ ✓ tests/production-browser-smoke.test.ts (22 tests) 6ms
+ ✓ tests/integrity.test.ts (8 tests) 267ms
+
+ Test Files  24 passed (24)
+      Tests  233 passed (233)
+   Start at  13:15:19
+   Duration  2.76s (transform 1.97s, setup 0ms, import 7.75s, tests 2.82s, environment 3ms)

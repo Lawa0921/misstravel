@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// A supplied preview URL is tested as-is; never replace a running user preview.
+const previewBaseURL = process.env.PLAYWRIGHT_BASE_URL;
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: false,
@@ -7,10 +10,10 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'list' : 'html',
   use: {
-    baseURL: 'http://127.0.0.1:4334',
+    baseURL: previewBaseURL || 'http://127.0.0.1:4334',
     trace: 'retain-on-failure',
   },
-  webServer: {
+  webServer: previewBaseURL ? undefined : {
     command: 'npm run preview -- --host 127.0.0.1 --port 4334',
     url: 'http://127.0.0.1:4334/',
     reuseExistingServer: !process.env.CI,
@@ -19,7 +22,8 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      // Use the full browser compositor for native document transitions, not headless-shell.
+      use: { ...devices['Desktop Chrome'], channel: 'chromium' },
     },
   ],
 });

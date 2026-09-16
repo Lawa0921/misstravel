@@ -1,0 +1,54 @@
+{
+  "sourceCommit": "d2521f4e05210eb7cb2feb3be0667be87d260cc8",
+  "baseCommit": "1276582069e6d6d6ef92ac8f03840928ffd9fa51",
+  "secondaryPages": 13,
+  "existingDialogs": 12,
+  "verify": {
+    "files": 26,
+    "passed": 328,
+    "failed": 0,
+    "auditVulnerabilities": 0
+  },
+  "browser": {
+    "passed": 35,
+    "failed": 0,
+    "retries": 0,
+    "widths": [
+      360,
+      390,
+      768,
+      1440
+    ],
+    "everyDialogCheckedAt": [
+      390,
+      1440
+    ],
+    "noJavaScriptFallback": true
+  },
+  "visitor": {
+    "checks": 419,
+    "passed": 419,
+    "failed": 0
+  },
+  "axe": {
+    "states": 50,
+    "violations": 0,
+    "incompleteIsNotPass": true
+  },
+  "preservation": {
+    "metadataPages": 26,
+    "contentAndLinksHashChecks": true,
+    "protectedFiles": 251,
+    "modifiedProtectedFiles": 0,
+    "originalUncommittedWorkspacePreserved": true,
+    "mediaSourceAndAltHashChecks": true
+  },
+  "sourceCI": "https://github.com/Lawa0921/misstravel/actions/runs/34945910870",
+  "productionChanged": false,
+  "preview": "http://localhost:4336/",
+  "independentAIReview": {
+    "sourceCommit": "d2521f4e05210eb7cb2feb3be0667be87d260cc8",
+    "verdict": "PASS",
+    "humanApproval": false
+  }
+}

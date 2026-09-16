@@ -1,0 +1,2121 @@
+{
+  "timestamp": "2026-09-15T09:34:23.347Z",
+  "base": "http://127.0.0.1:4336",
+  "head": "111c6075ddddb7c36570032fa518923c43c583f2",
+  "reviewer": "Separate black-box visitor acceptance harness (automated; not a human user study)",
+  "analytics": "Cloudflare beacon suppressed for synthetic visits only",
+  "summary": {
+    "checks": 419,
+    "passed": 419,
+    "failed": 0
+  },
+  "results": [
+    {
+      "name": "Sitemap: 25 unique pages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged guest information /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged guest information /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged guest information /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_1/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_1/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_1/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_2/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_2/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_2/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_3/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_3/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/campsite_3/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_1/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_1/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_1/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_2/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_2/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_2/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_3/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_3/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_3/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_4/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_4/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/log_cabin_4/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_1/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_1/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_1/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_2/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_2/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_2/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No misleading booking schema /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_3/ .room-content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_3/ .booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unchanged policy /rooms/suite_3/ .day-definition",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Canonical /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unique titles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Unique descriptions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Internal destination /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /announcements/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /announcements/website/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /galleries/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/account/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/contact-method/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/guide/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/map/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/menu/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/roles/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/set-menu-info/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /infos/video/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/campsite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/campsite_2/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/campsite_3/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/suite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/suite_2/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /rooms/suite_3/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 1440 /sale_items/",
+      "ok": true,
+      "detail": "{\"viewport\":1440,\"width\":1440}"
+    },
+    {
+      "name": "Visible image loading 1440 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 1440 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Whole photo card click 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor finds accommodation 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Suite category navigation 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor sees suite price and breakfast conditions 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Query CTA keeps booking destination 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Booking touch target 1440",
+      "ok": true,
+      "detail": "{\"x\":1085.8125,\"y\":321.828125,\"width\":109.1875,\"height\":50.765625}"
+    },
+    {
+      "name": "Visitor reaches original booking instructions 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu keyboard open 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu closes and restores focus 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox preserves selected image description 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox advances 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox escape 1440",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /announcements/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /announcements/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /announcements/website/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /announcements/website/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /galleries/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/account/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/contact-method/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/contact-method/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/guide/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/map/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/map/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/menu/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/menu/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/roles/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/set-menu-info/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/set-menu-info/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /infos/video/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /infos/video/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/campsite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/campsite_2/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/campsite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/campsite_3/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/campsite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/log_cabin_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/log_cabin_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/log_cabin_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/log_cabin_4/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/suite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/suite_2/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/suite_2/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /rooms/suite_3/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /rooms/suite_3/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 390 /sale_items/",
+      "ok": true,
+      "detail": "{\"viewport\":390,\"width\":390}"
+    },
+    {
+      "name": "Visible image loading 390 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 390 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Whole photo card click 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor finds accommodation 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Suite category navigation 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor sees suite price and breakfast conditions 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Query CTA keeps booking destination 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Booking touch target 390",
+      "ok": true,
+      "detail": "{\"x\":33,\"y\":349.1875,\"width\":324,\"height\":49.703125}"
+    },
+    {
+      "name": "Visitor reaches original booking instructions 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu keyboard open 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu closes and restores focus 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox preserves selected image description 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox advances 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox escape 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /rooms/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /rooms/suite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /rooms/campsite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /infos/guide/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /galleries/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /infos/account/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /infos/roles/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /infos/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 360 /sale_items/",
+      "ok": true,
+      "detail": "{\"viewport\":360,\"width\":360}"
+    },
+    {
+      "name": "Visible image loading 360 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 360 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Whole photo card click 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor finds accommodation 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Suite category navigation 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor sees suite price and breakfast conditions 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Query CTA keeps booking destination 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Booking touch target 360",
+      "ok": true,
+      "detail": "{\"x\":33,\"y\":349.1875,\"width\":294,\"height\":49.703125}"
+    },
+    {
+      "name": "Visitor reaches original booking instructions 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu keyboard open 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu closes and restores focus 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox preserves selected image description 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox advances 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox escape 360",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /rooms/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /rooms/suite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /rooms/campsite_1/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /rooms/campsite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /infos/guide/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /infos/guide/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /galleries/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /infos/account/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /infos/roles/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /infos/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /infos/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow 768 /sale_items/",
+      "ok": true,
+      "detail": "{\"viewport\":768,\"width\":768}"
+    },
+    {
+      "name": "Visible image loading 768 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heading visible 768 /sale_items/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Whole photo card click 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor finds accommodation 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Suite category navigation 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor sees suite price and breakfast conditions 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Query CTA keeps booking destination 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Booking touch target 768",
+      "ok": true,
+      "detail": "{\"x\":69,\"y\":326.765625,\"width\":630,\"height\":50.765625}"
+    },
+    {
+      "name": "Visitor reaches original booking instructions 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu keyboard open 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu closes and restores focus 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox preserves selected image description 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox advances 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lightbox escape 768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Motion-enabled reveal 390 /",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "Motion-enabled reveal 390 /rooms/",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "Motion-enabled reveal 390 /galleries/",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "Motion-enabled reveal 1440 /",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "Motion-enabled reveal 1440 /rooms/",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "Motion-enabled reveal 1440 /galleries/",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "No-JS essential content /",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No-JS essential content /rooms/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No-JS all ten room choices",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No-JS essential content /rooms/suite_1/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No-JS complete room rules",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No-JS essential content /infos/account/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No-JS essential content /infos/roles/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No-JS essential content /galleries/",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No application JavaScript exceptions",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "screenshots": [
+    "home-1440.png",
+    "galleries-1440.png",
+    "infos-guide-1440.png",
+    "rooms-1440.png",
+    "rooms-suite_1-1440.png",
+    "home-390.png",
+    "galleries-390.png",
+    "infos-guide-390.png",
+    "rooms-390.png",
+    "rooms-suite_1-390.png"
+  ]
+}

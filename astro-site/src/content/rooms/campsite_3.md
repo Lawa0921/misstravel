@@ -2,8 +2,8 @@
 metaTitle: '密式旅行露營區，雨棚露營區'
 title: '密式雨棚區 ( 2 帳包區)'
 shortTitle: '密式雨棚'
-description: '密式雨棚區是小團體露營的最佳選擇，擁有約11x8公尺的大型雨棚，不用擔心天氣變化。適合2帳8人的小團體包區，提供桌椅、流理台和衛浴設備。平日只要1600元，是經濟實惠的選擇。'
-metaDescription: '密式旅行雨棚露營區 - 苗栗泰安有棚露營地，全天候不用擔心天氣。適合2帳8人小團體。平日1600元、假日2000元、連假2400元。立即預訂！'
+description: '密式雨棚區位於苗栗泰安密式旅行，雨棚約11乘8公尺、高約3.1公尺。兩帳包區適用8人以下，提供一組流理台、兩組衛浴及約八人使用的桌椅，車輛須停在區域草地內。'
+metaDescription: '密式旅行雨棚區：兩帳包區適用8人以下，雨棚約11乘8公尺，提供流理台、衛浴與桌椅。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
 standardPrice: 2400
 holidayPrice: 2000
 weekdayPrice: 1600
@@ -11,7 +11,7 @@ numberOfRooms: 1
 numberOfPeople: 8
 order: 2
 category: 'campsite'
-keywords: '密式雨棚, 雨棚露營, 小型包區, 苗栗露營, 泰安露營, 密式旅行, 8人露營, 2帳包區, 1600-2400元, 雨天露營, 避雨露營, 有棚露營, 小團體露營, 經濟實惠'
+keywords: '密式雨棚, 雨棚露營, 小型包區, 苗栗露營, 泰安露營, 密式旅行, 8人露營, 2帳包區, 雨天露營, 避雨露營, 有棚露營, 小團體露營, 經濟實惠'
 mainImage: '/images/campsite_3_main.webp'
 images:
   - '/images/campsite_3/campsite_3_1.webp'
@@ -31,7 +31,7 @@ images:
 
 #### 【營位費用】
 
-  - 2 帳包區 ( 8 人以下) 費用：平日：1600 元  假日：2000 元  連續假日：2400 元【連續假期限接三天兩夜或以上之預訂】
+  - 2 帳包區 ( 8 人以下) 費用：平日：{{weekdayPrice}} 元  假日：{{holidayPrice}} 元  連續假日：{{standardPrice}} 元【連續假期限接三天兩夜或以上之預訂】
 
 
 #### 【營位說明】

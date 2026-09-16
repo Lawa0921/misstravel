@@ -2,8 +2,8 @@
 metaTitle: '密式旅行露營區，依山之屋 - 靜露營小木屋'
 title: '依山之屋 - 靜 露營木屋'
 shortTitle: '依山 - 靜'
-description: '依山之屋「靜」是一棟溫馨的露營木屋，適合4人入住。內部床板空間約2.7x2.1公尺，外有半個平台可供使用。提供公用流理台、衛浴和冰箱，讓您享受遠離喧囂的寧靜時光。平日只要1200元。'
-metaDescription: '密式旅行依山之屋-靜木屋 - 苗栗泰安溫馨露營木屋，適合4人住宿、遠離喧囂。平日1200元、假日1700元、連假2000元。立即預訂感受山林寧靜！'
+description: '依山之屋靜房是苗栗泰安密式旅行的四人露營木屋，室內床板約2.7乘2.1公尺，使用半個室外平台。流理台、衛浴及冰箱為公用；使用完整室外公共空間炊煮須連同默房預訂。'
+metaDescription: '密式旅行依山之屋靜房：四人露營木屋，使用半個室外平台、公用流理台、衛浴及冰箱，無提供早晚餐。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
 standardPrice: 2000
 holidayPrice: 1700
 weekdayPrice: 1200
@@ -11,7 +11,7 @@ numberOfRooms: 1
 numberOfPeople: 4
 order: 6
 category: 'cabin'
-keywords: '依山之屋, 靜木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 1200-2000元, 依山住宿, 寧靜住宿, 小木屋住宿, 郊外休閒, 山景住宿, 自然住宿'
+keywords: '依山之屋, 靜木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 依山住宿, 寧靜住宿, 小木屋住宿, 郊外休閒, 山景住宿, 自然住宿'
 mainImage: '/images/log_cabin_2_main.webp'
 images:
   - '/images/log_cabin_air_conditioner_1.webp'
@@ -32,7 +32,7 @@ images:
 
 #### 【住宿費用】
 
-  - 1 間 ( 4 人以下) 費用：平日：1200 元  假日：1700 元  連續假日：2000 元【連續假期限接三天兩夜或以上之預訂】
+  - 1 間 ( 4 人以下) 費用：平日：{{weekdayPrice}} 元  假日：{{holidayPrice}} 元  連續假日：{{standardPrice}} 元【連續假期限接三天兩夜或以上之預訂】
 
 
 #### 【房位說明】

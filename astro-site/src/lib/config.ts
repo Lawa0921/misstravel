@@ -2,8 +2,10 @@ import cloudflareWebAnalytics from './cloudflare-web-analytics.json';
 
 // 站點配置 - 從 Jekyll _config.yml 遷移
 export const siteConfig = {
+  // 顯示給訪客的品牌名稱；SEO 標題後綴獨立設定，避免影響頁尾與 RSS。
   title: 'Misstravel',
-  metaTitle: '密式旅行露營區，苗栗泰安鄉小木屋露營區',
+  seoTitleSuffix: '密式旅行露營區',
+  metaTitle: '密式旅行｜苗栗泰安露營區、小木屋與套房',
   description: '密式旅行露營區，位於苗栗泰安鄉，提供露營、小木屋、套房等多種住宿選擇，園內還提供桌遊咖啡廳、兒童遊戲室、兒童沙坑等空間。',
   metaDescription: '密式旅行露營區，位於苗栗泰安鄉，提供露營、小木屋、套房等多種住宿選擇，園內還提供桌遊咖啡廳、兒童遊戲室、兒童沙坑等空間，是個非常適合闔家前往的親子露營區。桌遊咖啡廳除了販售輕食、咖啡以外，也有提供免費的桌遊教學。雲海、夕陽等美景也經常造訪，竹林秘境車程十分鐘即可到達。',
   author: '密式旅行',

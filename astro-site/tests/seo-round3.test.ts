@@ -30,10 +30,11 @@ describe('1. 標題層級', () => {
     expect($('.tile h3').length).toBe(0);
   });
 
-  it('房型列表卡片應使用 h2', () => {
+  it('房型列表分類用 h2、卡片選項用 h3，反映正確頁面大綱', () => {
     const $ = readPage('rooms/index.html');
-    expect($('.room-card h2').length).toBeGreaterThan(0);
-    expect($('.room-card h3').length).toBe(0);
+    expect($('.room-category > .category-heading h2').length).toBe(3);
+    expect($('.room-card h3').length).toBe(10);
+    expect($('.room-card h2').length).toBe(0);
   });
 
   it('房間詳情頁訂位須知與平日假日定義應使用 h3', () => {

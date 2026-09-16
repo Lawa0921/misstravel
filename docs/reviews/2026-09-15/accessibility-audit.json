@@ -1,0 +1,127 @@
+{
+  "timestamp": "2026-09-15T05:15:57.185Z",
+  "engine": "axe-core",
+  "results": [
+    {
+      "width": 390,
+      "route": "/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 390,
+      "route": "/rooms/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 390,
+      "route": "/rooms/campsite_1/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 390,
+      "route": "/rooms/suite_1/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 390,
+      "route": "/galleries/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 390,
+      "route": "/infos/guide/",
+      "violations": [],
+      "incomplete": 0
+    },
+    {
+      "width": 390,
+      "route": "/infos/account/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 390,
+      "route": "/infos/roles/",
+      "violations": [],
+      "incomplete": 0
+    },
+    {
+      "width": 390,
+      "route": "/infos/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 390,
+      "route": "/sale_items/",
+      "violations": [],
+      "incomplete": 0
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/campsite_1/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/suite_1/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 1440,
+      "route": "/galleries/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 1440,
+      "route": "/infos/guide/",
+      "violations": [],
+      "incomplete": 0
+    },
+    {
+      "width": 1440,
+      "route": "/infos/account/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 1440,
+      "route": "/infos/roles/",
+      "violations": [],
+      "incomplete": 0
+    },
+    {
+      "width": 1440,
+      "route": "/infos/",
+      "violations": [],
+      "incomplete": 1
+    },
+    {
+      "width": 1440,
+      "route": "/sale_items/",
+      "violations": [],
+      "incomplete": 0
+    }
+  ],
+  "head": "99799d9f758277ec82b43d86dd4dbea31d1c202b"
+}

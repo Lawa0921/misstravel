@@ -1,0 +1,498 @@
+{
+  "source": "f9ea6149d35e1646d1f136441ba7bc1eba4ea831",
+  "timestamp": "2026-09-15T07:34:13.753Z",
+  "results": [
+    {
+      "width": 390,
+      "route": "/",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "#menu-toggle"
+            ],
+            [
+              ".hero-location"
+            ],
+            [
+              "#hero-title"
+            ],
+            [
+              ".hero-title-en"
+            ],
+            [
+              ".hero-tagline"
+            ],
+            [
+              ".hero-description"
+            ],
+            [
+              ".button-primary"
+            ],
+            [
+              ".button-secondary"
+            ],
+            [
+              "figcaption"
+            ],
+            [
+              "article:nth-child(2) > .tile-number"
+            ],
+            [
+              "article:nth-child(2) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"infos/\"]"
+            ],
+            [
+              "article:nth-child(2) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(3) > .tile-number"
+            ],
+            [
+              "article:nth-child(3) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"rooms/\"]"
+            ],
+            [
+              "article:nth-child(3) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(4) > .tile-number"
+            ],
+            [
+              "article:nth-child(4) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"sale_items/\"]"
+            ],
+            [
+              "article:nth-child(4) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(5) > .tile-number"
+            ],
+            [
+              "article:nth-child(5) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"guide/\"]"
+            ],
+            [
+              "article:nth-child(5) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(6) > .tile-number"
+            ],
+            [
+              "article:nth-child(6) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"galleries/\"]"
+            ],
+            [
+              "article:nth-child(6) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(7) > .tile-number"
+            ],
+            [
+              "article:nth-child(7) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+            ],
+            [
+              "article:nth-child(7) > .tile-content > .tile-description"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "route": "/rooms/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/campsite_1/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/campsite_2/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/campsite_3/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/log_cabin_1/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/log_cabin_2/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/log_cabin_3/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/log_cabin_4/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/suite_1/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/suite_2/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/rooms/suite_3/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/galleries/",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              ".breadcrumb-bullet"
+            ],
+            [
+              "a[title=\"回到首頁\"] > span"
+            ],
+            [
+              ".active > span"
+            ],
+            [
+              ".eyebrow"
+            ],
+            [
+              "h1"
+            ],
+            [
+              ".intro"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "route": "/infos/map/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/infos/menu/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "route": "/infos/account/",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "li:nth-child(2) > ul > li:nth-child(1) > a[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "route": "/infos/roles/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "#desktop-nav > a[aria-current=\"page\"][href=\"/\"][data-astro-cid-nen7h5rs=\"\"]"
+            ],
+            [
+              "#desktop-nav > a[href$=\"rooms/\"][data-astro-cid-nen7h5rs=\"\"]"
+            ],
+            [
+              "#desktop-nav > a[href$=\"guide/\"][data-astro-cid-nen7h5rs=\"\"]"
+            ],
+            [
+              "#desktop-nav > a[href$=\"galleries/\"][data-astro-cid-nen7h5rs=\"\"]"
+            ],
+            [
+              "#menu-toggle"
+            ],
+            [
+              ".hero-location"
+            ],
+            [
+              "#hero-title"
+            ],
+            [
+              ".hero-title-en"
+            ],
+            [
+              ".hero-tagline"
+            ],
+            [
+              ".hero-description"
+            ],
+            [
+              ".button-primary"
+            ],
+            [
+              ".button-secondary"
+            ],
+            [
+              "figcaption"
+            ],
+            [
+              "article:nth-child(2) > .tile-number"
+            ],
+            [
+              "article:nth-child(2) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"infos/\"]"
+            ],
+            [
+              "article:nth-child(2) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(3) > .tile-number"
+            ],
+            [
+              "article:nth-child(3) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"rooms/\"]"
+            ],
+            [
+              "article:nth-child(3) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(4) > .tile-number"
+            ],
+            [
+              "article:nth-child(4) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"sale_items/\"]"
+            ],
+            [
+              "article:nth-child(4) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(5) > .tile-number"
+            ],
+            [
+              "article:nth-child(5) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"guide/\"]"
+            ],
+            [
+              "article:nth-child(5) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(6) > .tile-number"
+            ],
+            [
+              "article:nth-child(6) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[href$=\"galleries/\"]"
+            ],
+            [
+              "article:nth-child(6) > .tile-content > .tile-description"
+            ],
+            [
+              "article:nth-child(7) > .tile-number"
+            ],
+            [
+              "article:nth-child(7) > .tile-content > .tile-kicker"
+            ],
+            [
+              ".tile-link[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+            ],
+            [
+              "article:nth-child(7) > .tile-content > .tile-description"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/campsite_1/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/campsite_2/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/campsite_3/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/log_cabin_1/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/log_cabin_2/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/log_cabin_3/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/log_cabin_4/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/suite_1/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/suite_2/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/rooms/suite_3/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/galleries/",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              ".breadcrumb-bullet"
+            ],
+            [
+              "a[title=\"回到首頁\"] > span"
+            ],
+            [
+              ".active > span"
+            ],
+            [
+              ".eyebrow"
+            ],
+            [
+              "h1"
+            ],
+            [
+              ".intro"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "route": "/infos/map/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/infos/menu/",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "route": "/infos/account/",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "li:nth-child(2) > ul > li:nth-child(1) > a[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "route": "/infos/roles/",
+      "violations": [],
+      "incomplete": []
+    }
+  ]
+}

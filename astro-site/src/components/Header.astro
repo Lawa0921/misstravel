@@ -7,6 +7,7 @@ interface Props {
 
 const { variant = 'default' } = Astro.props;
 const headerClass = variant === 'alt' ? 'alt' : variant === 'alt-style2' ? 'alt style2' : '';
+const currentPath = Astro.url.pathname;
 
 const navItems = [
   { href: '/', label: '首頁' },
@@ -17,215 +18,175 @@ const navItems = [
   { href: '/galleries/', label: '密式圖集' },
   { href: siteConfig.booking.url, label: '空房查詢', external: true },
 ];
+
+const desktopItems = ['/', '/rooms/', '/infos/', '/galleries/']
+  .map((href) => navItems.find((item) => item.href === href)!);
+const previews = [
+  { src: '/images/banner.webp', width: 1478, height: 1108 },
+  { src: '/images/campsite_1_main.webp', width: 945, height: 709 },
+  { src: '/images/landing/landing_img_1.webp', width: 945, height: 709 },
+  { src: '/images/galleries/gallery_1.webp', width: 945, height: 709 },
+];
+const previewForItem = [0, 2, 1, 2, 0, 3, 1];
+const isSectionCurrent = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+const isCurrent = (href: string, external = false) => !external && currentPath === href;
 ---
 
 <header id="header" class={headerClass}>
-  <a href="/" class="logo"><strong>MISSTRAVEL</strong></a>
-  <nav aria-label="主要導覽">
-    <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+  <a href="/" class="logo" aria-label="回到密式旅行首頁"><strong>MISSTRAVEL</strong></a>
+  <nav id="desktop-nav" aria-label="主要導覽">
+    {desktopItems.map((item) => (
+      <a href={item.href} data-section-current={isSectionCurrent(item.href) ? 'true' : undefined} aria-current={isCurrent(item.href, item.external) ? 'page' : undefined}>{item.label}</a>
+    ))}
+    <span class="nav-indicator" aria-hidden="true"></span>
   </nav>
+  <div class="menu-control">
+    <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu 選單">Menu</button>
+  </div>
+  <span class="reading-progress" aria-hidden="true"></span>
 </header>
 
-<nav id="menu" aria-label="選單" aria-hidden="true" tabindex="-1">
+<nav id="menu" aria-label="選單" aria-hidden="true" inert tabindex="-1">
   <button type="button" class="close" id="menu-close" aria-label="關閉選單"></button>
+  <div class="menu-workspace">
   <ul class="links">
-    {navItems.map((item) => (
-      <li>
+    {navItems.map((item, index) => (
+      <li style={`--line-index: ${index}`}>
         <a
           href={item.href}
+          data-preview={previewForItem[index]}
+          aria-current={isCurrent(item.href, item.external) ? 'page' : undefined}
           target={item.external ? '_blank' : undefined}
           rel={item.external ? 'noopener noreferrer' : undefined}
-        >
-          {item.label}
-        </a>
+        ><span class="link-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><span class="link-label">{item.label}</span><span class="link-arrow" aria-hidden="true">{item.external ? '↗' : '→'}</span></a>
       </li>
     ))}
   </ul>
+  <div class="menu-preview" aria-hidden="true">
+    <div class="preview-images">
+      {previews.map((photo, index) => (
+        <img data-preview-image={index} data-src={photo.src} width={photo.width} height={photo.height} alt="" decoding="async" />
+      ))}
+    </div>
+    <div class="preview-caption"><span class="preview-number">01</span><span class="preview-label">首頁</span><span class="preview-rule"></span></div>
+  </div>
+  </div>
 </nav>
 
 <style>
-  #header {
-    display: flex;
-    background-color: #2a2f4a;
-    box-shadow: 0 0 0.25em 0 rgba(0,0,0,0.15);
-    cursor: default;
-    font-weight: 600;
-    height: 3.25em;
-    left: 0;
-    letter-spacing: 0.25em;
-    line-height: 3.25em;
-    margin: 0;
-    position: fixed;
-    text-transform: uppercase;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
+  #header { display: flex; align-items: center; position: absolute; z-index: 1000; top: 0; left: 0; width: 100%; height: 4.5rem; padding: 0 max(1.25rem, 5vw); color: var(--color-paper); letter-spacing: 0.12em; }
+  #header:not(.alt) { position: fixed; background: var(--color-bg); box-shadow: 0 1px 0 rgba(245, 240, 230, 0.12); }
+  #header.alt { background: linear-gradient(180deg, rgba(36, 41, 67, 0.74), transparent); }
+  #header.alt.style2 .logo strong { color: var(--color-champagne); }
 
-  #header.alt {
-    transition: opacity 2.5s ease;
-    transition-delay: 0.75s;
-    background-color: transparent;
-    box-shadow: none;
-    position: absolute;
-  }
+  .logo { flex: 0 0 auto; min-height: 2.75rem; display: inline-flex; align-items: center; border: 0; font-size: 0.78rem; letter-spacing: 0.2em; }
+  .logo strong { padding: 0.35rem 0.5rem 0.35rem 0.65rem; background: var(--color-paper); color: var(--color-bg); font-weight: 600; transition: background-color var(--transition-fast), color var(--transition-fast); }
+  .logo:hover strong, .logo:focus-visible strong { background: var(--color-aqua); color: var(--color-bg); }
 
-  #header.alt.style2 .logo strong { color: #8d82c4; }
+  #desktop-nav { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: clamp(0.7rem, 2vw, 1.8rem); flex: 1; margin-left: 2rem; }
+  #desktop-nav a { min-height: 2.75rem; display: inline-flex; align-items: center; border: 0; color: var(--color-paper-muted); font-size: 0.875rem; letter-spacing: 0.1em; white-space: nowrap; transition: color var(--transition-fast); }
+  #desktop-nav a:hover, #desktop-nav a:focus-visible, #desktop-nav a[aria-current='page'] { color: var(--color-aqua); }
+  #desktop-nav a[data-section-current='true'] { color: var(--color-aqua); }
+  #desktop-nav a { position: relative; }
+  #desktop-nav a::after { content: ''; position: absolute; inset: auto 0 4px; height: 1px; background: var(--color-champagne); transform: scaleX(0); transition: transform 180ms ease; transform-origin: left; }
+  #desktop-nav a:hover::after, #desktop-nav a:focus-visible::after, #desktop-nav a[data-section-current='true']::after { transform: scaleX(1); }
+  #desktop-nav[data-enhanced] a::after { display: none; }
+  .nav-indicator { position: absolute; bottom: 4px; left: 0; width: var(--indicator-width, 0px); height: 1px; background: var(--color-champagne); transform: translateX(var(--indicator-x, 0px)); opacity: var(--indicator-opacity, 0); pointer-events: none; transition: transform 220ms ease, width 220ms ease, opacity 180ms ease; }
+  .reading-progress { position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--color-aqua); opacity: 0.65; transform: scaleX(var(--reading-progress, 0)); transform-origin: left; pointer-events: none; }
 
-  .logo {
-    border: 0;
-    display: inline-block;
-    font-size: 0.8em;
-    height: inherit;
-    line-height: inherit;
-    padding: 0 1.5em;
-  }
-
-  .logo strong {
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    background-color: #fff;
-    color: #242943;
-    display: inline-block;
-    line-height: 1.65em;
-    margin-right: 0.325em;
-    padding: 0 0.125em 0 calc(0.25em + 0.125em);
-  }
-
-  .logo:hover strong { background-color: #9bf1ff; }
-
-  #header nav {
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 1;
-    height: inherit;
-    line-height: inherit;
-  }
-
+  .menu-control { display: flex; align-items: center; margin-left: 1.2rem; }
   #menu-toggle {
-    border: 0;
-    background: none;
-    color: inherit;
-    cursor: pointer;
-    display: block;
-    font-size: 0.8em;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    height: inherit;
-    line-height: inherit;
-    padding: 0 3.875em 0 0.75em;
     position: relative;
-    vertical-align: middle;
-  }
-
-  #menu-toggle::before,
-  #menu-toggle::after {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32'%3E%3Cstyle%3Eline %7B stroke-width: 2px; stroke: %23ffffff; %7D%3C/style%3E%3Cline x1='0' y1='11' x2='24' y2='11' /%3E%3Cline x1='0' y1='21' x2='24' y2='21' /%3E%3Cline x1='0' y1='16' x2='24' y2='16' /%3E%3C/svg%3E");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 24px 32px;
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    right: 2em;
-    top: 0;
-    width: 24px;
-  }
-
-  #menu-toggle::after {
-    transition: opacity 0.2s ease-in-out;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32'%3E%3Cstyle%3Eline %7B stroke-width: 2px; stroke: %239bf1ff; %7D%3C/style%3E%3Cline x1='0' y1='11' x2='24' y2='11' /%3E%3Cline x1='0' y1='21' x2='24' y2='21' /%3E%3Cline x1='0' y1='16' x2='24' y2='16' /%3E%3C/svg%3E");
-    opacity: 0;
-    z-index: 1;
-  }
-
-  #menu-toggle:hover::after,
-  #menu-toggle:active::after { opacity: 1; }
-
-  #menu {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(36, 41, 67, 0.98);
-    padding: 6rem 2rem 2rem;
-    z-index: 10001;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: inline-flex;
     align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
-  }
-
-  #menu.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s;
-  }
-
-  #menu .links { list-style: none; padding: 0; margin: 0; text-align: center; }
-  #menu .links li { margin-bottom: 0; }
-
-  #menu .links a {
-    display: block;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    letter-spacing: 0.25em;
-    text-transform: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    transition: color 0.2s ease, background-color 0.2s ease;
-  }
-
-  #menu .links a:hover,
-  #menu .links a:focus-visible {
-    color: #9bf1ff;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  #menu .close {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    width: 3rem;
-    height: 3rem;
+    gap: 0.8rem;
+    min-width: 5.5rem;
+    min-height: 2.75rem;
+    padding: 0 2.25rem 0 0.5rem;
+    border: 0;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    background: transparent;
+    color: var(--color-paper);
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    padding: 0;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: color var(--transition-fast);
   }
-
-  #menu .close::before,
-  #menu .close::after {
+  #menu-toggle::before, #menu-toggle::after {
     content: '';
     position: absolute;
-    width: 2rem;
-    height: 2px;
-    background: #fff;
-    transition: background 0.2s ease;
+    right: 0.35rem;
+    width: 1.4rem;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right center;
+    transition: transform var(--transition-fast);
   }
+  #menu-toggle::before { top: calc(50% - 0.25rem); }
+  #menu-toggle::after { top: calc(50% + 0.25rem); transform: scaleX(0.72); }
+  #menu-toggle:hover, #menu-toggle:focus-visible { color: var(--color-aqua); }
+  #menu-toggle:hover::after, #menu-toggle:focus-visible::after { transform: scaleX(1); }
+  /* No decorative border; keyboard focus must still be visible. */
+  #menu-toggle:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: 4px; }
 
+  #menu { position: fixed; inset: 0; z-index: 10001; display: flex; align-items: center; width: 100%; height: 100vh; height: 100dvh; box-sizing: border-box; padding: 88px max(1.25rem, 5vw) 32px; overflow-y: auto; background: var(--color-bg); opacity: 0; visibility: hidden; transition: opacity 220ms ease, visibility 0s linear 220ms; }
+  #menu.is-visible { opacity: 1; visibility: visible; transition-delay: 0s; }
+  .menu-workspace { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(2rem, 7vw, 8rem); width: min(1280px, 100%); margin: auto; align-items: stretch; transform: translateY(12px); opacity: 0; transition: transform 220ms ease, opacity 220ms ease; }
+  #menu.is-visible .menu-workspace { transform: none; opacity: 1; }
+  #menu .links { width: 100%; margin: 0; padding: 0; list-style: none; text-align: left; }
+  #menu .links li { margin: 0; overflow: hidden; }
+  #menu .links a { display: flex; align-items: center; gap: clamp(12px, 2vw, 28px); min-height: 44px; padding: clamp(6px, 1.3vh, 14px) 4px; border: 0; border-bottom: 1px solid rgba(245, 240, 230, 0.15); color: var(--color-paper); letter-spacing: 0.06em; transition: color 180ms ease; }
+  .link-number { font-size: 12px; letter-spacing: 0.1em; color: var(--color-champagne); }
+  .link-label { font-size: clamp(24px, 3.4vw, 48px); line-height: 1.3; transform: translateY(10px); opacity: 0; transition: transform 130ms ease, opacity 130ms ease; }
+  #menu.is-visible .link-label { transform: none; opacity: 1; transition-delay: calc(var(--line-index) * 15ms); }
+  .link-arrow { margin-left: auto; font-size: 24px; color: var(--color-aqua); opacity: 0; transform: translateX(-6px); transition: transform 180ms ease, opacity 180ms ease; }
+  #menu .links a:hover, #menu .links a:focus-visible, #menu .links a[aria-current='page'], #menu .links a[data-preview-selected] { color: var(--color-aqua); }
+  #menu .links a[data-preview-selected] .link-arrow, #menu .links a:hover .link-arrow, #menu .links a:focus-visible .link-arrow { transform: none; opacity: 1; }
+  #menu .links a:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: -2px; }
+  .menu-preview { display: flex; flex-direction: column; min-width: 0; padding-top: 12px; }
+  .preview-images { position: relative; flex: 1; min-height: 240px; overflow: hidden; background: var(--color-bg-alt, #2a2f4a); }
+  .preview-images img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 220ms ease; }
+  .preview-images img[data-active] { opacity: 1; }
+  .preview-caption { display: flex; align-items: center; gap: 16px; padding-top: 20px; color: var(--color-paper); font-size: 14px; letter-spacing: 0.12em; }
+  .preview-number { color: var(--color-champagne); }
+  .preview-rule { flex: 1; height: 1px; background: var(--color-champagne); opacity: 0.4; }
+  @media (max-width: 767px) {
+    #menu { padding: 72px 20px 24px; align-items: flex-start; }
+    .menu-workspace { grid-template-columns: 1fr; gap: 20px; margin: 0 auto; }
+    #menu .links a { padding: 9px 4px; }
+    .link-label { font-size: clamp(25px, 7vw, 36px); }
+    .menu-preview { padding-top: 0; }
+    .preview-images { flex: none; height: clamp(100px, 18dvh, 160px); min-height: 0; }
+    .preview-caption { padding-top: 12px; }
+  }
+  @media (max-height: 680px) and (max-width: 767px) { .menu-preview { display: none; } #menu .links a { padding-block: 5px; } }
+  @media (max-height: 600px) and (min-width: 768px) { #menu { padding-top: 64px; padding-bottom: 16px; } .link-label { font-size: 24px; } #menu .links a { padding-block: 5px; } }
+  #menu .close { position: absolute; top: 1.5rem; right: max(1.25rem, 5vw); width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+  #menu .close::before, #menu .close::after { content: ''; position: absolute; top: 50%; left: 0.45rem; width: 1.8rem; height: 1px; background: var(--color-paper); }
   #menu .close::before { transform: rotate(45deg); }
   #menu .close::after { transform: rotate(-45deg); }
-  #menu .close:hover::before,
-  #menu .close:hover::after { background: #9bf1ff; }
+  #menu .close:hover { background: rgba(157, 216, 208, 0.1); }
+  #menu .close:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: 4px; }
+  #menu .close:hover::before, #menu .close:hover::after, #menu .close:focus-visible::before, #menu .close:focus-visible::after { background: var(--color-aqua); }
 
-  @media (max-width: 736px) {
-    #header { height: 2.75em; line-height: 2.75em; }
-    .logo { padding: 0 1em; }
-    #menu-toggle { padding: 0 3.25em 0 0.5em; }
-    #menu-toggle::before,
-    #menu-toggle::after { right: 0.75em; }
+  @media (max-width: 1020px) {
+    #header { padding-inline: 1.25rem; }
+    #desktop-nav { gap: 0.75rem; margin-left: 1rem; }
+    #desktop-nav a { font-size: 0.8125rem; letter-spacing: 0.05em; }
+  }
+
+  @media (max-width: 767px) {
+    #header { height: 4rem; padding-inline: 1.25rem; }
+    #desktop-nav { display: none; }
+    .menu-control { margin-left: auto; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #header.alt,
-    #menu { transition: none; }
+    #header *, #header *::before, #header *::after, #menu, #menu *, #menu *::before, #menu *::after { animation: none !important; transition: none !important; }
   }
 </style>
 
@@ -250,23 +211,57 @@ const navItems = [
     });
   }
 
+  const backgroundInert = new Map<HTMLElement, boolean>();
+  let savedOverflow = '';
+  let focusFrame = 0;
+
   function closeMenu() {
     if (!menu?.classList.contains('is-visible')) return;
+    cancelAnimationFrame(focusFrame);
+    backgroundInert.forEach((wasInert, element) => { element.inert = wasInert; });
+    backgroundInert.clear();
+    document.body.style.overflow = savedOverflow;
+    // Move focus before hiding or making its current ancestor inert.
+    menuToggle?.focus({ preventScroll: true });
+    if (menu.contains(document.activeElement)) (document.activeElement as HTMLElement)?.blur();
     menu.classList.remove('is-visible');
+    menu.inert = true;
     menu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
     menuToggle?.setAttribute('aria-expanded', 'false');
     menuToggle?.focus({ preventScroll: true });
   }
 
   function focusMenuCloseWhenVisible() {
-    requestAnimationFrame(() => {
+    let attempts = 0;
+    const focusWhenReady = () => {
       if (!menu?.classList.contains('is-visible')) return;
       menuClose?.focus({ preventScroll: true });
-    });
+      // Reduced-motion CSS can defer visibility for a frame. Do not leave focus
+      // outside the open menu, and never steal it back after the menu closes.
+      if (document.activeElement !== menuClose && attempts++ < 30) {
+        focusFrame = requestAnimationFrame(focusWhenReady);
+      }
+    };
+    focusFrame = requestAnimationFrame(focusWhenReady);
   }
 
   function openMenu() {
+    if (!menu || menu.classList.contains('is-visible')) return;
+    menu.style.removeProperty('opacity');
+    menu.style.removeProperty('visibility');
+    menu.inert = false;
+    savedOverflow = document.body.style.overflow;
+    let branch: HTMLElement = menu;
+    while (branch.parentElement && branch.parentElement !== document.documentElement) {
+      for (const sibling of branch.parentElement.children) {
+        if (sibling === branch || !(sibling instanceof HTMLElement) || /^(SCRIPT|STYLE|LINK)$/.test(sibling.tagName)) continue;
+        if (!backgroundInert.has(sibling)) backgroundInert.set(sibling, sibling.inert);
+        sibling.inert = true;
+      }
+      branch = branch.parentElement;
+    }
+
+    selectPreview(menu.querySelector<HTMLAnchorElement>('a[aria-current="page"]') ?? menu.querySelector<HTMLAnchorElement>('a[data-preview]'));
     menu?.classList.add('is-visible');
     menu?.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -274,12 +269,109 @@ const navItems = [
     focusMenuCloseWhenVisible();
   }
 
+  const previewImages = Array.from(menu?.querySelectorAll<HTMLImageElement>('[data-preview-image]') ?? []);
+  let previewRevision = 0;
+  let activePhoto: HTMLImageElement | undefined;
+  async function selectPreview(link: HTMLAnchorElement | null) {
+    if (!link || !menu || menu.inert) return;
+    const revision = ++previewRevision;
+    menu.querySelectorAll('[data-preview-selected]').forEach((item) => item.removeAttribute('data-preview-selected'));
+    link.setAttribute('data-preview-selected', '');
+    const number = menu.querySelector('.preview-number');
+    const label = menu.querySelector('.preview-label');
+    if (number) number.textContent = link.querySelector('.link-number')?.textContent ?? '';
+    if (label) label.textContent = link.querySelector('.link-label')?.textContent ?? '';
+    const photo = previewImages[Number(link.dataset.preview)];
+    if (!photo) return;
+    if (!photo.hasAttribute('src') && photo.dataset.src) photo.src = photo.dataset.src;
+    try { await photo.decode(); } catch { return; }
+    if (revision !== previewRevision || menu.inert) return;
+    // Keep the previous decoded image painted beneath the incoming photograph.
+    const previous = activePhoto;
+    if (previous === photo) return;
+    activePhoto = photo;
+    previewImages.forEach((image) => {
+      image.style.zIndex = image === photo ? '2' : image === previous ? '1' : '0';
+      if (image !== previous) image.removeAttribute('data-active');
+    });
+    photo.setAttribute('data-active', '');
+    photo.ontransitionend = (event) => {
+      if (event.propertyName === 'opacity' && revision === previewRevision) {
+        previewImages.forEach((image) => { if (image !== photo) image.removeAttribute('data-active'); });
+      }
+    };
+  }
+  menu?.querySelectorAll<HTMLAnchorElement>('a[data-preview]').forEach((link) => {
+    link.addEventListener('pointerenter', () => { void selectPreview(link); });
+    link.addEventListener('focus', () => { void selectPreview(link); });
+  });
+
+  const desktopNav = document.getElementById('desktop-nav');
+  function moveIndicator(link: HTMLElement | null) {
+    if (!desktopNav) return;
+    desktopNav.setAttribute('data-enhanced', '');
+    desktopNav.style.setProperty('--indicator-opacity', link ? '1' : '0');
+    if (!link) return;
+    desktopNav.style.setProperty('--indicator-x', `${link.offsetLeft}px`);
+    desktopNav.style.setProperty('--indicator-width', `${link.offsetWidth}px`);
+  }
+  function restoreIndicator() {
+    moveIndicator(desktopNav?.querySelector<HTMLElement>('a:focus') ?? desktopNav?.querySelector<HTMLElement>('[data-section-current]') ?? null);
+  }
+  desktopNav?.querySelectorAll<HTMLElement>('a').forEach((link) => {
+    link.addEventListener('pointerenter', () => moveIndicator(link));
+    link.addEventListener('focus', () => moveIndicator(link));
+  });
+  desktopNav?.addEventListener('pointerleave', restoreIndicator);
+  desktopNav?.addEventListener('focusout', () => queueMicrotask(restoreIndicator));
+  restoreIndicator();
+  void document.fonts.ready.then(restoreIndicator);
+
+  const header = document.getElementById('header');
+  let progressFrame = 0;
+  function scheduleProgress() {
+    if (progressFrame) return;
+    progressFrame = requestAnimationFrame(() => {
+      progressFrame = 0;
+      const range = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0;
+      header?.style.setProperty('--reading-progress', String(progress));
+    });
+  }
+  window.addEventListener('scroll', scheduleProgress, { passive: true });
+  window.addEventListener('resize', () => { scheduleProgress(); restoreIndicator(); });
+  if ('ResizeObserver' in window) new ResizeObserver(scheduleProgress).observe(document.body);
+  scheduleProgress();
+
   menuToggle?.addEventListener('click', () => {
     if (menu?.classList.contains('is-visible')) closeMenu();
     else openMenu();
   });
 
   menuClose?.addEventListener('click', closeMenu);
+
+  // Capture a clean page on native document transitions, not a fading menu.
+  // Also leaves a closed, unlocked document for the browser's back/forward cache.
+  function resetMenuSnapshot() {
+    closeMenu();
+    cancelAnimationFrame(focusFrame);
+    cancelAnimationFrame(progressFrame);
+    progressFrame = 0;
+    menu?.getAnimations({ subtree: true }).forEach((animation) => {
+      const endTime = animation.effect?.getComputedTiming().endTime;
+      if (typeof endTime === 'number' && Number.isFinite(endTime)) {
+        try { animation.finish(); } catch { animation.cancel(); }
+      } else animation.cancel();
+    });
+    if (menu) {
+      menu.inert = true;
+      menu.style.opacity = '0';
+      menu.style.visibility = 'hidden';
+    }
+  }
+  window.addEventListener('pageswap', resetMenuSnapshot);
+  window.addEventListener('pagehide', resetMenuSnapshot);
+  window.addEventListener('pageshow', () => { resetMenuSnapshot(); scheduleProgress(); restoreIndicator(); });
 
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {

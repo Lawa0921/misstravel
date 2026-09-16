@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/guest-pages.css';
 ---
 
 <BaseLayout title="頁面不存在" noindex>
@@ -8,65 +9,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h1>404</h1>
       <h2>頁面不存在</h2>
       <p>抱歉，您要找的頁面不存在或已被移除。</p>
-      <a href="/" class="btn">返回首頁</a>
+      <div class="error-actions"><a href="/" class="btn">返回首頁</a><a href="/rooms/" class="media-action">房型展示</a><a href="/infos/" class="media-action">關於密式</a></div>
     </div>
   </main>
 </BaseLayout>
 
 <style>
-  #main.error-page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    background: linear-gradient(135deg, #242943 0%, #2a2f4a 100%);
-  }
 
-  h1 {
-    font-size: 8rem;
-    margin-bottom: 1rem;
-    color: #9bf1ff;
-    letter-spacing: 0.5em;
-  }
-
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    letter-spacing: 0.2em;
-  }
-
-  p {
-    margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: #9bf1ff;
-    color: #242943;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    border-bottom: none;
-  }
-
-  .btn:hover {
-    background: #fff;
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 5rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-    }
-  }
+#main.error-page { display:grid; place-items:center; padding:8rem 1.5rem 4rem; min-height:72vh; text-align:center; background:var(--color-bg); }
+.error-page .container { width:min(100%,52rem); padding:clamp(2rem,6vw,4rem); border:1px solid var(--color-border); border-radius:1rem; background:var(--color-surface); }
+h1 { font-size:clamp(4rem,12vw,7rem); color:var(--color-aqua); letter-spacing:.15em; margin:0 0 1rem; }
+h2 { font-size:1.6rem; } p { color:var(--color-paper-muted); line-height:1.9; }
+.error-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:.75rem; margin-top:2rem; }
+.error-actions a { margin:0; border-radius:99px; font-size:.95rem; padding:.75rem 1.25rem; }
+.error-actions .btn { background:var(--color-aqua); color:var(--color-bg); min-height:44px; }
 </style>

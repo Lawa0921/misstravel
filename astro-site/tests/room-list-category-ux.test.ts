@@ -43,7 +43,8 @@ describe('房型列表三分類導覽', () => {
       expect(cards, `${category} 房型數量`).toHaveLength(expectation.count);
       cards.each((_, element) => {
         expect($(element).attr('href')).toMatch(new RegExp(`^${expectation.prefix}`));
-        expect($(element).find('h2')).toHaveLength(1);
+        // 分類區塊的 h2 已代表住宿類型；卡片是其下的房型選項，因此使用 h3 維持正確頁面大綱。
+        expect($(element).find('h3')).toHaveLength(1);
       });
     }
   });

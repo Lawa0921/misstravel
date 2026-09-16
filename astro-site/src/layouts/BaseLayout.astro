@@ -18,6 +18,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   keywords?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
@@ -33,6 +34,7 @@ const {
   title,
   description,
   image,
+  imageAlt,
   keywords,
   type,
   noindex,
@@ -51,6 +53,7 @@ const {
     title={title}
     description={description}
     image={image}
+    imageAlt={imageAlt}
     keywords={keywords}
     type={type}
     noindex={noindex}

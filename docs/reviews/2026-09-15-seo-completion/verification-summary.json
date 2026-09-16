@@ -1,0 +1,53 @@
+{
+  "sourceCommit": "f9ea6149d35e1646d1f136441ba7bc1eba4ea831",
+  "baseCommit": "360461d2a76ef0020e7b86838a83c4a709710938",
+  "completed": {
+    "roomDescriptions": 10,
+    "accommodationEntities": 10,
+    "webPageEntities": 10,
+    "auditedRoomImageFiles": 127,
+    "roomImageUses": 147,
+    "catalogEntries": 130,
+    "canonicalRoomPricing": true,
+    "imageSitemap": true,
+    "pageSpecificShareImages": [
+      "map",
+      "menu"
+    ]
+  },
+  "verify": {
+    "files": 25,
+    "passed": 292,
+    "failed": 0,
+    "newSeoTests": 59,
+    "auditVulnerabilities": 0
+  },
+  "browser": {
+    "passed": 25,
+    "failed": 0,
+    "retries": 0
+  },
+  "visitor": {
+    "checks": 419,
+    "passed": 419,
+    "failed": 0
+  },
+  "axe": {
+    "routeViewportChecks": 34,
+    "violations": 0,
+    "incompleteIsNotPass": true
+  },
+  "originalImagesAndFonts": {
+    "files": 234,
+    "changed": 0
+  },
+  "operatingParagraphs": {
+    "roomPages": 10,
+    "differences": 0
+  },
+  "independentAIReview": "PASS",
+  "humanApproval": false,
+  "sourceCI": "https://github.com/Lawa0921/misstravel/actions/runs/34942186883",
+  "productionChanged": false,
+  "localPreview": "http://localhost:4336/"
+}

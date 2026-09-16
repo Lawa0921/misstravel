@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { normalizeRoomData } from './lib/room-values.mjs';
 
 const priceOption = z.object({
   label: z.string(),
@@ -14,7 +15,7 @@ const priceOption = z.object({
 
 const rooms = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/rooms' }),
-  schema: z.object({
+  schema: z.preprocess(normalizeRoomData, z.object({
     title: z.string(),
     shortTitle: z.string(),
     metaTitle: z.string(),
@@ -32,7 +33,7 @@ const rooms = defineCollection({
     category: z.enum(['campsite', 'cabin', 'suite']),
     mainImage: z.string(),
     images: z.array(z.string()).default([]),
-  }),
+  })),
 });
 
 const infos = defineCollection({

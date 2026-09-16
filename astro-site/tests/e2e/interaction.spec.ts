@@ -244,3 +244,56 @@ test('房型輪播應延後非相鄰圖片請求並維持 ARIA 與鍵盤操作',
   await page.keyboard.press('ArrowLeft');
   await expect(dots.first()).toHaveAttribute('aria-current', 'true');
 });
+
+
+test.describe('減少動畫的真實鍵盤流程', () => {
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
+  test('選單可在 visibility 轉換後取得焦點並以 Escape 關閉', async ({ page }) => {
+    await page.goto('/');
+    const toggle = page.locator('#menu-toggle');
+    await toggle.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#menu-close')).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toBeFocused();
+  });
+  test('相簿關閉應完成轉場且回到原照片', async ({ page }) => {
+    await page.goto('/galleries/');
+    const photo = page.locator('[data-lightbox="photos"]').nth(12);
+    await photo.click();
+    await expect(page.locator('#lightbox')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#lightbox')).toBeHidden();
+    await expect(photo).toBeFocused();
+  });
+});
+
+
+test('圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點', async ({ page }) => {
+  await page.goto('/galleries/');
+  const result = await page.evaluate(async () => {
+    const trigger = document.querySelector<HTMLAnchorElement>('[data-lightbox="photos"]')!;
+    const dialog = document.getElementById('lightbox')!;
+    trigger.focus();
+    const originalRaf = window.requestAnimationFrame;
+    const callbacks: FrameRequestCallback[] = [];
+    window.requestAnimationFrame = (callback) => { callbacks.push(callback); return callbacks.length; };
+    try {
+      trigger.click();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      const wasOpen = dialog.classList.contains('active');
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      const wasClosed = !dialog.classList.contains('active');
+      window.requestAnimationFrame = originalRaf;
+      callbacks.forEach((callback) => callback(performance.now()));
+      return { wasOpen, wasClosed, callbacks: callbacks.length, restored: document.activeElement === trigger };
+    } finally {
+      window.requestAnimationFrame = originalRaf;
+    }
+  });
+  expect(result.wasOpen).toBe(true);
+  expect(result.wasClosed).toBe(true);
+  expect(result.callbacks).toBeGreaterThan(0);
+  expect(result.restored).toBe(true);
+});

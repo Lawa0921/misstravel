@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/modern-interactions.spec.ts:117:1 › comparison traps Tab using visible rooms and does not cover footer actions (5.9s)
+
+
+  1) [chromium] › tests/e2e/modern-interactions.spec.ts:117:1 › comparison traps Tab using visible rooms and does not cover footer actions
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('#room-compare .modal-close')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" with timeout 5000ms
+      - waiting for locator('#room-compare .modal-close')
+        14 × locator resolved to <button type="button" class="modal-close" aria-label="關閉房型比較" data-astro-cid-rwffjkfc="">×</button>
+           - unexpected value "inactive"
+
+
+      118 |   await page.setViewportSize({width:390,height:844});await page.goto('/rooms/');await page.locator('[data-compare-toggle]').nth(0).click();await page.locator('[data-compare-toggle]').nth(1).click();await page.locator('#compare-open').click();
+      119 |   const close=page.locator('#room-compare .modal-close');const last=page.locator('.compare-room:not([hidden]) .compare-detail').last();
+    > 120 |   await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');
+          |                                                                           ^
+      121 |   await page.evaluate(()=>scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+      122 |   const safe=await page.evaluate(()=>document.querySelector('#footer')!.getBoundingClientRect().bottom<=document.querySelector('#compare-tray')!.getBoundingClientRect().top);
+      123 |   expect(safe).toBe(true);await expect(page.locator('.compare-chip:not([hidden]) span').first()).toBeVisible();
+        at <isolated-worktree>/astro-site/tests/e2e/modern-interactions.spec.ts:120:75
+
+    Error Context: test-results/modern-interactions-compar-cdc29-es-not-cover-footer-actions-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/modern-interactions-compar-cdc29-es-not-cover-footer-actions-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/modern-interactions-compar-cdc29-es-not-cover-footer-actions-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/modern-interactions.spec.ts:117:1 › comparison traps Tab using visible rooms and does not cover footer actions

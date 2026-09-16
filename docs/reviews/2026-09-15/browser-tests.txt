@@ -1,0 +1,21 @@
+SOURCE_COMMIT=99799d9f758277ec82b43d86dd4dbea31d1c202b
+
+Running 14 tests using 1 worker
+
+  ✓   1 [chromium] › tests/e2e/interaction.spec.ts:4:3 › 山霧景深互動 › 照片光影不得使用近似 @ 的等高線圖樣 (398ms)
+  ✓   2 [chromium] › tests/e2e/interaction.spec.ts:19:3 › 山霧景深互動 › 首頁卡片應在捲入後浮現並回應指標位置 (447ms)
+  ✓   3 [chromium] › tests/e2e/interaction.spec.ts:54:3 › 山霧景深互動 › 房型與圖集應共用同一套互動語言 (412ms)
+  ✓   4 [chromium] › tests/e2e/interaction.spec.ts:62:3 › 山霧景深互動 › 快速跳捲後圖集不得留下透明卡片 (3.4s)
+  ✓   5 [chromium] › tests/e2e/interaction.spec.ts:82:3 › 山霧景深互動 › 減少動畫偏好下應停用景深轉動 (264ms)
+  ✓   6 [chromium] › tests/e2e/interaction.spec.ts:93:3 › 主選單鍵盤操作 › Tab 焦點應鎖在選單內，Escape 後回到 Menu (405ms)
+  ✓   7 [chromium] › tests/e2e/interaction.spec.ts:123:3 › 主選單鍵盤操作 › 手機寬度下選單仍可正常開關並恢復焦點 (298ms)
+  ✓   8 [chromium] › tests/e2e/interaction.spec.ts:140:1 › 圖集 Lightbox 應支援方向鍵、Escape 與焦點返回 (516ms)
+  ✓   9 [chromium] › tests/e2e/interaction.spec.ts:162:1 › 柑仔店 Modal 關閉後應恢復焦點與頁面捲動 (326ms)
+  ✓  10 [chromium] › tests/e2e/interaction.spec.ts:182:1 › 交通指引只在開啟對應 modal 時載入圖片 (1.0s)
+log_cabin_4 initial same-origin resources: 0.00 MB
+  ✓  11 [chromium] › tests/e2e/interaction.spec.ts:201:1 › 房型輪播應延後非相鄰圖片請求並維持 ARIA 與鍵盤操作 (884ms)
+  ✓  12 [chromium] › tests/e2e/interaction.spec.ts:251:3 › 減少動畫的真實鍵盤流程 › 選單可在 visibility 轉換後取得焦點並以 Escape 關閉 (310ms)
+  ✓  13 [chromium] › tests/e2e/interaction.spec.ts:261:3 › 減少動畫的真實鍵盤流程 › 相簿關閉應完成轉場且回到原照片 (1.2s)
+  ✓  14 [chromium] › tests/e2e/interaction.spec.ts:273:1 › 圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點 (302ms)
+
+  14 passed (10.8s)

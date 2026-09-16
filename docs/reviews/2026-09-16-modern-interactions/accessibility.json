@@ -1,0 +1,135 @@
+{
+  "sourceCommit": "1486e5cbb425459cf10bab5226f578728017a062",
+  "states": [
+    {
+      "width": 390,
+      "path": "/rooms/",
+      "state": "room-list",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 390,
+      "path": "/rooms/",
+      "state": "menu",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 390,
+      "path": "/rooms/",
+      "state": "comparison-tray",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 390,
+      "path": "/rooms/",
+      "state": "comparison-dialog",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "path": "/rooms/suite_1/",
+      "state": "room-detail",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 390,
+      "path": "/rooms/suite_1/",
+      "state": "room-viewer",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "path": "/rooms/suite_1/",
+      "state": "room-viewer-zoom",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "path": "/galleries/",
+      "state": "gallery-viewer",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "path": "/rooms/",
+      "state": "room-list",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 1440,
+      "path": "/rooms/",
+      "state": "menu",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 1440,
+      "path": "/rooms/",
+      "state": "comparison-tray",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 1440,
+      "path": "/rooms/",
+      "state": "comparison-dialog",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 1440,
+      "path": "/rooms/suite_1/",
+      "state": "room-detail",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "width": 1440,
+      "path": "/rooms/suite_1/",
+      "state": "room-viewer",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "path": "/rooms/suite_1/",
+      "state": "room-viewer-zoom",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "path": "/galleries/",
+      "state": "gallery-viewer",
+      "violations": [],
+      "incomplete": []
+    }
+  ]
+}

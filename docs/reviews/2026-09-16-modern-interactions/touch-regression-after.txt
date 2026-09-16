@@ -1,0 +1,6 @@
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › tests/e2e/modern-interactions.spec.ts:98:1 › real touch swipes change photos while vertical movement still scrolls the page (1.0s)
+
+  1 passed (1.6s)

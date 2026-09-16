@@ -1,0 +1,110 @@
+{
+  "head": "111c6075ddddb7c36570032fa518923c43c583f2",
+  "rows": [
+    {
+      "file": "404.html",
+      "differences": []
+    },
+    {
+      "file": "announcements/index.html",
+      "differences": []
+    },
+    {
+      "file": "announcements/website/index.html",
+      "differences": []
+    },
+    {
+      "file": "galleries/index.html",
+      "differences": []
+    },
+    {
+      "file": "index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/account/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/contact-method/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/guide/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/map/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/menu/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/roles/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/set-menu-info/index.html",
+      "differences": []
+    },
+    {
+      "file": "infos/video/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/campsite_1/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/campsite_2/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/campsite_3/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/log_cabin_1/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/log_cabin_2/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/log_cabin_3/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/log_cabin_4/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/suite_1/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/suite_2/index.html",
+      "differences": []
+    },
+    {
+      "file": "rooms/suite_3/index.html",
+      "differences": []
+    },
+    {
+      "file": "sale_items/index.html",
+      "differences": []
+    }
+  ],
+  "protectedChanges": ""
+}

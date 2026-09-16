@@ -2,8 +2,8 @@
 metaTitle: '密式旅行露營區，依山之屋 - 沉露營小木屋'
 title: '依山之屋 - 沉 露營木屋'
 shortTitle: '依山 - 沉'
-description: '依山之屋「沉」是最寬敞的露營木屋，室內床板達3.4x2.1公尺，附設3x3公尺專屬涼亭。適合4人入住，享受獨立涼亭空間，車輛可停放涼亭旁。共用流理台、衛浴和冰箱，是享受戶外生活的理想選擇。'
-metaDescription: '密式旅行依山之屋-沉木屋 - 苗栗泰安附涼亭露營木屋，寬敞舒適4人住宿。平日1200元、假日1700元、連假2000元。立即預訂享受涼亭休閒時光！'
+description: '依山之屋沉房是苗栗泰安密式旅行的四人露營木屋，室內床板約3.4乘2.1公尺，附約3乘3公尺的涼亭與桌子。流理台、衛浴及冰箱為公用，車輛可停於涼亭旁或停車場。'
+metaDescription: '密式旅行依山之屋沉房：四人露營木屋，附涼亭與桌子，使用公用衛浴及冰箱，無提供早晚餐。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
 standardPrice: 2000
 holidayPrice: 1700
 weekdayPrice: 1200
@@ -11,7 +11,7 @@ numberOfRooms: 1
 numberOfPeople: 4
 order: 8
 category: 'cabin'
-keywords: '依山之屋, 沉木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 1200-2000元, 依山住宿, 涼亭木屋, 小木屋住宿, 郊外休閒, 山景住宿, 有涼亭住宿'
+keywords: '依山之屋, 沉木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 依山住宿, 涼亭木屋, 小木屋住宿, 郊外休閒, 山景住宿, 有涼亭住宿'
 mainImage: '/images/log_cabin_4_main.webp'
 images:
   - '/images/log_cabin_air_conditioner_1.webp'
@@ -31,7 +31,7 @@ images:
 
 #### 【住宿費用】
 
-  - 1 間 ( 4 人以下) 費用：平日：1200 元  假日：1700 元  連續假日：2000 元【連續假期限接三天兩夜或以上之預訂】
+  - 1 間 ( 4 人以下) 費用：平日：{{weekdayPrice}} 元  假日：{{holidayPrice}} 元  連續假日：{{standardPrice}} 元【連續假期限接三天兩夜或以上之預訂】
 
 
 #### 【房位說明】

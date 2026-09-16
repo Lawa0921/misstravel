@@ -5,14 +5,23 @@ const googleMapsUrl = 'https://www.google.com.tw/maps/place/%E5%AF%86%E5%BC%8F%E
 ---
 
 <footer id="footer">
-  <div class="inner">
-    <ul class="icons align-center">
-      <li>
-        <a href={siteConfig.booking.url} class="footer-action" target="_blank" rel="noopener noreferrer">空房查詢</a>
-      </li>
-      <li>
-        <a href={siteConfig.contact.lineUrl} class="footer-action line-action" target="_blank" rel="noopener noreferrer">LINE {siteConfig.contact.line}</a>
-      </li>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="footer-kicker">苗栗・泰安 / MissTravel</p>
+      <h2>密式旅行</h2>
+      <p>秘密景點，深度旅行</p>
+    </div>
+
+    <div class="footer-contact" data-footer-contact>
+      <p class="footer-kicker">Stay in touch</p>
+      <h2>聯絡與預訂</h2>
+      <ul class="footer-actions" aria-label="預訂與聯絡方式">
+        <li><a href={siteConfig.booking.url} class="footer-action" target="_blank" rel="noopener noreferrer">空房查詢</a></li>
+        <li><a href={siteConfig.contact.lineUrl} class="footer-action line-action" target="_blank" rel="noopener noreferrer">LINE {siteConfig.contact.line}</a></li>
+      </ul>
+    </div>
+
+    <ul class="icons" aria-label="密式旅行聯絡連結">
       <li>
         <a href={siteConfig.socials.facebook} class="icon alt" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
@@ -38,29 +47,36 @@ const googleMapsUrl = 'https://www.google.com.tw/maps/place/%E5%AF%86%E5%BC%8F%E
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         </a>
       </li>
-      <li><strong>&copy; {siteConfig.title}</strong></li>
     </ul>
+
+    <p class="footer-meta"><span>© {siteConfig.title}</span><span>苗栗・泰安</span></p>
   </div>
 </footer>
 
 <style>
-  #footer { padding: 2em 0; background: #1e2234; }
-  #footer .inner { max-width: 65em; margin: 0 auto; padding: 0 3em; }
-  #footer .icons.align-center { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
-  #footer .icons li { display: inline-block; }
-  #footer .icons li strong { color: rgba(255, 255, 255, 0.65); font-size: 0.8em; letter-spacing: 0.15em; }
-  #footer .icon.alt { display: flex; align-items: center; justify-content: center; width: 2.25em; height: 2.25em; background-color: #fff; border-radius: 100%; color: #242943; transition: background-color 0.2s ease; text-decoration: none; border: none; }
-  #footer .icon.alt:hover,
-  #footer .icon.alt:focus-visible { background-color: #9bf1ff; }
-  #footer .icon.alt svg { width: 1em; height: 1em; }
-  .footer-action { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.4rem 1rem; border: 2px solid #fff; font-weight: 600; letter-spacing: 0.12em; }
-  .footer-action:hover,
-  .footer-action:focus-visible { background: #fff; color: #242943; }
-  .line-action { border-color: #9bf1ff; }
+  #footer { padding: clamp(3rem, 6vw, 5rem) 0 2rem; background: #1c2034; }
+  .footer-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem clamp(2rem, 8vw, 8rem); width: min(78rem, calc(100% - 2.5rem)); margin: 0 auto; }
+  .footer-kicker { margin: 0 0 0.75rem; color: var(--color-aqua); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  .footer-brand h2, .footer-contact h2 { margin: 0; color: var(--color-paper); font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: 0.14em; }
+  .footer-brand > p:last-child { margin: 0.7rem 0 0; color: var(--color-paper-muted); font-size: 0.9rem; letter-spacing: 0.1em; }
+  .footer-actions, .icons { display: flex; flex-wrap: wrap; gap: 0.6rem; list-style: none; margin: 1.2rem 0 0; padding: 0; }
+  .footer-action { display: inline-flex; min-width: 7.5rem; min-height: 2.75rem; align-items: center; justify-content: center; padding: 0.55rem 1rem; border: 1px solid var(--color-paper); color: var(--color-paper); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; }
+  .footer-action:hover, .footer-action:focus-visible { background: var(--color-paper); color: var(--color-bg); }
+  .line-action { border-color: var(--color-aqua); }
+  .icons { grid-column: 1 / -1; align-items: center; gap: 0.65rem; margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid rgba(245, 240, 230, 0.16); }
+  .icon.alt { display: inline-flex; width: 2.75rem; height: 2.75rem; align-items: center; justify-content: center; border: 1px solid rgba(245, 240, 230, 0.35); color: var(--color-paper); }
+  .icon.alt:hover, .icon.alt:focus-visible { border-color: var(--color-aqua); background: rgba(157, 216, 208, 0.1); color: var(--color-aqua); }
+  .icon.alt svg { width: 1rem; height: 1rem; }
+  .footer-meta { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 1rem; margin: 0; color: var(--color-paper-muted); font-size: 0.8rem; letter-spacing: 0.12em; }
 
-  @media (max-width: 768px) {
-    #footer { padding: 1.5em 0; }
-    #footer .inner { padding: 0 1.5em; }
-    #footer .icons.align-center { gap: 0.6em; }
+  @media (max-width: 767px) {
+    .footer-inner { display: block; width: calc(100% - 2.5rem); }
+    .footer-contact { margin-top: 2.25rem; }
+    .icons { margin-top: 2.25rem; }
+    .footer-meta { margin-top: 1.25rem; }
+  }
+
+  @media (max-width: 390px) {
+    .footer-meta { flex-direction: column; gap: 0.35rem; }
   }
 </style>

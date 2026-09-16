@@ -7,6 +7,7 @@ import { siteConfig } from '../lib/config';
 const webSiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${siteConfig.url}/#website`,
   name: '密式旅行',
   url: siteConfig.url,
   description: siteConfig.metaDescription,
@@ -16,15 +17,14 @@ const webSiteSchema = {
 ---
 
 <BaseLayout headerVariant="alt" schemaType="LocalBusiness" preloadImage="/images/banner.webp" extraSchemas={[webSiteSchema]}>
-  <Banner title="密式旅行" subtitle="秘密景點，深度旅行" />
-
   <main id="main">
+    <Banner title="密式旅行" subtitle="秘密景點，深度旅行" />
     <Tiles />
   </main>
 </BaseLayout>
 
 <style>
   #main {
-    background: #242943;
+    background: var(--color-bg);
   }
 </style>

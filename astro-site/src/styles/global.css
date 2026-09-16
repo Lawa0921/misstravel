@@ -1,83 +1,61 @@
 @import "tailwindcss";
 
-/* 自訂字型 - setofont */
+/* 密式旅行的原始字型：所有站內介面共用同一套字型，避免品牌字形漂移。 */
 @font-face {
   font-family: 'setofont';
   src: url('/fonts/setofont.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  /* The original font maps 鄉 and 閱 to empty outlines. Exclude only those two
+     codepoints so the existing sans-serif fallback can display the real text.
+     No font bytes, glyphs, or external font sources are changed. */
+  unicode-range: U+0000-9108, U+910A-95B0, U+95B2-10FFFF;
 }
 
-/* 設計 Token - 從 Jekyll 主題提取 */
 :root {
-  /* 顏色 */
-  --color-primary: #2e3842;
-  --color-accent: #9bf1ff;
+  color-scheme: dark;
   --color-bg: #242943;
-  --color-bg-alt: #2a2f4a;
-  --color-fg: #ffffff;
-  --color-fg-light: rgba(255, 255, 255, 0.5);
-  --color-border: rgba(255, 255, 255, 0.25);
-
-  /* 字體 */
-  --font-heading: 'setofont', 'Source Sans Pro', Helvetica, sans-serif;
-  --font-body: 'setofont', 'Source Sans Pro', Helvetica, sans-serif;
-
-  /* 間距 */
+  --color-surface: #2a2f4a;
+  --color-danger: #ff9b92;
+  --color-bg-alt: #1c2034;
+  --color-primary: #242943;
+  --color-paper: #f5f0e6;
+  --color-paper-muted: #c8c8c3;
+  --color-aqua: #9dd8d0;
+  --color-champagne: #d9b98c;
+  --color-fg: var(--color-paper);
+  --color-fg-light: var(--color-paper-muted);
+  --color-border: rgba(245, 240, 230, 0.25);
+  --font-heading: 'setofont', sans-serif;
+  --font-body: 'setofont', sans-serif;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
   --space-xl: 4rem;
-
-  /* 過渡 */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
 }
 
-/* Skip Navigation Link */
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  z-index: 100000;
-  padding: 0.75rem 1.5rem;
-  background: #fff;
-  color: #242943;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  border: none;
-  border-bottom: none;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-.skip-link:focus {
-  top: 0;
-  border-bottom: none;
-}
-
-/* 基礎樣式 */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; background: var(--color-bg); }
 
 body {
-  font-family: var(--font-body);
-  background-color: var(--color-bg);
-  color: var(--color-fg);
-  line-height: 1.65;
+  min-width: 320px;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  line-height: 1.65;
 }
 
-body > main,
-body > #main {
-  flex: 1;
-}
+body > main, body > #main { flex: 1; }
 
-/* 標題 - 大小與 Bootstrap 一致 */
 h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
   font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.3;
@@ -91,113 +69,40 @@ h4 { font-size: 1.1em; }
 h5 { font-size: 0.9em; }
 h6 { font-size: 0.7em; }
 
-/* 文字顏色工具類 - 與 Jekyll 一致 */
-.yellow {
-  color: #FFD306;
+p { margin-top: 0; }
+
+a { color: inherit; text-decoration: none; border-bottom: 1px dotted rgba(245, 240, 230, 0.5); transition: color var(--transition-fast), border-color var(--transition-fast); }
+a:hover { border-bottom-color: transparent; color: var(--color-aqua); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--color-aqua); outline-offset: 3px; }
+
+img { max-width: 100%; height: auto; }
+
+ol { list-style-type: decimal; }
+ul { list-style-type: disc; }
+
+.skip-link { position: absolute; top: -100%; left: 0; z-index: 100000; padding: 0.75rem 1.5rem; background: var(--color-paper); color: var(--color-bg); font-weight: 600; letter-spacing: 0.1em; border: 0; }
+.skip-link:focus { top: 0; }
+
+.btn { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; padding: 0.75rem 2rem; border: 0; border-radius: 0; cursor: pointer; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-decoration: none; transition: background-color var(--transition-fast), color var(--transition-fast); }
+.btn-primary { background-color: var(--color-paper); color: var(--color-bg); }
+.btn-primary:hover { background-color: var(--color-aqua); color: var(--color-bg); }
+.btn-outline { border: 1px solid var(--color-paper); background-color: transparent; color: var(--color-paper); }
+.btn-outline:hover { background-color: var(--color-paper); color: var(--color-bg); }
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.yellow { color: var(--color-champagne); }
+.red { color: #e9a29b; }
+
+@media (max-width: 767px) {
+  .hide-mobile { display: none; }
+  body { font-size: 0.96rem; }
 }
 
-.red {
-  color: red;
+@media (min-width: 768px) {
+  .hide-desktop { display: none; }
 }
 
-/* 連結 */
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color var(--transition-fast);
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
-}
-
-a:hover {
-  border-bottom-color: transparent;
-  color: var(--color-accent);
-}
-
-/* 圖片 */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* 列表 - 覆蓋 Tailwind 重置 */
-ol {
-  list-style-type: decimal;
-}
-
-ul {
-  list-style-type: disc;
-}
-
-/* 按鈕基礎樣式 */
-.btn {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.btn-primary {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-}
-
-.btn-primary:hover {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
-}
-
-.btn-outline {
-  background-color: transparent;
-  border: 2px solid var(--color-fg);
-  color: var(--color-fg);
-}
-
-.btn-outline:hover {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-}
-
-/* 容器 */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* 網格 */
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 0;
-}
-
-/* 淡入動畫 */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  animation: fadeIn 0.6s ease forwards;
-}
-
-/* 響應式工具類 */
-@media (max-width: 768px) {
-  .hide-mobile {
-    display: none;
-  }
-}
-
-@media (min-width: 769px) {
-  .hide-desktop {
-    display: none;
-  }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }

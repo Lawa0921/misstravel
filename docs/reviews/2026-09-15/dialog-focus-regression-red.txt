@@ -1,0 +1,33 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/interaction.spec.ts:273:1 › 圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點 (498ms)
+
+
+  1) [chromium] › tests/e2e/interaction.spec.ts:273:1 › 圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點 ───────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      296 |   expect(result.wasClosed).toBe(true);
+      297 |   expect(result.callbacks).toBeGreaterThan(0);
+    > 298 |   expect(result.restored).toBe(true);
+          |                           ^
+      299 | });
+      300 |
+        at <isolated-worktree>/astro-site/tests/e2e/interaction.spec.ts:298:27
+
+    Error Context: test-results/interaction-圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/interaction-圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/interaction-圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/interaction.spec.ts:273:1 › 圖集快速關閉後，排隊中的開啟焦點回呼不得搶回焦點 ────────────────────

@@ -1,8 +1,10 @@
 ---
 import { cloudflareWebAnalyticsToken, siteConfig } from '../../lib/config';
 import SchemaOrg from './SchemaOrg.astro';
+import pageTransitionsSource from '../../scripts/page-transitions.js?raw';
+import { getImageMetadata } from '../../lib/image-metadata';
 import sharp, { type Metadata } from 'sharp';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 
 interface ArticleMeta {
   publishedTime: string;
@@ -14,6 +16,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   keywords?: string;
   canonical?: string;
   type?: 'website' | 'article';
@@ -26,9 +29,10 @@ interface Props {
 }
 
 const {
-  title = siteConfig.metaTitle,
+  title,
   description = siteConfig.metaDescription,
   image = siteConfig.ogImage,
+  imageAlt,
   keywords,
   canonical = Astro.url.href,
   type = 'website',
@@ -40,14 +44,23 @@ const {
   articleMeta,
 } = Astro.props;
 
-const fullTitle = title === siteConfig.metaTitle ? title : `${title} | ${siteConfig.title}`;
+// 頁面若已含品牌名稱（房型內容的 metaTitle），不要再接一次品牌；
+// 其他頁面使用獨立的 SEO 後綴，避免 SEO 標題耦合頁尾顯示名稱。
+const fullTitle = title
+  ? title.includes(siteConfig.author)
+    ? title
+    : `${title} | ${siteConfig.seoTitleSuffix}`
+  : siteConfig.metaTitle;
+const sharingImageAlt = imageAlt || getImageMetadata(image)?.alt || `${siteConfig.author}網站分享圖片`;
 const imageUrl = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
 
 let imageMetadata: Metadata | undefined;
 if (image.startsWith('/')) {
   const imagePath = image.split(/[?#]/, 1)[0];
-  const imageFile = new URL(`../../../public${imagePath}`, import.meta.url);
-  imageMetadata = await sharp(fileURLToPath(imageFile)).metadata();
+  // Build from the project public directory: bundled import.meta.url moves under
+  // .vercel/output during prerendering and must not determine the source path.
+  const imageFile = resolve(process.cwd(), 'public', `.${imagePath}`);
+  imageMetadata = await sharp(imageFile).metadata();
 }
 
 const imageMimeTypes: Record<string, string> = {
@@ -102,7 +115,7 @@ const imageMimeType = imageMetadata?.format
   {imageMetadata?.width && <meta property="og:image:width" content={String(imageMetadata.width)} />}
   {imageMetadata?.height && <meta property="og:image:height" content={String(imageMetadata.height)} />}
   {imageMimeType && <meta property="og:image:type" content={imageMimeType} />}
-  <meta property="og:image:alt" content={description} />
+  <meta property="og:image:alt" content={sharingImageAlt} />
   <meta property="og:site_name" content={siteConfig.title} />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -110,6 +123,7 @@ const imageMimeType = imageMetadata?.format
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
+  <meta name="twitter:image:alt" content={sharingImageAlt} />
 
   <meta name="msapplication-TileColor" content="#da532c" />
   <meta name="theme-color" content="#242943" />
@@ -126,6 +140,7 @@ const imageMimeType = imageMetadata?.format
   {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
   <link rel="preload" href="/fonts/setofont.woff2" as="font" type="font/woff2" crossorigin />
 
+  <script is:inline set:html={pageTransitionsSource} />
   <SchemaOrg type={schemaType} data={schemaData} extraSchemas={extraSchemas} />
   <script
     type="module"

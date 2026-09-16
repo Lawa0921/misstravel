@@ -2,8 +2,8 @@
 metaTitle: '密式旅行露營區，觀山之屋露營小木屋'
 title: '觀山之屋露營木屋'
 shortTitle: '觀山之屋'
-description: '觀山之屋是密式旅行的特色小木屋，提供舒適的4人住宿空間。配備冷氣空調、戶外平台，讓您在苗栗泰安享受山林美景。平日只要1200元起，是親子旅遊、情侶度假的理想選擇。'
-metaDescription: '密式旅行觀山之屋小木屋，位於苗栗泰安鄉，提供4人舒適住宿。享有山景視野、戶外平台、冷氣設備。平日1200元、假日1700元、連假2000元。立即預訂體驗山林之美！'
+description: '觀山之屋是苗栗泰安密式旅行的四人露營木屋，室內床板約2.7乘2.1公尺，附房外平台。流理台、衛浴及冰箱為公用；使用室外公共空間炊煮須預訂五間包區，房間依工作人員安排。'
+metaDescription: '密式旅行觀山之屋四人露營木屋，附房外平台，使用公用流理台、衛浴及冰箱，無提供早晚餐。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
 standardPrice: 2000
 holidayPrice: 1700
 weekdayPrice: 1200
@@ -11,7 +11,7 @@ numberOfRooms: 5
 numberOfPeople: 4
 order: 9
 category: 'cabin'
-keywords: '觀山之屋, 小木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 1200-2000元, 山景木屋, 5間木屋, 平價住宿, 觀山住宿, 自然風住宿, 郊外休閒'
+keywords: '觀山之屋, 小木屋, 露營木屋, 苗栗木屋, 泰安木屋, 密式旅行, 4人木屋, 山景木屋, 5間木屋, 平價住宿, 觀山住宿, 自然風住宿, 郊外休閒'
 mainImage: '/images/log_cabin_1/log_cabin_1_10.webp'
 images:
   - '/images/log_cabin_air_conditioner_2.webp'
@@ -37,7 +37,7 @@ images:
 
 #### 【住宿費用】
 
-  - 1 間 ( 4 人以下) 費用：平日：1200 元  假日：1700 元  連續假日：2000 元【連續假期限接三天兩夜或以上之預訂】
+  - 1 間 ( 4 人以下) 費用：平日：{{weekdayPrice}} 元  假日：{{holidayPrice}} 元  連續假日：{{standardPrice}} 元【連續假期限接三天兩夜或以上之預訂】
 
 
 #### 【房位說明】

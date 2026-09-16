@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "5662328fd9892a58773938488de979471fbd5f06",
+  "base": "517b79da80320fd225243b3c72805c23997f634a",
+  "palette": {
+    "background": "#242943",
+    "surface": "#2a2f4a",
+    "text": "#f5f0e6",
+    "aqua": "#9dd8d0",
+    "champagne": "#d9b98c"
+  },
+  "verify": {
+    "files": 24,
+    "passed": 233,
+    "failed": 0,
+    "vulnerabilities": 0
+  },
+  "browser": {
+    "passed": 22,
+    "failed": 0,
+    "retries": 0,
+    "darkThemeTests": 8
+  },
+  "visitor": {
+    "checks": 419,
+    "passed": 419,
+    "failed": 0
+  },
+  "axe": {
+    "routeViewportChecks": 20,
+    "violations": 0,
+    "incompleteChecksAreNotPasses": true
+  },
+  "contentAndSEO": {
+    "pages": 26,
+    "differences": 0
+  },
+  "protectedFiles": {
+    "checked": 251,
+    "changed": 0
+  },
+  "review": {
+    "independentAI": true,
+    "verdict": "PASS",
+    "humanApproval": false
+  },
+  "sourceCI": "https://github.com/Lawa0921/misstravel/actions/runs/34934698509",
+  "localPreview": "http://localhost:4336/",
+  "productionChanged": false
+}

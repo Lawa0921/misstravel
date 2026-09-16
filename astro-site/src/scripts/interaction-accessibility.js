@@ -15,13 +15,26 @@
   let pendingTrigger = null;
   let pendingBodyOverflow = null;
   let previousBodyOverflow = '';
+  const inertBackground = new Map();
+  function restoreBackground() { inertBackground.forEach((value, node) => { node.inert = value; }); inertBackground.clear(); }
+  function isolateDialog(dialog) {
+    let branch = dialog;
+    while (branch.parentElement && branch.parentElement !== document.documentElement) {
+      [...branch.parentElement.children].forEach((sibling) => {
+        if (sibling === branch || !(sibling instanceof HTMLElement) || /^(SCRIPT|STYLE|LINK)$/.test(sibling.tagName)) return;
+        if (!inertBackground.has(sibling)) inertBackground.set(sibling, sibling.inert);
+        sibling.inert = true;
+      });
+      branch = branch.parentElement;
+    }
+  }
 
   function visibleFocusableElements(dialog) {
     return [...dialog.querySelectorAll(FOCUSABLE_SELECTOR)].filter((element) => {
       if (!(element instanceof HTMLElement)) return false;
       if (element.hidden || element.getAttribute('aria-hidden') === 'true') return false;
       const style = window.getComputedStyle(element);
-      return style.display !== 'none' && style.visibility !== 'hidden';
+      return element.tabIndex >= 0 && element.getClientRects().length > 0 && !element.closest('[hidden], [inert]') && style.visibility !== 'hidden';
     });
   }
 
@@ -49,11 +62,17 @@
       pendingBodyOverflow = null;
     }
 
+    if (activeDialog && activeDialog !== dialog) restoreBackground();
     activeDialog = dialog;
+    isolateDialog(dialog);
     dialog.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
     requestAnimationFrame(() => {
+      // A queued open callback must never steal restored focus after closing.
+      if (activeDialog !== dialog || !dialog.classList.contains('active')) return;
+      // Do not override a deliberate focus move made while the opening frame queued.
+      if (dialog.contains(document.activeElement) && document.activeElement !== dialog) return;
       const focusables = visibleFocusableElements(dialog);
       (focusables[0] || dialog).focus({ preventScroll: true });
     });
@@ -66,6 +85,7 @@
     dialog.setAttribute('aria-hidden', 'true');
 
     if (activeDialog === dialog) {
+      restoreBackground();
       activeDialog = null;
       if (!document.querySelector(OPEN_DIALOG_SELECTOR)) {
         document.body.style.overflow = previousBodyOverflow;
@@ -157,7 +177,12 @@
 
     const first = focusables[0];
     const last = focusables[focusables.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
+    // A pending or failed thumbnail may hold focus with tabindex=-1.
+    // Explicitly contain Tab instead of relying on the browser's native wrap.
+    if (!focusables.includes(document.activeElement)) {
+      event.preventDefault();
+      (event.shiftKey ? last : first).focus();
+    } else if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
       last.focus();
     } else if (!event.shiftKey && document.activeElement === last) {
@@ -229,4 +254,7 @@
   }
 
   document.querySelectorAll('.carousel').forEach(enhanceCarousel);
+  // Leave a usable document in native history, including comparisons followed by a room link.
+  window.addEventListener('pageswap', () => { if (activeDialog) deactivateDialog(activeDialog); });
+  window.addEventListener('pagehide', () => { if (activeDialog) deactivateDialog(activeDialog); });
 })();

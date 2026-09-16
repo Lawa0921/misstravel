@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import '../styles/guest-pages.css';
+const records = await getCollection('infos');
+const links = [
+  ...records.map(({id,data}) => ({href: `/infos/${id.replace(/\.md$/, '')}/`, title:data.title, order:data.order ?? 99})),
+  {href:'/infos/guide/',title:'交通指引',order:2},
+  {href:'/infos/set-menu-info/',title:'代訂合菜',order:6},
+].sort((a,b) => a.order-b.order);
+---
+<nav class="guest-navigation" aria-label="旅客資訊">
+  <a class="guest-navigation-home" href="/infos/">關於密式 <span aria-hidden="true">↗</span></a>
+  <div class="guest-navigation-links">
+    {links.map(link => <a href={link.href} aria-current={Astro.url.pathname === link.href ? 'page' : undefined}>{link.title}<span aria-hidden="true">→</span></a>)}
+  </div>
+</nav>
+
+<noscript>
+  <style>
+    .guest-page .modal { display:block !important; position:static !important; padding:1.5rem 0; background:transparent; }
+    .guest-page .modal-content { width:min(100% - 2rem,60rem); margin:auto; max-height:none; overflow:visible; }
+    .guest-page .modal-header { position:static; }
+    .guest-page .modal-close, .guest-page button[data-modal] { display:none; }
+    .guest-page .carousel-item { display:block !important; }
+    .guest-page .carousel-prev, .guest-page .carousel-next, .guest-page .carousel-indicators { display:none; }
+  </style>
+</noscript>
