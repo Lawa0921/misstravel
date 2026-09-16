@@ -1,0 +1,37 @@
+SOURCE_CONTEXT: before correction
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/e2e/homepage-overflow.spec.ts:25:3 › homepage edge cards never create document overflow during pointer or keyboard motion at 1440px (4.9s)
+
+
+  1) [chromium] › tests/e2e/homepage-overflow.spec.ts:25:3 › homepage edge cards never create document overflow during pointer or keyboard motion at 1440px
+
+    Error: {"maximum":4,"left":4,"rootOverflow":"visible","bodyOverflow":"visible"}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 4
+
+      15 |     return { maximum, left, rootOverflow, bodyOverflow };
+      16 |   });
+    > 17 |   expect(state.maximum, JSON.stringify(state)).toBe(0);
+         |                                                ^
+      18 |   expect(state.left).toBe(0);
+      19 |   // Fix the overflowing component, not the page scrollbar or all horizontal regions.
+      20 |   expect(state.rootOverflow).not.toMatch(/hidden|clip/);
+        at unscrollablePage (<isolated-worktree>/astro-site/tests/e2e/homepage-overflow.spec.ts:17:48)
+        at <isolated-worktree>/astro-site/tests/e2e/homepage-overflow.spec.ts:38:9
+
+    Error Context: test-results/homepage-overflow-homepage-0b09c-r-keyboard-motion-at-1440px-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/homepage-overflow-homepage-0b09c-r-keyboard-motion-at-1440px-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/homepage-overflow-homepage-0b09c-r-keyboard-motion-at-1440px-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/homepage-overflow.spec.ts:25:3 › homepage edge cards never create document overflow during pointer or keyboard motion at 1440px

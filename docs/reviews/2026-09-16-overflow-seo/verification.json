@@ -1,0 +1,68 @@
+{
+  "sourceCommit": "0caec00a77778737ff47eaaa58d3188c81bd5d0d",
+  "baseCommit": "a2dac9ed61a8b9478dbd6ebca6119a333b9fbba8",
+  "verify": {
+    "testFiles": 29,
+    "passed": 340,
+    "failed": 0,
+    "npmAuditVulnerabilities": 0
+  },
+  "e2e": {
+    "passed": 144,
+    "failed": 0,
+    "retries": 0
+  },
+  "crossEngine": {
+    "engines": [
+      "Chromium",
+      "Firefox",
+      "WebKit"
+    ],
+    "widths": [
+      390,
+      932,
+      1440
+    ],
+    "passed": 9,
+    "physicalDeviceTesting": false
+  },
+  "homepageRegression": {
+    "normalMotionWidths": [
+      390,
+      767,
+      768,
+      932,
+      1020,
+      1021,
+      1067,
+      1440,
+      1920
+    ],
+    "perStateSamplingMilliseconds": 650,
+    "testedPointerLeave": true,
+    "testedDocumentScroll": true,
+    "testedTextAndHitBoxStationarity": true
+  },
+  "preservation": {
+    "htmlPages": 26,
+    "metadataAndBodyTextUnchanged": true,
+    "originalPhotoFontBytesUnchanged": true,
+    "onlyProtectedSourceChanges": [
+      "src/content/infos/menu.md: width/height",
+      "src/content/infos/map.md: width/height"
+    ]
+  },
+  "review": {
+    "independentAI": true,
+    "verdict": "PASS",
+    "sourceCommit": "0caec00a77778737ff47eaaa58d3188c81bd5d0d",
+    "report": "independent-review.md"
+  },
+  "limits": [
+    "No human or physical-device certification",
+    "Image geometry measurements are not field CLS scores",
+    "No Search Console ranking, traffic or CTR data accessed",
+    "Responsive image candidates measured only, not deployed",
+    "Production not changed; PR not merged"
+  ]
+}
