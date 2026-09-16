@@ -80,6 +80,12 @@ const imageMimeType = imageMetadata?.format
 
 <head>
   <meta charset="utf-8" />
+  <!-- Native navigation policy must be available before external CSS finishes. -->
+  <style is:inline data-navigation-policy>
+    @media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }
+    @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+  </style>
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
 

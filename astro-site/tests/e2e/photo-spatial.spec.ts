@@ -182,3 +182,34 @@ test('same-task open/Escape closes once, releases scroll and cancels the queued 
   await page.locator('.photo-expand').click();
   await expect(page.locator('[data-photo-viewer]')).toHaveAttribute('aria-hidden', 'false');
 });
+
+
+test('a live image decode failure after preload restores the last successfully shown photo', async ({ page }) => {
+  await setup(page);
+  await page.locator('.photo-expand').click();
+  await expect(page.locator('[data-viewer-current]')).toHaveText('1');
+  const previous = await page.locator('[data-viewer-image]').getAttribute('src');
+  const sources = await page.locator('[data-viewer-data]').evaluate(el => JSON.parse(el.textContent!) as {src: string}[]);
+  // Fail only the live image assignment, not the detached preloader. This exercises
+  // the second readiness check without changing the production readiness helper.
+  await page.evaluate((target) => {
+    const descriptor = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src')!;
+    let failed = false;
+    Object.defineProperty(HTMLImageElement.prototype, 'src', {
+      ...descriptor,
+      set(value: string) {
+        if (!failed && this.matches('[data-viewer-image]') && value === target) {
+          failed = true;
+          descriptor.set!.call(this, 'data:image/png;base64,invalid');
+        } else descriptor.set!.call(this, value);
+      },
+    });
+  }, sources[1].src);
+  await page.locator('[data-viewer-index="1"]').click();
+  await expect(page.locator('.viewer-loading')).toContainText('照片無法開啟');
+  await expect(page.locator('[data-viewer-image]')).toHaveAttribute('src', previous!);
+  await expect(page.locator('[data-viewer-current]')).toHaveText('1');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.carousel-slide.active')).toHaveAttribute('data-index', '0');
+  await expect(page.locator('.photo-expand')).toBeFocused();
+});

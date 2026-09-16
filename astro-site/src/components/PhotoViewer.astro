@@ -71,7 +71,16 @@ const {id,label,mode,images}=Astro.props;
       await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
       if(id!==token||!opened||!viewer.classList.contains('active'))return;
       const rendered=await waitForPhoto(image);
-      if(id!==token||!opened||!viewer.classList.contains('active')||rendered!=='ready')return;
+      if(id!==token||!opened||!viewer.classList.contains('active'))return;
+      if(rendered!=='ready'){
+        // A decoded preload is not proof the live image accepted the same request.
+        // Keep caption/counter and the last successful photograph together on failure.
+        if(shown!==null)display(shown);
+        else { image.hidden=true;image.removeAttribute('src'); }
+        loading.hidden=false;
+        loading.textContent=rendered==='timeout'?'照片準備中，請再按一次。':'照片無法開啟，請選擇其他照片。';
+        return;
+      }
       index=target;shown=target;sync();publish('photo-viewer:shown');
     }
     function open(next:number){
