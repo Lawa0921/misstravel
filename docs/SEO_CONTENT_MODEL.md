@@ -111,3 +111,17 @@ https://support.google.com/webmasters/answer/7451001?hl=zh-Hant
 此修正提供一條完整而可驗證的發現途徑，不把它宣稱為已證明 Google 舊擷取錯誤的內部根因。發布後必須看 Search Console 的實際「成功／25 個網頁」，不能以本機 HTTP200 代替；舊提交紀錄的結果與主要完整清單的結果分開記錄。
 
 依據：https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps
+
+## 首屏與輪播載入追蹤修正（2026-10-09）
+
+房型列表依實際分類顯示順序選出首兩張照片，使用 eager；只有第一張使用 high fetchpriority，並沿用 BaseLayout 的 responsive preload。兩張首屏卡片直接輸出為已顯示狀態，不等待捲動 reveal；其他八張仍延後載入，滑鼠互動仍保留。原生返回導覽除了這兩張，只可額外提升剛看過的單張房型照片，不能擴大為全房型預載。路由就緒標記也涵蓋沒有捲動 reveal 的首屏卡片，以保留導覽時不重播淡入／模糊的契約。
+
+房型輪播先等第一張實際 load，下一個繪製機會後才預備前後鄰圖；即使首圖慢於八秒仍會在載入成功後預備。使用者的 hover、focus 與點擊可提早載入其需要的目標照片。變換照片時只更新原本及新的兩張投影片與圓點，先讀取控制列幾何再寫入 DOM；既有導覽取消 token、全螢幕返回、鍵盤與焦點流程不變。
+
+無障礙模組的靜態標籤只初始化一次；ARIA 狀態以實際 active class 同步，值未改變便不重寫。移除與狀態無關的每次拖曳 style 監聽及重複 click timer。`seo-perf-followup.spec.ts` 驗證第一張未完成前不搶載鄰圖、一次換圖至多四次 aria-hidden／aria-current 寫入、純拖曳樣式不重寫 ARIA，以及不同 DPR 的實際 responsive preload 不重複下載原圖。
+
+`seo-perf-followup.test.ts` 驗證編譯後 preload 與 img 的 srcset／sizes 完全相同及首屏策略。既有 contextual-navigation 測試保留所有視覺轉場、捲動還原、BFCache 與單圖身分驗證，僅將 eager 清單改成「首兩張加上本次返回的既有照片」的精確集合；不得只放寬最大數量。
+
+完整 Sitemap 的發布契約仍是 25 頁、139 筆原圖關聯；sitemap-index.xml 只有 image-sitemap.xml 一個完整子清單，sitemap-0.xml 是相同 XML 的相容入口。本次沒有另造 sitemap 或假 lastmod。套件鎖檔只做既有版本範圍內的安全更新；Sharp 版本改變會自動改變衍生圖內容 hash，不改原圖位元組或字型。
+
+發布驗收需看新版 HTML、正式路由、瀏覽器互動和 Cloudflare RUM 傳送是否成功。Google 即時測試的擷取成功／允許索引，不等於 Google 索引庫已更新；Merchant 舊錯誤的驗證啟動也不等於通過。私人後台資料保存在本機與交付報告，不提交公開儲存庫。實驗室的 LCP、請求數與 DOM 寫入數不冒充真實使用者 INP／LCP 改善，後續仍須用相同主機、排除機器人及完整日期窗口比較。

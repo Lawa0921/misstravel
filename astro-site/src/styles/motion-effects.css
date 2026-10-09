@@ -136,7 +136,8 @@ html[data-motion='ready'] [data-reveal].is-revealed {
 /* Do not replay the 750ms scroll reveal on top of a page navigation.
    All destination cards get this marker, including a late history-restored
    viewport. Hover feedback remains; navigation never replays scroll reveals. */
-html [data-route-ready][data-reveal] {
+html [data-route-ready][data-reveal],
+html [data-route-ready][data-motion-card] {
   opacity: 1 !important;
   filter: none !important;
   transition-property: transform, box-shadow;
