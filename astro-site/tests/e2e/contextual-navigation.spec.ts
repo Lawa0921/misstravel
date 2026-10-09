@@ -98,7 +98,12 @@ for(const width of [390,1440]) {
         await expect(page.locator('main')).toBeVisible();
       }
       await expect.poll(async()=>Math.abs(await page.evaluate(()=>scrollY)-listScroll)).toBeLessThan(4);
-      expect(await page.locator('img[data-room-photo][loading="eager"]').count()).toBe(back.restored?0:1);
+      // Preserve the two intentional first-row eager images; a reloaded Back
+      // navigation may additionally promote only its already-viewed photo.
+      const expectedEager = new Set(['/rooms/campsite_1/', '/rooms/campsite_2/']);
+      if (!back.restored) expectedEager.add(`/rooms/${slug}/`);
+      const eagerPaths = await page.locator('img[data-room-photo][loading="eager"]').evaluateAll(images => images.map(image => (image as HTMLImageElement).dataset.roomPhoto!));
+      expect(eagerPaths.sort()).toEqual([...expectedEager].sort());
       expect(await page.evaluate(()=>sessionStorage.getItem('misstravel:room-transition:v1'))).toBeNull();
       expect(await page.locator('[style*="view-transition-name"]').count()).toBe(0);
     });

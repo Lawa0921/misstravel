@@ -211,22 +211,33 @@
       return Math.max(activeControl, 0);
     }
 
+    // Static labels are initialized once, not rewritten after every drag frame.
+    slides.forEach((slide, index) => {
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', '投影片');
+      slide.setAttribute('aria-label', `第 ${index + 1} 張，共 ${slides.length} 張`);
+    });
+    controls.forEach((control, index) => {
+      if (control instanceof HTMLElement && control.tagName === 'SPAN') {
+        control.setAttribute('role', 'button');
+        control.setAttribute('tabindex', '0');
+      }
+      control.setAttribute('aria-label', `顯示第 ${index + 1} 張圖片`);
+    });
+    let syncedIndex = -1;
     function sync() {
       const index = currentIndex();
-      slides.forEach((slide, slideIndex) => {
-        slide.setAttribute('role', 'group');
-        slide.setAttribute('aria-roledescription', '投影片');
-        slide.setAttribute('aria-label', `第 ${slideIndex + 1} 張，共 ${slides.length} 張`);
-        slide.setAttribute('aria-hidden', slideIndex === index ? 'false' : 'true');
-      });
-      controls.forEach((control, controlIndex) => {
-        if (control instanceof HTMLElement && control.tagName === 'SPAN') {
-          control.setAttribute('role', 'button');
-          control.setAttribute('tabindex', '0');
-        }
-        control.setAttribute('aria-label', `顯示第 ${controlIndex + 1} 張圖片`);
-        control.setAttribute('aria-current', controlIndex === index ? 'true' : 'false');
-      });
+      if (index === syncedIndex) return;
+      const changed = syncedIndex < 0 ? slides.map((_, i) => i) : [syncedIndex, index];
+      for (const i of changed) {
+        const hidden = i === index ? 'false' : 'true';
+        const current = i === index ? 'true' : 'false';
+        const slide = slides[i];
+        const control = controls[i];
+        if (slide && slide.getAttribute('aria-hidden') !== hidden) slide.setAttribute('aria-hidden', hidden);
+        if (control && control.getAttribute('aria-current') !== current) control.setAttribute('aria-current', current);
+      }
+      syncedIndex = index;
     }
 
     carousel.addEventListener('keydown', (event) => {
@@ -244,14 +255,12 @@
         event.preventDefault();
         event.target.click();
       }
-      setTimeout(sync, 0);
     });
 
-    carousel.addEventListener('click', () => setTimeout(sync, 0));
     new MutationObserver(sync).observe(carousel, {
       attributes: true,
       subtree: true,
-      attributeFilter: ['class', 'style'],
+      attributeFilter: ['class'],
     });
     sync();
   }

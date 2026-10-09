@@ -747,6 +747,8 @@ const relatedRooms = allRooms
     const prevBtn = carousel.querySelector('.prev');
     const nextBtn = carousel.querySelector('.next');
     let currentIndex = 0;
+    let renderedIndex = 0;
+    let neighborGeneration = 0;
     let navigationToken = 0;
 
     function normalizeIndex(index: number) {
@@ -765,32 +767,44 @@ const relatedRooms = allRooms
 
 
     function updateCarousel() {
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      const position=document.querySelector('[data-photo-position]');if(position)position.textContent=String(currentIndex+1).padStart(2,'0');
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === currentIndex);
-        slide.setAttribute('aria-hidden', i === currentIndex ? 'false' : 'true');
-      });
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-        dot.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
-      });
-      // Reveal the active touch control without scrolling the page.
+      // Read geometry before DOM writes, so the dot strip does not force a
+      // synchronous layout after each slide/ARIA update.
       const activeDot = dots[currentIndex] as HTMLElement;
       const strip = activeDot?.parentElement;
+      let scrollTarget: number | undefined;
       if (strip && activeDot) {
         const left = activeDot.offsetLeft;
-        if (left < strip.scrollLeft) strip.scrollLeft = left;
-        else if (left + activeDot.offsetWidth > strip.scrollLeft + strip.clientWidth) {
-          strip.scrollLeft = left + activeDot.offsetWidth - strip.clientWidth;
-        }
+        const right = left + activeDot.offsetWidth;
+        if (left < strip.scrollLeft) scrollTarget = left;
+        else if (right > strip.scrollLeft + strip.clientWidth) scrollTarget = right - strip.clientWidth;
       }
-
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      if (renderedIndex !== currentIndex) {
+        const position = document.querySelector('[data-photo-position]');
+        if (position) position.textContent = String(currentIndex + 1).padStart(2, '0');
+        for (const index of [renderedIndex, currentIndex]) {
+          const active = index === currentIndex;
+          slides[index]?.classList.toggle('active', active);
+          slides[index]?.setAttribute('aria-hidden', active ? 'false' : 'true');
+          dots[index]?.classList.toggle('active', active);
+          dots[index]?.setAttribute('aria-current', active ? 'true' : 'false');
+        }
+        renderedIndex = currentIndex;
+      }
+      if (strip && scrollTarget !== undefined) strip.scrollLeft = scrollTarget;
     }
 
     function preloadNeighbors() {
       prepareImage(currentIndex + 1);
       prepareImage(currentIndex - 1);
+    }
+
+    function scheduleNeighbors() {
+      const generation = ++neighborGeneration;
+      // Give the selected image a paint before starting speculative work.
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (generation === neighborGeneration) preloadNeighbors();
+      }));
     }
 
     async function navigateTo(index: number) {
@@ -810,7 +824,7 @@ const relatedRooms = allRooms
 
       currentIndex = targetIndex;
       updateCarousel();
-      preloadNeighbors();
+      scheduleNeighbors();
     }
 
     // Fullscreen returns only a successfully displayed, known photo; never navigate or move focus.
@@ -839,7 +853,7 @@ const relatedRooms = allRooms
       updateCarousel();
       void track.offsetWidth;
       track.style.transition = transition;
-      preloadNeighbors();
+      scheduleNeighbors();
     });
 
     prevBtn?.addEventListener('pointerenter', () => prepareImage(currentIndex - 1));
@@ -865,6 +879,9 @@ const relatedRooms = allRooms
     });
 
     updateCarousel();
-    preloadNeighbors();
+    // Neighbours must not compete with a still-loading initial/LCP image.
+    const firstImage = slideImages[0];
+    if (firstImage.complete && firstImage.naturalWidth > 0) scheduleNeighbors();
+    else firstImage.addEventListener('load', scheduleNeighbors, { once: true });
   }
 </script>

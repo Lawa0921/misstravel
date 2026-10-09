@@ -17,6 +17,10 @@ const categories = [
   { id: 'suite', label: '套房', icon: '🛏️' },
 ] as const;
 
+// Match the rendered category order, not the collection's global order.
+const leadingRooms = categories.flatMap(category => sortedRooms.filter(room => room.data.category === category.id)).slice(0, 2);
+const priorityRoomIds = new Set(leadingRooms.map(room => room.id));
+
 const itemListSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -35,6 +39,8 @@ const itemListSchema = {
   description="密式旅行提供多樣化住宿選擇：露營營位享受大自然、溫馨露營木屋適合家庭、舒適套房提供完整住宿空間。"
   keywords="密式旅行房型,露營營位,露營木屋,套房住宿,苗栗住宿價格"
   extraSchemas={[itemListSchema]}
+  preloadImage={leadingRooms[0]?.data.mainImage}
+  preloadSizes={imageSizes.card}
 >
   <main id="main" class="alt">
     <div class="inner">
@@ -81,9 +87,9 @@ const itemListSchema = {
                   <article class="room-option">
                   <a
                     href={`/rooms/${room.id.replace('.md', '')}/`}
-                    class="room-card"
+                    class:list={['room-card', { 'is-revealed': priorityRoomIds.has(room.id) }]}
                     data-motion-card=""
-                    data-reveal=""
+                    data-reveal={priorityRoomIds.has(room.id) ? undefined : ''}
                     style={`--motion-order: ${roomIndex}`}
                   >
                     <h3>{room.data.title}</h3>
@@ -92,7 +98,8 @@ const itemListSchema = {
                         data-room-photo={`/rooms/${room.id.replace('.md', '')}/`}
                         {...responsiveImage(room.data.mainImage, imageSizes.card)}
                         alt={getRoomImageMetadata(room.data.mainImage).alt}
-                        loading="lazy"
+                        loading={priorityRoomIds.has(room.id) ? 'eager' : 'lazy'}
+                        fetchpriority={room.id === leadingRooms[0]?.id ? 'high' : undefined}
                         decoding="async"
                       />
                     </div>

@@ -89,7 +89,7 @@
     if (!transition || motion.matches) return;
     // No scroll-reveal replay on navigation, including native history that
     // restores scroll AFTER pagereveal. Keep hover feedback, not opacity/blur.
-    document.querySelectorAll('[data-reveal]').forEach((item) => {
+    document.querySelectorAll('[data-reveal], [data-motion-card]').forEach((item) => {
       item.setAttribute('data-route-ready', '');
       item.classList.add('is-revealed');
     });
