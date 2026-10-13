@@ -1,9 +1,9 @@
 ---
-metaTitle: '密式旅行露營區，觀山之屋露營小木屋'
+metaTitle: '觀山之屋四人小木屋｜苗栗泰安密式旅行露營區'
 title: '觀山之屋露營木屋'
 shortTitle: '觀山之屋'
 description: '觀山之屋是苗栗泰安密式旅行的四人露營木屋，室內床板約2.7乘2.1公尺，附房外平台。流理台、衛浴及冰箱為公用；使用室外公共空間炊煮須預訂五間包區，房間依工作人員安排。'
-metaDescription: '密式旅行觀山之屋四人露營木屋，附房外平台，使用公用流理台、衛浴及冰箱，無提供早晚餐。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
+metaDescription: '苗栗泰安密式旅行觀山之屋四人露營木屋，附房外平台，使用公用流理台、衛浴及冰箱，無提供早晚餐。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
 standardPrice: 2000
 holidayPrice: 1700
 weekdayPrice: 1200
