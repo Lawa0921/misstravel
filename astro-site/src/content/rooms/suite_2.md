@@ -1,9 +1,9 @@
 ---
-metaTitle: '閲陽樓四人住宿套房｜苗栗泰安密式旅行露營區'
+metaTitle: '密式之頂閲陽樓四人套房｜苗栗泰安密式旅行露營區'
 title: '密式之頂閲陽樓四人套房'
 shortTitle: '密式之頂'
 description: '密式之頂閲陽樓是苗栗泰安密式旅行的四人套房，提供房型專用衛浴、流理台、電視、吹風機與冷暖氣。平日不附早餐，假日及連續假期附早餐；炊煮限室外平台，車輛須停至停車場或營區外。'
-metaDescription: '苗栗泰安密式旅行密式之頂閲陽樓四人套房，附獨立衛浴、電視與冷暖氣，炊煮限室外平台。平日{{weekdayPrice}}元不附早餐；假日{{holidayPrice}}元、連假{{standardPrice}}元附早餐。連續假期限接三天兩夜以上預訂。'
+metaDescription: '密式之頂閲陽樓位於苗栗泰安密式旅行，四人套房附獨立衛浴、電視與冷暖氣，炊煮限室外平台。平日{{weekdayPrice}}元不附早餐；假日{{holidayPrice}}元、連假{{standardPrice}}元附早餐。連續假期限接三天兩夜以上預訂。'
 standardPrice: 4600
 holidayPrice: 4000
 weekdayPrice: 2400

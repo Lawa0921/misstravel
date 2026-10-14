@@ -24,11 +24,19 @@ function edgeRedirect(pathname: string, hostname = 'www.misstravel.me') {
 }
 
 describe('1. /index.html duplicates collapse onto the canonical directory URL', () => {
-  it('/index.html answers 301 to /', () => {
-    expect(edgeRedirect('/index.html')).toEqual({ status: 301, location: '/' });
+  it('both index.html rules are declared permanent like every other redirect', () => {
+    const rules = config.redirects.filter((r: { source: string }) => r.source.endsWith('/index.html'));
+    expect(rules).toHaveLength(2);
+    for (const rule of rules) {
+      expect(rule.permanent).toBe(true);
+      expect(rule).not.toHaveProperty('statusCode');
+    }
   });
-  it.each(['rooms', 'infos', 'announcements', 'rooms/log_cabin_1', 'infos/guide'])('/%s/index.html answers 301 to its directory, not a slug 404', dir => {
-    expect(edgeRedirect(`/${dir}/index.html`)).toEqual({ status: 301, location: `/${dir}/` });
+  it('/index.html answers 308 to /', () => {
+    expect(edgeRedirect('/index.html')).toEqual({ status: 308, location: '/' });
+  });
+  it.each(['rooms', 'infos', 'announcements', 'rooms/log_cabin_1', 'infos/guide'])('/%s/index.html answers 308 to its directory, not a slug 404', dir => {
+    expect(edgeRedirect(`/${dir}/index.html`)).toEqual({ status: 308, location: `/${dir}/` });
   });
   it('canonical directory URLs themselves are never redirected (no loop)', () => {
     for (const path of ['/', '/rooms/', '/infos/guide/', '/rooms/log_cabin_1/']) expect(edgeRedirect(path)).toBeNull();
@@ -61,18 +69,39 @@ describe('4. homepage title leads with the brand, then location/type from site c
 describe('5. room pages have unique, location-bearing titles and descriptions', () => {
   const typeWord: Record<string, string> = { campsite_: '露營', log_cabin_: '木屋', suite_: '套房' };
   const pages = roomSlugs.map(slug => ({ slug, $: read(`rooms/${slug}/index.html`) }));
-  it.each(roomSlugs)('%s title names the room, its type, 苗栗泰安 and the brand', slug => {
+  const shortTitleOf = (slug: string) => {
+    const match = readFileSync(join(app, 'src/content/rooms', `${slug}.md`), 'utf8').match(/^shortTitle:\s*'([^']+)'/m);
+    if (!match) throw new Error(`${slug} has no shortTitle`);
+    return match[1];
+  };
+  it.each(roomSlugs)('%s title names the room before the single ｜, then type, 苗栗泰安 and the brand', slug => {
     const $ = pages.find(p => p.slug === slug)!.$;
     const title = $('title').text();
     const type = Object.entries(typeWord).find(([prefix]) => slug.startsWith(prefix))![1];
+    const parts = title.split('｜');
+    expect(parts, title).toHaveLength(2);
+    const [roomPart, brandPart] = parts;
+    // shortTitle is the on-page room name; "依山 - 靜" style names must appear token by token, in order.
+    const tokens = shortTitleOf(slug).split(/[\s\-・]+/).filter(Boolean);
+    let cursor = 0;
+    for (const token of tokens) {
+      const at = roomPart.indexOf(token, cursor);
+      expect(at, `${title} should name ${token} before ｜`).toBeGreaterThanOrEqual(0);
+      cursor = at + token.length;
+    }
     expect(title).toContain(type);
-    expect(title).toContain('苗栗泰安');
-    expect(title).toContain('密式旅行');
+    expect(roomPart, 'room name uses ・ rather than " - " or spaces').not.toMatch(/\s/);
+    expect(brandPart).toContain('苗栗泰安');
+    expect(brandPart).toContain('密式旅行');
+    expect([...title].length, title).toBeLessThanOrEqual(30);
     expect($('meta[property="og:title"]').attr('content')).toBe(title);
   });
-  it.each(roomSlugs)('%s description carries the 苗栗泰安 location', slug => {
+  it.each(roomSlugs)('%s description carries the 苗栗泰安 location, stays within 120 characters and reads naturally', slug => {
     const description = pages.find(p => p.slug === slug)!.$('meta[name="description"]').attr('content') || '';
     expect(description).toContain('苗栗泰安');
+    expect([...description].length, description).toBeLessThanOrEqual(120);
+    expect(description).not.toContain('密式旅行密式');
+    expect(description).not.toContain('{{');
   });
   it('titles and descriptions are all distinct', () => {
     expect(new Set(pages.map(p => p.$('title').text())).size).toBe(roomSlugs.length);
