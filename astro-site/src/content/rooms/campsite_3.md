@@ -1,9 +1,9 @@
 ---
-metaTitle: '密式旅行露營區，雨棚露營區'
+metaTitle: '密式雨棚兩帳包區｜苗栗泰安密式旅行露營區'
 title: '密式雨棚區 ( 2 帳包區)'
 shortTitle: '密式雨棚'
 description: '密式雨棚區位於苗栗泰安密式旅行，雨棚約11乘8公尺、高約3.1公尺。兩帳包區適用8人以下，提供一組流理台、兩組衛浴及約八人使用的桌椅，車輛須停在區域草地內。'
-metaDescription: '密式旅行雨棚區：兩帳包區適用8人以下，雨棚約11乘8公尺，提供流理台、衛浴與桌椅。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
+metaDescription: '苗栗泰安密式旅行雨棚區：兩帳包區適用8人以下，雨棚約11乘8公尺，提供流理台、衛浴與桌椅。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
 standardPrice: 2400
 holidayPrice: 2000
 weekdayPrice: 1600

@@ -1,9 +1,9 @@
 ---
-metaTitle: '密式旅行露營區，近雲樓四人住宿套房'
+metaTitle: '密式之眼近雲樓四人套房｜苗栗泰安密式旅行露營區'
 title: '密式之眼近雲樓四人套房'
 shortTitle: '密式之眼'
 description: '密式之眼近雲樓是苗栗泰安密式旅行的四人套房，提供房型專用衛浴、流理台、電視、吹風機與冷暖氣。平日不附早餐，假日及連續假期附早餐；戶外平台搭帳另計清潔費且不含早餐寢具。'
-metaDescription: '密式旅行密式之眼近雲樓四人套房，附獨立衛浴、電視與冷暖氣。平日{{weekdayPrice}}元不附早餐；假日{{holidayPrice}}元、連假{{standardPrice}}元附早餐。連續假期限接三天兩夜以上預訂；加人及戶外搭帳條件見房型說明。'
+metaDescription: '密式之眼近雲樓位於苗栗泰安密式旅行，四人套房附獨立衛浴、電視與冷暖氣。平日{{weekdayPrice}}元不附早餐；假日{{holidayPrice}}元、連假{{standardPrice}}元附早餐。連續假期限接三天兩夜以上預訂；加人及戶外搭帳條件見房型說明。'
 standardPrice: 4600
 holidayPrice: 4000
 weekdayPrice: 2400

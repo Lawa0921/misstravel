@@ -184,7 +184,7 @@
     },
     {
       "file": "infos/guide/index.html",
-      "seo": "282da64f96f4359e8f65dcb3af7fbae2bdc5353777c748f5a6ca7eb060e3ffa9",
+      "seo": "8e2948cf50665f43faa6d6ccc1fa1171da007acd39f5efaab79a3d6d0be0df5a",
       "regions": [
         {
           "selector": ".modal-body",
@@ -290,7 +290,7 @@
     },
     {
       "file": "rooms/campsite_1/index.html",
-      "seo": "ad0750bb1c314644d136c7683e28c992e007b15a93590b497bf1654f7f1cf685",
+      "seo": "096a025b3a6f7078bd04228920bc14ac0dd6bf7a1a3ff83613802303ee034755",
       "regions": [
         {
           "selector": ".room-content",
@@ -317,7 +317,7 @@
     },
     {
       "file": "rooms/campsite_2/index.html",
-      "seo": "79377add07a008722b432e28fff7d3cd1b97e007a9e3fde93f10a60006a809d3",
+      "seo": "2aec5a4cd6db83e3f615390e9230b88e7115ed8fc9541f20d0985d8c7e623743",
       "regions": [
         {
           "selector": ".room-content",
@@ -344,7 +344,7 @@
     },
     {
       "file": "rooms/campsite_3/index.html",
-      "seo": "94e7b98faf8db2fc2fb43e3dd6ba74e885d94cc0c7f5183752bda96b06678882",
+      "seo": "775cbf2c59c1c60dcb541a77c317cfac2dcd5c23b36ae2b4b390f15e90d09130",
       "regions": [
         {
           "selector": ".room-content",
@@ -371,7 +371,7 @@
     },
     {
       "file": "rooms/log_cabin_1/index.html",
-      "seo": "15d75991de91d98f4cf1332fb2be2cb9d423f5148a022bf647a0a8d55a012599",
+      "seo": "3582950068aed42cac015b1fe7b194641065e601c970da489f0a078c27b0f427",
       "regions": [
         {
           "selector": ".room-content",
@@ -398,7 +398,7 @@
     },
     {
       "file": "rooms/log_cabin_2/index.html",
-      "seo": "e30badef12cea06ba2f66962b34de66301cab16524266a7b76a9b4aa6c81a7a6",
+      "seo": "976a938e4df94c113d3d31c6616e3cdb8ad9982643c99d3f0cc5d6e3d39a7788",
       "regions": [
         {
           "selector": ".room-content",
@@ -425,7 +425,7 @@
     },
     {
       "file": "rooms/log_cabin_3/index.html",
-      "seo": "1276b77a77b9e1ecf6578dd7e23481b600e2a016fdb7f3588932ba7198a5df3a",
+      "seo": "10bb81d2c48246d5a64d662199efa54fb007f3d37b69bde6013d4e0b4d1176b9",
       "regions": [
         {
           "selector": ".room-content",
@@ -452,7 +452,7 @@
     },
     {
       "file": "rooms/log_cabin_4/index.html",
-      "seo": "aeabdb992a0cbc7f08d0faea7532de972c2231ba4de7e0cfb0d68599d7bcab44",
+      "seo": "042737d36ad563896ba84df17ec2801239fede15b0b5ac905bed5f9b2212b2ba",
       "regions": [
         {
           "selector": ".room-content",
@@ -479,7 +479,7 @@
     },
     {
       "file": "rooms/suite_1/index.html",
-      "seo": "e4d773c36934f15be982df30d7336cfed3b79b10cc40cc8abda0b95b9ea17716",
+      "seo": "64d511a86648974351798ee3e8d64f7a33b465b334c12c6e3cc966aad0402fce",
       "regions": [
         {
           "selector": ".room-content",
@@ -506,7 +506,7 @@
     },
     {
       "file": "rooms/suite_2/index.html",
-      "seo": "e1817a3e084f5520c1f460189eaa412ed3d7591621feed4e784fe8e533572a48",
+      "seo": "a6ec16b205166ec5cfbfe2693ef983d7424a47781f329844cd6f0d91f5cf9be4",
       "regions": [
         {
           "selector": ".room-content",
@@ -533,7 +533,7 @@
     },
     {
       "file": "rooms/suite_3/index.html",
-      "seo": "572bf5ca0fa43669377de0a389e677aa62c977739a8f89f40d16d47bbafcaa36",
+      "seo": "4deae79ca6ed0f494d62e846835ef3543036620fc37a04dee84bea070d5584ea",
       "regions": [
         {
           "selector": ".room-content",

@@ -1,9 +1,9 @@
 ---
-metaTitle: '密式旅行露營區，櫻花之盡木棧板露營區'
+metaTitle: '櫻花之盡木棧板營｜苗栗泰安密式旅行露營區'
 title: '櫻花之盡木棧板營 (3 ~ 4 帳包區)'
 shortTitle: '櫻花之盡'
 description: '櫻花之盡木棧板營位於苗栗泰安密式旅行，提供兩個木棧板與一個木平台。三帳包區適用12人以下、四帳包區適用16人以下，實際依帳數計價；區域提供兩組流理台、兩組衛浴及一台冰箱。'
-metaDescription: '密式旅行櫻花之盡木棧板營：三帳12人以下平日{{priceOptions.1.weekdayPrice}}元，四帳16人以下平日{{weekdayPrice}}元。線上系統顯示四帳價，三帳依現場帳數收費；連續假期限接三天兩夜以上預訂。'
+metaDescription: '苗栗泰安密式旅行櫻花之盡木棧板營：三帳12人以下平日{{priceOptions.1.weekdayPrice}}元，四帳16人以下平日{{weekdayPrice}}元。線上系統顯示四帳價，三帳依現場帳數收費；連續假期限接三天兩夜以上預訂。'
 standardPrice: 4800
 holidayPrice: 4000
 weekdayPrice: 3200

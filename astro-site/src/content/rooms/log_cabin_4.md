@@ -1,9 +1,9 @@
 ---
-metaTitle: '密式旅行露營區，依山之屋 - 沉露營小木屋'
+metaTitle: '依山之屋・沉房四人小木屋｜苗栗泰安密式旅行露營區'
 title: '依山之屋 - 沉 露營木屋'
 shortTitle: '依山 - 沉'
 description: '依山之屋沉房是苗栗泰安密式旅行的四人露營木屋，室內床板約3.4乘2.1公尺，附約3乘3公尺的涼亭與桌子。流理台、衛浴及冰箱為公用，車輛可停於涼亭旁或停車場。'
-metaDescription: '密式旅行依山之屋沉房：四人露營木屋，附涼亭與桌子，使用公用衛浴及冰箱，無提供早晚餐。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
+metaDescription: '苗栗泰安密式旅行依山之屋沉房：四人露營木屋，附涼亭與桌子，使用公用衛浴及冰箱，無提供早晚餐。平日{{weekdayPrice}}元、假日{{holidayPrice}}元、連假{{standardPrice}}元；連續假期限接三天兩夜以上預訂。'
 standardPrice: 2000
 holidayPrice: 1700
 weekdayPrice: 1200

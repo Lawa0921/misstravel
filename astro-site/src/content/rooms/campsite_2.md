@@ -1,9 +1,9 @@
 ---
-metaTitle: '密式旅行露營區，沒日之嶺草地露營區'
+metaTitle: '沒日之嶺草地營｜苗栗泰安密式旅行露營區'
 title: '沒日之嶺草地營 (3 ~ 4 帳包區)'
 shortTitle: '沒日之嶺'
 description: '沒日之嶺草地營位於苗栗泰安密式旅行，草地約19乘12公尺。三帳包區適用12人以下、四帳包區適用16人以下，實際依帳數計價；區域提供兩組流理台、兩組衛浴及一台冰箱。'
-metaDescription: '密式旅行沒日之嶺草地營：草地約19乘12公尺，三帳12人以下平日{{priceOptions.1.weekdayPrice}}元，四帳16人以下平日{{weekdayPrice}}元。實際依帳數計價；連續假期限接三天兩夜以上預訂。'
+metaDescription: '苗栗泰安密式旅行沒日之嶺草地營：草地約19乘12公尺，三帳12人以下平日{{priceOptions.1.weekdayPrice}}元，四帳16人以下平日{{weekdayPrice}}元。實際依帳數計價；連續假期限接三天兩夜以上預訂。'
 standardPrice: 4800
 holidayPrice: 4000
 weekdayPrice: 3200
